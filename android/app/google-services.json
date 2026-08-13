@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1040809661139",
+    "project_id": "medicine-cabinet-886d5",
+    "storage_bucket": "medicine-cabinet-886d5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040809661139:android:e46d3528cdfe19ba2dfa26",
+        "android_client_info": {
+          "package_name": "com.example.medicine_cabinet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040809661139-1fm32heii9dfrrfsbgep3sc862pam897.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medicine_cabinet",
+            "certificate_hash": "8d01ee2a703163ad10984bcda9e508fd7c064e86"
+          }
+        },
+        {
+          "client_id": "1040809661139-6n2c5j6maobkt8lck5jma9m7afft0ros.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLYKv4KRnUHGq_31BSvjW5vP5CoQPsaY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040809661139-6n2c5j6maobkt8lck5jma9m7afft0ros.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1040809661139-j8g1je199bjbi9llcf8ulc16kr2j0gu1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.medicine-cabinet"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
