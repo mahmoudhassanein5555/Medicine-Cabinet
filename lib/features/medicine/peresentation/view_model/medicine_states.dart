@@ -12,10 +12,7 @@ class MedicineSuccessState extends MedicineState {
   final List<MedicineEntity> medicines;
   final MedicineFilter selectedFilter;
 
-  MedicineSuccessState({
-    required this.medicines,
-    this.selectedFilter = MedicineFilter.all,
-  });
+  MedicineSuccessState({required this.medicines, required this.selectedFilter});
 }
 
 class MedicineErrorState extends MedicineState {

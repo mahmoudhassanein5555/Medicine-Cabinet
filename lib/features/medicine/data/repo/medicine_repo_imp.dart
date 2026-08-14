@@ -4,6 +4,7 @@ import 'package:medicine_cabinet/core/failure/failure.dart';
 import 'package:medicine_cabinet/features/medicine/data/data_source/medicine_data_source_interface.dart';
 import 'package:medicine_cabinet/features/medicine/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_filter.dart';
+import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_status.dart';
 import 'package:medicine_cabinet/features/medicine/domain/repo/medicine_repo_interface.dart';
 
 @Injectable(as: MedicineRepoInterface)
@@ -17,35 +18,18 @@ class MedicineRepoImpl implements MedicineRepoInterface {
     try {
       final medicines = await dataSource.getMedicines();
 
-      return Right(medicines.map((medicine) => medicine.toEntity()).toList());
+      final entities = medicines
+          .map((medicine) => medicine.toEntity())
+          .toList();
+
+      return Right(entities);
     } catch (e) {
       return Left(Failure(e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, List<MedicineEntity>>> filterMedicines(
-    MedicineFilter filter,
-  ) async {
-    try {
-      final medicines = await dataSource.getMedicines();
-
-      final entities = medicines
-          .map((medicine) => medicine.toEntity())
-          .toList();
-
-      final filteredMedicines = _filterMedicines(
-        medicines: entities,
-        filter: filter,
-      );
-
-      return Right(filteredMedicines);
-    } catch (e) {
-      return Left(Failure(e.toString()));
-    }
-  }
-
-  List<MedicineEntity> _filterMedicines({
+  List<MedicineEntity> filterMedicines({
     required List<MedicineEntity> medicines,
     required MedicineFilter filter,
   }) {
@@ -57,9 +41,9 @@ class MedicineRepoImpl implements MedicineRepoInterface {
 
       case MedicineFilter.expiringSoon:
         return medicines.where((medicine) {
-          final days = medicine.expiryDate.difference(now).inDays;
+          final daysUntilExpiry = medicine.expiryDate.difference(now).inDays;
 
-          return days >= 0 && days <= 30;
+          return daysUntilExpiry >= 0 && daysUntilExpiry <= 30;
         }).toList();
 
       case MedicineFilter.lowStock:
@@ -72,5 +56,30 @@ class MedicineRepoImpl implements MedicineRepoInterface {
           return medicine.expiryDate.isBefore(now);
         }).toList();
     }
+  }
+
+  @override
+  MedicineStatus getMedicineStatus(MedicineEntity medicine) {
+    final now = DateTime.now();
+
+    // Expired
+    if (medicine.expiryDate.isBefore(now)) {
+      return MedicineStatus.expired;
+    }
+
+    // Expiring soon
+    final daysUntilExpiry = medicine.expiryDate.difference(now).inDays;
+
+    if (daysUntilExpiry >= 0 && daysUntilExpiry <= 30) {
+      return MedicineStatus.expiring;
+    }
+
+    // Low stock
+    if (medicine.quantity <= 5) {
+      return MedicineStatus.lowStock;
+    }
+
+    // Healthy
+    return MedicineStatus.healthy;
   }
 }
