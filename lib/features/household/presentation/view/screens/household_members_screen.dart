@@ -1,90 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/di/service_locator.dart';
 import '../../../../../generated/l10n.dart';
+import '../view_model/household_cubit.dart';
+import '../view_model/household_state.dart';
 
-class HouseholdMembersScreen extends StatelessWidget {
+class HouseholdMembersScreen extends StatefulWidget {
   const HouseholdMembersScreen({
     super.key,
+    required this.householdId,
     this.onMemberPressed,
   });
 
+  final String householdId;
   final void Function(String userId)? onMemberPressed;
+
+  @override
+  State<HouseholdMembersScreen> createState() => _HouseholdMembersScreenState();
+}
+
+class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
+
 
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
 
-    final members = [
-      _HouseholdMemberUiModel(
-        id: 'ahmed',
-        name: 'Ahmed',
-        medicineCount: 8,
-        color: Colors.teal,
-      ),
-      _HouseholdMemberUiModel(
-        id: 'mom',
-        name: 'Mom',
-        medicineCount: 11,
-        color: Colors.blue,
-      ),
-      _HouseholdMemberUiModel(
-        id: 'dad',
-        name: 'Dad',
-        medicineCount: 5,
-        color: Colors.deepPurple,
-      ),
-    ];
 
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 18),
 
-              // Header
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new,
-                      size: 20,
-                    ),
-                  ),
+    return BlocProvider(
+      create: (_) => getIt<HouseholdCubit>()
+        ..getUserHousehold(userId:  widget.householdId),
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 18),
 
-                  const SizedBox(width: 4),
-
-                  Text(
-                    l10n.householdTitle,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 20),
-
-              // Members
-              Expanded(
-                child: ListView.separated(
-                  itemCount: members.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 14),
-                  itemBuilder: (context, index) {
-                    final member = members[index];
-
-                    return _MemberCard(
-                      member: member,
-                      medicineText: l10n.householdMedicineCount(
-                        member.medicineCount,
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new,
+                        size: 20,
                       ),
-                      onTap: () => onMemberPressed?.call(member.id),
-                    );
-                  },
+                    ),
+
+                    const SizedBox(width: 4),
+
+                    Text(
+                      l10n.householdTitle,
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                  ],
                 ),
-              ),
-            ],
+
+                const SizedBox(height: 20),
+
+                Expanded(
+                  child: BlocBuilder< HouseholdCubit,
+                      HouseholdState>(builder: (context, state) {
+                    if (state is GetHouseholdLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (state is GetHouseholdError) {
+                      return Center(
+                        child: Text(state.message),
+                      );
+                    }
+                    if(state is GetHouseholdSuccess){
+                      final members =state.
+                    }
+
+
+                      },)
+                  // ListView.separated(
+                  //   itemCount: members.length,
+                  //   separatorBuilder: (_, __) => const SizedBox(height: 14),
+                  //   itemBuilder: (context, index) {
+                  //     final member = members[index];
+                  //
+                  //     return _MemberCard(
+                  //       member: member,
+                  //       medicineText: l10n.householdMedicineCount(
+                  //         member.medicineCount,
+                  //       ),
+                  //       onTap: () => onMemberPressed?.call(member.id),
+                  //     );
+                  //   },
+                  // ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -101,8 +115,7 @@ class _MemberCard extends StatelessWidget {
 
   final _HouseholdMemberUiModel member;
   final String medicineText;
-  final VoidCallback onTap; // تم التصحيح هنا لـ VoidCallback
-
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -136,7 +149,6 @@ class _MemberCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // Avatar
               Container(
                 width: 60,
                 height: 60,
@@ -157,7 +169,6 @@ class _MemberCard extends StatelessWidget {
 
               const SizedBox(width: 16),
 
-              // Member information
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -178,7 +189,6 @@ class _MemberCard extends StatelessWidget {
                 ),
               ),
 
-              // Arrow
               Icon(
                 Icons.arrow_forward_ios,
                 size: 18,
@@ -192,16 +202,3 @@ class _MemberCard extends StatelessWidget {
   }
 }
 
-class _HouseholdMemberUiModel {
-  const _HouseholdMemberUiModel({
-    required this.id,
-    required this.name,
-    required this.medicineCount,
-    required this.color,
-  });
-
-  final String id;
-  final String name;
-  final int medicineCount;
-  final Color color;
-}

@@ -21,129 +21,136 @@ class MemberDetailsScreen extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
-        ),
-        title: Text(
-          l10n.householdMemberDetails,
-          style: theme.textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Column(
-            children: [
-              // Member Avatar
-              CircleAvatar(
-                radius: 48,
-                backgroundColor: colorScheme.primary,
-                child: Text(
-                  memberInitial,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
+                ),
+
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      l10n.householdMemberDetails,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
-              ),
 
-              const SizedBox(height: 16),
+                const SizedBox(width: 48),
+              ],
+            ),
 
-              // Member Name
-              Text(
-                memberName,
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 48,
+                      backgroundColor: colorScheme.primary,
+                      child: Text(
+                        memberInitial,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 34,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    Text(
+                      memberName,
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(height: 6),
+
+                    Text(
+                      '$medicinesCount ${l10n.medicines}',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text(
+                        l10n.memberInformation,
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 14),
+
+                    _InfoCard(
+                      icon: Icons.person_outline,
+                      title: l10n.name,
+                      value: memberName,
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    _InfoCard(
+                      icon: Icons.medication_outlined,
+                      title: l10n.medicines,
+                      value: '$medicinesCount',
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text(
+                        l10n.memberMedicines,
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 14),
+
+                    const _MedicineCard(
+                      name: 'Panadol',
+                      quantity: '2 boxes',
+                      expiryDate: 'Dec 2026',
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    const _MedicineCard(
+                      name: 'Vitamin C',
+                      quantity: '1 bottle',
+                      expiryDate: 'Mar 2027',
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    const _MedicineCard(
+                      name: 'Omega 3',
+                      quantity: '3 boxes',
+                      expiryDate: 'Jan 2027',
+                    ),
+
+                    const SizedBox(height: 24),
+                  ],
                 ),
               ),
-
-              const SizedBox(height: 6),
-
-              // Medicines Count
-              Text(
-                '$medicinesCount ${l10n.medicines}',
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
-              ),
-
-              const SizedBox(height: 30),
-
-              // Member Information Header
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  l10n.memberInformation,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 14),
-
-              _InfoCard(
-                icon: Icons.person_outline,
-                title: l10n.name,
-                value: memberName,
-              ),
-
-              const SizedBox(height: 12),
-
-              _InfoCard(
-                icon: Icons.medication_outlined,
-                title: l10n.medicines,
-                value: '$medicinesCount',
-              ),
-
-              const SizedBox(height: 30),
-
-              // Medicines Section Header
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  l10n.memberMedicines,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 14),
-
-              const _MedicineCard(
-                name: 'Panadol',
-                quantity: '2 boxes',
-                expiryDate: 'Dec 2026',
-              ),
-
-              const SizedBox(height: 12),
-
-              const _MedicineCard(
-                name: 'Vitamin C',
-                quantity: '1 bottle',
-                expiryDate: 'Mar 2027',
-              ),
-
-              const SizedBox(height: 12),
-
-              const _MedicineCard(
-                name: 'Omega 3',
-                quantity: '3 boxes',
-                expiryDate: 'Jan 2027',
-              ),
-
-              const SizedBox(height: 24),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:medicine_cabinet/features/household/presentation/view/screens/widget/custom_button.dart';
 
 import '../../../../../generated/l10n.dart';
 
@@ -27,7 +28,6 @@ class HouseholdScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
 
-                  // Title
                   Text(
                     l10n.householdSetupTitle,
                     textAlign: TextAlign.center,
@@ -38,7 +38,6 @@ class HouseholdScreen extends StatelessWidget {
 
                   const SizedBox(height: 12),
 
-                  // Description
                   Text(
                     l10n.householdSetupDescription,
                     textAlign: TextAlign.center,
@@ -49,9 +48,8 @@ class HouseholdScreen extends StatelessWidget {
 
                   const SizedBox(height: 24),
 
-                  // Animation
                   SizedBox(
-                    width: double.infinity, // تم تصحيحها من .infinity لـ double.infinity
+                    width: double.infinity,
                     height: 250,
                     child: Lottie.asset(
                       'assets/animations/household_screen.json',
@@ -61,7 +59,6 @@ class HouseholdScreen extends StatelessWidget {
 
                   const SizedBox(height: 30),
 
-                  // Household ID Label
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Text(
@@ -74,7 +71,6 @@ class HouseholdScreen extends StatelessWidget {
 
                   const SizedBox(height: 12),
 
-                  // Household ID Field (هياخد خصائصه أوتوماتيكياً من الـ InputDecorationTheme)
                   const TextField(
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.home_outlined),
@@ -83,12 +79,9 @@ class HouseholdScreen extends StatelessWidget {
 
                   const SizedBox(height: 20),
 
-                  // Join Button (هياخد تصميمه من elevatedButtonTheme)
-                  SizedBox(
-                    child: ElevatedButton(
-                      onPressed: onJoinPressed,
-                      child: Text(l10n.householdJoinButton),
-                    ),
+                  CustomButton(
+                    text: l10n.householdJoinButton,
+                    onPressed: onJoinPressed,
                   ),
 
                   const SizedBox(height: 32),
@@ -121,12 +114,10 @@ class HouseholdScreen extends StatelessWidget {
 
                   const SizedBox(height: 32),
 
-                  // Create Button (هياخد تصميمه من outlinedButtonTheme)
-                  SizedBox(
-                    child: OutlinedButton(
-                      onPressed: onCreatePressed,
-                      child: Text(l10n.householdCreateButton),
-                    ),
+                  CustomButton(
+                    text: l10n.householdCreateButton,
+                    onPressed: onCreatePressed,
+                    isOutlined: true,
                   ),
 
                   const SizedBox(height: 24),
