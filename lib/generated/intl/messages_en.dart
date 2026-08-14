@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(name) => "Good evening, ${name}";
 
-  static String m1(sortOption) => "Sort: ${sortOption}";
+  static String m1(count) => "${count} medicines";
+
+  static String m2(sortOption) => "Sort: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -118,6 +120,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "Update quantity",
     ),
+    "createHouseholdDescription": MessageLookupByLibrary.simpleMessage(
+      "Give your household a name to help your family stay organized.",
+    ),
+    "createHouseholdTitle": MessageLookupByLibrary.simpleMessage(
+      "Create a new household",
+    ),
     "homeAttentionNeeded": MessageLookupByLibrary.simpleMessage(
       "Attention needed",
     ),
@@ -143,18 +151,67 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "Add family member",
     ),
+    "householdAdminTitle": MessageLookupByLibrary.simpleMessage(
+      "As the household owner, you can:",
+    ),
+    "householdCreateButton": MessageLookupByLibrary.simpleMessage(
+      "Create a new household",
+    ),
+    "householdIdHint": MessageLookupByLibrary.simpleMessage(
+      "Enter household ID",
+    ),
+    "householdIdLabel": MessageLookupByLibrary.simpleMessage("Household ID"),
+    "householdJoinButton": MessageLookupByLibrary.simpleMessage(
+      "Join household",
+    ),
+    "householdJoinExistingButton": MessageLookupByLibrary.simpleMessage(
+      "I have a household ID, join it",
+    ),
+    "householdMedicineCount": m1,
+    "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
+      "Member Details",
+    ),
+    "householdNameHint": MessageLookupByLibrary.simpleMessage(
+      "e.g. Home Cabinet",
+    ),
+    "householdNameLabel": MessageLookupByLibrary.simpleMessage(
+      "Household name",
+    ),
+    "householdOr": MessageLookupByLibrary.simpleMessage("OR"),
+    "householdPermissionAdd": MessageLookupByLibrary.simpleMessage(
+      "Add or remove members",
+    ),
+    "householdPermissionManage": MessageLookupByLibrary.simpleMessage(
+      "Manage the household",
+    ),
+    "householdPermissionView": MessageLookupByLibrary.simpleMessage(
+      "View all members\' medicines",
+    ),
+    "householdSetupDescription": MessageLookupByLibrary.simpleMessage(
+      "Join an existing household using its ID, or create a new one.",
+    ),
+    "householdSetupTitle": MessageLookupByLibrary.simpleMessage(
+      "Set up your household",
+    ),
+    "householdTitle": MessageLookupByLibrary.simpleMessage("Household"),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
+    "medicines": MessageLookupByLibrary.simpleMessage("Medicines"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Search medicines...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
-    "medicinesSortLabelCurrent": m1,
+    "medicinesSortLabelCurrent": m2,
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "Name (A–Z)",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("Medicines"),
+    "memberInformation": MessageLookupByLibrary.simpleMessage(
+      "Member Information",
+    ),
+    "memberMedicines": MessageLookupByLibrary.simpleMessage("Member Medicines"),
+    "name": MessageLookupByLibrary.simpleMessage("Name"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(
       "Scan a medicine at the store and instantly see if your household already has it.",
     ),

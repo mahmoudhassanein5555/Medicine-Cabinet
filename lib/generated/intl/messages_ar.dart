@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(name) => "مساء الخير، ${name}";
 
-  static String m1(sortOption) => "الترتيب: ${sortOption}";
+  static String m1(count) => "${count} أدوية";
+
+  static String m2(sortOption) => "الترتيب: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -112,6 +114,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "تحديث الكمية",
     ),
+    "createHouseholdDescription": MessageLookupByLibrary.simpleMessage(
+      "أعطِ بيتك اسماً ليساعد عائلتك على البقاء منظمة.",
+    ),
+    "createHouseholdTitle": MessageLookupByLibrary.simpleMessage(
+      "إنشاء بيت جديد",
+    ),
     "homeAttentionNeeded": MessageLookupByLibrary.simpleMessage(
       "يحتاج انتباهك",
     ),
@@ -133,18 +141,61 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "إضافة فرد من العائلة",
     ),
+    "householdAdminTitle": MessageLookupByLibrary.simpleMessage(
+      "بصفتك مسؤول البيت، يمكنك:",
+    ),
+    "householdCreateButton": MessageLookupByLibrary.simpleMessage(
+      "إنشاء منزل جديد",
+    ),
+    "householdIdHint": MessageLookupByLibrary.simpleMessage(
+      "أدخل معرّف المنزل",
+    ),
+    "householdIdLabel": MessageLookupByLibrary.simpleMessage("معرّف المنزل"),
+    "householdJoinButton": MessageLookupByLibrary.simpleMessage(
+      "الانضمام إلى المنزل",
+    ),
+    "householdJoinExistingButton": MessageLookupByLibrary.simpleMessage(
+      "لديّ معرّف بيت وأريد الانضمام",
+    ),
+    "householdMedicineCount": m1,
+    "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
+      "تفاصيل العضو",
+    ),
+    "householdNameHint": MessageLookupByLibrary.simpleMessage(
+      "مثال: صيدلية البيت",
+    ),
+    "householdNameLabel": MessageLookupByLibrary.simpleMessage("اسم البيت"),
+    "householdOr": MessageLookupByLibrary.simpleMessage("أو"),
+    "householdPermissionAdd": MessageLookupByLibrary.simpleMessage(
+      "إضافة أو حذف الأعضاء",
+    ),
+    "householdPermissionManage": MessageLookupByLibrary.simpleMessage(
+      "إدارة البيت",
+    ),
+    "householdPermissionView": MessageLookupByLibrary.simpleMessage(
+      "عرض أدوية جميع الأعضاء",
+    ),
+    "householdSetupDescription": MessageLookupByLibrary.simpleMessage(
+      "انضم إلى منزل موجود باستخدام المعرّف الخاص به، أو أنشئ منزلاً جديداً.",
+    ),
+    "householdSetupTitle": MessageLookupByLibrary.simpleMessage("إعداد المنزل"),
+    "householdTitle": MessageLookupByLibrary.simpleMessage("الأسرة"),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
+    "medicines": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "الفيصل في البحث عن الأدوية...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
-    "medicinesSortLabelCurrent": m1,
+    "medicinesSortLabelCurrent": m2,
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "الاسم (أ–ي)",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("الأدوية"),
+    "memberInformation": MessageLookupByLibrary.simpleMessage("معلومات العضو"),
+    "memberMedicines": MessageLookupByLibrary.simpleMessage("أدوية العضو"),
+    "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(
       "امسح الدواء في المتجر واعرف فوراً ما إذا كان موجوداً لدى عائلتك بالفعل.",
     ),

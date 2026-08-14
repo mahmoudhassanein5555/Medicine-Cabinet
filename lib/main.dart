@@ -4,6 +4,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/di/service_locator.dart';
+import 'features/household/presentation/view/screens/create_household_screen.dart';
+import 'features/household/presentation/view/screens/household_members_screen.dart';
+import 'features/household/presentation/view/screens/household_screen.dart';
+import 'features/household/presentation/view/screens/member_details_screen.dart';
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
@@ -33,11 +37,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           title: 'Flutter Demo',
-          home: const Scaffold(
-            body: Center(
-              child: Text('Hello World'),
-            ),
-          )
+          home: const MemberDetailsScreen(),
         );
       },
     );
