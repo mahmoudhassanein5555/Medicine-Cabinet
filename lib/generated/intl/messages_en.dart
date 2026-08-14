@@ -22,7 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(name) => "Good evening, ${name}";
 
-  static String m1(sortOption) => "Sort: ${sortOption}";
+  static String m1(date) => "Expires ${date}";
+
+  static String m2(count) => "${count} remaining";
+
+  static String m3(count) => "${count} items";
+
+  static String m4(sortOption) => "Sort: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -146,11 +152,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
+    "medicineExpires": m1,
+    "medicineRemaining": m2,
+    "medicinesItemsCount": m3,
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Search medicines...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
-    "medicinesSortLabelCurrent": m1,
+    "medicinesSortLabelCurrent": m4,
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "Name (A–Z)",
     ),

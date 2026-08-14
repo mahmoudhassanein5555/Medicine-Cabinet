@@ -1,12 +1,333 @@
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+
+// import 'package:medicine_cabinet/core/constants/app_colors.dart';
+// import 'package:medicine_cabinet/core/widgets/custom_text_form_field.dart';
+// import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_filter.dart';
+// import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_status.dart';
+// import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_card.dart';
+// import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_filter_chip.dart';
+// import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
+// import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_states.dart';
+// import 'package:medicine_cabinet/generated/l10n.dart';
+
+// class MedicinesScreen extends StatefulWidget {
+//   const MedicinesScreen({super.key});
+
+//   @override
+//   State<MedicinesScreen> createState() => _MedicinesScreenState();
+// }
+
+// class _MedicinesScreenState extends State<MedicinesScreen> {
+//   final TextEditingController searchController = TextEditingController();
+
+//   final List<MedicineFilter> filters = [
+//     MedicineFilter.all,
+//     MedicineFilter.expiringSoon,
+//     MedicineFilter.lowStock,
+//     MedicineFilter.expired,
+//   ];
+
+//   @override
+//   void initState() {
+//     super.initState();
+
+//     context.read<MedicineCubit>().getMedicines();
+//   }
+
+//   @override
+//   void dispose() {
+//     searchController.dispose();
+//     super.dispose();
+//   }
+
+//   String filterTitle(BuildContext context, MedicineFilter filter) {
+//     final l10n = S.of(context);
+
+//     switch (filter) {
+//       case MedicineFilter.all:
+//         return l10n.commonAll;
+
+//       case MedicineFilter.expiringSoon:
+//         return l10n.commonExpiringSoon;
+
+//       case MedicineFilter.lowStock:
+//         return l10n.commonLowStock;
+
+//       case MedicineFilter.expired:
+//         return l10n.commonExpired;
+//     }
+//   }
+
+//   String statusTitle(BuildContext context, MedicineStatus status) {
+//     final l10n = S.of(context);
+
+//     switch (status) {
+//       case MedicineStatus.healthy:
+//         return l10n.commonHealthy;
+
+//       case MedicineStatus.expiring:
+//         return l10n.commonExpiringShort;
+
+//       case MedicineStatus.lowStock:
+//         return l10n.commonLowStock;
+
+//       case MedicineStatus.expired:
+//         return l10n.commonExpired;
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final theme = Theme.of(context);
+
+//     return Scaffold(
+//       body: SafeArea(
+//         child: BlocBuilder<MedicineCubit, MedicineState>(
+//           builder: (context, state) {
+//             if (state is MedicineLoadingState) {
+//               return Center(
+//                 child: CircularProgressIndicator(
+//                   color: theme.colorScheme.primary,
+//                 ),
+//               );
+//             }
+
+//             if (state is MedicineErrorState) {
+//               return Center(
+//                 child: Text(state.message, style: theme.textTheme.bodyMedium),
+//               );
+//             }
+
+//             if (state is MedicineSuccessState) {
+//               return _buildMedicinesContent(context, state);
+//             }
+
+//             return const SizedBox.shrink();
+//           },
+//         ),
+//       ),
+//     );
+//   }
+
+//   Widget _buildMedicinesContent(
+//     BuildContext context,
+//     MedicineSuccessState state,
+//   ) {
+//     final theme = Theme.of(context);
+
+//     return CustomScrollView(
+//       slivers: [
+//         SliverPadding(
+//           padding: const EdgeInsets.fromLTRB(33, 28, 33, 0),
+//           sliver: SliverToBoxAdapter(
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Text(
+//                   S.of(context).medicinesTitle,
+//                   style: theme.textTheme.headlineMedium?.copyWith(
+//                     fontSize: 26,
+//                     fontWeight: FontWeight.w800,
+//                     letterSpacing: -0.5,
+//                   ),
+//                 ),
+
+//                 const SizedBox(height: 16),
+
+//                 /// Search
+//                 CustomTextFormField(
+//                   controller: searchController,
+//                   hintText: S.of(context).medicinesSearchHint,
+//                   hintTextColor: theme.brightness == Brightness.dark
+//                       ? AppColors.textMutedDark
+//                       : AppColors.textMutedLight,
+//                   onChanged: (value) {
+//                     // Search logic later
+//                   },
+//                   prefixIcon: Icon(
+//                     Icons.search_rounded,
+//                     color: theme.brightness == Brightness.dark
+//                         ? AppColors.textMutedDark
+//                         : AppColors.textMutedLight,
+//                     size: 20,
+//                   ),
+//                   suffixWidget: Icon(
+//                     Icons.tune_rounded,
+//                     color: theme.brightness == Brightness.dark
+//                         ? AppColors.textMutedDark
+//                         : AppColors.textMutedLight,
+//                     size: 20,
+//                   ),
+//                   borderRadius: BorderRadius.circular(22),
+//                 ),
+
+//                 const SizedBox(height: 14),
+
+//                 /// Filters
+//                 SizedBox(
+//                   height: 38,
+//                   child: ListView.separated(
+//                     scrollDirection: Axis.horizontal,
+//                     itemCount: filters.length,
+//                     separatorBuilder: (_, __) {
+//                       return const SizedBox(width: 9);
+//                     },
+//                     itemBuilder: (context, index) {
+//                       final filter = filters[index];
+
+//                       return MedicineFilterChip(
+//                         title: filterTitle(context, filter),
+//                         isSelected: state.selectedFilter == filter,
+//                         onTap: () {
+//                           context.read<MedicineCubit>().filterMedicines(filter);
+//                         },
+//                       );
+//                     },
+//                   ),
+//                 ),
+
+//                 const SizedBox(height: 12),
+
+//                 /// Scroll indicator
+//                 Row(
+//                   children: [
+//                     Icon(
+//                       Icons.chevron_left_rounded,
+//                       size: 20,
+//                       color: theme.colorScheme.onSurfaceVariant,
+//                     ),
+//                     Expanded(
+//                       child: Container(
+//                         height: 8,
+//                         decoration: BoxDecoration(
+//                           color: theme.colorScheme.outline,
+//                           borderRadius: BorderRadius.circular(20),
+//                         ),
+//                       ),
+//                     ),
+//                     Icon(
+//                       Icons.chevron_right_rounded,
+//                       size: 20,
+//                       color: theme.colorScheme.onSurfaceVariant,
+//                     ),
+//                   ],
+//                 ),
+
+//                 const SizedBox(height: 12),
+
+//                 /// Items + Sort
+//                 Row(
+//                   children: [
+//                     Text(
+//                       S.of(context).medicinesItemsCount(state.medicines.length),
+//                       style: theme.textTheme.bodyMedium?.copyWith(
+//                         fontSize: 13,
+//                         fontWeight: FontWeight.w600,
+//                       ),
+//                     ),
+
+//                     const Spacer(),
+
+//                     Text(
+//                       S.of(context).medicinesSortBy,
+//                       style: theme.textTheme.bodyMedium?.copyWith(
+//                         fontSize: 13,
+//                         fontWeight: FontWeight.w600,
+//                         color: theme.colorScheme.onSurface,
+//                       ),
+//                     ),
+
+//                     Text(
+//                       'Expiry date',
+//                       style: theme.textTheme.bodyMedium?.copyWith(
+//                         fontSize: 13,
+//                         fontWeight: FontWeight.w700,
+//                         color: theme.colorScheme.onSurface,
+//                       ),
+//                     ),
+
+//                     const SizedBox(width: 3),
+
+//                     Icon(
+//                       Icons.keyboard_arrow_down_rounded,
+//                       size: 18,
+//                       color: theme.colorScheme.onSurfaceVariant,
+//                     ),
+//                   ],
+//                 ),
+
+//                 const SizedBox(height: 20),
+//               ],
+//             ),
+//           ),
+//         ),
+
+//         /// Medicines
+//         SliverPadding(
+//           padding: const EdgeInsets.symmetric(horizontal: 33),
+//           sliver: SliverList.separated(
+//             itemCount: state.medicines.length,
+//             separatorBuilder: (_, __) {
+//               return const SizedBox(height: 11);
+//             },
+//             itemBuilder: (context, index) {
+//               final medicine = state.medicines[index];
+
+//               final status = context.read<MedicineCubit>().getMedicineStatus(
+//                 medicine,
+//               );
+
+//               return MedicineCard(
+//                 name: medicine.name,
+//                 type: medicine.type,
+//                 remaining: medicine.quantity,
+//                 expiry: _formatExpiryDate(medicine.expiryDate),
+//                 addedBy: medicine.addedBy,
+//                 status: statusTitle(context, status),
+//               );
+//             },
+//           ),
+//         ),
+
+//         const SliverToBoxAdapter(child: SizedBox(height: 30)),
+//       ],
+//     );
+//   }
+
+//   String _formatExpiryDate(DateTime date) {
+//     const months = [
+//       'Jan',
+//       'Feb',
+//       'Mar',
+//       'Apr',
+//       'May',
+//       'Jun',
+//       'Jul',
+//       'Aug',
+//       'Sep',
+//       'Oct',
+//       'Nov',
+//       'Dec',
+//     ];
+
+//     return '${months[date.month - 1]} ${date.year}';
+//   }
+// }
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+
+import 'package:medicine_cabinet/core/constants/app_colors.dart';
 import 'package:medicine_cabinet/core/widgets/custom_text_form_field.dart';
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_filter.dart';
+import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_sort.dart';
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_status.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_card.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_filter_chip.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_states.dart';
+import 'package:medicine_cabinet/generated/l10n.dart';
 
 class MedicinesScreen extends StatefulWidget {
   const MedicinesScreen({super.key});
@@ -17,6 +338,8 @@ class MedicinesScreen extends StatefulWidget {
 
 class _MedicinesScreenState extends State<MedicinesScreen> {
   final TextEditingController searchController = TextEditingController();
+
+  MedicineSort selectedSort = MedicineSort.expiryDate;
 
   final List<MedicineFilter> filters = [
     MedicineFilter.all,
@@ -38,51 +361,84 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
     super.dispose();
   }
 
-  String filterTitle(MedicineFilter filter) {
+  String filterTitle(BuildContext context, MedicineFilter filter) {
+    final l10n = S.of(context);
+
     switch (filter) {
       case MedicineFilter.all:
-        return 'All';
+        return l10n.commonAll;
 
       case MedicineFilter.expiringSoon:
-        return 'Expiring soon';
+        return l10n.commonExpiringSoon;
 
       case MedicineFilter.lowStock:
-        return 'Low stock';
+        return l10n.commonLowStock;
 
       case MedicineFilter.expired:
-        return 'Expired';
+        return l10n.commonExpired;
     }
   }
 
-  String statusTitle(MedicineStatus status) {
+  String statusTitle(BuildContext context, MedicineStatus status) {
+    final l10n = S.of(context);
+
     switch (status) {
       case MedicineStatus.healthy:
-        return 'Healthy';
+        return l10n.commonHealthy;
 
       case MedicineStatus.expiring:
-        return 'Expiring';
+        return l10n.commonExpiringShort;
 
       case MedicineStatus.lowStock:
-        return 'Low stock';
+        return l10n.commonLowStock;
 
       case MedicineStatus.expired:
-        return 'Expired';
+        return l10n.commonExpired;
+    }
+  }
+
+  String sortTitle(BuildContext context, MedicineSort sort) {
+    final l10n = S.of(context);
+
+    switch (sort) {
+      case MedicineSort.expiryDate:
+        return l10n.medicinesSortOptionExpiry;
+
+      case MedicineSort.name:
+        return l10n.medicinesSortOptionName;
+
+      case MedicineSort.quantity:
+        return l10n.medicinesSortOptionQuantity;
+
+      case MedicineSort.recentlyAdded:
+        return l10n.medicinesSortOptionRecentlyAdded;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAF9),
       body: SafeArea(
         child: BlocBuilder<MedicineCubit, MedicineState>(
           builder: (context, state) {
             if (state is MedicineLoadingState) {
-              return const Center(child: CircularProgressIndicator());
+              return Center(
+                child: CircularProgressIndicator(
+                  color: theme.colorScheme.primary,
+                ),
+              );
             }
 
             if (state is MedicineErrorState) {
-              return Center(child: Text(state.message));
+              return Center(
+                child: Text(
+                  state.message,
+                  style: theme.textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
+              );
             }
 
             if (state is MedicineSuccessState) {
@@ -100,6 +456,13 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
     BuildContext context,
     MedicineSuccessState state,
   ) {
+    final theme = Theme.of(context);
+    final l10n = S.of(context);
+
+    final medicines = [...state.medicines];
+
+    _sortMedicines(medicines);
+
     return CustomScrollView(
       slivers: [
         SliverPadding(
@@ -108,34 +471,40 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Medicines',
-                  style: TextStyle(
+                /// Title
+                Text(
+                  l10n.medicinesTitle,
+                  style: theme.textTheme.headlineMedium?.copyWith(
                     fontSize: 26,
                     fontWeight: FontWeight.w800,
-                    color: Color(0xFF202A27),
                     letterSpacing: -0.5,
                   ),
                 ),
 
                 const SizedBox(height: 16),
 
-                // Search
+                /// Search
                 CustomTextFormField(
                   controller: searchController,
-                  hintText: 'Search medicines...',
-                  hintTextColor: const Color(0xFF9AA6A2),
+                  hintText: l10n.medicinesSearchHint,
+                  hintTextColor: theme.brightness == Brightness.dark
+                      ? AppColors.textMutedDark
+                      : AppColors.textMutedLight,
                   onChanged: (value) {
-                    // Search logic can be added later.
+                    // Search logic later.
                   },
-                  prefixIcon: const Icon(
+                  prefixIcon: Icon(
                     Icons.search_rounded,
-                    color: Color(0xFF9AA6A2),
+                    color: theme.brightness == Brightness.dark
+                        ? AppColors.textMutedDark
+                        : AppColors.textMutedLight,
                     size: 20,
                   ),
-                  suffixWidget: const Icon(
+                  suffixWidget: Icon(
                     Icons.tune_rounded,
-                    color: Color(0xFF9AA6A2),
+                    color: theme.brightness == Brightness.dark
+                        ? AppColors.textMutedDark
+                        : AppColors.textMutedLight,
                     size: 20,
                   ),
                   borderRadius: BorderRadius.circular(22),
@@ -143,7 +512,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
 
                 const SizedBox(height: 14),
 
-                // Filters
+                /// Filters
                 SizedBox(
                   height: 38,
                   child: ListView.separated(
@@ -156,7 +525,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                       final filter = filters[index];
 
                       return MedicineFilterChip(
-                        title: filterTitle(filter),
+                        title: filterTitle(context, filter),
                         isSelected: state.selectedFilter == filter,
                         onTap: () {
                           context.read<MedicineCubit>().filterMedicines(filter);
@@ -168,71 +537,71 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
 
                 const SizedBox(height: 12),
 
-                // Scroll indicator
+                /// Scroll indicator
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.chevron_left_rounded,
                       size: 20,
-                      color: Color(0xFF8B918F),
+                      color: theme.colorScheme.onSurfaceVariant,
                     ),
                     Expanded(
                       child: Container(
                         height: 8,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFB4BAB8),
+                          color: theme.colorScheme.outline,
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.chevron_right_rounded,
                       size: 20,
-                      color: Color(0xFF8B918F),
+                      color: theme.colorScheme.onSurfaceVariant,
                     ),
                   ],
                 ),
 
                 const SizedBox(height: 12),
 
-                // Items + Sort
+                /// Items + Sort
                 Row(
                   children: [
                     Text(
-                      '${state.medicines.length} items',
-                      style: const TextStyle(
+                      l10n.medicinesItemsCount(medicines.length),
+                      style: theme.textTheme.bodyMedium?.copyWith(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xFF7D8784),
                       ),
                     ),
 
                     const Spacer(),
 
-                    const Text(
-                      'Sort: ',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF252D2A),
+                    InkWell(
+                      onTap: () {
+                        _showSortBottomSheet(context);
+                      },
+                      borderRadius: BorderRadius.circular(8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            l10n.medicinesSortLabelCurrent(
+                              sortTitle(context, selectedSort),
+                            ),
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(width: 2),
+                          Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            size: 18,
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                        ],
                       ),
-                    ),
-
-                    const Text(
-                      'Expiry date',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF252D2A),
-                      ),
-                    ),
-
-                    const SizedBox(width: 3),
-
-                    const Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      size: 18,
-                      color: Color(0xFF69736F),
                     ),
                   ],
                 ),
@@ -243,16 +612,16 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
           ),
         ),
 
-        // Medicines
+        /// Medicines
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 33),
           sliver: SliverList.separated(
-            itemCount: state.medicines.length,
+            itemCount: medicines.length,
             separatorBuilder: (_, __) {
               return const SizedBox(height: 11);
             },
             itemBuilder: (context, index) {
-              final medicine = state.medicines[index];
+              final medicine = medicines[index];
 
               final status = context.read<MedicineCubit>().getMedicineStatus(
                 medicine,
@@ -262,9 +631,9 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                 name: medicine.name,
                 type: medicine.type,
                 remaining: medicine.quantity,
-                expiry: _formatExpiryDate(medicine.expiryDate),
+                expiry: _formatExpiryDate(context, medicine.expiryDate),
                 addedBy: medicine.addedBy,
-                status: statusTitle(status),
+                status: statusTitle(context, status),
               );
             },
           ),
@@ -275,22 +644,197 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
     );
   }
 
-  String _formatExpiryDate(DateTime date) {
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
+  void _sortMedicines(List medicines) {
+    switch (selectedSort) {
+      case MedicineSort.expiryDate:
+        medicines.sort((a, b) => a.expiryDate.compareTo(b.expiryDate));
+        break;
 
-    return '${months[date.month - 1]} ${date.year}';
+      case MedicineSort.name:
+        medicines.sort(
+          (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
+        );
+        break;
+
+      case MedicineSort.quantity:
+        medicines.sort((a, b) => a.quantity.compareTo(b.quantity));
+        break;
+
+      case MedicineSort.recentlyAdded:
+        medicines.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+        break;
+    }
+  }
+
+  void _showSortBottomSheet(BuildContext context) {
+    MedicineSort temporarySort = selectedSort;
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        final theme = Theme.of(context);
+        final l10n = S.of(context);
+
+        return StatefulBuilder(
+          builder: (context, setModalState) {
+            return Container(
+              padding: const EdgeInsets.fromLTRB(24, 16, 24, 28),
+              decoration: BoxDecoration(
+                color: theme.scaffoldBackgroundColor,
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(28),
+                ),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  /// Handle
+                  Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.outline,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+
+                  const SizedBox(height: 18),
+
+                  /// Title
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text(
+                      l10n.medicinesSortBy,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 14),
+
+                  _buildSortOption(
+                    context: context,
+                    title: l10n.medicinesSortOptionExpiry,
+                    value: MedicineSort.expiryDate,
+                    selectedValue: temporarySort,
+                    onTap: () {
+                      setModalState(() {
+                        temporarySort = MedicineSort.expiryDate;
+                      });
+                    },
+                  ),
+
+                  _buildSortOption(
+                    context: context,
+                    title: l10n.medicinesSortOptionName,
+                    value: MedicineSort.name,
+                    selectedValue: temporarySort,
+                    onTap: () {
+                      setModalState(() {
+                        temporarySort = MedicineSort.name;
+                      });
+                    },
+                  ),
+
+                  _buildSortOption(
+                    context: context,
+                    title: l10n.medicinesSortOptionQuantity,
+                    value: MedicineSort.quantity,
+                    selectedValue: temporarySort,
+                    onTap: () {
+                      setModalState(() {
+                        temporarySort = MedicineSort.quantity;
+                      });
+                    },
+                  ),
+
+                  _buildSortOption(
+                    context: context,
+                    title: l10n.medicinesSortOptionRecentlyAdded,
+                    value: MedicineSort.recentlyAdded,
+                    selectedValue: temporarySort,
+                    onTap: () {
+                      setModalState(() {
+                        temporarySort = MedicineSort.recentlyAdded;
+                      });
+                    },
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  /// Apply
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedSort = temporarySort;
+                        });
+
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        l10n.commonApply,
+                        style: const TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildSortOption({
+    required BuildContext context,
+    required String title,
+    required MedicineSort value,
+    required MedicineSort selectedValue,
+    required VoidCallback onTap,
+  }) {
+    final theme = Theme.of(context);
+
+    final bool isSelected = value == selectedValue;
+
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 47,
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: theme.dividerColor)),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                title,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            if (isSelected)
+              Icon(
+                Icons.check_rounded,
+                size: 20,
+                color: theme.colorScheme.primary,
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _formatExpiryDate(BuildContext context, DateTime date) {
+    final locale = Localizations.localeOf(context).toString();
+
+    return DateFormat('MMM yyyy', locale).format(date);
   }
 }

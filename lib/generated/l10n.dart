@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -173,6 +172,36 @@ class S {
   /// `Quantity`
   String get commonQuantity {
     return Intl.message('Quantity', name: 'commonQuantity', desc: '', args: []);
+  }
+
+  /// `{count} items`
+  String medicinesItemsCount(Object count) {
+    return Intl.message(
+      '$count items',
+      name: 'medicinesItemsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} remaining`
+  String medicineRemaining(Object count) {
+    return Intl.message(
+      '$count remaining',
+      name: 'medicineRemaining',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Expires {date}`
+  String medicineExpires(Object date) {
+    return Intl.message(
+      'Expires $date',
+      name: 'medicineExpires',
+      desc: '',
+      args: [date],
+    );
   }
 
   /// `Expiry date`

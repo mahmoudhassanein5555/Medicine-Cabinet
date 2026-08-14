@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medicine_cabinet/generated/l10n.dart';
 
 import 'medicine_status_badge.dart';
 
@@ -20,10 +21,13 @@ class MedicineCard extends StatelessWidget {
   final String addedBy;
   final String status;
 
-  bool get isHealthy => status == 'Healthy';
+  bool get isHealthy => status == S.current.commonHealthy;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = S.of(context);
+
     final Color iconBackground = isHealthy
         ? const Color(0xFFE2F3ED)
         : const Color(0xFFFFEFDC);
@@ -36,9 +40,9 @@ class MedicineCard extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: 116),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE3E9E6)),
+        border: Border.all(color: theme.dividerColor),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.025),
@@ -73,36 +77,33 @@ class MedicineCard extends StatelessWidget {
                   name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: theme.textTheme.titleSmall?.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
-                    color: Color(0xFF28322F),
                   ),
                 ),
 
                 const SizedBox(height: 4),
 
                 Text(
-                  '$type · $remaining remaining',
+                  '$type · ${l10n.medicineRemaining(remaining)}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: theme.textTheme.bodySmall?.copyWith(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF7A8581),
                   ),
                 ),
 
                 const SizedBox(height: 3),
 
                 Text(
-                  'Expires $expiry · $addedBy',
+                  '${l10n.medicineExpires(expiry)} · $addedBy',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: theme.textTheme.bodySmall?.copyWith(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF7A8581),
                   ),
                 ),
               ],

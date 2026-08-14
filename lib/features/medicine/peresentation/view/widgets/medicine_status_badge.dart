@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:medicine_cabinet/core/constants/app_colors.dart';
+
 class MedicineStatusBadge extends StatelessWidget {
   const MedicineStatusBadge({super.key, required this.status});
 
@@ -7,15 +9,22 @@ class MedicineStatusBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     final bool isHealthy = status == 'Healthy';
 
     final Color backgroundColor = isHealthy
-        ? const Color(0xFFE1F3EC)
-        : const Color(0xFFFFEBD3);
+        ? (isDark
+              ? AppColors.successDark.withOpacity(0.15)
+              : AppColors.successContainerLight)
+        : (isDark
+              ? AppColors.warningDark.withOpacity(0.15)
+              : AppColors.warningContainerLight);
 
     final Color textColor = isHealthy
-        ? const Color(0xFF22906F)
-        : const Color(0xFFEF941C);
+        ? (isDark ? AppColors.successDark : AppColors.successLight)
+        : (isDark ? AppColors.warningDark : AppColors.warningLight);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -25,7 +34,7 @@ class MedicineStatusBadge extends StatelessWidget {
       ),
       child: Text(
         status,
-        style: TextStyle(
+        style: theme.textTheme.bodyMedium?.copyWith(
           color: textColor,
           fontSize: 10.5,
           fontWeight: FontWeight.w800,

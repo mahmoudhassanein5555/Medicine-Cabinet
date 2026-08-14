@@ -14,6 +14,8 @@ class MedicineFilterChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
@@ -21,20 +23,24 @@ class MedicineFilterChip extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF167B69) : const Color(0xFFF7F9F8),
+          color: isSelected
+              ? theme.colorScheme.primary
+              : theme.colorScheme.surfaceVariant,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isSelected
-                ? const Color(0xFF167B69)
-                : const Color(0xFFE1E7E4),
+                ? theme.colorScheme.primary
+                : theme.colorScheme.outline,
           ),
         ),
         child: Text(
           title,
-          style: TextStyle(
+          style: theme.textTheme.bodyMedium?.copyWith(
             fontSize: 13,
             fontWeight: FontWeight.w700,
-            color: isSelected ? Colors.white : const Color(0xFFE48A19),
+            color: isSelected
+                ? theme.colorScheme.onPrimary
+                : theme.colorScheme.onSurfaceVariant,
           ),
         ),
       ),
