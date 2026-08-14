@@ -1,49 +1,75 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
-class AppColors {
-  // Primary
-  static const Color primary = Color(0xFF1F6F5C);
-  static const Color primaryDark = Color(0xFF154F42);
-  static const Color primarySoft = Color(0xFFE3F1EC);
-  static const Color primaryGlow = Color(0x661F6F5C);
+abstract final class AppColors {
+  AppColors._();
 
-  // Secondary
-  static const Color secondary = Color(0xFF3D6FA6);
-  static const Color secondarySoft = Color(0xFFE8EFF6);
+  // ============================================================
+  // Light Theme
+  // ============================================================
 
-  // Background
-  static const Color background = Color(0xFFFAFCFB);
+  static const primaryLight = Color(0xFF1F6F5C);
+  static const primaryDarkLight = Color(0xFF154F42);
+  static const primaryContainerLight = Color(0xFFE3F1EC);
 
-  // Surface / Cards
-  static const Color surface = Color(0xFFFFFFFF);
-  static const Color surfaceAlt = Color(0xFFF2F7F5);
+  static const secondaryLight = Color(0xFF3D6FA6);
+  static const secondaryContainerLight = Color(0xFFE8EFF6);
 
-  // Text
-  static const Color textPrimary = Color(0xFF16211E);
-  static const Color textSecondary = Color(0xFF6C7A76);
-  static const Color textMuted = Color(0xFF9AA6A2);
+  static const backgroundLight = Color(0xFFFAFCFB);
+  static const surfaceLight = Color(0xFFFFFFFF);
+  static const surfaceAltLight = Color(0xFFF2F7F5);
 
-  // Border / Divider
-  static const Color border = Color(0xFFE5ECE9);
+  static const textPrimaryLight = Color(0xFF16211E);
+  static const textSecondaryLight = Color(0xFF6C7A76);
+  static const textMutedLight = Color(0xFF9AA6A2);
 
-  // Success
-  static const Color success = Color(0xFF2E9469);
-  static const Color successSoft = Color(0xFFE4F5EC);
+  static const borderLight = Color(0xFFE5ECE9);
 
-  // Warning
-  static const Color warning = Color(0xFFD98A2E);
-  static const Color warningSoft = Color(0xFFFBEEDC);
+  // ============================================================
+  // Dark Theme
+  // ============================================================
 
-  // Error
-  static const Color error = Color(0xFFD0483F);
-  static const Color errorSoft = Color(0xFFFAE4E1);
+  static const primaryDark = Color(0xFF4FBF9B);
+  static const primaryDarkVariant = Color(0xFF3FA989);
 
-  // Special accents
-  static const Color householdAccentTertiary = Color(0xFF8A6FBF);
-  static const Color scannerFrameAccent = Color(0xFF4FBF9B);
+  static const secondaryDark = Color(0xFF7AAAD8);
 
-  // Shadows
-  static const Color shadowSm = Color(0x0D142823);
-  static const Color shadowMd = Color(0x17142823);
-  static const Color shadowLg = Color(0x290F1E1A);
+  static const backgroundDark = Color(0xFF0D1513);
+  static const surfaceDark = Color(0xFF151F1C);
+  static const surfaceAltDark = Color(0xFF1B2622);
+
+  static const textPrimaryDark = Color(0xFFEAF3EF);
+  static const textSecondaryDark = Color(0xFF8FA39D);
+  static const textMutedDark = Color(0xFF647873);
+
+  static const borderDark = Color(0xFF283733);
+
+  // ============================================================
+  // Semantic / State Colors - Light
+  // ============================================================
+
+  static const successLight = Color(0xFF2E9469);
+  static const successContainerLight = Color(0xFFE4F5EC);
+
+  static const warningLight = Color(0xFFD98A2E);
+  static const warningContainerLight = Color(0xFFFBEEDC);
+
+  static const errorLight = Color(0xFFD0483F);
+  static const errorContainerLight = Color(0xFFFAE4E1);
+
+  // ============================================================
+  // Semantic / State Colors - Dark
+  // ============================================================
+
+  static const successDark = Color(0xFF4FBF9B);
+
+  static const warningDark = Color(0xFFE8A353);
+
+  static const errorDark = Color(0xFFE27971);
+
+  // ============================================================
+  // Shared / Special
+  // ============================================================
+
+  static const householdTertiaryAccent = Color(0xFF8A6FBF);
+  static const scannerFrameAccent = Color(0xFF4FBF9B);
 }
