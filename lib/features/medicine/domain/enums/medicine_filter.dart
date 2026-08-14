@@ -1,1 +1,1 @@
-enum MedicineFilter { all, expireSoon, lowStock, expired }
+enum MedicineFilter { all, expiringSoon, lowStock, expired }
