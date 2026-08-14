@@ -1,0 +1,20 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/failure/failure.dart';
+import '../entity/household_entity.dart';
+
+abstract class HouseholdRepoInterface {
+  Future<Either<Failure, HouseholdEntity>> createHousehold({
+    required String name,
+    required String userId,
+  });
+
+  Future<Either<Failure, HouseholdEntity>> joinHousehold({
+    required String householdId,
+    required String userId,
+  });
+
+  Future<Either<Failure, HouseholdEntity?>> getUserHousehold({
+    required String userId,
+  });
+}

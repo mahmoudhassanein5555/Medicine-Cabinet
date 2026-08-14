@@ -32,6 +32,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   intl: ^0.20.2
   http: ^1.6.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:

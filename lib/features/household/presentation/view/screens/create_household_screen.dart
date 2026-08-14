@@ -134,19 +134,3 @@ class CreateHouseholdScreen extends StatelessWidget {
     );
   }
 }
-// class _PermissionItem extends StatelessWidget {
-//   const _PermissionItem({required this.text});
-//
-//   final String text;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       children: [
-//         const Icon(Icons.check_circle_outline, size: 18, color: Colors.teal),
-//         const SizedBox(width: 8),
-//         Expanded(child: Text(text)),
-//       ],
-//     );
-//   }
-// }

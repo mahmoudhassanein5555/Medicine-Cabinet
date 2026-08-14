@@ -6,17 +6,15 @@ import '../entity/household_entity.dart';
 import '../repo/household_repo_interface.dart';
 
 @injectable
-class CreateHouseholdUseCase {
+class GetUserHouseholdUseCase {
   final HouseholdRepoInterface _repo;
 
-  CreateHouseholdUseCase(this._repo);
+  GetUserHouseholdUseCase(this._repo);
 
-  Future<Either<Failure, HouseholdEntity>> invoke({
-    required String name,
+  Future<Either<Failure, HouseholdEntity?>> invoke({
     required String userId,
   }) {
-    return _repo.createHousehold(
-      name: name,
+    return _repo.getUserHousehold(
       userId: userId,
     );
   }
