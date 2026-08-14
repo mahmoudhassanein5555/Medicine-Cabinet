@@ -16,6 +16,7 @@ class CreateHouseholdScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
+    final theme = Theme.of(context);
 
     return Scaffold(
       body: SafeArea(
@@ -23,7 +24,7 @@ class CreateHouseholdScreen extends StatelessWidget {
           padding: const EdgeInsets.all(14),
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 14),
               child: Column(
                 children: [
                   const SizedBox(height: 20),
@@ -31,50 +32,49 @@ class CreateHouseholdScreen extends StatelessWidget {
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () => Navigator.of(context).pop(),
                       icon: const Icon(Icons.arrow_back_ios_new, size: 20),
                     ),
                   ),
 
                   const SizedBox(height: 8),
 
+                  // Title
                   Text(
                     l10n.createHouseholdTitle,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: theme.textTheme.headlineMedium,
                   ),
 
                   const SizedBox(height: 10),
 
+                  // Description
                   Text(
                     l10n.createHouseholdDescription,
                     textAlign: TextAlign.center,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+                    style: theme.textTheme.bodyMedium,
                   ),
 
                   const SizedBox(height: 16),
 
+                  // Animation
                   SizedBox(
-                    width: .infinity,
+                    width: double.infinity,
                     height: 250,
                     child: Lottie.asset(
                       'assets/animations/create_household_screen.json',
+                      fit: BoxFit.contain,
                     ),
                   ),
 
                   const SizedBox(height: 10),
 
+                  // Household Name Label
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Text(
                       l10n.householdNameLabel,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: theme.textTheme.titleMedium,
                     ),
                   ),
 
@@ -83,51 +83,13 @@ class CreateHouseholdScreen extends StatelessWidget {
                   TextField(
                     decoration: InputDecoration(
                       hintText: l10n.householdNameHint,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
+                      prefixIcon: const Icon(Icons.home_outlined),
                     ),
                   ),
 
                   const SizedBox(height: 16),
 
-                  // Container(
-                  //   width: double.infinity,
-                  //   padding: const EdgeInsets.all(16),
-                  //   decoration: BoxDecoration(
-                  //     color: Colors.green.withValues(alpha: 0.08),
-                  //     borderRadius: BorderRadius.circular(12),
-                  //   ),
-                  //   child: Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: [
-                  //       Text(
-                  //         l10n.householdAdminTitle,
-                  //         style: Theme.of(context).textTheme.bodyMedium
-                  //             ?.copyWith(fontWeight: FontWeight.bold),
-                  //       ),
-                  //
-                  //       const SizedBox(height: 12),
-                  //
-                  //       // _PermissionItem(text: l10n.householdPermissionAdd),
-                  //       //
-                  //       // const SizedBox(height: 8),
-                  //       //
-                  //       // _PermissionItem(text: l10n.householdPermissionManage),
-                  //       //
-                  //       // const SizedBox(height: 8),
-                  //       //
-                  //       // _PermissionItem(text: l10n.householdPermissionView),
-                  //     ],
-                  //   ),
-                  // ),
-
-                  const SizedBox(height: 16),
-
-                  /// Create button
                   SizedBox(
-                    width: double.infinity,
-                    height: 52,
                     child: ElevatedButton(
                       onPressed: onCreatePressed,
                       child: Text(l10n.householdCreateButton),
@@ -136,6 +98,7 @@ class CreateHouseholdScreen extends StatelessWidget {
 
                   const SizedBox(height: 18),
 
+                  // OR
                   Row(
                     children: [
                       const Expanded(child: Divider()),
@@ -143,8 +106,7 @@ class CreateHouseholdScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
                           l10n.householdOr,
-                          style: TextStyle(
-                            color: Colors.grey,
+                          style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -156,8 +118,6 @@ class CreateHouseholdScreen extends StatelessWidget {
                   const SizedBox(height: 18),
 
                   SizedBox(
-                    width: double.infinity,
-                    height: 52,
                     child: OutlinedButton(
                       onPressed: onJoinPressed,
                       child: Text(l10n.householdJoinExistingButton),
@@ -174,7 +134,6 @@ class CreateHouseholdScreen extends StatelessWidget {
     );
   }
 }
-
 // class _PermissionItem extends StatelessWidget {
 //   const _PermissionItem({required this.text});
 //

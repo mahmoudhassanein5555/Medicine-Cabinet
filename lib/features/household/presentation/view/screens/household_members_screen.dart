@@ -48,7 +48,7 @@ class HouseholdMembersScreen extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.of(context).pop(),
                     icon: const Icon(
                       Icons.arrow_back_ios_new,
                       size: 20,
@@ -59,12 +59,7 @@ class HouseholdMembersScreen extends StatelessWidget {
 
                   Text(
                     l10n.householdTitle,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall
-                        ?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ],
               ),
@@ -106,10 +101,12 @@ class _MemberCard extends StatelessWidget {
 
   final _HouseholdMemberUiModel member;
   final String medicineText;
-  final VoidCallback onTap;
+  final VoidCallback onTap; // تم التصحيح هنا لـ VoidCallback
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     final initial = member.name.characters.first.toUpperCase();
 
     return Material(
@@ -124,10 +121,10 @@ class _MemberCard extends StatelessWidget {
             vertical: 14,
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: colorScheme.surface,
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: Colors.grey.shade200,
+              color: colorScheme.outline,
             ),
             boxShadow: [
               BoxShadow(
@@ -168,18 +165,14 @@ class _MemberCard extends StatelessWidget {
                   children: [
                     Text(
                       member.name,
-                      style: const TextStyle(
-                        fontSize: 17,
+                      style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       medicineText,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey.shade600,
-                      ),
+                      style: theme.textTheme.bodyMedium,
                     ),
                   ],
                 ),
@@ -189,7 +182,7 @@ class _MemberCard extends StatelessWidget {
               Icon(
                 Icons.arrow_forward_ios,
                 size: 18,
-                color: Colors.grey.shade800,
+                color: colorScheme.onSurfaceVariant,
               ),
             ],
           ),

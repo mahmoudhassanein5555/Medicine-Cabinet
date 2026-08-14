@@ -17,6 +17,8 @@ class MemberDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Scaffold(
       appBar: AppBar(
@@ -24,29 +26,25 @@ class MemberDetailsScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
         ),
         title: Text(
           l10n.householdMemberDetails,
-          style: const TextStyle(
+          style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
           ),
         ),
         centerTitle: true,
       ),
-
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 16,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Column(
             children: [
               // Member Avatar
               CircleAvatar(
                 radius: 48,
-                backgroundColor: Colors.teal,
+                backgroundColor: colorScheme.primary,
                 child: Text(
                   memberInitial,
                   style: const TextStyle(
@@ -62,7 +60,7 @@ class MemberDetailsScreen extends StatelessWidget {
               // Member Name
               Text(
                 memberName,
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                style: theme.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -72,19 +70,19 @@ class MemberDetailsScreen extends StatelessWidget {
               // Medicines Count
               Text(
                 '$medicinesCount ${l10n.medicines}',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
                 ),
               ),
 
               const SizedBox(height: 30),
 
-              // Member Information
+              // Member Information Header
               Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   l10n.memberInformation,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -108,12 +106,12 @@ class MemberDetailsScreen extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              // Medicines Section
+              // Medicines Section Header
               Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: Text(
                   l10n.memberMedicines,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -121,7 +119,7 @@ class MemberDetailsScreen extends StatelessWidget {
 
               const SizedBox(height: 14),
 
-              _MedicineCard(
+              const _MedicineCard(
                 name: 'Panadol',
                 quantity: '2 boxes',
                 expiryDate: 'Dec 2026',
@@ -129,7 +127,7 @@ class MemberDetailsScreen extends StatelessWidget {
 
               const SizedBox(height: 12),
 
-              _MedicineCard(
+              const _MedicineCard(
                 name: 'Vitamin C',
                 quantity: '1 bottle',
                 expiryDate: 'Mar 2027',
@@ -137,7 +135,7 @@ class MemberDetailsScreen extends StatelessWidget {
 
               const SizedBox(height: 12),
 
-              _MedicineCard(
+              const _MedicineCard(
                 name: 'Omega 3',
                 quantity: '3 boxes',
                 expiryDate: 'Jan 2027',
@@ -165,42 +163,36 @@ class _InfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Colors.grey.shade200,
-        ),
+        border: Border.all(color: colorScheme.outline),
       ),
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: Colors.teal,
-          ),
-
+          Icon(icon, color: colorScheme.primary),
           const SizedBox(width: 14),
-
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
                     fontSize: 13,
                   ),
                 ),
-
                 const SizedBox(height: 4),
-
                 Text(
                   value,
-                  style: const TextStyle(
-                    fontSize: 16,
+                  style: theme.textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -226,18 +218,19 @@ class _MedicineCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Colors.grey.shade200,
-        ),
+        border: Border.all(color: colorScheme.outline),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 8,
             offset: const Offset(0, 3),
           ),
@@ -249,56 +242,42 @@ class _MedicineCard extends StatelessWidget {
             width: 48,
             height: 48,
             decoration: BoxDecoration(
-              color: Colors.teal.withOpacity(0.1),
+              color: colorScheme.primary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Icon(
-              Icons.medication_outlined,
-              color: Colors.teal,
-            ),
+            child: Icon(Icons.medication_outlined, color: colorScheme.primary),
           ),
-
           const SizedBox(width: 14),
-
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   name,
-                  style: const TextStyle(
-                    fontSize: 16,
+                  style: theme.textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 const SizedBox(height: 5),
-
                 Text(
                   quantity,
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
                     fontSize: 13,
                   ),
                 ),
-
                 const SizedBox(height: 3),
-
                 Text(
                   'Expiry: $expiryDate',
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
                     fontSize: 13,
                   ),
                 ),
               ],
             ),
           ),
-
-          const Icon(
-            Icons.chevron_right,
-            color: Colors.grey,
-          ),
+          Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
         ],
       ),
     );

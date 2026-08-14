@@ -12,6 +12,8 @@ class HouseholdScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Scaffold(
       body: SafeArea(
@@ -25,28 +27,31 @@ class HouseholdScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
 
+                  // Title
                   Text(
                     l10n.householdSetupTitle,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
 
                   const SizedBox(height: 12),
 
+                  // Description
                   Text(
                     l10n.householdSetupDescription,
                     textAlign: TextAlign.center,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    ),
                   ),
 
                   const SizedBox(height: 24),
 
+                  // Animation
                   SizedBox(
-                    width: .infinity,
+                    width: double.infinity, // تم تصحيحها من .infinity لـ double.infinity
                     height: 250,
                     child: Lottie.asset(
                       'assets/animations/household_screen.json',
@@ -56,11 +61,12 @@ class HouseholdScreen extends StatelessWidget {
 
                   const SizedBox(height: 30),
 
+                  // Household ID Label
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Text(
                       l10n.householdIdLabel,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -68,21 +74,17 @@ class HouseholdScreen extends StatelessWidget {
 
                   const SizedBox(height: 12),
 
-                  TextField(
+                  // Household ID Field (هياخد خصائصه أوتوماتيكياً من الـ InputDecorationTheme)
+                  const TextField(
                     decoration: InputDecoration(
-                      hintText: l10n.householdIdHint,
-                      prefixIcon: const Icon(Icons.home_outlined),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+                      prefixIcon: Icon(Icons.home_outlined),
                     ),
                   ),
 
                   const SizedBox(height: 20),
 
+                  // Join Button (هياخد تصميمه من elevatedButtonTheme)
                   SizedBox(
-                    width: double.infinity,
-                    height: 52,
                     child: ElevatedButton(
                       onPressed: onJoinPressed,
                       child: Text(l10n.householdJoinButton),
@@ -91,30 +93,36 @@ class HouseholdScreen extends StatelessWidget {
 
                   const SizedBox(height: 32),
 
+                  // OR Divider
                   Row(
                     children: [
-                      const Expanded(child: Divider()),
-
+                      Expanded(
+                        child: Divider(
+                          color: colorScheme.outline,
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
                           l10n.householdOr,
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: colorScheme.onSurfaceVariant,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
-
-                      const Expanded(child: Divider()),
+                      Expanded(
+                        child: Divider(
+                          color: colorScheme.outline,
+                        ),
+                      ),
                     ],
                   ),
 
                   const SizedBox(height: 32),
 
+                  // Create Button (هياخد تصميمه من outlinedButtonTheme)
                   SizedBox(
-                    width: double.infinity,
-                    height: 52,
                     child: OutlinedButton(
                       onPressed: onCreatePressed,
                       child: Text(l10n.householdCreateButton),
