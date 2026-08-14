@@ -4,6 +4,7 @@ class HouseholdMemberEntity {
   final String email;
   final String? photoUrl;
   final String role;
+  final int medicineCount;
 
   const HouseholdMemberEntity({
     required this.id,
@@ -11,5 +12,6 @@ class HouseholdMemberEntity {
     required this.email,
     this.photoUrl,
     required this.role,
+    required this.medicineCount,
   });
 }

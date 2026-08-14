@@ -6,6 +6,7 @@ class HouseholdMemberDto {
   final String email;
   final String? photoUrl;
   final String role;
+  final int medicineCount;
 
   HouseholdMemberDto({
     required this.id,
@@ -13,29 +14,8 @@ class HouseholdMemberDto {
     required this.email,
     this.photoUrl,
     required this.role,
+    required this.medicineCount,
   });
-
-  factory HouseholdMemberDto.fromFirestore(
-      Map<String, dynamic> data,
-      String documentId,
-      ) {
-    return HouseholdMemberDto(
-      id: documentId,
-      name: data['name'] ?? '',
-      email: data['email'] ?? '',
-      photoUrl: data['photoUrl'],
-      role: data['role'] ?? 'member',
-    );
-  }
-
-  Map<String, dynamic> toFirestore() {
-    return {
-      'name': name,
-      'email': email,
-      'photoUrl': photoUrl,
-      'role': role,
-    };
-  }
 
   HouseholdMemberEntity toEntity() {
     return HouseholdMemberEntity(
@@ -44,6 +24,7 @@ class HouseholdMemberDto {
       email: email,
       photoUrl: photoUrl,
       role: role,
+      medicineCount: medicineCount,
     );
   }
 }

@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           title: 'Flutter Demo',
-          home:  HouseholdScreen(),
+          // home:  HouseholdScreen(),
 
         );
       },

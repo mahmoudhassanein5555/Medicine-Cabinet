@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medicine_cabinet/features/household/presentation/view/screens/widget/member_card.dart';
 
 import '../../../../../core/di/service_locator.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../domain/entity/household_member_entity.dart';
 import '../view_model/household_cubit.dart';
 import '../view_model/household_state.dart';
 
@@ -21,17 +23,14 @@ class HouseholdMembersScreen extends StatefulWidget {
 }
 
 class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
 
-
-
     return BlocProvider(
-      create: (_) => getIt<HouseholdCubit>()
-        ..getUserHousehold(userId:  widget.householdId),
+      create: (_) =>
+          getIt<HouseholdCubit>()
+            ..getHouseholdMembers(householdId: widget.householdId),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -45,10 +44,7 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new,
-                        size: 20,
-                      ),
+                      icon: const Icon(Icons.arrow_back_ios_new, size: 20),
                     ),
 
                     const SizedBox(width: 4),
@@ -63,39 +59,51 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                 const SizedBox(height: 20),
 
                 Expanded(
-                  child: BlocBuilder< HouseholdCubit,
-                      HouseholdState>(builder: (context, state) {
-                    if (state is GetHouseholdLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    if (state is GetHouseholdError) {
-                      return Center(
-                        child: Text(state.message),
-                      );
-                    }
-                    if(state is GetHouseholdSuccess){
-                      final members =state.
-                    }
+                  child: BlocBuilder<HouseholdCubit, HouseholdState>(
+                    builder: (context, state) {
+                      if (state is GetMembersLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if (state is GetMembersError) {
+                        return Center(
+                          child: Text(
+                            state.message,
+                            textAlign: TextAlign.center,
+                          ),
+                        );
+                      }
+                      if (state is GetMembersSuccess) {
+                        final members = state.members;
 
+                        if (members.isEmpty) {
+                          return const Center(
+                            child: Text('No household members found'),
+                          );
+                        }
 
-                      },)
-                  // ListView.separated(
-                  //   itemCount: members.length,
-                  //   separatorBuilder: (_, __) => const SizedBox(height: 14),
-                  //   itemBuilder: (context, index) {
-                  //     final member = members[index];
-                  //
-                  //     return _MemberCard(
-                  //       member: member,
-                  //       medicineText: l10n.householdMedicineCount(
-                  //         member.medicineCount,
-                  //       ),
-                  //       onTap: () => onMemberPressed?.call(member.id),
-                  //     );
-                  //   },
-                  // ),
+                        return ListView.separated(
+                          itemCount: members.length,
+                          separatorBuilder: (_, __) =>
+                              const SizedBox(height: 14),
+                          itemBuilder: (context, index) {
+                            final member = members[index];
+
+                            return MemberCard(
+                              member: member,
+                              onTap: () {
+                                widget.onMemberPressed?.call(member.id);
+                              },
+                            );
+                          },
+                        );
+                      }
+
+                      // Initial state
+                      return const SizedBox.shrink();
+                    },
+                  ),
                 ),
               ],
             ),
@@ -105,100 +113,3 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
     );
   }
 }
-
-class _MemberCard extends StatelessWidget {
-  const _MemberCard({
-    required this.member,
-    required this.medicineText,
-    required this.onTap,
-  });
-
-  final _HouseholdMemberUiModel member;
-  final String medicineText;
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final initial = member.name.characters.first.toUpperCase();
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(18),
-        child: Container(
-          height: 98,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 14,
-          ),
-          decoration: BoxDecoration(
-            color: colorScheme.surface,
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(
-              color: colorScheme.outline,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.04),
-                blurRadius: 10,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: member.color,
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  initial,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-
-              const SizedBox(width: 16),
-
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      member.name,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      medicineText,
-                      style: theme.textTheme.bodyMedium,
-                    ),
-                  ],
-                ),
-              ),
-
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 18,
-                color: colorScheme.onSurfaceVariant,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-

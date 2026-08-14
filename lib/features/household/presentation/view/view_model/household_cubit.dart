@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:medicine_cabinet/features/household/domain/use_case/get_household_member_use_case.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/view_model/household_state.dart';
 
 import '../../../domain/use_case/create_household_use_case.dart';
@@ -10,12 +11,14 @@ class HouseholdCubit extends Cubit<HouseholdState> {
   final CreateHouseholdUseCase _createHouseholdUseCase;
   final JoinHouseholdUseCase _joinHouseholdUseCase;
   final GetUserHouseholdUseCase _getUserHouseholdUseCase;
+  final GetHouseholdMembersUseCase _getHouseholdMembersUseCase;
 
   HouseholdCubit(
-    this._createHouseholdUseCase,
-    this._joinHouseholdUseCase,
-    this._getUserHouseholdUseCase,
-  ) : super(HouseholdInitial());
+      this._createHouseholdUseCase,
+      this._joinHouseholdUseCase,
+      this._getUserHouseholdUseCase,
+      this._getHouseholdMembersUseCase,
+      ) : super(HouseholdInitial());
   Future<void> createHousehold({
     required String name,
     required String userId,
@@ -77,6 +80,31 @@ class HouseholdCubit extends Cubit<HouseholdState> {
       },
       (household) {
         emit(JoinHouseholdSuccess(household));
+      },
+    );
+  }
+  Future<void> getHouseholdMembers({
+    required String householdId,
+  }) async {
+    emit(GetMembersLoading());
+
+    final result =
+    await _getHouseholdMembersUseCase.invoke(
+      householdId: householdId,
+    );
+
+    result.fold(
+          (failure) {
+        emit(
+          GetMembersError(
+            failure.failuremessage,
+          ),
+        );
+      },
+          (members) {
+        emit(
+          GetMembersSuccess(members),
+        );
       },
     );
   }

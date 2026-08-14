@@ -3,14 +3,12 @@ import '../../domain/entity/household_entity.dart';
 class HouseholdDto {
   final String id;
   final String name;
-  final String ownerId;
-  final List<String> memberIds;
+  final String createdBy;
 
   HouseholdDto({
     required this.id,
     required this.name,
-    required this.ownerId,
-    required this.memberIds,
+    required this.createdBy,
   });
 
   factory HouseholdDto.fromFirestore(
@@ -20,16 +18,14 @@ class HouseholdDto {
     return HouseholdDto(
       id: documentId,
       name: data['name'] ?? '',
-      ownerId: data['ownerId'] ?? '',
-      memberIds: List<String>.from(data['memberIds'] ?? []),
+      createdBy: data['createdBy'] ?? '',
     );
   }
 
   Map<String, dynamic> toFirestore() {
     return {
       'name': name,
-      'ownerId': ownerId,
-      'memberIds': memberIds,
+      'createdBy': createdBy,
     };
   }
 
@@ -37,8 +33,7 @@ class HouseholdDto {
     return HouseholdEntity(
       id: id,
       name: name,
-      ownerId: ownerId,
-      memberIds: memberIds,
+      createdBy: createdBy,
     );
   }
 }

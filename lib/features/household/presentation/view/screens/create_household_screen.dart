@@ -74,10 +74,17 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
                            const SizedBox(height: 20),
 
                            Align(
-                             alignment: AlignmentDirectional.centerStart,
+                             alignment:
+                             AlignmentDirectional.centerStart,
                              child: IconButton(
-                               onPressed: () => Navigator.of(context).pop(),
-                               icon: const Icon(Icons.arrow_back_ios_new, size: 20),
+                               onPressed: isLoading
+                                   ? null
+                                   : () =>
+                                   Navigator.of(context).pop(),
+                               icon: const Icon(
+                                 Icons.arrow_back_ios_new,
+                                 size: 20,
+                               ),
                              ),
                            ),
 
