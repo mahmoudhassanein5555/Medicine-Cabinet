@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/failure/failure.dart';
 import '../entity/household_entity.dart';
 import '../entity/household_member_entity.dart';
+import '../entity/medicine_entity.dart';
 
 abstract class HouseholdRepoInterface {
   Future<Either<Failure, HouseholdEntity>> createHousehold({
@@ -19,8 +20,12 @@ abstract class HouseholdRepoInterface {
     required String userId,
   });
 
-  Future<Either<Failure, List<HouseholdMemberEntity>>>
-  getHouseholdMembers({
+  Future<Either<Failure, List<HouseholdMemberEntity>>> getHouseholdMembers({
     required String householdId,
+  });
+
+  Future<Either<Failure, List<MedicineEntity>>> getMemberMedicines({
+    required String householdId,
+    required String userId,
   });
 }

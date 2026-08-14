@@ -3,11 +3,11 @@ import 'package:injectable/injectable.dart';
 
 import '../model/household_member_model.dart';
 import '../model/household_model.dart';
+import '../model/medicine_model.dart';
 import 'household_data_source_interface.dart';
 
 @Injectable(as: HouseholdDataSourceInterface)
-class HouseholdDataSourceImp
-    implements HouseholdDataSourceInterface {
+class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
   final FirebaseFirestore _firestore;
 
   HouseholdDataSourceImp(this._firestore);
@@ -17,42 +17,26 @@ class HouseholdDataSourceImp
     required String name,
     required String userId,
   }) async {
-    final householdRef =
-    _firestore.collection('households').doc();
-
-    final userRef =
-    _firestore.collection('users').doc(userId);
-
-    final memberRef =
-    householdRef.collection('members').doc(userId);
-
+    final householdRef = _firestore.collection('households').doc();
+    final userRef = _firestore.collection('users').doc(userId);
+    final memberRef = householdRef.collection('members').doc(userId);
     final now = Timestamp.now();
-
     final batch = _firestore.batch();
 
-    batch.set(
-      householdRef,
-      {
-        'name': name.trim(),
-        'createdBy': userId,
-        'createdAt': now,
-      },
-    );
+    batch.set(householdRef, {
+      'name': name.trim(),
+      'createdBy': userId,
+      'createdAt': now,
+    });
 
-    batch.set(
-      memberRef,
-      {
-        'role': 'owner',
-        'joinedAt': now,
-      },
-    );
+    batch.set(memberRef, {
+      'role': 'owner',
+      'joinedAt': now,
+    });
 
-    batch.update(
-      userRef,
-      {
-        'householdId': householdRef.id,
-      },
-    );
+    batch.update(userRef, {
+      'householdId': householdRef.id,
+    });
 
     await batch.commit();
 
@@ -60,47 +44,26 @@ class HouseholdDataSourceImp
       id: householdRef.id,
       name: name.trim(),
       createdBy: userId,
-
     );
   }
 
   @override
-  Future<HouseholdDto?> getUserHousehold({
-    required String userId,
-  }) async {
-    final userSnapshot =
-    await _firestore.collection('users').doc(userId).get();
-
-    if (!userSnapshot.exists) {
-      return null;
-    }
+  Future<HouseholdDto?> getUserHousehold({required String userId}) async {
+    final userSnapshot = await _firestore.collection('users').doc(userId).get();
+    if (!userSnapshot.exists) return null;
 
     final userData = userSnapshot.data();
-
-    if (userData == null) {
-      return null;
-    }
+    if (userData == null) return null;
 
     final householdId = userData['householdId'];
+    if (householdId == null || householdId.toString().isEmpty) return null;
 
-    if (householdId == null ||
-        householdId.toString().isEmpty) {
-      return null;
-    }
+    final householdSnapshot =
+    await _firestore.collection('households').doc(householdId).get();
 
-    final householdSnapshot = await _firestore
-        .collection('households')
-        .doc(householdId)
-        .get();
+    if (!householdSnapshot.exists) return null;
 
-    if (!householdSnapshot.exists) {
-      return null;
-    }
-
-    return HouseholdDto.fromFirestore(
-      householdSnapshot.data()!,
-      householdSnapshot.id,
-    );
+    return HouseholdDto.fromFirestore(householdSnapshot.data()!, householdSnapshot.id);
   }
 
   @override
@@ -108,47 +71,30 @@ class HouseholdDataSourceImp
     required String householdId,
     required String userId,
   }) async {
-    final householdRef =
-    _firestore.collection('households').doc(householdId);
+    final householdRef = _firestore.collection('households').doc(householdId);
+    final userRef = _firestore.collection('users').doc(userId);
+    final memberRef = householdRef.collection('members').doc(userId);
 
-    final userRef =
-    _firestore.collection('users').doc(userId);
-
-    final memberRef =
-    householdRef.collection('members').doc(userId);
-
-    final householdSnapshot =
-    await householdRef.get();
-
+    final householdSnapshot = await householdRef.get();
     if (!householdSnapshot.exists) {
       throw Exception('Household not found');
     }
 
     final now = Timestamp.now();
-
     final batch = _firestore.batch();
 
-    batch.set(
-      memberRef,
-      {
-        'role': 'member',
-        'joinedAt': now,
-      },
-    );
+    batch.set(memberRef, {
+      'role': 'member',
+      'joinedAt': now,
+    });
 
-    batch.update(
-      userRef,
-      {
-        'householdId': householdId,
-      },
-    );
+    batch.update(userRef, {
+      'householdId': householdId,
+    });
 
     await batch.commit();
 
-    return HouseholdDto.fromFirestore(
-      householdSnapshot.data()!,
-      householdSnapshot.id,
-    );
+    return HouseholdDto.fromFirestore(householdSnapshot.data()!, householdSnapshot.id);
   }
 
   @override
@@ -171,25 +117,14 @@ class HouseholdDataSourceImp
 
     for (final memberDoc in membersSnapshot.docs) {
       final userId = memberDoc.id;
-
-      final userSnapshot =
-      await _firestore.collection('users').doc(userId).get();
-
-      if (!userSnapshot.exists) {
-        continue;
-      }
+      final userSnapshot = await _firestore.collection('users').doc(userId).get();
+      if (!userSnapshot.exists) continue;
 
       final userData = userSnapshot.data();
-
-      if (userData == null) {
-        continue;
-      }
+      if (userData == null) continue;
 
       final medicineCount = medicinesSnapshot.docs
-          .where(
-            (medicine) =>
-        medicine.data()['ownerId'] == userId,
-      )
+          .where((medicine) => medicine.data()['ownerId'] == userId)
           .length;
 
       members.add(
@@ -205,5 +140,22 @@ class HouseholdDataSourceImp
     }
 
     return members;
+  }
+
+  @override
+  Future<List<MedicineDto>> getMemberMedicines({
+    required String householdId,
+    required String userId,
+  }) async {
+    final medicinesSnapshot = await _firestore
+        .collection('households')
+        .doc(householdId)
+        .collection('medicines')
+        .where('ownerId', isEqualTo: userId)
+        .get();
+
+    return medicinesSnapshot.docs
+        .map((doc) => MedicineDto.fromFirestore(doc.data(), doc.id))
+        .toList();
   }
 }

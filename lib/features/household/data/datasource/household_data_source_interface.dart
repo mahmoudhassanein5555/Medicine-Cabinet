@@ -1,5 +1,6 @@
 import '../model/household_member_model.dart';
 import '../model/household_model.dart';
+import '../model/medicine_model.dart';
 
 abstract class HouseholdDataSourceInterface {
   Future<HouseholdDto> createHousehold({
@@ -18,5 +19,10 @@ abstract class HouseholdDataSourceInterface {
 
   Future<List<HouseholdMemberDto>> getHouseholdMembers({
     required String householdId,
+  });
+
+  Future<List<MedicineDto>> getMemberMedicines({
+    required String householdId,
+    required String userId,
   });
 }

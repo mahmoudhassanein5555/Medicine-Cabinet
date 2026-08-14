@@ -4,10 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/di/service_locator.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../domain/entity/household_member_entity.dart';
+import '../../../domain/entity/medicine_entity.dart';
 import '../view_model/household_cubit.dart';
 import '../view_model/household_state.dart';
 
-class MemberDetailsScreen extends StatefulWidget {
+class MemberDetailsScreen extends StatelessWidget {
   const MemberDetailsScreen({
     super.key,
     required this.member,
@@ -16,27 +17,19 @@ class MemberDetailsScreen extends StatefulWidget {
 
   final HouseholdMemberEntity member;
   final String householdId;
-  @override
-  State<MemberDetailsScreen> createState() => _MemberDetailsScreenState();
-}
 
-class _MemberDetailsScreenState extends State<MemberDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-final initial = member.name.isNotEmpty
-? member.name.characters.first.toUpperCase()
-: '?';
 
+    final initial = member.name.isNotEmpty ? member.name[0].toUpperCase() : '?';
 
-
-return BlocProvider(
-      create: (_) => getIt<HouseholdCubit>()
-        ..getHouseholdMembers(
-          householdId: widget.householdId,
-        ),
+    return BlocProvider(
+      create: (_) =>
+          getIt<HouseholdCubit>()
+            ..getMemberMedicines(householdId: householdId, userId: member.id),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -45,13 +38,16 @@ return BlocProvider(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 18),
+
                 Row(
                   children: [
                     IconButton(
                       onPressed: () => Navigator.pop(context),
-                      icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: colorScheme.onSurface,
+                      ),
                     ),
-
                     Expanded(
                       child: Center(
                         child: Text(
@@ -62,142 +58,162 @@ return BlocProvider(
                         ),
                       ),
                     ),
-
                     const SizedBox(width: 48),
                   ],
                 ),
 
                 Expanded(
-                  child: BlocBuilder(
-                    builder: (context, state) {
-                      if (state is GetMembersLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      if (state is GetMembersError) {
-                        return Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 10),
+
+                        CircleAvatar(
+                          radius: 48,
+                          backgroundColor: colorScheme.primary,
                           child: Text(
-                            state.message,
-                            textAlign: TextAlign.center,
-                          ),
-                        );
-                      }
-if (state is GetMembersSuccess) {
-final members = state.members;
-
-if (members.isEmpty) {
-return const Center(
-child: Text(
-'No household members found',
-),
-);
-}
-return
-
-                    },
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 48,
-                            backgroundColor: colorScheme.primary,
-                            child: Text(
-                              widget.memberInitial,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 34,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-
-                          const SizedBox(height: 16),
-
-                          Text(
-                            widget.memberName,
-                            style: theme.textTheme.headlineSmall?.copyWith(
+                            initial,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 34,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                        ),
 
-                          const SizedBox(height: 6),
+                        const SizedBox(height: 16),
 
-                          Text(
-                            '${widget.medicinesCount} ${l10n.medicines}',
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: colorScheme.onSurfaceVariant,
+                        Text(
+                          member.name,
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        const SizedBox(height: 6),
+
+                        Text(
+                          '${member.medicineCount} ${l10n.medicines}',
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Text(
+                            l10n.memberInformation,
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
+                        ),
 
-                          const SizedBox(height: 30),
+                        const SizedBox(height: 14),
 
-                          Align(
-                            alignment: AlignmentDirectional.centerStart,
-                            child: Text(
-                              l10n.memberInformation,
-                              style: theme.textTheme.titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                        _InfoCard(
+                          icon: Icons.person_outline,
+                          title: l10n.name,
+                          value: member.name,
+                        ),
+
+                        const SizedBox(height: 12),
+
+                        _InfoCard(
+                          icon: Icons.email_outlined,
+                          title: 'Email',
+                          value: member.email,
+                        ),
+
+                        const SizedBox(height: 12),
+
+                        _InfoCard(
+                          icon: Icons.medication_outlined,
+                          title: l10n.medicines,
+                          value: '${member.medicineCount}',
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Text(
+                            l10n.memberMedicines,
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
+                        ),
 
-                          const SizedBox(height: 14),
+                        const SizedBox(height: 14),
 
-                          _InfoCard(
-                            icon: Icons.person_outline,
-                            title: l10n.name,
-                            value: widget.memberName,
-                          ),
+                        BlocBuilder<HouseholdCubit, HouseholdState>(
+                          builder: (context, state) {
+                            if (state is GetMemberMedicinesLoading) {
+                              return const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 24),
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }
 
-                          const SizedBox(height: 12),
+                            if (state is GetMemberMedicinesError) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 24,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    state.message,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              );
+                            }
 
-                          _InfoCard(
-                            icon: Icons.medication_outlined,
-                            title: l10n.medicines,
-                            value: '${widget.medicinesCount}',
-                          ),
+                            if (state is GetMemberMedicinesSuccess) {
+                              final medicines = state.medicines;
 
-                          const SizedBox(height: 30),
+                              if (medicines.isEmpty) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 24,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'No medicines found',
+                                      style: theme.textTheme.bodyMedium
+                                          ?.copyWith(
+                                            color: colorScheme.onSurfaceVariant,
+                                          ),
+                                    ),
+                                  ),
+                                );
+                              }
 
-                          // Medicines Section Header
-                          Align(
-                            alignment: AlignmentDirectional.centerStart,
-                            child: Text(
-                              l10n.memberMedicines,
-                              style: theme.textTheme.titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
+                              return ListView.separated(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: medicines.length,
+                                separatorBuilder: (_, __) =>
+                                    const SizedBox(height: 12),
+                                itemBuilder: (context, index) {
+                                  return _MedicineCard(
+                                    medicine: medicines[index],
+                                  );
+                                },
+                              );
+                            }
 
-                          const SizedBox(height: 14),
+                            return const SizedBox.shrink();
+                          },
+                        ),
 
-                          const _MedicineCard(
-                            name: 'Panadol',
-                            quantity: '2 boxes',
-                            expiryDate: 'Dec 2026',
-                          ),
-
-                          const SizedBox(height: 12),
-
-                          const _MedicineCard(
-                            name: 'Vitamin C',
-                            quantity: '1 bottle',
-                            expiryDate: 'Mar 2027',
-                          ),
-
-                          const SizedBox(height: 12),
-
-                          const _MedicineCard(
-                            name: 'Omega 3',
-                            quantity: '3 boxes',
-                            expiryDate: 'Jan 2027',
-                          ),
-
-                          const SizedBox(height: 24),
-                        ],
-                      ),
+                        const SizedBox(height: 24),
+                      ],
                     ),
                   ),
                 ),
@@ -266,20 +282,19 @@ class _InfoCard extends StatelessWidget {
 }
 
 class _MedicineCard extends StatelessWidget {
-  const _MedicineCard({
-    required this.name,
-    required this.quantity,
-    required this.expiryDate,
-  });
+  const _MedicineCard({required this.medicine});
 
-  final String name;
-  final String quantity;
-  final String expiryDate;
+  final MedicineEntity medicine;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+
+    final expiry = medicine.expiryDate;
+    final expiryText = expiry != null
+        ? '${_monthName(expiry.month)} ${expiry.year}'
+        : '-';
 
     return Container(
       width: double.infinity,
@@ -313,14 +328,14 @@ class _MedicineCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  medicine.name,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  quantity,
+                  'Qty: ${medicine.quantity}',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                     fontSize: 13,
@@ -328,7 +343,7 @@ class _MedicineCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 3),
                 Text(
-                  'Expiry: $expiryDate',
+                  'Expiry: $expiryText',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                     fontSize: 13,
@@ -341,5 +356,23 @@ class _MedicineCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _monthName(int month) {
+    const names = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return names[month - 1];
   }
 }

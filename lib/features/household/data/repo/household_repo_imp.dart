@@ -4,6 +4,7 @@ import 'package:medicine_cabinet/core/errors/error_handler.dart';
 import 'package:medicine_cabinet/core/failure/failure.dart';
 import 'package:medicine_cabinet/features/household/domain/entity/household_entity.dart';
 import 'package:medicine_cabinet/features/household/domain/entity/household_member_entity.dart';
+import 'package:medicine_cabinet/features/household/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/features/household/domain/repo/household_repo_interface.dart';
 
 import '../datasource/household_data_source_interface.dart';
@@ -12,6 +13,7 @@ import '../datasource/household_data_source_interface.dart';
 class HouseholdRepoImp implements HouseholdRepoInterface {
   final HouseholdDataSourceInterface _dataSource;
   HouseholdRepoImp(this._dataSource);
+
   @override
   Future<Either<Failure, HouseholdEntity>> createHousehold({
     required String name,
@@ -31,11 +33,7 @@ class HouseholdRepoImp implements HouseholdRepoInterface {
   }) async {
     try {
       final dto = await _dataSource.getUserHousehold(userId: userId);
-
-      if (dto == null) {
-        return const Right(null);
-      }
-
+      if (dto == null) return const Right(null);
       return Right(dto.toEntity());
     } catch (e) {
       return Left(ErrorHandler.handle(e));
@@ -52,7 +50,6 @@ class HouseholdRepoImp implements HouseholdRepoInterface {
         householdId: householdId,
         userId: userId,
       );
-
       return Right(dto.toEntity());
     } catch (e) {
       return Left(ErrorHandler.handle(e));
@@ -60,18 +57,28 @@ class HouseholdRepoImp implements HouseholdRepoInterface {
   }
 
   @override
-  Future<Either<Failure, List<HouseholdMemberEntity>>>
-  getHouseholdMembers({
+  Future<Either<Failure, List<HouseholdMemberEntity>>> getHouseholdMembers({
     required String householdId,
   }) async {
     try {
-      final dtos = await _dataSource.getHouseholdMembers(
-        householdId: householdId,
-      );
+      final dtos = await _dataSource.getHouseholdMembers(householdId: householdId);
+      return Right(dtos.map((dto) => dto.toEntity()).toList());
+    } catch (e) {
+      return Left(ErrorHandler.handle(e));
+    }
+  }
 
-      return Right(
-        dtos.map((dto) => dto.toEntity()).toList(),
+  @override
+  Future<Either<Failure, List<MedicineEntity>>> getMemberMedicines({
+    required String householdId,
+    required String userId,
+  }) async {
+    try {
+      final dtos = await _dataSource.getMemberMedicines(
+        householdId: householdId,
+        userId: userId,
       );
+      return Right(dtos.map((dto) => dto.toEntity()).toList());
     } catch (e) {
       return Left(ErrorHandler.handle(e));
     }

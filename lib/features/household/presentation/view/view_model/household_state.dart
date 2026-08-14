@@ -1,5 +1,6 @@
 import '../../../domain/entity/household_entity.dart';
 import '../../../domain/entity/household_member_entity.dart';
+import '../../../domain/entity/medicine_entity.dart';
 
 abstract class HouseholdState {}
 
@@ -52,6 +53,7 @@ class GetHouseholdError extends HouseholdState {
 
   GetHouseholdError(this.message);
 }
+
 // ==================== Get Members ====================
 
 class GetMembersLoading extends HouseholdState {}
@@ -66,4 +68,20 @@ class GetMembersError extends HouseholdState {
   final String message;
 
   GetMembersError(this.message);
+}
+
+// ==================== Get Member Medicines ====================
+
+class GetMemberMedicinesLoading extends HouseholdState {}
+
+class GetMemberMedicinesSuccess extends HouseholdState {
+  final List<MedicineEntity> medicines;
+
+  GetMemberMedicinesSuccess(this.medicines);
+}
+
+class GetMemberMedicinesError extends HouseholdState {
+  final String message;
+
+  GetMemberMedicinesError(this.message);
 }
