@@ -4,19 +4,17 @@ import 'package:medicine_cabinet/features/household/presentation/view/screens/wi
 
 import '../../../../../core/di/service_locator.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../domain/entity/household_member_entity.dart';
 import '../view_model/household_cubit.dart';
 import '../view_model/household_state.dart';
+import 'member_details_screen.dart';
 
 class HouseholdMembersScreen extends StatefulWidget {
   const HouseholdMembersScreen({
     super.key,
     required this.householdId,
-    this.onMemberPressed,
   });
 
   final String householdId;
-  final void Function(String userId)? onMemberPressed;
 
   @override
   State<HouseholdMembersScreen> createState() => _HouseholdMembersScreenState();
@@ -62,9 +60,7 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                   child: BlocBuilder<HouseholdCubit, HouseholdState>(
                     builder: (context, state) {
                       if (state is GetMembersLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        return const Center(child: CircularProgressIndicator());
                       }
                       if (state is GetMembersError) {
                         return Center(
@@ -89,11 +85,18 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                               const SizedBox(height: 14),
                           itemBuilder: (context, index) {
                             final member = members[index];
-
                             return MemberCard(
                               member: member,
                               onTap: () {
-                                widget.onMemberPressed?.call(member.id);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => MemberDetailsScreen(
+                                      member: member,
+                                      householdId: widget.householdId,
+                                    ),
+                                  ),
+                                );
                               },
                             );
                           },

@@ -87,11 +87,11 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
       'role': 'member',
       'joinedAt': now,
     });
-
-    batch.update(userRef, {
-      'householdId': householdId,
-    });
-
+    batch.set(
+      userRef,
+      {'householdId': householdId},
+      SetOptions(merge: true),
+    );
     await batch.commit();
 
     return HouseholdDto.fromFirestore(householdSnapshot.data()!, householdSnapshot.id);

@@ -9,6 +9,7 @@ import '../../../../../core/dialogs/app_toasts.dart';
 import '../../../../../generated/l10n.dart';
 import '../view_model/household_cubit.dart';
 import '../view_model/household_state.dart';
+import 'household_members_screen.dart';
 
 class HouseholdScreen extends StatefulWidget {
   const HouseholdScreen({
@@ -40,9 +41,37 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
     final colorScheme = theme.colorScheme;
 
     return BlocProvider(
-      create: (_) => getIt<HouseholdCubit>(),
-      child: BlocConsumer(
+      // تشييك تلقائي: لو اليوزر عنده household أصلاً، الـ listener تحت هينقله على طول
+      create: (_) =>
+      getIt<HouseholdCubit>()..getUserHousehold(userId: widget.userId),
+      child: BlocConsumer<HouseholdCubit, HouseholdState>(
         listener: (context, state) {
+          if (state is GetHouseholdSuccess) {
+            final household = state.household;
+
+            if (household != null) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) =>
+                      HouseholdMembersScreen(householdId: household.id),
+                ),
+              );
+            }
+            // لو household == null، سيبها عادي — اليوزر لسه معندوش household
+            // فهيفضل واقف في نفس الشاشة عشان يعمل Join أو Create
+          }
+
+          if (state is CreateHouseholdSuccess) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (_) =>
+                    HouseholdMembersScreen(householdId: state.household.id),
+              ),
+            );
+          }
+
           if (state is JoinHouseholdSuccess) {
             AppToast.showToast(
               context: context,
@@ -50,9 +79,24 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
               description: 'Joined household successfully',
               type: ToastificationType.success,
             );
-
-            Navigator.of(context).pop();
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (_) =>
+                    HouseholdMembersScreen(householdId: state.household.id),
+              ),
+            );
           }
+
+          if (state is GetHouseholdError) {
+            AppToast.showToast(
+              context: context,
+              title: 'Error',
+              description: state.message,
+              type: ToastificationType.error,
+            );
+          }
+
           if (state is JoinHouseholdError) {
             AppToast.showToast(
               context: context,
@@ -63,7 +107,19 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
           }
         },
         builder: (context, state) {
-          final isLoading = state is JoinHouseholdLoading;
+          final isCheckingHousehold = state is GetHouseholdLoading;
+          final isLoading =
+              isCheckingHousehold ||
+                  state is JoinHouseholdLoading ||
+                  state is CreateHouseholdLoading;
+
+          // لحد ما نعرف اليوزر عنده household ولا لأ، منعرضش الفورم
+          if (isCheckingHousehold) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -119,44 +175,45 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
 
                         const SizedBox(height: 12),
 
-                        const TextField(
-                          decoration: InputDecoration(
+                        TextField(
+                          controller: _householdIdController,
+                          enabled: !isLoading,
+                          decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.home_outlined),
                           ),
                         ),
 
                         const SizedBox(height: 20),
                         CustomButton(
-                          text: isLoading
+                          text: state is JoinHouseholdLoading
                               ? 'Joining...'
                               : l10n.householdJoinButton,
                           onPressed: isLoading
                               ? null
                               : () {
-                                  final householdId = _householdIdController
-                                      .text
-                                      .trim();
+                            final householdId = _householdIdController
+                                .text
+                                .trim();
 
-                                  if (householdId.isEmpty) {
-                                    AppToast.showToast(
-                                      context: context,
-                                      title: 'Error',
-                                      description: 'Please enter household ID',
-                                      type: ToastificationType.error,
-                                    );
-                                    return;
-                                  }
+                            if (householdId.isEmpty) {
+                              AppToast.showToast(
+                                context: context,
+                                title: 'Error',
+                                description: 'Please enter household ID',
+                                type: ToastificationType.error,
+                              );
+                              return;
+                            }
 
-                                  context.read<HouseholdCubit>().joinHousehold(
-                                    householdId: householdId,
-                                    userId: widget.userId,
-                                  );
-                                },
+                            context.read<HouseholdCubit>().joinHousehold(
+                              householdId: householdId,
+                              userId: widget.userId,
+                            );
+                          },
                         ),
 
                         const SizedBox(height: 32),
 
-                        // OR Divider
                         Row(
                           children: [
                             Expanded(

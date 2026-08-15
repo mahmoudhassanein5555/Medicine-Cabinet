@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/dialogs/app_toasts.dart';
 import '../../../../../generated/l10n.dart';
 import '../view_model/household_cubit.dart';
+import 'household_members_screen.dart';
 
 class CreateHouseholdScreen extends StatefulWidget {
   const CreateHouseholdScreen({
@@ -48,7 +49,14 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
               type: ToastificationType.success,
             );
 
-            Navigator.of(context).pop();
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (_) => HouseholdMembersScreen(
+                  householdId: state.household.id,
+                ),
+              ),
+            );
           }
           if (state is CreateHouseholdError) {
             AppToast.showToast(
@@ -172,16 +180,16 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
 
                            const SizedBox(height: 18),
 
-                           CustomButton(
-                             text:
-                             l10n.householdJoinExistingButton,
-                             onPressed: isLoading
-                                 ? null
-                                 : () {
-                               // Navigate to Join Household Screen
-                             },
-                             isOutlined: true,
-                           ),
+                           // CustomButton(
+                           //   text:
+                           //   l10n.householdJoinExistingButton,
+                           //   onPressed: isLoading
+                           //       ? null
+                           //       : () {
+                           //     // Navigate to Join Household Screen
+                           //   },
+                           //   isOutlined: true,
+                           // ),
 
                            const SizedBox(height: 24),
                          ],

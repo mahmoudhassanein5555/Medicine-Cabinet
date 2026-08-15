@@ -1,3 +1,54 @@
+// import 'package:flutter/material.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter_localizations/flutter_localizations.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:medicine_cabinet/core/theme/app_theme.dart';
+//
+// import 'core/di/service_locator.dart';
+// import 'features/household/presentation/view/screens/create_household_screen.dart';
+// import 'features/household/presentation/view/screens/household_members_screen.dart';
+// import 'features/household/presentation/view/screens/household_screen.dart';
+// import 'features/household/presentation/view/screens/member_details_screen.dart';
+// import 'firebase_options.dart';
+// import 'generated/l10n.dart';
+//
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await configureDependencies();
+//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+//   runApp(const MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ScreenUtilInit(
+//       designSize: const Size(375, 812),
+//       minTextAdapt: true,
+//       splitScreenMode: true,
+//       builder: (context, child) {
+//         return MaterialApp(
+//           theme: AppTheme.lightTheme,
+//           darkTheme: AppTheme.darkTheme,
+//           themeMode: ThemeMode.system,
+//           localizationsDelegates: [
+//             S.delegate,
+//             GlobalMaterialLocalizations.delegate,
+//             GlobalWidgetsLocalizations.delegate,
+//             GlobalCupertinoLocalizations.delegate,
+//           ],
+//           supportedLocales: S.delegate.supportedLocales,
+//           title: 'Flutter Demo',
+//         home: HouseholdScreen(userId: 'test-user-id'),
+//
+//         );
+//       },
+//     );
+//   }
+// }
+//
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -6,18 +57,22 @@ import 'package:medicine_cabinet/core/theme/app_theme.dart';
 
 import 'core/di/service_locator.dart';
 import 'features/household/presentation/view/screens/create_household_screen.dart';
-import 'features/household/presentation/view/screens/household_members_screen.dart';
 import 'features/household/presentation/view/screens/household_screen.dart';
-import 'features/household/presentation/view/screens/member_details_screen.dart';
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies();
+
+  // لازم Firebase يتهيأ الأول، عشان configureDependencies() بيحقن
+  // FirebaseFirestore.instance وده محتاج Firebase App يكون اتعمله initialize قبلها
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await configureDependencies();
+
   runApp(const MyApp());
 }
+
+const _testUserId = 'test-user-id';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -33,19 +88,30 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.system,
-          localizationsDelegates: [
+          localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
-          title: 'Flutter Demo',
-          // home:  HouseholdScreen(),
-
+          title: 'Medicine Cabinet',
+          home: Builder(
+            builder: (context) => HouseholdScreen(
+              userId: _testUserId,
+              onCreatePressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) =>
+                    const CreateHouseholdScreen(userId: 'FlwarNVYFWM17QKlEnUm'),
+                  ),
+                );
+              },
+            ),
+          ),
         );
       },
     );
   }
 }
-
