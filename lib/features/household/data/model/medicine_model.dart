@@ -10,6 +10,7 @@ class MedicineDto {
   final DateTime? expiryDate;
   final String ownerId;
   final String addedBy;
+  final String? imageUrl;
 
   MedicineDto({
     required this.id,
@@ -19,6 +20,7 @@ class MedicineDto {
     required this.ownerId,
     required this.addedBy,
     this.expiryDate,
+    this.imageUrl,
   });
 
   factory MedicineDto.fromFirestore(
@@ -34,6 +36,7 @@ class MedicineDto {
       ownerId: data['ownerId'] ?? '',
       addedBy: data['addedBy'] ?? '',
       expiryDate: expiry is Timestamp ? expiry.toDate() : null,
+      imageUrl: data['imageUrl'],
     );
   }
 
@@ -46,6 +49,7 @@ class MedicineDto {
       ownerId: ownerId,
       addedBy: addedBy,
       expiryDate: expiryDate,
+      imageUrl: imageUrl,
     );
   }
 }

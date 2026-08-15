@@ -6,6 +6,7 @@ class MedicineEntity {
   final DateTime? expiryDate;
   final String ownerId;
   final String addedBy;
+  final String? imageUrl;
 
   const MedicineEntity({
     required this.id,
@@ -15,5 +16,9 @@ class MedicineEntity {
     required this.ownerId,
     required this.addedBy,
     this.expiryDate,
+    this.imageUrl,
   });
+
+  bool get isExpired =>
+      expiryDate != null && expiryDate!.isBefore(DateTime.now());
 }
