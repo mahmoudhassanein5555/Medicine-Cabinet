@@ -14,13 +14,36 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isEnabled = onPressed != null;
+
+    const textStyle = TextStyle(
+      fontSize: 17,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 0.2,
+    );
+
     if (isOutlined) {
       return SizedBox(
         width: double.infinity,
         height: 52,
         child: OutlinedButton(
           onPressed: onPressed,
-          child: Text(text),
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(
+              color: isEnabled ? colorScheme.primary : colorScheme.outline,
+              width: 1.8,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(14),
+            ),
+          ),
+          child: Text(
+            text,
+            style: textStyle.copyWith(
+              color: isEnabled ? colorScheme.primary : colorScheme.outline,
+            ),
+          ),
         ),
       );
     }
@@ -30,7 +53,15 @@ class CustomButton extends StatelessWidget {
       height: 52,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(text),
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+        ),
+        child: Text(
+          text,
+          style: textStyle.copyWith(color: colorScheme.onPrimary),
+        ),
       ),
     );
   }

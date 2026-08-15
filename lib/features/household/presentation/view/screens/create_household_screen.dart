@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/screens/widget/custom_button.dart';
+import 'package:medicine_cabinet/features/household/presentation/view/screens/widget/custom_text_field.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/view_model/household_state.dart';
 import 'package:toastification/toastification.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +34,7 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
   Widget build(BuildContext context) {
     final l10n = S.of(context);
     final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return BlocProvider(
       create: (_) => getIt<HouseholdCubit>(),
@@ -71,7 +73,7 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
                 padding: const EdgeInsets.all(14),
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 14),
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
                     child: Column(
                       children: [
                         const SizedBox(height: 20),
@@ -127,13 +129,11 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
 
                         const SizedBox(height: 10),
 
-                        TextField(
+                        CustomTextField(
                           controller: _nameController,
                           enabled: !isLoading,
-                          decoration: InputDecoration(
-                            hintText: l10n.householdNameHint,
-                            prefixIcon: const Icon(Icons.home_outlined),
-                          ),
+                          hintText: l10n.householdNameHint,
+                          prefixIcon: Icons.home_outlined,
                         ),
 
                         const SizedBox(height: 16),
@@ -153,6 +153,59 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
                                       );
                                 },
                         ),
+                        const SizedBox(height: 18),
+
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: colorScheme.outline,
+                                thickness: 1.2,
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 14,
+                                vertical: 6,
+                              ),
+                              decoration: BoxDecoration(
+                                color: colorScheme.surfaceContainerHighest,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                l10n.householdOr,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: colorScheme.onSurfaceVariant,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: colorScheme.outline,
+                                thickness: 1.2,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 18),
+
+                        CustomButton(
+                          text: l10n.householdJoinExistingButton,
+                          onPressed: isLoading
+                              ? null
+                              : () {
+                                  Navigator.pop(context);
+                                },
+                          isOutlined: true,
+                        ),
+
+                        const SizedBox(height: 24),
                       ],
                     ),
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/screens/widget/custom_button.dart';
+import 'package:medicine_cabinet/features/household/presentation/view/screens/widget/custom_text_field.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../../core/di/service_locator.dart';
@@ -42,7 +43,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
 
     return BlocProvider(
       create: (_) =>
-      getIt<HouseholdCubit>()..getUserHousehold(userId: widget.userId),
+          getIt<HouseholdCubit>()..getUserHousehold(userId: widget.userId),
       child: BlocConsumer<HouseholdCubit, HouseholdState>(
         listener: (context, state) {
           if (state is GetHouseholdSuccess) {
@@ -57,7 +58,6 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                 ),
               );
             }
-
           }
 
           if (state is CreateHouseholdSuccess) {
@@ -108,8 +108,8 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
           final isCheckingHousehold = state is GetHouseholdLoading;
           final isLoading =
               isCheckingHousehold ||
-                  state is JoinHouseholdLoading ||
-                  state is CreateHouseholdLoading;
+              state is JoinHouseholdLoading ||
+              state is CreateHouseholdLoading;
 
           if (isCheckingHousehold) {
             return const Scaffold(
@@ -127,7 +127,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 20),
 
                         Text(
                           l10n.householdSetupTitle,
@@ -172,12 +172,10 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
 
                         const SizedBox(height: 12),
 
-                        TextField(
+                        CustomTextField(
                           controller: _householdIdController,
                           enabled: !isLoading,
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.home_outlined),
-                          ),
+                          prefixIcon: Icons.home_outlined,
                         ),
 
                         const SizedBox(height: 20),
@@ -188,25 +186,25 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                           onPressed: isLoading
                               ? null
                               : () {
-                            final householdId = _householdIdController
-                                .text
-                                .trim();
+                                  final householdId = _householdIdController
+                                      .text
+                                      .trim();
 
-                            if (householdId.isEmpty) {
-                              AppToast.showToast(
-                                context: context,
-                                title: 'Error',
-                                description: 'Please enter household ID',
-                                type: ToastificationType.error,
-                              );
-                              return;
-                            }
+                                  if (householdId.isEmpty) {
+                                    AppToast.showToast(
+                                      context: context,
+                                      title: 'Error',
+                                      description: 'Please enter household ID',
+                                      type: ToastificationType.error,
+                                    );
+                                    return;
+                                  }
 
-                            context.read<HouseholdCubit>().joinHousehold(
-                              householdId: householdId,
-                              userId: widget.userId,
-                            );
-                          },
+                                  context.read<HouseholdCubit>().joinHousehold(
+                                    householdId: householdId,
+                                    userId: widget.userId,
+                                  );
+                                },
                         ),
 
                         const SizedBox(height: 32),
@@ -214,22 +212,37 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                         Row(
                           children: [
                             Expanded(
-                              child: Divider(color: colorScheme.outline),
+                              child: Divider(
+                                color: colorScheme.outline,
+                                thickness: 1.2,
+                              ),
                             ),
-                            Padding(
+                            Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                              ),
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
+                                horizontal: 14,
+                                vertical: 6,
+                              ),
+                              decoration: BoxDecoration(
+                                color: colorScheme.surfaceContainerHighest,
+                                borderRadius: BorderRadius.circular(20),
                               ),
                               child: Text(
                                 l10n.householdOr,
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: colorScheme.onSurfaceVariant,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 0.5,
                                 ),
                               ),
                             ),
                             Expanded(
-                              child: Divider(color: colorScheme.outline),
+                              child: Divider(
+                                color: colorScheme.outline,
+                                thickness: 1.2,
+                              ),
                             ),
                           ],
                         ),

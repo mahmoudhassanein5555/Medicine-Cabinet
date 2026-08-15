@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../domain/entity/household_member_entity.dart';
+import 'member_avatar.dart';
 
 class MemberCard extends StatelessWidget {
   const MemberCard({super.key, required this.member, required this.onTap});
@@ -35,12 +36,7 @@ class MemberCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              _MemberAvatar(
-                name: member.name,
-                photoUrl: member.photoUrl,
-                radius: 30,
-                colorScheme: colorScheme,
-              ),
+              MemberAvatar(name: member.name, photoUrl: member.photoUrl, radius: 30),
 
               const SizedBox(width: 16),
 
@@ -59,10 +55,16 @@ class MemberCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      member.email,
+                      member.email.isNotEmpty ? member.email : 'No email',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.bodyMedium,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.brightness == Brightness.dark
+                            ? const Color(0xFFB0B0B0)
+                            : const Color(0xFF4A4A4A),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 13,
+                      ),
                     ),
                   ],
                 ),
@@ -74,77 +76,6 @@ class MemberCard extends StatelessWidget {
                 color: colorScheme.onSurfaceVariant,
               ),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _MemberAvatar extends StatelessWidget {
-  const _MemberAvatar({
-    required this.name,
-    required this.photoUrl,
-    required this.radius,
-    required this.colorScheme,
-  });
-
-  final String name;
-  final String? photoUrl;
-  final double radius;
-  final ColorScheme colorScheme;
-
-  @override
-  Widget build(BuildContext context) {
-    final initial = name.isNotEmpty ? name[0].toUpperCase() : '?';
-    final hasPhoto = photoUrl != null && photoUrl!.isNotEmpty;
-
-    if (!hasPhoto) {
-      return CircleAvatar(
-        radius: radius,
-        backgroundColor: colorScheme.primary,
-        child: Text(
-          initial,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: radius * 0.7,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      );
-    }
-
-    return ClipOval(
-      child: Image.network(
-        photoUrl!,
-        width: radius * 2,
-        height: radius * 2,
-        fit: BoxFit.cover,
-        loadingBuilder: (context, child, progress) {
-          if (progress == null) return child;
-          return CircleAvatar(
-            radius: radius,
-            backgroundColor: colorScheme.primary.withValues(alpha: 0.15),
-            child: SizedBox(
-              width: radius * 0.7,
-              height: radius * 0.7,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: colorScheme.primary,
-              ),
-            ),
-          );
-        },
-        errorBuilder: (context, error, stackTrace) => CircleAvatar(
-          radius: radius,
-          backgroundColor: colorScheme.primary,
-          child: Text(
-            initial,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: radius * 0.7,
-              fontWeight: FontWeight.bold,
-            ),
           ),
         ),
       ),
