@@ -81,7 +81,7 @@ class MemberDetailsScreen extends StatelessWidget {
                           ),
                         ),
 
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 2),
 
                         Text(
                           member.name,

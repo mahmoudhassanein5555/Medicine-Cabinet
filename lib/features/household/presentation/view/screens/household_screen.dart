@@ -41,7 +41,6 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
     final colorScheme = theme.colorScheme;
 
     return BlocProvider(
-      // تشييك تلقائي: لو اليوزر عنده household أصلاً، الـ listener تحت هينقله على طول
       create: (_) =>
       getIt<HouseholdCubit>()..getUserHousehold(userId: widget.userId),
       child: BlocConsumer<HouseholdCubit, HouseholdState>(
@@ -58,8 +57,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                 ),
               );
             }
-            // لو household == null، سيبها عادي — اليوزر لسه معندوش household
-            // فهيفضل واقف في نفس الشاشة عشان يعمل Join أو Create
+
           }
 
           if (state is CreateHouseholdSuccess) {
@@ -113,7 +111,6 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                   state is JoinHouseholdLoading ||
                   state is CreateHouseholdLoading;
 
-          // لحد ما نعرف اليوزر عنده household ولا لأ، منعرضش الفورم
           if (isCheckingHousehold) {
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
@@ -130,7 +127,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 24),
 
                         Text(
                           l10n.householdSetupTitle,

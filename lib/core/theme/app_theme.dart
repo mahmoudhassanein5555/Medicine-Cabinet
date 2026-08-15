@@ -124,23 +124,7 @@ class AppTheme {
   }
 
 
-      // ========================================================
-      // Typography
-      // ========================================================
-    //   textTheme: const TextTheme(
-    //     headlineMedium: TextStyle(
-    //       fontSize: 20,
-    //       fontWeight: FontWeight.bold,
-    //       color: AppColors.textPrimaryLight,
-    //     ),
-    //     bodyLarge: TextStyle(fontSize: 16, color: AppColors.textPrimaryLight),
-    //     bodyMedium: TextStyle(
-    //       fontSize: 14,
-    //       color: AppColors.textSecondaryLight,
-    //     ),
-    //   ),
-  //    );
-  // }
+
 
   // ============================================================
   // Dark Theme
@@ -247,19 +231,7 @@ class AppTheme {
         ),
       ),
 
-      // ========================================================
-      // Typography
-      // ========================================================
-      // textTheme: const TextTheme(
-      //   headlineMedium: TextStyle(
-      //     fontSize: 20,
-      //     fontWeight: FontWeight.bold,
-      //     color: AppColors.textPrimaryDark,
-      //   ),
-      //   bodyLarge: TextStyle(fontSize: 16, color: AppColors.textPrimaryDark),
-      //   bodyMedium: TextStyle(fontSize: 14, color: AppColors.textSecondaryDark),
-      // ),
-      // Typography
+
       textTheme: const TextTheme(
         headlineSmall: TextStyle(
           fontSize: 22,
