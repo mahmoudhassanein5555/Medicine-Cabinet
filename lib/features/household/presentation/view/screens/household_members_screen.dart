@@ -9,10 +9,7 @@ import '../view_model/household_state.dart';
 import 'member_details_screen.dart';
 
 class HouseholdMembersScreen extends StatefulWidget {
-  const HouseholdMembersScreen({
-    super.key,
-    required this.householdId,
-  });
+  const HouseholdMembersScreen({super.key, required this.householdId});
 
   final String householdId;
 
@@ -103,7 +100,6 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                         );
                       }
 
-                      // Initial state
                       return const SizedBox.shrink();
                     },
                   ),
