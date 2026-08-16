@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../domain/entity/medicine_entity.dart';
 
-/// كارت دواء واحد: صورة + اسم + كمية + تاريخ صلاحية + شارة صالح/منتهي
 class MedicineCard extends StatelessWidget {
   const MedicineCard({super.key, required this.medicine});
 

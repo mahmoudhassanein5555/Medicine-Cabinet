@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medicine_cabinet/features/household/domain/entity/household_member_entity.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/screens/widget/member_card.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/di/service_locator.dart';
 import '../../../../../generated/l10n.dart';
@@ -18,6 +20,16 @@ class HouseholdMembersScreen extends StatefulWidget {
 }
 
 class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
+  static final List<HouseholdMemberEntity> _placeholderMembers = List.generate(
+    6,
+    ((index) => HouseholdMemberEntity(
+      id: 'placeholder',
+      name: 'Member Name',
+      email: 'member@email.com',
+      role: 'member',
+      medicineCount: 0,
+    )),
+  );
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
@@ -57,7 +69,18 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                   child: BlocBuilder<HouseholdCubit, HouseholdState>(
                     builder: (context, state) {
                       if (state is GetMembersLoading) {
-                        return const Center(child: CircularProgressIndicator());
+                        return Skeletonizer(
+                          enabled: true,
+                          child: ListView.separated(
+                            itemCount: _placeholderMembers.length,
+                            separatorBuilder: (_, __) =>
+                                const SizedBox(height: 14),
+                            itemBuilder: (context, index) => MemberCard(
+                              member: _placeholderMembers[index],
+                              onTap: () {},
+                            ),
+                          ),
+                        );
                       }
                       if (state is GetMembersError) {
                         return Center(
@@ -77,10 +100,19 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                         }
 
                         return ListView.separated(
+
                           itemCount: members.length,
+
                           separatorBuilder: (_, __) =>
                               const SizedBox(height: 14),
                           itemBuilder: (context, index) {
+                            print("==============");
+                            print(members[index].id);
+                            print(members[index].name);
+                            print(members[index].email);
+                            print(members[index].role);
+                            print(members[index].medicineCount);
+                            print("==============");
                             final member = members[index];
                             return MemberCard(
                               member: member,

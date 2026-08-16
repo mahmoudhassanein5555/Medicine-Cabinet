@@ -160,6 +160,7 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
     required String householdId,
     required String userId,
   }) async {
+
     final medicinesSnapshot = await _firestore
         .collection('households')
         .doc(householdId)
@@ -167,8 +168,12 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
         .where('ownerId', isEqualTo: userId)
         .get();
 
-    return medicinesSnapshot.docs
+    var resalt= medicinesSnapshot.docs
         .map((doc) => MedicineDto.fromFirestore(doc.data(), doc.id))
         .toList();
+    print(resalt);
+    print("*************************");
+    return resalt;
   }
+
 }
