@@ -1,18 +1,22 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:medicine_cabinet/core/constants/app_keys.dart';
+import '../../../../core/utils/shared_prefs_local_data_source.dart';
 import '../../domain/usecases/ForgotPasswordUseCase.dart';
 import '../../domain/usecases/GoogleSignInUseCase.dart';
 import '../../domain/usecases/LoginUseCase.dart';
 import '../../domain/usecases/LogoutUseCase.dart';
 import '../../domain/usecases/RegisterUseCase.dart';
-import 'Auth_state.dart';
+import 'auth_state.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class AuthCubit extends Cubit<AuthState> {
   final LoginUseCase loginUseCase;
   final RegisterUseCase registerUseCase;
   final GoogleSigninUseCase googleSignInUseCase;
   final ForgotPasswordUseCase forgotPasswordUseCase;
   final LogoutUseCase logoutUseCase;
+  final CacheHelper cacheHelper;
 
   AuthCubit({
     required this.loginUseCase,
@@ -20,12 +24,11 @@ class AuthCubit extends Cubit<AuthState> {
     required this.googleSignInUseCase,
     required this.forgotPasswordUseCase,
     required this.logoutUseCase,
+    required this.cacheHelper,
+
   }) : super(AuthInitial());
 
-  Future<void> login({
-    required String email,
-    required String password,
-  }) async {
+  Future<void> login({required String email, required String password,}) async {
     emit(AuthLoading());
 
     try {
@@ -33,18 +36,14 @@ class AuthCubit extends Cubit<AuthState> {
         email: email,
         password: password,
       );
-
+      await cacheHelper.saveData(key: AppKeys.userId, value: user.id);
       emit(AuthSuccess(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
   }
 
-  Future<void> register({
-    required String name,
-    required String email,
-    required String password,
-  }) async {
+  Future<void> register({required String name, required String email, required String password,}) async {
     emit(AuthLoading());
 
     try {
@@ -53,7 +52,10 @@ class AuthCubit extends Cubit<AuthState> {
         email: email,
         password: password,
       );
-
+      await cacheHelper.saveData(
+        key: AppKeys.userId,
+        value: user.id,
+      );
       emit(AuthSuccess(user));
     } catch (e) {
       emit(AuthError(e.toString()));
@@ -65,15 +67,16 @@ class AuthCubit extends Cubit<AuthState> {
 
     try {
       final user = await googleSignInUseCase();
-
+      await cacheHelper.saveData(
+        key: AppKeys.userId,
+        value: user.id,
+      );
       emit(AuthSuccess(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
   }
-  Future<void> forgotPassword({
-    required String email,
-  }) async {
+  Future<void> forgotPassword({required String email,}) async {
     emit(AuthLoading());
 
     try {
@@ -90,7 +93,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     try {
       await logoutUseCase();
-
+      await cacheHelper.removeData(key: AppKeys.userId);
       emit(AuthInitial());
     } catch (e) {
       emit(AuthError(e.toString()));

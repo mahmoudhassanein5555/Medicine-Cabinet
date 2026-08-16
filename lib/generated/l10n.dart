@@ -324,7 +324,24 @@ class S {
   String get authLoginButton {
     return Intl.message('Log in', name: 'authLoginButton', desc: '', args: []);
   }
-
+  /// `Logging in...`
+  String get authLoggingIn {
+    return Intl.message(
+      'Logging in...',
+      name: 'authLoggingIn',
+      desc: '',
+      args: [],
+    );
+  }
+  /// `Creating account...`
+  String get authCreatingAccount {
+    return Intl.message(
+      'Creating account...',
+      name: 'authCreatingAccount',
+      desc: '',
+      args: [],
+    );
+  }
   /// `Continue with Google`
   String get authContinueWithGoogle {
     return Intl.message(
@@ -415,6 +432,15 @@ class S {
     return Intl.message(
       'Already have an account?',
       name: 'authHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+/// `Passwords Do Not Match`
+  String get authPasswordsDoNotMatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'authPasswordsDoNotMatch',
       desc: '',
       args: [],
     );
@@ -929,6 +955,8 @@ class S {
   String get profileAbout {
     return Intl.message('About', name: 'profileAbout', desc: '', args: []);
   }
+
+
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

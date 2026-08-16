@@ -1,205 +1,281 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medicine_cabinet/features/auth/presentation/cubit/auth_state.dart';
+import 'package:medicine_cabinet/features/auth/presentation/views/widgets/auth_header.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../generated/l10n.dart';
+import '../cubit/auth_cubit.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final formKey = GlobalKey<FormState>();
+
+  late final TextEditingController nameController;
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+  late final TextEditingController confirmPasswordController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final nameController = TextEditingController();
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-    final confirmPasswordController = TextEditingController();
+    final l10n = S.of(context);
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-          child: Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSuccess) {
+          Navigator.pop(context);
+        }
 
-                // Icon Header
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: AppColors.primarySoft,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: const Icon(
-                    Icons.all_inbox_rounded,
-                    color: AppColors.primary,
-                    size: 30,
-                  ),
-                ),
-                const SizedBox(height: 24),
+        if (state is AuthError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.message),
+            ),
+          );
+        }
+      },
+      builder: (context, state) {
+        final isLoading = state is AuthLoading;
 
-                // Title & Subtitle
-                const Text(
-                  'Create your account',
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  'Set up your household\'s medicine cabinet in a minute.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: AppColors.textSecondary,
-                  ),
-                ),
-                const SizedBox(height: 28),
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 16.0,
+              ),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
 
-                // Full Name
-                const Text(
-                  'Full name',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextFormField(
-                  controller: nameController,
-                  hintText: 'Ahmed Farouk',
-                  hintTextColor: AppColors.textMuted,
-                  prefixIcon: const Icon(Icons.person_outline, color: AppColors.textMuted),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                const SizedBox(height: 16),
+                    // Header
+                    AuthHeader(
+                      title: l10n.authRegisterTitle,
+                      subtitle: l10n.authRegisterSubtitle,
+                    ),
 
-                // Email
-                const Text(
-                  'Email',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextFormField(
-                  controller: emailController,
-                  hintText: 'ahmed@family.mail',
-                  hintTextColor: AppColors.textMuted,
-                  keyboardType: TextInputType.emailAddress,
-                  prefixIcon: const Icon(Icons.email_outlined, color: AppColors.textMuted),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                const SizedBox(height: 16),
+                    const SizedBox(height: 28),
 
-                // Password
-                const Text(
-                  'Password',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextFormField(
-                  controller: passwordController,
-                  hintText: '••••••••',
-                  hintTextColor: AppColors.textMuted,
-                  isPassword: true,
-                  prefixIcon: const Icon(Icons.lock_outline, color: AppColors.textMuted),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                const SizedBox(height: 16),
-
-                // Confirm Password
-                const Text(
-                  'Confirm password',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextFormField(
-                  controller: confirmPasswordController,
-                  hintText: '••••••••',
-                  hintTextColor: AppColors.textMuted,
-                  isPassword: true,
-                  action: TextInputAction.done,
-                  prefixIcon: const Icon(Icons.lock_outline, color: AppColors.textMuted),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                const SizedBox(height: 28),
-
-                // Submit Button
-                CustomButton(
-                  text: 'Create account',
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      // Trigger Register Event
-                    }
-                  },
-                ),
-                const SizedBox(height: 16),
-
-                // Terms Notice
-                const Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'By continuing, you agree to the Terms and Privacy Policy.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.textMuted,
+                    // Full Name
+                    Text(
+                      l10n.authFullNameLabel,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textPrimary,
                       ),
                     ),
-                  ),
-                ),
-                const SizedBox(height: 28),
 
-                // Footer
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Already have an account? ',
-                      style: TextStyle(color: AppColors.textSecondary),
+                    const SizedBox(height: 8),
+
+                    CustomTextFormField(
+                      controller: nameController,
+                      hintText: 'Ahmed Farouk',
+                      hintTextColor: AppColors.textMuted,
+                      prefixIcon: const Icon(
+                        Icons.person_outline,
+                        color: AppColors.textMuted,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        // Navigate back to LoginView
+
+                    const SizedBox(height: 16),
+
+                    // Email
+                    Text(
+                      l10n.authEmailLabel,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+
+                    const SizedBox(height: 8),
+
+                    CustomTextFormField(
+                      controller: emailController,
+                      hintText: 'ahmed@family.mail',
+                      hintTextColor: AppColors.textMuted,
+                      keyboardType: TextInputType.emailAddress,
+                      prefixIcon: const Icon(
+                        Icons.email_outlined,
+                        color: AppColors.textMuted,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    // Password
+                    Text(
+                      l10n.authPasswordLabel,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+
+                    const SizedBox(height: 8),
+
+                    CustomTextFormField(
+                      controller: passwordController,
+                      hintText: '••••••••',
+                      hintTextColor: AppColors.textMuted,
+                      isPassword: true,
+                      prefixIcon: const Icon(
+                        Icons.lock_outline,
+                        color: AppColors.textMuted,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    // Confirm Password
+                    Text(
+                      l10n.authConfirmPasswordLabel,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+
+                    const SizedBox(height: 8),
+
+                    CustomTextFormField(
+                      controller: confirmPasswordController,
+                      hintText: '••••••••',
+                      hintTextColor: AppColors.textMuted,
+                      isPassword: true,
+                      action: TextInputAction.done,
+                      prefixIcon: const Icon(
+                        Icons.lock_outline,
+                        color: AppColors.textMuted,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+
+                    const SizedBox(height: 28),
+
+                    // Submit Button
+                    CustomButton(
+                      text: isLoading
+                          ? l10n.authCreatingAccount
+                          : l10n.authRegisterButton,
+                      onPressed: () {
+                        if (isLoading) return;
+
+                        if (formKey.currentState!.validate()) {
+                          if (passwordController.text !=
+                              confirmPasswordController.text) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                               SnackBar(
+                                content: Text(
+                                  l10n.authPasswordsDoNotMatch,
+                                ),
+                              ),
+                            );
+
+                            return;
+                          }
+
+                          context.read<AuthCubit>().register(
+                            name: nameController.text.trim(),
+                            email: emailController.text.trim(),
+                            password: passwordController.text,
+                          );
+                        }
                       },
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text(
-                          'Log in',
-                          style: TextStyle(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.bold,
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    // Terms Notice
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          l10n.authTermsNotice,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.textMuted,
                           ),
                         ),
                       ),
                     ),
+
+                    const SizedBox(height: 28),
+
+                    // Footer
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          l10n.authHaveAccount,
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                          ),
+                        ),
+
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            l10n.authLoginLink,
+                            style: const TextStyle(
+                              color: AppColors.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

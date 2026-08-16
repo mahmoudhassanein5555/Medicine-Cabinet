@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "1040809661139-arv5kmeq90mc0fkjoq7i9p589i8al18p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medicine_cabinet",
+            "certificate_hash": "25d7108683b44781734913ee04847e9c6fc0eca3"
+          }
+        },
+        {
           "client_id": "1040809661139-6n2c5j6maobkt8lck5jma9m7afft0ros.apps.googleusercontent.com",
           "client_type": 3
         }

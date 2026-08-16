@@ -101,5 +101,8 @@
   "profilePrivacy": "Privacy",
   "profileAppPreferences": "App preferences",
   "profileDarkMode": "Dark mode",
-  "profileAbout": "About"
+  "profileAbout": "About",
+  "authLoggingIn": "Logging in...",
+  "authCreatingAccount": "Creating account...",
+  "authPasswordsDoNotMatch": "Passwords do not match"
 }

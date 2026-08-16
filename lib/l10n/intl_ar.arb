@@ -101,5 +101,8 @@
   "profilePrivacy": "الخصوصية",
   "profileAppPreferences": "تفضيلات التطبيق",
   "profileDarkMode": "الوضع الداكن",
-  "profileAbout": "عن التطبيق"
+  "profileAbout": "عن التطبيق",
+  "authLoggingIn": "جاري تسجيل الدخول...",
+  "authCreatingAccount": "جاري إنشاء الحساب...",
+  "authPasswordsDoNotMatch": "كلمتا المرور غير متطابقتين"
 }

@@ -1,212 +1,262 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/register_screen.dart';
+import 'package:medicine_cabinet/features/auth/presentation/views/widgets/auth_header.dart';
+import 'package:medicine_cabinet/features/auth/presentation/views/widgets/google_button.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/di/service_locator.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../generated/l10n.dart';
+import '../cubit/auth_state.dart';
+import '../cubit/auth_cubit.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final formKey = GlobalKey<FormState>();
+
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
+    final l10n = S.of(context);
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-          child: Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSuccess) {
+          // TODO: Navigate to Home
+        }
 
-                // Icon Header
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: AppColors.primarySoft,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: const Icon(
-                    Icons.all_inbox_rounded,
-                    color: AppColors.primary,
-                    size: 30,
-                  ),
-                ),
-                const SizedBox(height: 24),
+        if (state is AuthError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.message),
+            ),
+          );
+        }
+      },
+      builder: (context, state) {
+        final isLoading = state is AuthLoading;
 
-                // Title & Subtitle
-                const Text(
-                  'Welcome back',
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  'Log in to see your household\'s medicine cabinet.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: AppColors.textSecondary,
-                  ),
-                ),
-                const SizedBox(height: 32),
-
-                // Email Label & Field
-                const Text(
-                  'Email',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextFormField(
-                  controller: emailController,
-                  hintText: 'ahmed@family.mail',
-                  hintTextColor: AppColors.textMuted,
-                  keyboardType: TextInputType.emailAddress,
-                  prefixIcon: const Icon(Icons.email_outlined, color: AppColors.textMuted),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                const SizedBox(height: 20),
-
-                // Password Label & Field
-                const Text(
-                  'Password',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextFormField(
-                  controller: passwordController,
-                  hintText: '••••••••',
-                  hintTextColor: AppColors.textMuted,
-                  isPassword: true,
-                  action: TextInputAction.done,
-                  prefixIcon: const Icon(Icons.lock_outline, color: AppColors.textMuted),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-
-                // Forgot Password Link
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Forgot password?',
-                      style: TextStyle(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                // Submit Button
-                CustomButton(
-                  text: 'Log in',
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      // Trigger Login Event
-                    }
-                  },
-                ),
-                const SizedBox(height: 24),
-
-                // Divider OR
-                const Row(
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 16.0,
+              ),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: Divider(color: AppColors.border)),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: Text('or', style: TextStyle(color: AppColors.textMuted)),
-                    ),
-                    Expanded(child: Divider(color: AppColors.border)),
-                  ],
-                ),
-                const SizedBox(height: 24),
+                    const SizedBox(height: 20),
 
-                // Google Sign In Button
-                SizedBox(
-                  width: double.infinity,
-                  height: 52,
-                  child: OutlinedButton.icon(
-                    onPressed: () {
-                      // Trigger Google Sign In Event
-                    },
-                    icon: Image.network(
-                      'https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg',
-                      height: 20,
-                      errorBuilder: (_, __, ___) => const Icon(Icons.g_mobiledata, size: 28),
+                    // Header
+                    AuthHeader(
+                      title: l10n.authLoginTitle,
+                      subtitle: l10n.authLoginSubtitle,
                     ),
-                    label: const Text(
-                      'Continue with Google',
-                      style: TextStyle(
+
+                    const SizedBox(height: 32),
+
+                    // Email Label
+                    Text(
+                      l10n.authEmailLabel,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
                         color: AppColors.textPrimary,
-                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: AppColors.surface,
-                      side: const BorderSide(color: AppColors.border),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(26),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 32),
 
-                // Footer
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Don't have an account? ",
-                      style: TextStyle(color: AppColors.textSecondary),
+                    const SizedBox(height: 8),
+
+                    // Email Field
+                    CustomTextFormField(
+                      controller: emailController,
+                      hintText: 'ahmed@family.mail',
+                      hintTextColor: AppColors.textMuted,
+                      keyboardType: TextInputType.emailAddress,
+                      prefixIcon: const Icon(
+                        Icons.email_outlined,
+                        color: AppColors.textMuted,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        // Navigate to RegisterView
-                      },
+
+                    const SizedBox(height: 20),
+
+                    // Password Label
+                    Text(
+                      l10n.authPasswordLabel,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+
+                    const SizedBox(height: 8),
+
+                    // Password Field
+                    CustomTextFormField(
+                      controller: passwordController,
+                      hintText: '••••••••',
+                      hintTextColor: AppColors.textMuted,
+                      isPassword: true,
+                      action: TextInputAction.done,
+                      prefixIcon: const Icon(
+                        Icons.lock_outline,
+                        color: AppColors.textMuted,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+
+                    // Forgot Password
+                    Align(
+                      alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const RegisterScreen(),
-                            ),
-                          );                        },
-                        child: const Text(
-                          'Sign Up',
-                          style: TextStyle(
+                          // TODO: Forgot password
+                        },
+                        child: Text(
+                          l10n.authForgotPassword,
+                          style: const TextStyle(
                             color: AppColors.primary,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
                     ),
+
+                    const SizedBox(height: 16),
+
+                    // Login Button
+                    CustomButton(
+                      text: isLoading
+                          ? l10n.authLoggingIn
+                          : l10n.authLoginButton,
+                      onPressed: () {
+                        if (isLoading) return;
+
+                        if (formKey.currentState!.validate()) {
+                          context.read<AuthCubit>().login(
+                            email: emailController.text.trim(),
+                            password: passwordController.text,
+                          );
+                        }
+                      },
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    // OR
+                    Row(
+                      children: [
+                        const Expanded(
+                          child: Divider(
+                            color: AppColors.border,
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          child: Text(
+                            l10n.commonOr,
+                            style: const TextStyle(
+                              color: AppColors.textMuted,
+                            ),
+                          ),
+                        ),
+
+                        const Expanded(
+                          child: Divider(
+                            color: AppColors.border,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    // Google Sign In
+                    GoogleButton(
+                      isLoading: isLoading,
+                      onPressed: () {
+                        context.read<AuthCubit>().signInWithGoogle();
+                      },
+                    ),
+
+                    const SizedBox(height: 32),
+
+                    // Footer
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          l10n.authNoAccount,
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                          ),
+                        ),
+
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => BlocProvider(
+                                  create: (_) => getIt<AuthCubit>(),
+                                  child: const RegisterScreen(),
+                                ),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            l10n.authSignUpLink,
+                            style: const TextStyle(
+                              color: AppColors.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

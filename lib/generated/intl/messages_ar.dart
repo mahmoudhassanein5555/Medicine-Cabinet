@@ -46,18 +46,25 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "authLoginButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "authLoginLink": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    'authLoggingIn': MessageLookupByLibrary.simpleMessage(
+      'جاري تسجيل الدخول...',
+    ),
     "authLoginSubtitle": MessageLookupByLibrary.simpleMessage(
       "سجّل الدخول لعرض صيدلية أسرِتك.",
     ),
     "authLoginTitle": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك"),
     "authNoAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
     "authPasswordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "authPasswordsDoNotMatch": MessageLookupByLibrary.simpleMessage("كلمتا المرور غير متطابقتين"),
     "authRegisterButton": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "authRegisterSubtitle": MessageLookupByLibrary.simpleMessage(
       "أنشئ صيدلية أسرِتك في دقيقة واحدة.",
     ),
     "authRegisterTitle": MessageLookupByLibrary.simpleMessage("إنشاء حسابك"),
     "authSignUpLink": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    'authCreatingAccount': MessageLookupByLibrary.simpleMessage(
+      'جاري إنشاء الحساب...',
+    ),
     "authTermsNotice": MessageLookupByLibrary.simpleMessage(
       "بالمتابعة، فإنك توافق على الشروط وسياسة الخصوصية.",
     ),

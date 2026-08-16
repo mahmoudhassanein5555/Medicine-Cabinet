@@ -1,6 +1,8 @@
 import 'package:medicine_cabinet/features/auth/domain/entities/user_entity.dart';
 import 'package:medicine_cabinet/features/auth/domain/repositories/auth_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class LoginUseCase {
   final AuthRepository repository;
   LoginUseCase(this.repository);

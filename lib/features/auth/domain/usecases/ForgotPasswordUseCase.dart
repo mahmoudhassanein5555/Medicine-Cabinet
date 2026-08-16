@@ -1,5 +1,7 @@
 import '../repositories/auth_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class ForgotPasswordUseCase {
   final AuthRepository repository;
 

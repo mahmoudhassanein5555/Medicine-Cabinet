@@ -1,39 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'core/di/service_locator.dart';
+import 'features/auth/presentation/cubit/auth_cubit.dart';
 import 'features/auth/presentation/views/login_screen.dart';
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  print("1️⃣ Flutter Binding initialized");
 
-  try {
-    print("2️⃣ Starting dependencies configuration...");
-    await configureDependencies();
-    print("3️⃣ Dependencies configured successfully!");
-  } catch (e) {
-    print("❌ Error in configureDependencies: $e");
-  }
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  try {
-    print("4️⃣ Initializing Firebase...");
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    print("5️⃣ Firebase initialized successfully!");
-  } catch (e) {
-    print("❌ Error in Firebase.initializeApp: $e");
-  }
+  await configureDependencies();
 
-  print("6️⃣ Running App...");
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale _locale = const Locale('ar');
+
+  void changeLanguage(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,25 +46,27 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
-          localizationsDelegates: [
+          debugShowCheckedModeBanner: false,
+
+          locale: _locale,
+
+          localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
+
           supportedLocales: S.delegate.supportedLocales,
-          title: 'Flutter Demo',
-          home:LoginScreen(),
 
+          title: 'Medicine Cabinet',
 
-          // const Scaffold(
-          //   body: Center(
-          //     child: Text('Hello World'),
-          //   ),
-          // )
+          home: BlocProvider(
+            create: (_) => getIt<AuthCubit>(),
+            child: const LoginScreen(),
+          ),
         );
       },
     );
   }
 }
-
