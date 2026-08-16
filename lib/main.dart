@@ -19,7 +19,7 @@ void main() async {
   runApp(const MyApp());
 }
 
-const _testUserId = 'test-user-id';
+const _testUserId = 'FlwarNVYFWM17QKlEnUm';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -46,7 +46,9 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           title: 'Medicine Cabinet',
+
           home: Builder(
+
             builder: (context) => HouseholdScreen(
               userId: _testUserId,
               onCreatePressed: () {
@@ -54,7 +56,7 @@ class MyApp extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (_) => const CreateHouseholdScreen(
-                      userId: 'FlwarNVYFWM17QKlEnUm',
+                      userId: _testUserId,
                     ),
                   ),
                 );

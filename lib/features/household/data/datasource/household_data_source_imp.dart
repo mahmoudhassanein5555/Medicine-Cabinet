@@ -30,6 +30,15 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
 
     final userRef = _firestore.collection('users').doc(userId);
     final memberRef = householdRef.collection('members').doc(userId);
+    final userSnapshot = await userRef.get();
+    if (!userSnapshot.exists) {
+      throw Exception('User not found');
+    }
+    final userData = userSnapshot.data();
+    if (userData == null) {
+      throw Exception('User data not found');
+    }
+
     final now = Timestamp.now();
     final batch = _firestore.batch();
 
@@ -39,7 +48,13 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
       'createdAt': now,
     });
 
-    batch.set(memberRef, {'role': 'admin', 'joinedAt': now});
+    batch.set(memberRef, {
+      'name': userData['name'] ?? '',
+      'email': userData['email'] ?? '',
+      'photoUrl': userData['photoUrl'],
+      'role': 'admin',
+      'joinedAt': now,
+    });
 
     batch.set(userRef, {
       'householdId': householdRef.id,
@@ -87,6 +102,17 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
     final userRef = _firestore.collection('users').doc(userId);
     final memberRef = householdRef.collection('members').doc(userId);
 
+    final userSnapshot = await userRef.get();
+
+    if (!userSnapshot.exists) {
+      throw Exception('User not found');
+    }
+
+    final userData = userSnapshot.data();
+
+    if (userData == null) {
+      throw Exception('User data not found');
+    }
     final householdSnapshot = await householdRef.get();
     if (!householdSnapshot.exists) {
       throw Exception('Household not found');
@@ -95,7 +121,13 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
     final now = Timestamp.now();
     final batch = _firestore.batch();
 
-    batch.set(memberRef, {'role': 'member', 'joinedAt': now});
+    batch.set(memberRef, {
+      'name': userData['name'] ?? '',
+      'email': userData['email'] ?? '',
+      'photoUrl': userData['photoUrl'],
+      'role': 'member',
+      'joinedAt': now,
+    });
 
     batch.set(userRef, {'householdId': householdId}, SetOptions(merge: true));
 
@@ -127,14 +159,7 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
 
     for (final memberDoc in membersSnapshot.docs) {
       final userId = memberDoc.id;
-      final userSnapshot = await _firestore
-          .collection('users')
-          .doc(userId)
-          .get();
-      if (!userSnapshot.exists) continue;
-
-      final userData = userSnapshot.data();
-      if (userData == null) continue;
+      final memberData = memberDoc.data();
 
       final medicineCount = medicinesSnapshot.docs
           .where((medicine) => medicine.data()['ownerId'] == userId)
@@ -143,10 +168,10 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
       members.add(
         HouseholdMemberDto(
           id: userId,
-          name: userData['name'] ?? '',
-          email: userData['email'] ?? '',
-          photoUrl: userData['photoUrl'],
-          role: memberDoc.data()['role'] ?? 'member',
+          name: memberData['name'] ?? '',
+          email: memberData['email'] ?? '',
+          photoUrl: memberData['photoUrl'],
+          role: memberData['role'] ?? 'member',
           medicineCount: medicineCount,
         ),
       );
@@ -160,7 +185,6 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
     required String householdId,
     required String userId,
   }) async {
-
     final medicinesSnapshot = await _firestore
         .collection('households')
         .doc(householdId)
@@ -168,12 +192,10 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
         .where('ownerId', isEqualTo: userId)
         .get();
 
-    var resalt= medicinesSnapshot.docs
+    var resalt = medicinesSnapshot.docs
         .map((doc) => MedicineDto.fromFirestore(doc.data(), doc.id))
         .toList();
-    print(resalt);
-    print("*************************");
+
     return resalt;
   }
-
 }
