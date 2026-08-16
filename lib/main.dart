@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medicine_cabinet/core/theme/app_theme.dart';
+import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/screens/medicine_details_screen.dart';
 
 import 'core/di/service_locator.dart';
 import 'firebase_options.dart';
@@ -9,7 +11,7 @@ import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies(); 
+  await configureDependencies();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
@@ -25,6 +27,9 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.system,
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -32,15 +37,10 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
-          title: 'Flutter Demo',
-          home: const Scaffold(
-            body: Center(
-              child: Text('Hello World'),
-            ),
-          )
+          title: 'Medicine Cabinet',
+          home: MedicineDetailsScreen(medicineId: 'e2bnx3baWZQAH3xIWJ64', householdId: 'household123',),
         );
       },
     );
   }
 }
-
