@@ -143,9 +143,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "Add family member",
     ),
+    "medicineCategoryAllergy": MessageLookupByLibrary.simpleMessage("Allergy"),
+    "medicineCategoryAntibiotics": MessageLookupByLibrary.simpleMessage(
+      "Antibiotics",
+    ),
+    "medicineCategoryColdFlu": MessageLookupByLibrary.simpleMessage(
+      "Cold & flu",
+    ),
+    "medicineCategoryDigestive": MessageLookupByLibrary.simpleMessage(
+      "Digestive",
+    ),
+    "medicineCategoryPainRelief": MessageLookupByLibrary.simpleMessage(
+      "Pain relief",
+    ),
+    "medicineCategorySkinCare": MessageLookupByLibrary.simpleMessage(
+      "Skin care",
+    ),
+    "medicineCategoryVitamins": MessageLookupByLibrary.simpleMessage(
+      "Vitamins",
+    ),
+    "medicineDetailsCategory": MessageLookupByLibrary.simpleMessage("Category"),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
+    "medicineDetailsName": MessageLookupByLibrary.simpleMessage("Name"),
+    "medicineDetailsType": MessageLookupByLibrary.simpleMessage("Type"),
+    "medicineTypeCapsules": MessageLookupByLibrary.simpleMessage("Capsules"),
+    "medicineTypeCream": MessageLookupByLibrary.simpleMessage("Cream"),
+    "medicineTypeDrops": MessageLookupByLibrary.simpleMessage("Drops"),
+    "medicineTypeInhaler": MessageLookupByLibrary.simpleMessage("Inhaler"),
+    "medicineTypeOintment": MessageLookupByLibrary.simpleMessage("Ointment"),
+    "medicineTypePills": MessageLookupByLibrary.simpleMessage("Pills"),
+    "medicineTypeSyrup": MessageLookupByLibrary.simpleMessage("Syrup"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Search medicines...",
     ),

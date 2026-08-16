@@ -101,5 +101,22 @@
   "profilePrivacy": "الخصوصية",
   "profileAppPreferences": "تفضيلات التطبيق",
   "profileDarkMode": "الوضع الداكن",
-  "profileAbout": "عن التطبيق"
+  "profileAbout": "عن التطبيق",
+  "medicineDetailsName": "الاسم",
+  "medicineDetailsType": "النوع",
+  "medicineDetailsCategory": "الفئة" ,
+  "medicineTypePills": "أقراص",
+  "medicineTypeCapsules": "كبسولات",
+  "medicineTypeSyrup": "شراب",
+  "medicineTypeDrops": "قطرات",
+  "medicineTypeCream": "كريم",
+  "medicineTypeOintment": "مرهم",
+  "medicineTypeInhaler": "بخاخ",
+  "medicineCategoryPainRelief": "مسكنات الألم",
+  "medicineCategoryColdFlu": "البرد والإنفلونزا",
+  "medicineCategoryAllergy": "الحساسية",
+  "medicineCategoryDigestive": "الجهاز الهضمي",
+  "medicineCategoryVitamins": "الفيتامينات",
+  "medicineCategoryAntibiotics": "المضادات الحيوية",
+  "medicineCategorySkinCare": "العناية بالبشرة"
 }

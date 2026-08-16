@@ -133,9 +133,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "إضافة فرد من العائلة",
     ),
+    "medicineCategoryAllergy": MessageLookupByLibrary.simpleMessage("الحساسية"),
+    "medicineCategoryAntibiotics": MessageLookupByLibrary.simpleMessage(
+      "المضادات الحيوية",
+    ),
+    "medicineCategoryColdFlu": MessageLookupByLibrary.simpleMessage(
+      "البرد والإنفلونزا",
+    ),
+    "medicineCategoryDigestive": MessageLookupByLibrary.simpleMessage(
+      "الجهاز الهضمي",
+    ),
+    "medicineCategoryPainRelief": MessageLookupByLibrary.simpleMessage(
+      "مسكنات الألم",
+    ),
+    "medicineCategorySkinCare": MessageLookupByLibrary.simpleMessage(
+      "العناية بالبشرة",
+    ),
+    "medicineCategoryVitamins": MessageLookupByLibrary.simpleMessage(
+      "الفيتامينات",
+    ),
+    "medicineDetailsCategory": MessageLookupByLibrary.simpleMessage("الفئة"),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
+    "medicineDetailsName": MessageLookupByLibrary.simpleMessage("الاسم"),
+    "medicineDetailsType": MessageLookupByLibrary.simpleMessage("النوع"),
+    "medicineTypeCapsules": MessageLookupByLibrary.simpleMessage("كبسولات"),
+    "medicineTypeCream": MessageLookupByLibrary.simpleMessage("كريم"),
+    "medicineTypeDrops": MessageLookupByLibrary.simpleMessage("قطرات"),
+    "medicineTypeInhaler": MessageLookupByLibrary.simpleMessage("بخاخ"),
+    "medicineTypeOintment": MessageLookupByLibrary.simpleMessage("مرهم"),
+    "medicineTypePills": MessageLookupByLibrary.simpleMessage("أقراص"),
+    "medicineTypeSyrup": MessageLookupByLibrary.simpleMessage("شراب"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "الفيصل في البحث عن الأدوية...",
     ),

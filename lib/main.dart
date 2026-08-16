@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.system,
+          locale: const Locale('ar'),
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -38,7 +39,10 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           title: 'Medicine Cabinet',
-          home: MedicineDetailsScreen(medicineId: 'e2bnx3baWZQAH3xIWJ64', householdId: 'household123',),
+          home: MedicineDetailsScreen(
+            medicineId: 't8lSnPTlNMQWJWriVpou',
+            householdId: 'household123',
+          ),
         );
       },
     );

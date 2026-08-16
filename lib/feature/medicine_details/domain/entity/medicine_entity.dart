@@ -6,6 +6,7 @@ class MedicineDetailsEntity {
   final DateTime expiryDate;
   final String imageUrl;
   final String ownerId;
+  final String? ownerName;
   final String addedBy;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -21,6 +22,7 @@ class MedicineDetailsEntity {
     required this.expiryDate,
     required this.imageUrl,
     required this.ownerId,
+    this.ownerName,
     required this.addedBy,
     required this.createdAt,
     required this.updatedAt,
@@ -36,6 +38,7 @@ class MedicineDetailsEntity {
     DateTime? expiryDate,
     String? imageUrl,
     String? ownerId,
+    String? ownerName,
     String? addedBy,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -50,6 +53,7 @@ class MedicineDetailsEntity {
       expiryDate: expiryDate ?? this.expiryDate,
       imageUrl: imageUrl ?? this.imageUrl,
       ownerId: ownerId ?? this.ownerId,
+      ownerName: ownerName ?? this.ownerName,
       addedBy: addedBy ?? this.addedBy,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,

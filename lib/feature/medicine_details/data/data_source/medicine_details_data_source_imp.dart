@@ -79,7 +79,6 @@ class MedicineDetailsDataSourceImp
 
   MedicineDetailsDataSourceImp({required this.firestore});
 
-  // دالة مساعدة للحصول على مرجع الـ medicines الخاصة بـ household معين
   CollectionReference<Map<String, dynamic>> _getMedicinesCollection(
     String householdId,
   ) {
@@ -147,5 +146,15 @@ class MedicineDetailsDataSourceImp
     required String medicineId,
   }) async {
     await _getMedicinesCollection(householdId).doc(medicineId).delete();
+  }
+
+  @override
+  Future<String?> getOwnerName(String ownerId) async {
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(ownerId)
+        .get();
+
+    return doc.data()?['name'] as String?;
   }
 }

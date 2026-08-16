@@ -101,5 +101,23 @@
   "profilePrivacy": "Privacy",
   "profileAppPreferences": "App preferences",
   "profileDarkMode": "Dark mode",
-  "profileAbout": "About"
+  "profileAbout": "About",
+  "medicineDetailsName": "Name",
+  "medicineDetailsType": "Type",
+  "medicineDetailsCategory": "Category",
+  "medicineTypePills": "Pills",
+  "medicineTypeCapsules": "Capsules",
+  "medicineTypeSyrup": "Syrup",
+  "medicineTypeDrops": "Drops",
+  "medicineTypeCream": "Cream",
+  "medicineTypeOintment": "Ointment",
+  "medicineTypeInhaler": "Inhaler",
+
+  "medicineCategoryPainRelief": "Pain relief",
+  "medicineCategoryColdFlu": "Cold & flu",
+  "medicineCategoryAllergy": "Allergy",
+  "medicineCategoryDigestive": "Digestive",
+  "medicineCategoryVitamins": "Vitamins",
+  "medicineCategoryAntibiotics": "Antibiotics",
+  "medicineCategorySkinCare": "Skin care"
 }

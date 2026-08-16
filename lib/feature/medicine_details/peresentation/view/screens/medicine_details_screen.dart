@@ -478,6 +478,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import 'package:medicine_cabinet/core/di/service_locator.dart';
+import 'package:medicine_cabinet/core/utils/medicine_localization.dart';
 import 'package:medicine_cabinet/feature/medicine_details/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/widgets/medicine_expiry_banner.dart';
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/widgets/medicine_hero_section.dart';
@@ -486,6 +487,7 @@ import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/wid
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view_model/medicine_details_cubit.dart';
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view_model/medicine_details_state.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class MedicineDetailsScreen extends StatelessWidget {
   final String householdId;
@@ -510,6 +512,24 @@ class MedicineDetailsScreen extends StatelessWidget {
 
 class _MedicineDetailsView extends StatelessWidget {
   const _MedicineDetailsView();
+  MedicineDetailsEntity _dummyMedicine() {
+    final now = DateTime.now();
+
+    return MedicineDetailsEntity(
+      id: 'loading',
+      name: 'Panadol',
+      type: 'Pills',
+      quantity: 20,
+      expiryDate: now.add(const Duration(days: 30)),
+      imageUrl: '',
+      ownerId: 'Owner',
+      addedBy: 'User',
+      createdAt: now,
+      updatedAt: now,
+      storageLocation: 'Kitchen cabinet',
+      category: 'Pain relief',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -532,15 +552,19 @@ class _MedicineDetailsView extends StatelessWidget {
       builder: (context, state) {
         if (state.status == MedicineDetailsStatus.initial ||
             state.status == MedicineDetailsStatus.loading) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+          return Skeletonizer(
+            enabled: true,
+            child: _MedicineDetailsBody(medicine: _dummyMedicine()),
           );
         }
 
         if (state.status == MedicineDetailsStatus.error &&
             state.medicine == null) {
           return Scaffold(
-            appBar: AppBar(title: Text(l10n.medicinesTitle)),
+            appBar: AppBar(
+              title: Text(l10n.medicinesTitle),
+              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            ),
             body: Center(
               child: Text(state.errorMessage ?? 'Something went wrong'),
             ),
@@ -551,7 +575,10 @@ class _MedicineDetailsView extends StatelessWidget {
 
         if (medicine == null) {
           return Scaffold(
-            appBar: AppBar(title: Text(l10n.medicinesTitle)),
+            appBar: AppBar(
+              title: Text(l10n.medicinesTitle),
+              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            ),
             body: const Center(child: Text('Medicine not found')),
           );
         }
@@ -590,9 +617,8 @@ class _MedicineDetailsBody extends StatelessWidget {
                   ),
                   Text(
                     l10n.medicinesTitle,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   const Spacer(),
@@ -622,7 +648,8 @@ class _MedicineDetailsBody extends StatelessWidget {
                           child: MedicineInfoCard(
                             icon: Icons.all_inclusive_rounded,
                             label: l10n.commonQuantity,
-                            value: '${medicine.quantity} ${medicine.type}',
+                            value:
+                                '${medicine.quantity} ${getLocalizedMedicineType(context, medicine.type)}',
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -644,15 +671,17 @@ class _MedicineDetailsBody extends StatelessWidget {
                           child: MedicineInfoCard(
                             icon: Icons.person_outline_rounded,
                             label: l10n.commonOwner,
-                            value: medicine.ownerId,
+                            value: medicine.ownerName ?? medicine.ownerId,
                           ),
                         ),
                         const SizedBox(width: 12),
                         Expanded(
                           child: MedicineInfoCard(
                             icon: Icons.access_time_rounded,
-                            label: 'DATE ADDED',
-                            value: 'Jun 3, 2026',
+                            label: l10n.commonDateAdded,
+                            value: DateFormat.yMMMM(
+                              Localizations.localeOf(context).toString(),
+                            ).format(medicine.createdAt),
                           ),
                         ),
                       ],
@@ -711,17 +740,23 @@ class _MedicineDetailsBody extends StatelessWidget {
                   children: [
                     TextField(
                       controller: nameController,
-                      decoration: const InputDecoration(labelText: 'Name'),
+                      decoration: InputDecoration(
+                        labelText: S.of(context).medicineDetailsName,
+                      ),
                     ),
                     const SizedBox(height: 12),
                     TextField(
                       controller: typeController,
-                      decoration: const InputDecoration(labelText: 'Type'),
+                      decoration: InputDecoration(
+                        labelText: S.of(context).medicineDetailsType,
+                      ),
                     ),
                     const SizedBox(height: 12),
                     TextField(
                       controller: categoryController,
-                      decoration: const InputDecoration(labelText: 'Category'),
+                      decoration: InputDecoration(
+                        labelText: S.of(context).medicineDetailsCategory,
+                      ),
                     ),
                     const SizedBox(height: 12),
                     TextField(

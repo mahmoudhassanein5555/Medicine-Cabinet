@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -928,6 +927,156 @@ class S {
   /// `About`
   String get profileAbout {
     return Intl.message('About', name: 'profileAbout', desc: '', args: []);
+  }
+
+  /// `Name`
+  String get medicineDetailsName {
+    return Intl.message(
+      'Name',
+      name: 'medicineDetailsName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get medicineDetailsType {
+    return Intl.message(
+      'Type',
+      name: 'medicineDetailsType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get medicineDetailsCategory {
+    return Intl.message(
+      'Category',
+      name: 'medicineDetailsCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pills`
+  String get medicineTypePills {
+    return Intl.message('Pills', name: 'medicineTypePills', desc: '', args: []);
+  }
+
+  /// `Capsules`
+  String get medicineTypeCapsules {
+    return Intl.message(
+      'Capsules',
+      name: 'medicineTypeCapsules',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Syrup`
+  String get medicineTypeSyrup {
+    return Intl.message('Syrup', name: 'medicineTypeSyrup', desc: '', args: []);
+  }
+
+  /// `Drops`
+  String get medicineTypeDrops {
+    return Intl.message('Drops', name: 'medicineTypeDrops', desc: '', args: []);
+  }
+
+  /// `Cream`
+  String get medicineTypeCream {
+    return Intl.message('Cream', name: 'medicineTypeCream', desc: '', args: []);
+  }
+
+  /// `Ointment`
+  String get medicineTypeOintment {
+    return Intl.message(
+      'Ointment',
+      name: 'medicineTypeOintment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inhaler`
+  String get medicineTypeInhaler {
+    return Intl.message(
+      'Inhaler',
+      name: 'medicineTypeInhaler',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pain relief`
+  String get medicineCategoryPainRelief {
+    return Intl.message(
+      'Pain relief',
+      name: 'medicineCategoryPainRelief',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cold & flu`
+  String get medicineCategoryColdFlu {
+    return Intl.message(
+      'Cold & flu',
+      name: 'medicineCategoryColdFlu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allergy`
+  String get medicineCategoryAllergy {
+    return Intl.message(
+      'Allergy',
+      name: 'medicineCategoryAllergy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digestive`
+  String get medicineCategoryDigestive {
+    return Intl.message(
+      'Digestive',
+      name: 'medicineCategoryDigestive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vitamins`
+  String get medicineCategoryVitamins {
+    return Intl.message(
+      'Vitamins',
+      name: 'medicineCategoryVitamins',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Antibiotics`
+  String get medicineCategoryAntibiotics {
+    return Intl.message(
+      'Antibiotics',
+      name: 'medicineCategoryAntibiotics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skin care`
+  String get medicineCategorySkinCare {
+    return Intl.message(
+      'Skin care',
+      name: 'medicineCategorySkinCare',
+      desc: '',
+      args: [],
+    );
   }
 }
 

@@ -92,4 +92,14 @@ class MedicineDetailsRepoImp implements MedicineDetailsRepoInterface {
       return Left(Failure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, String?>> getOwnerName(String ownerId) async {
+    try {
+      final result = await dataSource.getOwnerName(ownerId);
+      return Right(result);
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
 }

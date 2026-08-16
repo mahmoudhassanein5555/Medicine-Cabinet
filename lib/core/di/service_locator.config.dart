@@ -28,6 +28,8 @@ import '../../feature/medicine_details/domain/use_case/edit_medicine_details_use
     as _i199;
 import '../../feature/medicine_details/domain/use_case/get_medicine_details_use_case.dart'
     as _i543;
+import '../../feature/medicine_details/domain/use_case/get_owner_name_use_case.dart'
+    as _i703;
 import '../../feature/medicine_details/domain/use_case/update_medicine_quantity_use_case.dart'
     as _i1025;
 import '../../feature/medicine_details/peresentation/view_model/medicine_details_cubit.dart'
@@ -64,6 +66,9 @@ extension GetItInjectableX on _i174.GetIt {
         dataSource: gh<_i480.MedicineDetailsDataSourceInterface>(),
       ),
     );
+    gh.factory<_i703.GetOwnerNameUseCase>(
+      () => _i703.GetOwnerNameUseCase(gh<_i63.MedicineDetailsRepoInterface>()),
+    );
     gh.factory<_i853.DeleteMedicineUseCase>(
       () => _i853.DeleteMedicineUseCase(
         repo: gh<_i63.MedicineDetailsRepoInterface>(),
@@ -90,6 +95,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i1025.UpdateMedicineQuantityUseCase>(),
         gh<_i199.EditMedicineDetailsUseCase>(),
         gh<_i853.DeleteMedicineUseCase>(),
+        gh<_i703.GetOwnerNameUseCase>(),
       ),
     );
     return this;
