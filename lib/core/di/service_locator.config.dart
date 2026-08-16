@@ -35,6 +35,7 @@ import '../../features/household/presentation/view/view_model/household_cubit.da
     as _i697;
 import '../api/api_manager.dart' as _i1047;
 import '../network/connection_checker.dart' as _i1050;
+import '../utils/household_local_data_source.dart' as _i1006;
 import '../utils/shared_prefs_local_data_source.dart' as _i336;
 import 'register_module.dart' as _i291;
 
@@ -54,6 +55,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
     gh.lazySingleton<_i974.FirebaseFirestore>(() => registerModule.firestore);
     gh.lazySingleton<_i1050.NetworkInfo>(() => _i1050.NetworkInfoImpl());
+    gh.factory<_i1006.HouseholdLocalDataSource>(
+      () => _i1006.HouseholdLocalDataSource(gh<_i460.SharedPreferences>()),
+    );
     gh.factory<_i55.HouseholdDataSourceInterface>(
       () => _i838.HouseholdDataSourceImp(gh<_i974.FirebaseFirestore>()),
     );
@@ -61,7 +65,10 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i336.CacheHelper(gh<_i460.SharedPreferences>()),
     );
     gh.factory<_i743.HouseholdRepoInterface>(
-      () => _i214.HouseholdRepoImp(gh<_i55.HouseholdDataSourceInterface>()),
+      () => _i214.HouseholdRepoImp(
+        gh<_i55.HouseholdDataSourceInterface>(),
+        gh<_i1006.HouseholdLocalDataSource>(),
+      ),
     );
     gh.factory<_i60.CreateHouseholdUseCase>(
       () => _i60.CreateHouseholdUseCase(gh<_i743.HouseholdRepoInterface>()),

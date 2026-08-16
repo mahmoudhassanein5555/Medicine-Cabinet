@@ -84,9 +84,7 @@ class MemberDetailsScreen extends StatelessWidget {
                         Text(
                           member.email,
                           style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.brightness == Brightness.dark
-                                ? const Color(0xFFB0B0B0)
-                                : const Color(0xFF4A4A4A),
+                            color: colorScheme.onSurface,
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                           ),

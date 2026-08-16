@@ -54,14 +54,14 @@ class MemberCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 4),
+                    // colorScheme.onSurface بيتغير تلقائي حسب الثيم (فاتح/غامق)
+                    // لأن AppTheme رابطه بـ AppColors.textPrimaryLight/Dark أصلاً
                     Text(
                       member.email.isNotEmpty ? member.email : 'No email',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.brightness == Brightness.dark
-                            ? const Color(0xFFB0B0B0)
-                            : const Color(0xFF4A4A4A),
+                        color: colorScheme.onSurface,
                         fontWeight: FontWeight.w600,
                         fontSize: 13,
                       ),

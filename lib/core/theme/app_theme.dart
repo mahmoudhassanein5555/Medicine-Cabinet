@@ -74,6 +74,25 @@ class AppTheme {
           ),
         ),
       ),
+      // ========================================================
+      // Outlined Button
+      // ========================================================
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.primaryLight,
+          minimumSize: const Size(double.infinity, 48),
+          side: const BorderSide(color: AppColors.borderLight, width: 1.5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          textStyle: const TextStyle(
+            fontFamily: 'Tajawal',
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+
       ////////////////////////////////////
       // Text Form Field / Input Decoration
       inputDecorationTheme: InputDecorationTheme(
@@ -85,16 +104,34 @@ class AppTheme {
         ),
         prefixIconColor: AppColors.textSecondaryLight,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.borderLight),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.borderLight),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.primaryLight, width: 2),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(
+            color: AppColors.borderLight.withValues(alpha: 0.5),
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: AppColors.errorLight, width: 1.5),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: AppColors.errorLight, width: 2),
+        ),
+        errorStyle: const TextStyle(
+          color: AppColors.errorLight,
+          fontSize: 12,
         ),
       ),
       // Typography
@@ -193,7 +230,9 @@ class AppTheme {
           ),
         ),
       ),
-      //////////////////////////////////
+      // ========================================================
+      // Outlined Button
+      // ========================================================
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.primaryDark,
@@ -209,6 +248,7 @@ class AppTheme {
           ),
         ),
       ),
+
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.surfaceAltDark,
@@ -228,6 +268,24 @@ class AppTheme {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: AppColors.primaryDark, width: 2),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: AppColors.borderDark.withValues(alpha: 0.5),
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.errorDark, width: 1.5),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.errorDark, width: 2),
+        ),
+        errorStyle: const TextStyle(
+          color: AppColors.errorDark,
+          fontSize: 12,
         ),
       ),
 

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+/// كارت معلومة واحدة (أيقونة جوه دائرة ملونة + عنوان + قيمة)
+/// مستخدم في MemberDetailsScreen، وأي شاشة تفاصيل تانية محتاجة نفس الشكل.
 class InfoCard extends StatelessWidget {
   const InfoCard({
     super.key,
@@ -44,9 +47,7 @@ class InfoCard extends StatelessWidget {
                 Text(
                   title,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.brightness == Brightness.dark
-                        ? const Color(0xFFB0B0B0)
-                        : const Color(0xFF5A5A5A),
+                    color: colorScheme.onSurface,
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
                   ),

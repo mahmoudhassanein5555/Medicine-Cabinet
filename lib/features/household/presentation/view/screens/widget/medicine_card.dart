@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../domain/entity/medicine_entity.dart';
 
+/// كارت دواء واحد: صورة + اسم + كمية + تاريخ صلاحية + شارة صالح/منتهي
 class MedicineCard extends StatelessWidget {
   const MedicineCard({super.key, required this.medicine});
 
@@ -13,9 +14,8 @@ class MedicineCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     final expiry = medicine.expiryDate;
-    final expiryText = expiry != null
-        ? '${_monthName(expiry.month)} ${expiry.year}'
-        : '-';
+    final expiryText =
+    expiry != null ? '${_monthName(expiry.month)} ${expiry.year}' : '-';
 
     final isExpired = medicine.isExpired;
     final hasExpiryInfo = expiry != null;
@@ -67,9 +67,7 @@ class MedicineCard extends StatelessWidget {
                 Text(
                   'Qty: ${medicine.quantity}',
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.brightness == Brightness.dark
-                        ? const Color(0xFFB0B0B0)
-                        : const Color(0xFF4A4A4A),
+                    color: colorScheme.onSurface,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
@@ -78,11 +76,7 @@ class MedicineCard extends StatelessWidget {
                 Text(
                   'Expiry: $expiryText',
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: isExpired
-                        ? Colors.red
-                        : (theme.brightness == Brightness.dark
-                              ? const Color(0xFFB0B0B0)
-                              : const Color(0xFF4A4A4A)),
+                    color: isExpired ? Colors.red : colorScheme.onSurface,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
@@ -98,18 +92,8 @@ class MedicineCard extends StatelessWidget {
 
   String _monthName(int month) {
     const names = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
     ];
     return names[month - 1];
   }
@@ -133,24 +117,24 @@ class _MedicineImage extends StatelessWidget {
         color: colorScheme.primary.withValues(alpha: 0.1),
         child: url != null && url.isNotEmpty
             ? Image.network(
-                url,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, progress) {
-                  if (progress == null) return child;
-                  return Center(
-                    child: SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: colorScheme.primary,
-                      ),
-                    ),
-                  );
-                },
-                errorBuilder: (context, error, stackTrace) =>
-                    Icon(Icons.medication_outlined, color: colorScheme.primary),
-              )
+          url,
+          fit: BoxFit.cover,
+          loadingBuilder: (context, child, progress) {
+            if (progress == null) return child;
+            return Center(
+              child: SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: colorScheme.primary,
+                ),
+              ),
+            );
+          },
+          errorBuilder: (context, error, stackTrace) =>
+              Icon(Icons.medication_outlined, color: colorScheme.primary),
+        )
             : Icon(Icons.medication_outlined, color: colorScheme.primary),
       ),
     );
@@ -174,11 +158,7 @@ class _ExpiryBadge extends StatelessWidget {
       ),
       child: Text(
         isExpired ? 'Expired' : 'Valid',
-        style: TextStyle(
-          color: color,
-          fontSize: 11,
-          fontWeight: FontWeight.w700,
-        ),
+        style: TextStyle(color: color, fontSize: 11, fontWeight: FontWeight.w700),
       ),
     );
   }

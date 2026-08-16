@@ -7,12 +7,14 @@ import 'package:medicine_cabinet/features/household/domain/entity/household_memb
 import 'package:medicine_cabinet/features/household/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/features/household/domain/repo/household_repo_interface.dart';
 
+import '../../../../core/utils/household_local_data_source.dart';
 import '../datasource/household_data_source_interface.dart';
 
 @Injectable(as: HouseholdRepoInterface)
 class HouseholdRepoImp implements HouseholdRepoInterface {
   final HouseholdDataSourceInterface _dataSource;
-  HouseholdRepoImp(this._dataSource);
+  final HouseholdLocalDataSource _localDataSource;
+  HouseholdRepoImp(this._dataSource, this._localDataSource);
 
   @override
   Future<Either<Failure, HouseholdEntity>> createHousehold({
@@ -21,6 +23,8 @@ class HouseholdRepoImp implements HouseholdRepoInterface {
   }) async {
     try {
       final dto = await _dataSource.createHousehold(name: name, userId: userId);
+      await _localDataSource.saveHouseholdId(dto.id);
+
       return Right(dto.toEntity());
     } catch (e) {
       return Left(ErrorHandler.handle(e));
@@ -33,7 +37,13 @@ class HouseholdRepoImp implements HouseholdRepoInterface {
   }) async {
     try {
       final dto = await _dataSource.getUserHousehold(userId: userId);
-      if (dto == null) return const Right(null);
+      if (dto == null) {
+        await _localDataSource.clearHouseholdId();
+
+        return const Right(null);
+      }
+      await _localDataSource.saveHouseholdId(dto.id);
+
       return Right(dto.toEntity());
     } catch (e) {
       return Left(ErrorHandler.handle(e));
@@ -61,7 +71,9 @@ class HouseholdRepoImp implements HouseholdRepoInterface {
     required String householdId,
   }) async {
     try {
-      final dtos = await _dataSource.getHouseholdMembers(householdId: householdId);
+      final dtos = await _dataSource.getHouseholdMembers(
+        householdId: householdId,
+      );
       return Right(dtos.map((dto) => dto.toEntity()).toList());
     } catch (e) {
       return Left(ErrorHandler.handle(e));
@@ -82,5 +94,9 @@ class HouseholdRepoImp implements HouseholdRepoInterface {
     } catch (e) {
       return Left(ErrorHandler.handle(e));
     }
+  }
+
+  String? getCachedHouseholdId() {
+    return _localDataSource.getHouseholdId();
   }
 }
