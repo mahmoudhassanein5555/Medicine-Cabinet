@@ -45,7 +45,11 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> register({required String name, required String email, required String password,}) async {
+  Future<void> register({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
     emit(AuthLoading());
 
     try {
@@ -54,17 +58,13 @@ class AuthCubit extends Cubit<AuthState> {
         email: email,
         password: password,
       );
-      await cacheHelper.saveData(
-        key: AppKeys.userId,
-        value: user.id,
-      );
+
       emit(AuthSuccess(user));
-    }  catch (e) {
+    } catch (e) {
       final failure = ErrorHandler.handle(e);
       emit(AuthError(failure.failuremessage));
     }
   }
-
   Future<void> signInWithGoogle() async {
     emit(AuthLoading());
 
