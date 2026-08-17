@@ -1,8 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:medicine_cabinet/core/theme/app_theme.dart';
 
 import 'core/di/service_locator.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
@@ -46,8 +47,19 @@ class _MyAppState extends State<MyApp> {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
+          // debugShowCheckedModeBanner: false,
+          //
+          // theme: AppTheme.lightTheme,
+          // darkTheme: AppTheme.darkTheme,
+          // themeMode: ThemeMode.system,
+
           debugShowCheckedModeBanner: false,
 
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+
+          // مؤقتًا للتجربة
+          themeMode: ThemeMode.dark,
           locale: _locale,
 
           localizationsDelegates: const [

@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -324,24 +323,7 @@ class S {
   String get authLoginButton {
     return Intl.message('Log in', name: 'authLoginButton', desc: '', args: []);
   }
-  /// `Logging in...`
-  String get authLoggingIn {
-    return Intl.message(
-      'Logging in...',
-      name: 'authLoggingIn',
-      desc: '',
-      args: [],
-    );
-  }
-  /// `Creating account...`
-  String get authCreatingAccount {
-    return Intl.message(
-      'Creating account...',
-      name: 'authCreatingAccount',
-      desc: '',
-      args: [],
-    );
-  }
+
   /// `Continue with Google`
   String get authContinueWithGoogle {
     return Intl.message(
@@ -432,15 +414,6 @@ class S {
     return Intl.message(
       'Already have an account?',
       name: 'authHaveAccount',
-      desc: '',
-      args: [],
-    );
-  }
-/// `Passwords Do Not Match`
-  String get authPasswordsDoNotMatch {
-    return Intl.message(
-      'Passwords do not match',
-      name: 'authPasswordsDoNotMatch',
       desc: '',
       args: [],
     );
@@ -956,7 +929,355 @@ class S {
     return Intl.message('About', name: 'profileAbout', desc: '', args: []);
   }
 
+  /// `Logging in...`
+  String get authLoggingIn {
+    return Intl.message(
+      'Logging in...',
+      name: 'authLoggingIn',
+      desc: '',
+      args: [],
+    );
+  }
 
+  /// `Creating account...`
+  String get authCreatingAccount {
+    return Intl.message(
+      'Creating account...',
+      name: 'authCreatingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get authPasswordsDoNotMatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'authPasswordsDoNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Your Password`
+  String get authResetPasswordTitle {
+    return Intl.message(
+      'Reset Your Password',
+      name: 'authResetPasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email address and we'll send you a link to reset your password.`
+  String get authResetPasswordSubtitle {
+    return Intl.message(
+      'Enter your email address and we\'ll send you a link to reset your password.',
+      name: 'authResetPasswordSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sending...`
+  String get authSendingResetEmail {
+    return Intl.message(
+      'Sending...',
+      name: 'authSendingResetEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Reset Link`
+  String get authSendResetEmail {
+    return Intl.message(
+      'Send Reset Link',
+      name: 'authSendResetEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password reset email sent successfully.`
+  String get authResetPasswordSuccess {
+    return Intl.message(
+      'Password reset email sent successfully.',
+      name: 'authResetPasswordSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong`
+  String get commonError {
+    return Intl.message(
+      'Something went wrong',
+      name: 'commonError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logged in successfully`
+  String get authLoginSuccess {
+    return Intl.message(
+      'Logged in successfully',
+      name: 'authLoginSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account created successfully`
+  String get authRegisterSuccess {
+    return Intl.message(
+      'Account created successfully',
+      name: 'authRegisterSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logged in with Google successfully`
+  String get authGoogleSuccess {
+    return Intl.message(
+      'Logged in with Google successfully',
+      name: 'authGoogleSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email address.`
+  String get authInvalidEmail {
+    return Intl.message(
+      'Please enter a valid email address.',
+      name: 'authInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No account was found with this email.`
+  String get authUserNotFound {
+    return Intl.message(
+      'No account was found with this email.',
+      name: 'authUserNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incorrect email or password.`
+  String get authWrongPassword {
+    return Intl.message(
+      'Incorrect email or password.',
+      name: 'authWrongPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incorrect email or password.`
+  String get authInvalidCredential {
+    return Intl.message(
+      'Incorrect email or password.',
+      name: 'authInvalidCredential',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This email is already in use.`
+  String get authEmailAlreadyInUse {
+    return Intl.message(
+      'This email is already in use.',
+      name: 'authEmailAlreadyInUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password is too weak.`
+  String get authWeakPassword {
+    return Intl.message(
+      'Your password is too weak.',
+      name: 'authWeakPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Too many attempts. Please try again later.`
+  String get authTooManyRequests {
+    return Intl.message(
+      'Too many attempts. Please try again later.',
+      name: 'authTooManyRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your internet connection.`
+  String get authNetworkError {
+    return Intl.message(
+      'Please check your internet connection.',
+      name: 'authNetworkError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have permission to perform this action.`
+  String get authPermissionDenied {
+    return Intl.message(
+      'You don\'t have permission to perform this action.',
+      name: 'authPermissionDenied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The requested resource was not found.`
+  String get authResourceNotFound {
+    return Intl.message(
+      'The requested resource was not found.',
+      name: 'authResourceNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our server is having trouble. Please try again later.`
+  String get authServerError {
+    return Intl.message(
+      'Our server is having trouble. Please try again later.',
+      name: 'authServerError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your session has expired. Please login again.`
+  String get authSessionExpired {
+    return Intl.message(
+      'Your session has expired. Please login again.',
+      name: 'authSessionExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong, please try again.`
+  String get commonTryAgain {
+    return Intl.message(
+      'Something went wrong, please try again.',
+      name: 'commonTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email cannot be empty`
+  String get validationEmailRequired {
+    return Intl.message(
+      'Email cannot be empty',
+      name: 'validationEmailRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid email address`
+  String get validationInvalidEmail {
+    return Intl.message(
+      'Enter a valid email address',
+      name: 'validationInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password cannot be empty`
+  String get validationPasswordRequired {
+    return Intl.message(
+      'Password cannot be empty',
+      name: 'validationPasswordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid password`
+  String get validationInvalidPassword {
+    return Intl.message(
+      'Enter a valid password',
+      name: 'validationInvalidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get validationPasswordsDoNotMatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'validationPasswordsDoNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name cannot be empty`
+  String get validationNameRequired {
+    return Intl.message(
+      'Name cannot be empty',
+      name: 'validationNameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number cannot be empty`
+  String get validationPhoneRequired {
+    return Intl.message(
+      'Phone number cannot be empty',
+      name: 'validationPhoneRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid phone number`
+  String get validationInvalidPhone {
+    return Intl.message(
+      'Enter a valid phone number',
+      name: 'validationInvalidPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code cannot be empty`
+  String get validationCodeRequired {
+    return Intl.message(
+      'Code cannot be empty',
+      name: 'validationCodeRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code should be at least 6 digits`
+  String get validationCodeLength {
+    return Intl.message(
+      'Code should be at least 6 digits',
+      name: 'validationCodeLength',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

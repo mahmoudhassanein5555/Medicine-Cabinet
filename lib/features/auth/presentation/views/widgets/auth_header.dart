@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/constants/app_colors.dart';
+
 class AuthHeader extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -12,36 +12,41 @@ class AuthHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: AppColors.primarySoft,
+            color: colorScheme.primaryContainer,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: const Icon(
+          child: Icon(
             Icons.all_inbox_rounded,
-            color: AppColors.primary,
+            color: colorScheme.primary,
             size: 30,
           ),
         ),
+
         const SizedBox(height: 24),
+
         Text(
           title,
-          style: const TextStyle(
+          style: theme.textTheme.headlineMedium?.copyWith(
             fontSize: 26,
             fontWeight: FontWeight.bold,
-            color: AppColors.textPrimary,
           ),
         ),
+
         const SizedBox(height: 8),
+
         Text(
           subtitle,
-          style: const TextStyle(
+          style: theme.textTheme.bodyMedium?.copyWith(
             fontSize: 14,
-            color: AppColors.textSecondary,
           ),
         ),
       ],

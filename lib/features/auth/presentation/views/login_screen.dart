@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:medicine_cabinet/features/auth/presentation/views/register_screen.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/auth_header.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/google_button.dart';
+import 'package:toastification/toastification.dart';
 
-import '../../../../core/constants/app_colors.dart';
 import '../../../../core/di/service_locator.dart';
+import '../../../../core/dialogs/app_toasts.dart';
+import '../../../../core/localization/error_localization.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../generated/l10n.dart';
-import '../cubit/auth_state.dart';
 import '../cubit/auth_cubit.dart';
+import '../cubit/auth_state.dart';
+import 'forgot_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -40,22 +44,32 @@ class _LoginScreenState extends State<LoginScreen> {
 
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
 
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccess) {
+          AppToast.showToast(
+            context: context,
+            title: l10n.authLoginButton,
+            description: l10n.authLoginSuccess,
+            type: ToastificationType.success,
+          );
           // TODO: Navigate to Home
         }
 
         if (state is AuthError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
+          AppToast.showToast(
+            context: context,
+            title: l10n.commonError,
+            description: ErrorLocalization.getMessage(
+              state.message,
+              l10n,
             ),
+            type: ToastificationType.error,
           );
         }
       },
@@ -63,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
         final isLoading = state is AuthLoading;
 
         return Scaffold(
-          backgroundColor: AppColors.background,
+          backgroundColor: colorScheme.surface,
           body: SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
@@ -88,10 +102,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     // Email Label
                     Text(
                       l10n.authEmailLabel,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.textPrimary,
+                        color: colorScheme.onSurface,
                       ),
                     ),
 
@@ -101,11 +115,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomTextFormField(
                       controller: emailController,
                       hintText: 'ahmed@family.mail',
-                      hintTextColor: AppColors.textMuted,
+                      hintTextColor: colorScheme.onSurfaceVariant,
                       keyboardType: TextInputType.emailAddress,
-                      prefixIcon: const Icon(
+                      prefixIcon: Icon(
                         Icons.email_outlined,
-                        color: AppColors.textMuted,
+                        color: colorScheme.onSurfaceVariant,
                       ),
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -115,10 +129,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     // Password Label
                     Text(
                       l10n.authPasswordLabel,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.textPrimary,
+                        color: colorScheme.onSurface,
                       ),
                     ),
 
@@ -128,12 +142,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomTextFormField(
                       controller: passwordController,
                       hintText: '••••••••',
-                      hintTextColor: AppColors.textMuted,
+                      hintTextColor: colorScheme.onSurfaceVariant,
                       isPassword: true,
                       action: TextInputAction.done,
-                      prefixIcon: const Icon(
+                      prefixIcon: Icon(
                         Icons.lock_outline,
-                        color: AppColors.textMuted,
+                        color: colorScheme.onSurfaceVariant,
                       ),
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -143,12 +157,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: () {
-                          // TODO: Forgot password
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => BlocProvider.value(
+                                value: context.read<AuthCubit>(),
+                                child: const ForgotPasswordScreen(),
+                              ),
+                            ),
+                          );
                         },
                         child: Text(
                           l10n.authForgotPassword,
-                          style: const TextStyle(
-                            color: AppColors.primary,
+                          style: TextStyle(
+                            color: colorScheme.primary,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -179,9 +201,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     // OR
                     Row(
                       children: [
-                        const Expanded(
+                        Expanded(
                           child: Divider(
-                            color: AppColors.border,
+                            color: colorScheme.outline,
                           ),
                         ),
 
@@ -191,15 +213,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           child: Text(
                             l10n.commonOr,
-                            style: const TextStyle(
-                              color: AppColors.textMuted,
+                            style: TextStyle(
+                              color: colorScheme.onSurfaceVariant,
                             ),
                           ),
                         ),
 
-                        const Expanded(
+                        Expanded(
                           child: Divider(
-                            color: AppColors.border,
+                            color: colorScheme.outline,
                           ),
                         ),
                       ],
@@ -223,8 +245,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Text(
                           l10n.authNoAccount,
-                          style: const TextStyle(
-                            color: AppColors.textSecondary,
+                          style: TextStyle(
+                            color: colorScheme.onSurfaceVariant,
                           ),
                         ),
 
@@ -242,8 +264,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: Text(
                             l10n.authSignUpLink,
-                            style: const TextStyle(
-                              color: AppColors.primary,
+                            style: TextStyle(
+                              color: colorScheme.primary,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

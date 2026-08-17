@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/core/constants/app_keys.dart';
+import '../../../../core/errors/error_handler.dart';
 import '../../../../core/utils/shared_prefs_local_data_source.dart';
 import '../../domain/usecases/ForgotPasswordUseCase.dart';
 import '../../domain/usecases/GoogleSignInUseCase.dart';
@@ -39,7 +40,8 @@ class AuthCubit extends Cubit<AuthState> {
       await cacheHelper.saveData(key: AppKeys.userId, value: user.id);
       emit(AuthSuccess(user));
     } catch (e) {
-      emit(AuthError(e.toString()));
+      final failure = ErrorHandler.handle(e);
+      emit(AuthError(failure.failuremessage));
     }
   }
 
@@ -57,8 +59,9 @@ class AuthCubit extends Cubit<AuthState> {
         value: user.id,
       );
       emit(AuthSuccess(user));
-    } catch (e) {
-      emit(AuthError(e.toString()));
+    }  catch (e) {
+      final failure = ErrorHandler.handle(e);
+      emit(AuthError(failure.failuremessage));
     }
   }
 
@@ -73,18 +76,20 @@ class AuthCubit extends Cubit<AuthState> {
       );
       emit(AuthSuccess(user));
     } catch (e) {
-      emit(AuthError(e.toString()));
+      final failure = ErrorHandler.handle(e);
+      emit(AuthError(failure.failuremessage));
     }
   }
   Future<void> forgotPassword({required String email,}) async {
     emit(AuthLoading());
-
     try {
-      await forgotPasswordUseCase(email: email);
-
-      emit(AuthInitial());
+      await forgotPasswordUseCase(
+        email: email,
+      );
+      emit(ForgotPasswordSuccess());
     } catch (e) {
-      emit(AuthError(e.toString()));
+      final failure = ErrorHandler.handle(e);
+      emit(AuthError(failure.failuremessage));
     }
   }
 
@@ -96,7 +101,8 @@ class AuthCubit extends Cubit<AuthState> {
       await cacheHelper.removeData(key: AppKeys.userId);
       emit(AuthInitial());
     } catch (e) {
-      emit(AuthError(e.toString()));
+      final failure = ErrorHandler.handle(e);
+      emit(AuthError(failure.failuremessage));
     }
   }
 }

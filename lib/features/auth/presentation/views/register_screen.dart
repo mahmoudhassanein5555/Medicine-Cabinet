@@ -1,11 +1,13 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:medicine_cabinet/features/auth/presentation/cubit/auth_state.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/auth_header.dart';
+import 'package:toastification/toastification.dart';
 
-import '../../../../core/constants/app_colors.dart';
+import '../../../../core/dialogs/app_toasts.dart';
+import '../../../../core/localization/error_localization.dart';
+import '../../../../core/utils/validator_functions.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../generated/l10n.dart';
@@ -49,18 +51,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
 
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccess) {
+          AppToast.showToast(
+            context: context,
+            title: l10n.authRegisterButton,
+            description: l10n.authRegisterSuccess,
+            type: ToastificationType.success,
+          );
+
           Navigator.pop(context);
         }
 
         if (state is AuthError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
+          AppToast.showToast(
+            context: context,
+            title: l10n.commonError,
+            description: ErrorLocalization.getMessage(
+              state.message,
+              l10n,
             ),
+            type: ToastificationType.error,
           );
         }
       },
@@ -68,7 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         final isLoading = state is AuthLoading;
 
         return Scaffold(
-          backgroundColor: AppColors.background,
+
           body: SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
@@ -90,104 +104,145 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     const SizedBox(height: 28),
 
-                    // Full Name
+                    // Full Name Label
                     Text(
                       l10n.authFullNameLabel,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.textPrimary,
+                        color: colorScheme.onSurface,
                       ),
                     ),
 
                     const SizedBox(height: 8),
 
+                    // Full Name
                     CustomTextFormField(
                       controller: nameController,
                       hintText: 'Ahmed Farouk',
-                      hintTextColor: AppColors.textMuted,
-                      prefixIcon: const Icon(
+                      validator: (value) {
+                        final error = Validator.validateName(value);
+
+                        if (error == null) {
+                          return null;
+                        }
+
+                        return ErrorLocalization.getMessage(error, l10n);
+                      },
+                      hintTextColor: colorScheme.onSurfaceVariant,
+                      prefixIcon: Icon(
                         Icons.person_outline,
-                        color: AppColors.textMuted,
+                        color: colorScheme.onSurfaceVariant,
                       ),
                       borderRadius: BorderRadius.circular(16),
                     ),
 
                     const SizedBox(height: 16),
 
-                    // Email
+                    // Email Label
                     Text(
                       l10n.authEmailLabel,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.textPrimary,
+                        color: colorScheme.onSurface,
                       ),
                     ),
 
                     const SizedBox(height: 8),
 
+                    // Email
                     CustomTextFormField(
                       controller: emailController,
                       hintText: 'ahmed@family.mail',
-                      hintTextColor: AppColors.textMuted,
+                      hintTextColor: colorScheme.onSurfaceVariant,
                       keyboardType: TextInputType.emailAddress,
-                      prefixIcon: const Icon(
+                      validator: (value) {
+                        final error = Validator.validateEmail(value);
+
+                        if (error == null) {
+                          return null;
+                        }
+
+                        return ErrorLocalization.getMessage(error, l10n);
+                      },
+                      prefixIcon: Icon(
                         Icons.email_outlined,
-                        color: AppColors.textMuted,
+                        color: colorScheme.onSurfaceVariant,
                       ),
                       borderRadius: BorderRadius.circular(16),
                     ),
 
                     const SizedBox(height: 16),
 
-                    // Password
+                    // Password Label
                     Text(
                       l10n.authPasswordLabel,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.textPrimary,
+                        color: colorScheme.onSurface,
                       ),
                     ),
 
                     const SizedBox(height: 8),
 
+                    // Password
                     CustomTextFormField(
                       controller: passwordController,
                       hintText: '••••••••',
-                      hintTextColor: AppColors.textMuted,
+                      hintTextColor: colorScheme.onSurfaceVariant,
                       isPassword: true,
-                      prefixIcon: const Icon(
+                      validator: (value) {
+                        final error = Validator.validatePassword(value);
+
+                        if (error == null) {
+                          return null;
+                        }
+
+                        return ErrorLocalization.getMessage(error, l10n);
+                      },
+                      prefixIcon: Icon(
                         Icons.lock_outline,
-                        color: AppColors.textMuted,
+                        color: colorScheme.onSurfaceVariant,
                       ),
                       borderRadius: BorderRadius.circular(16),
                     ),
 
                     const SizedBox(height: 16),
 
-                    // Confirm Password
+                    // Confirm Password Label
                     Text(
                       l10n.authConfirmPasswordLabel,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.textPrimary,
+                        color: colorScheme.onSurface,
                       ),
                     ),
 
                     const SizedBox(height: 8),
 
+                    // Confirm Password
                     CustomTextFormField(
                       controller: confirmPasswordController,
                       hintText: '••••••••',
-                      hintTextColor: AppColors.textMuted,
+                      hintTextColor: colorScheme.onSurfaceVariant,
                       isPassword: true,
                       action: TextInputAction.done,
-                      prefixIcon: const Icon(
+                      validator: (value) {
+                        final error = Validator.validateConfirmPassword(
+                          value,
+                          passwordController.text,
+                        );
+                        if (error == null) {
+                          return null;
+                        }
+                        return ErrorLocalization.getMessage(error, l10n);
+                      },
+                      prefixIcon: Icon(
                         Icons.lock_outline,
-                        color: AppColors.textMuted,
+                        color: colorScheme.onSurfaceVariant,
                       ),
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -203,19 +258,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         if (isLoading) return;
 
                         if (formKey.currentState!.validate()) {
-                          if (passwordController.text !=
-                              confirmPasswordController.text) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                               SnackBar(
-                                content: Text(
-                                  l10n.authPasswordsDoNotMatch,
-                                ),
-                              ),
-                            );
-
-                            return;
-                          }
-
                           context.read<AuthCubit>().register(
                             name: nameController.text.trim(),
                             email: emailController.text.trim(),
@@ -234,9 +276,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: Text(
                           l10n.authTermsNotice,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12,
-                            color: AppColors.textMuted,
+                            color: colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ),
@@ -250,19 +292,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         Text(
                           l10n.authHaveAccount,
-                          style: const TextStyle(
-                            color: AppColors.textSecondary,
+                          style: TextStyle(
+                            color: colorScheme.onSurfaceVariant,
                           ),
                         ),
-
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
                           child: Text(
                             l10n.authLoginLink,
-                            style: const TextStyle(
-                              color: AppColors.primary,
+                            style: TextStyle(
+                              color: colorScheme.primary,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

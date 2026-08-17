@@ -36,36 +36,101 @@ class MessageLookup extends MessageLookupByLibrary {
     "authContinueWithGoogle": MessageLookupByLibrary.simpleMessage(
       "Continue with Google",
     ),
+    "authCreatingAccount": MessageLookupByLibrary.simpleMessage(
+      "Creating account...",
+    ),
+    "authEmailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
+      "This email is already in use.",
+    ),
     "authEmailLabel": MessageLookupByLibrary.simpleMessage("Email"),
     "authForgotPassword": MessageLookupByLibrary.simpleMessage(
       "Forgot password?",
     ),
     "authFullNameLabel": MessageLookupByLibrary.simpleMessage("Full name"),
+    "authGoogleSuccess": MessageLookupByLibrary.simpleMessage(
+      "Logged in with Google successfully",
+    ),
     "authHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account?",
     ),
+    "authInvalidCredential": MessageLookupByLibrary.simpleMessage(
+      "Incorrect email or password.",
+    ),
+    "authInvalidEmail": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid email address.",
+    ),
+    "authLoggingIn": MessageLookupByLibrary.simpleMessage("Logging in..."),
     "authLoginButton": MessageLookupByLibrary.simpleMessage("Log in"),
     "authLoginLink": MessageLookupByLibrary.simpleMessage("Log in"),
     "authLoginSubtitle": MessageLookupByLibrary.simpleMessage(
       "Log in to see your household\'s medicine cabinet.",
     ),
+    "authLoginSuccess": MessageLookupByLibrary.simpleMessage(
+      "Logged in successfully",
+    ),
     "authLoginTitle": MessageLookupByLibrary.simpleMessage("Welcome back"),
+    "authNetworkError": MessageLookupByLibrary.simpleMessage(
+      "Please check your internet connection.",
+    ),
     "authNoAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account?",
     ),
     "authPasswordLabel": MessageLookupByLibrary.simpleMessage("Password"),
+    "authPasswordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Passwords do not match",
+    ),
+    "authPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have permission to perform this action.",
+    ),
     "authRegisterButton": MessageLookupByLibrary.simpleMessage(
       "Create account",
     ),
     "authRegisterSubtitle": MessageLookupByLibrary.simpleMessage(
       "Set up your household\'s medicine cabinet in a minute.",
     ),
+    "authRegisterSuccess": MessageLookupByLibrary.simpleMessage(
+      "Account created successfully",
+    ),
     "authRegisterTitle": MessageLookupByLibrary.simpleMessage(
       "Create your account",
+    ),
+    "authResetPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Enter your email address and we\'ll send you a link to reset your password.",
+    ),
+    "authResetPasswordSuccess": MessageLookupByLibrary.simpleMessage(
+      "Password reset email sent successfully.",
+    ),
+    "authResetPasswordTitle": MessageLookupByLibrary.simpleMessage(
+      "Reset Your Password",
+    ),
+    "authResourceNotFound": MessageLookupByLibrary.simpleMessage(
+      "The requested resource was not found.",
+    ),
+    "authSendResetEmail": MessageLookupByLibrary.simpleMessage(
+      "Send Reset Link",
+    ),
+    "authSendingResetEmail": MessageLookupByLibrary.simpleMessage("Sending..."),
+    "authServerError": MessageLookupByLibrary.simpleMessage(
+      "Our server is having trouble. Please try again later.",
+    ),
+    "authSessionExpired": MessageLookupByLibrary.simpleMessage(
+      "Your session has expired. Please login again.",
     ),
     "authSignUpLink": MessageLookupByLibrary.simpleMessage("Sign up"),
     "authTermsNotice": MessageLookupByLibrary.simpleMessage(
       "By continuing, you agree to the Terms and Privacy Policy.",
+    ),
+    "authTooManyRequests": MessageLookupByLibrary.simpleMessage(
+      "Too many attempts. Please try again later.",
+    ),
+    "authUserNotFound": MessageLookupByLibrary.simpleMessage(
+      "No account was found with this email.",
+    ),
+    "authWeakPassword": MessageLookupByLibrary.simpleMessage(
+      "Your password is too weak.",
+    ),
+    "authWrongPassword": MessageLookupByLibrary.simpleMessage(
+      "Incorrect email or password.",
     ),
     "beforeYouBuyAlreadyTitle": MessageLookupByLibrary.simpleMessage(
       "Already in your cabinet",
@@ -95,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("Date added"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("Delete"),
     "commonEditDetails": MessageLookupByLibrary.simpleMessage("Edit details"),
+    "commonError": MessageLookupByLibrary.simpleMessage("Something went wrong"),
     "commonExpired": MessageLookupByLibrary.simpleMessage("Expired"),
     "commonExpiringShort": MessageLookupByLibrary.simpleMessage("Expiring"),
     "commonExpiringSoon": MessageLookupByLibrary.simpleMessage("Expiring soon"),
@@ -114,6 +180,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonSkip": MessageLookupByLibrary.simpleMessage("Skip"),
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "Storage location",
+    ),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong, please try again.",
     ),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "Update quantity",
@@ -219,6 +288,36 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanUnitTablets": MessageLookupByLibrary.simpleMessage("tablets"),
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage(
       "Who is this for?",
+    ),
+    "validationCodeLength": MessageLookupByLibrary.simpleMessage(
+      "Code should be at least 6 digits",
+    ),
+    "validationCodeRequired": MessageLookupByLibrary.simpleMessage(
+      "Code cannot be empty",
+    ),
+    "validationEmailRequired": MessageLookupByLibrary.simpleMessage(
+      "Email cannot be empty",
+    ),
+    "validationInvalidEmail": MessageLookupByLibrary.simpleMessage(
+      "Enter a valid email address",
+    ),
+    "validationInvalidPassword": MessageLookupByLibrary.simpleMessage(
+      "Enter a valid password",
+    ),
+    "validationInvalidPhone": MessageLookupByLibrary.simpleMessage(
+      "Enter a valid phone number",
+    ),
+    "validationNameRequired": MessageLookupByLibrary.simpleMessage(
+      "Name cannot be empty",
+    ),
+    "validationPasswordRequired": MessageLookupByLibrary.simpleMessage(
+      "Password cannot be empty",
+    ),
+    "validationPasswordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Passwords do not match",
+    ),
+    "validationPhoneRequired": MessageLookupByLibrary.simpleMessage(
+      "Phone number cannot be empty",
     ),
   };
 }

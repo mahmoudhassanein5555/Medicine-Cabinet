@@ -8,43 +8,55 @@ abstract class AppToast {
     required String description,
     required ToastificationType type,
   }) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    final Color color;
+
+    switch (type) {
+      case ToastificationType.success:
+        color = colorScheme.primary;
+        break;
+
+      case ToastificationType.error:
+        color = colorScheme.error;
+        break;
+
+      case ToastificationType.warning:
+        color = colorScheme.secondary;
+        break;
+
+      case ToastificationType.info:
+        color = colorScheme.primary;
+        break;
+
+      default:
+        color = colorScheme.primary;
+    }
+
     toastification.show(
       context: context,
       type: type,
       title: Text(
         title,
         style: const TextStyle(
-          fontSize: 18,
+          fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
       ),
       description: Text(
         description,
         style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
+          fontSize: 14,
         ),
       ),
-      primaryColor: Colors.white,
+      primaryColor: color,
+      backgroundColor: colorScheme.surface,
+      foregroundColor: colorScheme.onSurface,
       autoCloseDuration: const Duration(seconds: 3),
       progressBarTheme: ProgressIndicatorThemeData(
-        color: type == ToastificationType.success
-            ? Colors.green
-            : type == ToastificationType.info
-                ? Colors.blue
-                : type == ToastificationType.warning
-                    ? Colors.orange
-                    : Colors.red,
+        color: color,
       ),
       showProgressBar: true,
-      backgroundColor: type == ToastificationType.success
-          ? Colors.green
-          : type == ToastificationType.info
-              ? Colors.blue
-              : type == ToastificationType.warning
-                  ? Colors.orange
-                  : Colors.red,
-      foregroundColor: Colors.white,
     );
   }
 }
