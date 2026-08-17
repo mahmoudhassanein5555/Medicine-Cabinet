@@ -10,8 +10,12 @@ class MedicineDataSourceImpl implements MedicineDataSourceInterface {
   MedicineDataSourceImpl(this.firestore);
 
   @override
-  Future<List<MedicineDto>> getMedicines() async {
-    final snapshot = await firestore.collection('medicines').get();
+  Future<List<MedicineDto>> getMedicines(String householdId) async {
+    final snapshot = await firestore
+        .collection('households')
+        .doc(householdId)
+        .collection('medicines')
+        .get();
 
     return snapshot.docs.map((doc) => MedicineDto.fromFirestore(doc)).toList();
   }

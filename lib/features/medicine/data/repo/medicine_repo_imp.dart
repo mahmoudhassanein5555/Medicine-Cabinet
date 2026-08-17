@@ -7,16 +7,18 @@ import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_filter.
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_status.dart';
 import 'package:medicine_cabinet/features/medicine/domain/repo/medicine_repo_interface.dart';
 
-@Injectable(as: MedicineRepoInterface)
+@LazySingleton(as: MedicineRepoInterface)
 class MedicineRepoImpl implements MedicineRepoInterface {
   final MedicineDataSourceInterface dataSource;
 
   MedicineRepoImpl(this.dataSource);
 
   @override
-  Future<Either<Failure, List<MedicineEntity>>> getMedicines() async {
+  Future<Either<Failure, List<MedicineEntity>>> getMedicines(
+    String householdId,
+  ) async {
     try {
-      final medicines = await dataSource.getMedicines();
+      final medicines = await dataSource.getMedicines(householdId);
 
       final entities = medicines
           .map((medicine) => medicine.toEntity())

@@ -958,6 +958,36 @@ class S {
   String get profileAbout {
     return Intl.message('About', name: 'profileAbout', desc: '', args: []);
   }
+
+  /// `Expiry date`
+  String get medicinesSortOptionExpiry {
+    return Intl.message(
+      'Expiry date',
+      name: 'medicinesSortOptionExpiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantity`
+  String get medicinesSortOptionQuantity {
+    return Intl.message(
+      'Quantity',
+      name: 'medicinesSortOptionQuantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recently added`
+  String get medicinesSortOptionRecentlyAdded {
+    return Intl.message(
+      'Recently added',
+      name: 'medicinesSortOptionRecentlyAdded',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

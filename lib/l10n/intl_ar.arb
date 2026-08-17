@@ -63,7 +63,7 @@
   "homeEmptyTitle": "صيدليتك فارغة",
   "homeEmptyDesc": "امسح أول دواء تمتلكه وسوف يظهر هنا، منظماً وجاهزاً للمتابعة.",
   "homeEmptyButton": "امسح أول دواء لديك",
-  "medicinesSearchHint": "الفيصل في البحث عن الأدوية...",
+  "medicinesSearchHint": "  البحث عن الأدوية...",
   "medicinesSortBy": "ترتيب حسب",
   "medicinesSortLabelCurrent": "الترتيب: {sortOption}",
   "medicinesSortOptionName": "الاسم (أ–ي)",
@@ -104,5 +104,8 @@
   "profilePrivacy": "الخصوصية",
   "profileAppPreferences": "تفضيلات التطبيق",
   "profileDarkMode": "الوضع الداكن",
-  "profileAbout": "عن التطبيق"
+  "profileAbout": "عن التطبيق",
+  "medicinesSortOptionExpiry": "تاريخ الانتهاء",
+  "medicinesSortOptionQuantity": "الكمية",
+  "medicinesSortOptionRecentlyAdded": "أُضيف حديثاً"
 }

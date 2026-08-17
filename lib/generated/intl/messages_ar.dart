@@ -146,12 +146,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineRemaining": m2,
     "medicinesItemsCount": m3,
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
-      "الفيصل في البحث عن الأدوية...",
+      "  البحث عن الأدوية...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
     "medicinesSortLabelCurrent": m4,
+    "medicinesSortOptionExpiry": MessageLookupByLibrary.simpleMessage(
+      "تاريخ الانتهاء",
+    ),
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "الاسم (أ–ي)",
+    ),
+    "medicinesSortOptionQuantity": MessageLookupByLibrary.simpleMessage(
+      "الكمية",
+    ),
+    "medicinesSortOptionRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "أُضيف حديثاً",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(

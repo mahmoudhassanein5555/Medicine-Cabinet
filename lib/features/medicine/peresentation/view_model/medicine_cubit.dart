@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/features/medicine/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_filter.dart';
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_status.dart';
@@ -7,6 +8,7 @@ import 'package:medicine_cabinet/features/medicine/domain/use_case/get_medicines
 import 'package:medicine_cabinet/features/medicine/domain/use_case/get_medicine_status_use_case.dart';
 import 'medicine_states.dart';
 
+@injectable
 class MedicineCubit extends Cubit<MedicineState> {
   final GetMedicinesUseCase getMedicinesUseCase;
   final FilterMedicinesUseCase filterMedicinesUseCase;
@@ -20,10 +22,10 @@ class MedicineCubit extends Cubit<MedicineState> {
 
   List<MedicineEntity> allMedicines = [];
 
-  Future<void> getMedicines() async {
+  Future<void> getMedicines(String householdId) async {
     emit(MedicineLoadingState());
 
-    final result = await getMedicinesUseCase.invoke();
+    final result = await getMedicinesUseCase.invoke(householdId);
 
     result.fold(
       (failure) {

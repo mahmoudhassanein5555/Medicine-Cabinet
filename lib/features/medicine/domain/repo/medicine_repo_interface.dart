@@ -5,7 +5,9 @@ import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_filter.
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_status.dart';
 
 abstract class MedicineRepoInterface {
-  Future<Either<Failure, List<MedicineEntity>>> getMedicines();
+  Future<Either<Failure, List<MedicineEntity>>> getMedicines(
+    String householdId,
+  );
 
   List<MedicineEntity> filterMedicines({
     required List<MedicineEntity> medicines,

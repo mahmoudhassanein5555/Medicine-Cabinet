@@ -160,8 +160,17 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
     "medicinesSortLabelCurrent": m4,
+    "medicinesSortOptionExpiry": MessageLookupByLibrary.simpleMessage(
+      "Expiry date",
+    ),
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "Name (A–Z)",
+    ),
+    "medicinesSortOptionQuantity": MessageLookupByLibrary.simpleMessage(
+      "Quantity",
+    ),
+    "medicinesSortOptionRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "Recently added",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("Medicines"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(

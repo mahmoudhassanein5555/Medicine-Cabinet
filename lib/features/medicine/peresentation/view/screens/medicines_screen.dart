@@ -317,6 +317,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:medicine_cabinet/core/constants/app_colors.dart';
 import 'package:medicine_cabinet/core/widgets/custom_text_form_field.dart';
@@ -328,9 +329,11 @@ import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/me
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_states.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class MedicinesScreen extends StatefulWidget {
-  const MedicinesScreen({super.key});
+  final String householdId;
+  const MedicinesScreen({super.key, required this.householdId});
 
   @override
   State<MedicinesScreen> createState() => _MedicinesScreenState();
@@ -352,7 +355,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
   void initState() {
     super.initState();
 
-    context.read<MedicineCubit>().getMedicines();
+    context.read<MedicineCubit>().getMedicines(widget.householdId);
   }
 
   @override
@@ -424,19 +427,20 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
         child: BlocBuilder<MedicineCubit, MedicineState>(
           builder: (context, state) {
             if (state is MedicineLoadingState) {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: theme.colorScheme.primary,
+              return _buildMedicinesContent(
+                context,
+                MedicineSuccessState(
+                  medicines: const [],
+                  selectedFilter: MedicineFilter.all,
                 ),
+                isLoading: true,
               );
             }
 
             if (state is MedicineErrorState) {
               return Center(
-                child: Text(
-                  state.message,
-                  style: theme.textTheme.bodyMedium,
-                  textAlign: TextAlign.center,
+                child: Lottie.asset(
+                  "assets/animations/Looped 404 error animation.json",
                 ),
               );
             }
@@ -454,8 +458,9 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
 
   Widget _buildMedicinesContent(
     BuildContext context,
-    MedicineSuccessState state,
-  ) {
+    MedicineSuccessState state, {
+    bool isLoading = false,
+  }) {
     final theme = Theme.of(context);
     final l10n = S.of(context);
 
@@ -616,11 +621,25 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 33),
           sliver: SliverList.separated(
-            itemCount: medicines.length,
+            itemCount: isLoading ? 5 : medicines.length,
             separatorBuilder: (_, __) {
               return const SizedBox(height: 11);
             },
             itemBuilder: (context, index) {
+              if (isLoading) {
+                return Skeletonizer(
+                  enabled: true,
+                  child: MedicineCard(
+                    name: 'Panadol Medicine',
+                    type: 'Tablets',
+                    remaining: 12,
+                    expiry: 'Aug 2026',
+                    addedBy: 'User',
+                    status: 'Healthy',
+                  ),
+                );
+              }
+
               final medicine = medicines[index];
 
               final status = context.read<MedicineCubit>().getMedicineStatus(
@@ -628,6 +647,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
               );
 
               return MedicineCard(
+                imageUrl: medicine.imageUrl,
                 name: medicine.name,
                 type: medicine.type,
                 remaining: medicine.quantity,

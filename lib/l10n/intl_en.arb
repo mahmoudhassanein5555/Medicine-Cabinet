@@ -104,5 +104,8 @@
   "profilePrivacy": "Privacy",
   "profileAppPreferences": "App preferences",
   "profileDarkMode": "Dark mode",
-  "profileAbout": "About"
+  "profileAbout": "About",
+  "medicinesSortOptionExpiry": "Expiry date",
+  "medicinesSortOptionQuantity": "Quantity",
+  "medicinesSortOptionRecentlyAdded": "Recently added"
 }

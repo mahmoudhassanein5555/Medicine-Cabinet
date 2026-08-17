@@ -12,6 +12,7 @@ class MedicineCard extends StatelessWidget {
     required this.expiry,
     required this.addedBy,
     required this.status,
+    this.imageUrl,
   });
 
   final String name;
@@ -20,6 +21,7 @@ class MedicineCard extends StatelessWidget {
   final String expiry;
   final String addedBy;
   final String status;
+  final String? imageUrl;
 
   bool get isHealthy => status == S.current.commonHealthy;
 
@@ -62,7 +64,20 @@ class MedicineCard extends StatelessWidget {
               color: iconBackground,
               borderRadius: BorderRadius.circular(13),
             ),
-            child: Center(child: MedicineIcon(color: iconColor)),
+            child: Center(
+              child: imageUrl != null && imageUrl!.isNotEmpty
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(13),
+                      child: Image.network(
+                        imageUrl!,
+                        width: 47,
+                        height: 47,
+                        fit: BoxFit.contain,
+                      ),
+                    )
+                  : Center(child: MedicineIcon(color: iconColor)),
+              // child: MedicineIcon(color: iconColor)
+            ),
           ),
 
           const SizedBox(width: 14),
