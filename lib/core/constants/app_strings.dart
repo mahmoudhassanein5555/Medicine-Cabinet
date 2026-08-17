@@ -16,4 +16,9 @@ abstract final class AppStrings {
   static const addedByField = 'addedBy';
   static const createdAtField = 'createdAt';
   static const updatedAtField = 'updatedAt';
+  static const String dummyMedicineName = 'Panadol Medicine';
+  static const String dummyMedicineType = 'Tablets';
+  static const String dummyMedicineExpiry = 'Aug 2026';
+  static const String dummyMedicineAddedBy = 'User';
+  static const String dummyMedicineStatus = 'Healthy';
 }

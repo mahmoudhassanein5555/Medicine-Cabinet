@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.system,
+          themeMode: ThemeMode.dark,
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
