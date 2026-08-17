@@ -32,6 +32,10 @@ class AppTheme {
       onError: Colors.white,
       errorContainer: AppColors.errorContainerLight,
       onErrorContainer: AppColors.errorLight,
+      tertiary: AppColors.warningLight,
+      onTertiary: Colors.white,
+      tertiaryContainer: AppColors.warningContainerLight,
+      onTertiaryContainer: AppColors.warningLight,
     );
 
     return ThemeData(
@@ -118,6 +122,10 @@ class AppTheme {
       onError: AppColors.backgroundDark,
       errorContainer: AppColors.surfaceAltDark,
       onErrorContainer: AppColors.errorDark,
+      tertiary: AppColors.warningDark,
+      onTertiary: AppColors.backgroundDark,
+      tertiaryContainer: AppColors.surfaceAltDark,
+      onTertiaryContainer: AppColors.warningDark,
     );
 
     return ThemeData(

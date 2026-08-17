@@ -55,8 +55,6 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
 
         ownerResult.fold(
           (failure) {
-            // لو فشلنا نجيب اسم الـ owner،
-            // نعرض الـ medicine عادي ونخلي الـ UI يعمل fallback للـ ownerId.
             emit(
               state.copyWith(
                 status: MedicineDetailsStatus.success,

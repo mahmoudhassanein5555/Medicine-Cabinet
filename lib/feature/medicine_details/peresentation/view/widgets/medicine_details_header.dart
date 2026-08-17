@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 class MedicineDetailsHeader extends StatelessWidget {
   final String title;
   final VoidCallback onBack;
-  final VoidCallback onEdit;
 
   const MedicineDetailsHeader({
     super.key,
     required this.title,
     required this.onBack,
-    required this.onEdit,
   });
 
   @override
@@ -35,10 +33,6 @@ class MedicineDetailsHeader extends StatelessWidget {
               color: colors.onSurface,
             ),
           ),
-        ),
-        IconButton(
-          onPressed: onEdit,
-          icon: Icon(Icons.edit_outlined, color: colors.onSurface),
         ),
       ],
     );
