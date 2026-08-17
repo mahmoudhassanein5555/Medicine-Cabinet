@@ -24,7 +24,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(count) => "${count} أدوية";
 
-  static String m2(sortOption) => "الترتيب: ${sortOption}";
+  static String m2(name) =>
+      "سيتم إزالة ${name} من منزلك. لا يمكن التراجع عن هذا الإجراء.";
+
+  static String m3(sortOption) => "الترتيب: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -161,6 +164,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
       "تفاصيل العضو",
     ),
+    "householdMemberRemovedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تمت إزالة العضو من المنزل",
+    ),
     "householdNameHint": MessageLookupByLibrary.simpleMessage(
       "مثال: صيدلية البيت",
     ),
@@ -175,6 +181,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdPermissionView": MessageLookupByLibrary.simpleMessage(
       "عرض أدوية جميع الأعضاء",
     ),
+    "householdRemoveButton": MessageLookupByLibrary.simpleMessage("إزالة"),
+    "householdRemoveMemberDesc": m2,
+    "householdRemoveMemberTitle": MessageLookupByLibrary.simpleMessage(
+      "إزالة العضو؟",
+    ),
     "householdSetupDescription": MessageLookupByLibrary.simpleMessage(
       "انضم إلى منزل موجود باستخدام المعرّف الخاص به، أو أنشئ منزلاً جديداً.",
     ),
@@ -188,7 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "الفيصل في البحث عن الأدوية...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
-    "medicinesSortLabelCurrent": m2,
+    "medicinesSortLabelCurrent": m3,
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "الاسم (أ–ي)",
     ),

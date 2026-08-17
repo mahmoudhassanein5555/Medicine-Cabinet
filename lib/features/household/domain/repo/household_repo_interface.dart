@@ -28,4 +28,9 @@ abstract class HouseholdRepoInterface {
     required String householdId,
     required String userId,
   });
+  Future<Either<Failure, void>> removeMember({
+    required String householdId,
+    required String memberId,
+    required String currentUserId,
+  });
 }

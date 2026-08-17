@@ -96,6 +96,25 @@ class HouseholdRepoImp implements HouseholdRepoInterface {
     }
   }
 
+  @override
+  Future<Either<Failure, void>> removeMember({
+    required String householdId,
+    required String memberId,
+    required String currentUserId,
+  }) async {
+    try {
+      await _dataSource.removeMember(
+        householdId: householdId,
+        memberId: memberId,
+        currentUserId: currentUserId,
+      );
+
+      return const Right(null);
+    } catch (e) {
+      return Left(ErrorHandler.handle(e));
+    }
+  }
+
   String? getCachedHouseholdId() {
     return _localDataSource.getHouseholdId();
   }

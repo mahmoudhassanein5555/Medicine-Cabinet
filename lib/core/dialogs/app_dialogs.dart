@@ -1,33 +1,31 @@
+
 import 'package:flutter/material.dart';
 
 abstract class AppDialogs {
-  // Show a loading dialog
+  AppDialogs._();
+
+  // ==================== Loading Dialog ====================
+
   static void showLoadingDialog(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) {
         return const AlertDialog(
-          backgroundColor: Colors.white,
           content: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CircularProgressIndicator(color: Colors.black),
+              CircularProgressIndicator(),
               SizedBox(width: 16),
-              Text(
-                'Loading...',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
+              Text('Loading...'),
             ],
           ),
         );
       },
     );
   }
+
+  // ==================== Custom Confirmation Dialog ====================
 
   static Future<void> showCustomDialog({
     required BuildContext context,
@@ -37,60 +35,229 @@ abstract class AppDialogs {
     required String confirmText,
     required VoidCallback onConfirm,
     IconData? titleIcon,
-    Color? confirmButtonColor,
-    Color? iconColor,
-    Color? iconBackgroundColor,
   }) async {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return showDialog<void>(
       context: context,
       barrierDismissible: true,
-      builder: (context) {
-        return AlertDialog(
-          title: Row(
-            children: [
-              if (titleIcon != null)
-                Container(
-                  decoration: BoxDecoration(
-                    color:
-                        iconBackgroundColor ?? Theme.of(context).primaryColor,
-                    shape: BoxShape.circle,
-                  ),
-                  padding: const EdgeInsets.all(8),
-                  child: Icon(
-                    titleIcon,
-                    color: iconColor ?? Colors.white,
-                    size: 20,
-                  ),
-                ),
-              if (titleIcon != null) const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
+      builder: (dialogContext) {
+        return Dialog(
+          backgroundColor: colorScheme.surface,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(28),
           ),
-          content: Text(content),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(cancelText),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(24, 28, 24, 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // ================= Icon =================
+
+                if (titleIcon != null) ...[
+                  Container(
+                    width: 64,
+                    height: 64,
+                    decoration: BoxDecoration(
+                      color: colorScheme.errorContainer,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      titleIcon,
+                      color: colorScheme.error,
+                      size: 30,
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+                ],
+
+                // ================= Title =================
+
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    color: colorScheme.onSurface,
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+
+                // ================= Content =================
+
+                Text(
+                  content,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    color: colorScheme.onSurface,
+                    fontWeight: FontWeight.w500,
+                    height: 1.5,
+                  ),
+                ),
+
+                const SizedBox(height: 26),
+
+                // ================= Buttons =================
+
+                Row(
+                  children: [
+                    // Cancel
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.of(dialogContext).pop();
+                        },
+                        style: TextButton.styleFrom(
+                          minimumSize: const Size(0, 52),
+                          foregroundColor: colorScheme.onSurface,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: Text(
+                          cancelText,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(width: 12),
+
+                    // Confirm
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(dialogContext).pop();
+                          onConfirm();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: colorScheme.error,
+                          foregroundColor: colorScheme.onError,
+                          minimumSize: const Size(0, 52),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: Text(
+                          confirmText,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    confirmButtonColor ?? Theme.of(context).primaryColor,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-                onConfirm();
-              },
-              child: Text(confirmText),
-            ),
-          ],
+          ),
         );
       },
     );
   }
 }
+// import 'package:flutter/material.dart';
+//
+// abstract class AppDialogs {
+//   // Show a loading dialog
+//   static void showLoadingDialog(BuildContext context) {
+//     showDialog(
+//       context: context,
+//       barrierDismissible: false,
+//       builder: (context) {
+//         return const AlertDialog(
+//           backgroundColor: Colors.white,
+//           content: Row(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               CircularProgressIndicator(color: Colors.black),
+//               SizedBox(width: 16),
+//               Text(
+//                 'Loading...',
+//                 style: TextStyle(
+//                   fontSize: 16,
+//                   fontWeight: FontWeight.bold,
+//                   color: Colors.black,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         );
+//       },
+//     );
+//   }
+//
+//   static Future<void> showCustomDialog({
+//     required BuildContext context,
+//     required String title,
+//     required String content,
+//     required String cancelText,
+//     required String confirmText,
+//     required VoidCallback onConfirm,
+//     IconData? titleIcon,
+//     Color? confirmButtonColor,
+//     Color? iconColor,
+//     Color? iconBackgroundColor,
+//   }) async {
+//     return showDialog<void>(
+//       context: context,
+//       barrierDismissible: true,
+//       builder: (context) {
+//         return AlertDialog(
+//           title: Row(
+//             children: [
+//               if (titleIcon != null)
+//                 Container(
+//                   decoration: BoxDecoration(
+//                     color:
+//                         iconBackgroundColor ?? Theme.of(context).primaryColor,
+//                     shape: BoxShape.circle,
+//                   ),
+//                   padding: const EdgeInsets.all(8),
+//                   child: Icon(
+//                     titleIcon,
+//                     color: iconColor ?? Colors.white,
+//                     size: 20,
+//                   ),
+//                 ),
+//               if (titleIcon != null) const SizedBox(width: 12),
+//               Expanded(
+//                 child: Text(
+//                   title,
+//                   style: const TextStyle(fontWeight: FontWeight.bold),
+//                 ),
+//               ),
+//             ],
+//           ),
+//           content: Text(content),
+//           actions: [
+//             TextButton(
+//               onPressed: () => Navigator.of(context).pop(),
+//               child: Text(cancelText),
+//             ),
+//             ElevatedButton(
+//               style: ElevatedButton.styleFrom(
+//                 backgroundColor:
+//                     confirmButtonColor ?? Theme.of(context).primaryColor,
+//               ),
+//               onPressed: () {
+//                 Navigator.of(context).pop();
+//                 onConfirm();
+//               },
+//               child: Text(confirmText),
+//             ),
+//           ],
+//         );
+//       },
+//     );
+//   }
+// }

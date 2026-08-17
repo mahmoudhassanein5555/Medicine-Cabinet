@@ -52,7 +52,7 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
               context,
               MaterialPageRoute(
                 builder: (_) =>
-                    HouseholdMembersScreen(householdId: state.household.id),
+                    HouseholdMembersScreen(householdId: state.household.id, userId: widget.userId,),
               ),
             );
           }

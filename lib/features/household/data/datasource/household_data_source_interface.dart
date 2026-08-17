@@ -13,9 +13,7 @@ abstract class HouseholdDataSourceInterface {
     required String userId,
   });
 
-  Future<HouseholdDto?> getUserHousehold({
-    required String userId,
-  });
+  Future<HouseholdDto?> getUserHousehold({required String userId});
 
   Future<List<HouseholdMemberDto>> getHouseholdMembers({
     required String householdId,
@@ -24,5 +22,10 @@ abstract class HouseholdDataSourceInterface {
   Future<List<MedicineDto>> getMemberMedicines({
     required String householdId,
     required String userId,
+  });
+  Future<void> removeMember({
+    required String householdId,
+    required String memberId,
+    required String currentUserId,
   });
 }

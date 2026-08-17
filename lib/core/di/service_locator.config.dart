@@ -31,6 +31,8 @@ import '../../features/household/domain/use_case/get_user_household_use_case.dar
     as _i802;
 import '../../features/household/domain/use_case/join_household_use_case.dart'
     as _i973;
+import '../../features/household/domain/use_case/remove_member_usecase.dart'
+    as _i1049;
 import '../../features/household/presentation/view/view_model/household_cubit.dart'
     as _i697;
 import '../api/api_manager.dart' as _i1047;
@@ -86,6 +88,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i973.JoinHouseholdUseCase>(
       () => _i973.JoinHouseholdUseCase(gh<_i743.HouseholdRepoInterface>()),
     );
+    gh.factory<_i1049.RemoveMemberUseCase>(
+      () => _i1049.RemoveMemberUseCase(gh<_i743.HouseholdRepoInterface>()),
+    );
     gh.factory<_i697.HouseholdCubit>(
       () => _i697.HouseholdCubit(
         gh<_i60.CreateHouseholdUseCase>(),
@@ -93,6 +98,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i802.GetUserHouseholdUseCase>(),
         gh<_i505.GetHouseholdMembersUseCase>(),
         gh<_i405.GetMemberMedicinesUseCase>(),
+        gh<_i1049.RemoveMemberUseCase>(),
       ),
     );
     return this;

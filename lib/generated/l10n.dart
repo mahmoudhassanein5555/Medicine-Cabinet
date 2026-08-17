@@ -1143,6 +1143,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Remove member?`
+  String get householdRemoveMemberTitle {
+    return Intl.message(
+      'Remove member?',
+      name: 'householdRemoveMemberTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This will remove {name} from your household. This can't be undone.`
+  String householdRemoveMemberDesc(Object name) {
+    return Intl.message(
+      'This will remove $name from your household. This can\'t be undone.',
+      name: 'householdRemoveMemberDesc',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Remove`
+  String get householdRemoveButton {
+    return Intl.message(
+      'Remove',
+      name: 'householdRemoveButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member removed from the household`
+  String get householdMemberRemovedSuccessfully {
+    return Intl.message(
+      'Member removed from the household',
+      name: 'householdMemberRemovedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

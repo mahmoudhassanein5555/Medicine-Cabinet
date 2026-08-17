@@ -85,3 +85,17 @@ class GetMemberMedicinesError extends HouseholdState {
 
   GetMemberMedicinesError(this.message);
 }
+// ==================== Remove Member ====================
+
+class RemoveMemberLoading extends HouseholdState {}
+
+class RemoveMemberSuccess extends HouseholdState {
+  final String removedUserId;
+
+  RemoveMemberSuccess(this.removedUserId);
+}
+class RemoveMemberError extends HouseholdState {
+  final String message;
+
+  RemoveMemberError(this.message);
+}

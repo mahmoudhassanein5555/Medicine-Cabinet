@@ -198,4 +198,54 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
 
     return resalt;
   }
+
+  @override
+  Future<void> removeMember({
+    required String householdId,
+    required String memberId,
+    required String currentUserId,
+  }) async {
+    final currentMemberRef = _firestore
+        .collection('households')
+        .doc(householdId)
+        .collection('members')
+        .doc(currentUserId);
+    final memberRef = _firestore
+        .collection('households')
+        .doc(householdId)
+        .collection('members')
+        .doc(memberId);
+    final userRef = _firestore.collection('users').doc(memberId);
+
+    final currentMemberSnapshot = await currentMemberRef.get();
+    if (!currentMemberSnapshot.exists) {
+      throw Exception('Current user is not a household member');
+    }
+
+    final currentMemberData = currentMemberSnapshot.data();
+
+    if (currentMemberData == null) {
+      throw Exception('Current user data not found');
+    }
+    final currentUserRole = currentMemberData['role'];
+    if (currentUserRole != 'admin') {
+      throw Exception('Only admin can remove members');
+    }
+
+    final memberSnapshot = await memberRef.get();
+
+    if (!memberSnapshot.exists) {
+      throw Exception('Member not found');
+    }
+    final memberData = memberSnapshot.data();
+    if (memberData?['role'] == 'admin') {
+      throw Exception('Admin cannot be removed');
+    }
+    final batch = _firestore.batch();
+    batch.delete(memberRef);
+    batch.set(userRef, {
+      'householdId': FieldValue.delete(),
+    }, SetOptions(merge: true));
+    await batch.commit();
+  }
 }

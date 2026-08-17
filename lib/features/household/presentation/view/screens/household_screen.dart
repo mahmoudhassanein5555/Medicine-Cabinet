@@ -42,8 +42,9 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
     final colorScheme = theme.colorScheme;
 
     return BlocProvider(
+      // تشييك تلقائي: لو اليوزر عنده household أصلاً، الـ listener تحت هينقله على طول
       create: (_) =>
-          getIt<HouseholdCubit>()..getUserHousehold(userId: widget.userId),
+      getIt<HouseholdCubit>()..getUserHousehold(userId: widget.userId),
       child: BlocConsumer<HouseholdCubit, HouseholdState>(
         listener: (context, state) {
           if (state is GetHouseholdSuccess) {
@@ -54,10 +55,12 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (_) =>
-                      HouseholdMembersScreen(householdId: household.id),
+                      HouseholdMembersScreen(householdId: household.id, userId: widget.userId),
                 ),
               );
             }
+            // لو household == null، سيبها عادي — اليوزر لسه معندوش household
+            // فهيفضل واقف في نفس الشاشة عشان يعمل Join أو Create
           }
 
           if (state is CreateHouseholdSuccess) {
@@ -65,7 +68,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
               context,
               MaterialPageRoute(
                 builder: (_) =>
-                    HouseholdMembersScreen(householdId: state.household.id),
+                    HouseholdMembersScreen(householdId: state.household.id, userId: widget.userId),
               ),
             );
           }
@@ -81,7 +84,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
               context,
               MaterialPageRoute(
                 builder: (_) =>
-                    HouseholdMembersScreen(householdId: state.household.id),
+                    HouseholdMembersScreen(householdId: state.household.id, userId: widget.userId),
               ),
             );
           }
@@ -108,9 +111,10 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
           final isCheckingHousehold = state is GetHouseholdLoading;
           final isLoading =
               isCheckingHousehold ||
-              state is JoinHouseholdLoading ||
-              state is CreateHouseholdLoading;
+                  state is JoinHouseholdLoading ||
+                  state is CreateHouseholdLoading;
 
+          // لحد ما نعرف اليوزر عنده household ولا لأ، منعرضش الفورم
           if (isCheckingHousehold) {
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
@@ -186,25 +190,25 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                           onPressed: isLoading
                               ? null
                               : () {
-                                  final householdId = _householdIdController
-                                      .text
-                                      .trim();
+                            final householdId = _householdIdController
+                                .text
+                                .trim();
 
-                                  if (householdId.isEmpty) {
-                                    AppToast.showToast(
-                                      context: context,
-                                      title: 'Error',
-                                      description: 'Please enter household ID',
-                                      type: ToastificationType.error,
-                                    );
-                                    return;
-                                  }
+                            if (householdId.isEmpty) {
+                              AppToast.showToast(
+                                context: context,
+                                title: 'Error',
+                                description: 'Please enter household ID',
+                                type: ToastificationType.error,
+                              );
+                              return;
+                            }
 
-                                  context.read<HouseholdCubit>().joinHousehold(
-                                    householdId: householdId,
-                                    userId: widget.userId,
-                                  );
-                                },
+                            context.read<HouseholdCubit>().joinHousehold(
+                              householdId: householdId,
+                              userId: widget.userId,
+                            );
+                          },
                         ),
 
                         const SizedBox(height: 32),

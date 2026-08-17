@@ -11,10 +11,14 @@ import '../view_model/household_state.dart';
 import 'member_details_screen.dart';
 
 class HouseholdMembersScreen extends StatefulWidget {
-  const HouseholdMembersScreen({super.key, required this.householdId});
+  const HouseholdMembersScreen({
+    super.key,
+    required this.householdId,
+    required this.userId,
+  });
 
   final String householdId;
-
+  final String userId;
   @override
   State<HouseholdMembersScreen> createState() => _HouseholdMembersScreenState();
 }
@@ -92,6 +96,14 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                       }
                       if (state is GetMembersSuccess) {
                         final members = state.members;
+                        final currentUser = members
+                            .cast<HouseholdMemberEntity?>()
+                            .firstWhere(
+                              (member) => member?.id == widget.userId,
+                              orElse: () => null,
+                            );
+
+                        final isCurrentUserAdmin = currentUser?.role == 'admin';
 
                         if (members.isEmpty) {
                           return const Center(
@@ -100,19 +112,11 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                         }
 
                         return ListView.separated(
-
                           itemCount: members.length,
 
                           separatorBuilder: (_, __) =>
                               const SizedBox(height: 14),
                           itemBuilder: (context, index) {
-                            print("==============");
-                            print(members[index].id);
-                            print(members[index].name);
-                            print(members[index].email);
-                            print(members[index].role);
-                            print(members[index].medicineCount);
-                            print("==============");
                             final member = members[index];
                             return MemberCard(
                               member: member,
@@ -123,6 +127,8 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                                     builder: (_) => MemberDetailsScreen(
                                       member: member,
                                       householdId: widget.householdId,
+                                      currentUserId: widget.userId,
+                                      isCurrentUserAdmin: isCurrentUserAdmin,
                                     ),
                                   ),
                                 );

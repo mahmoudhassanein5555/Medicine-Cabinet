@@ -7,6 +7,7 @@ import 'package:medicine_cabinet/features/household/presentation/view/view_model
 import '../../../domain/use_case/create_household_use_case.dart';
 import '../../../domain/use_case/get_user_household_use_case.dart';
 import '../../../domain/use_case/join_household_use_case.dart';
+import '../../../domain/use_case/remove_member_usecase.dart';
 
 @injectable
 class HouseholdCubit extends Cubit<HouseholdState> {
@@ -15,6 +16,7 @@ class HouseholdCubit extends Cubit<HouseholdState> {
   final GetUserHouseholdUseCase _getUserHouseholdUseCase;
   final GetHouseholdMembersUseCase _getHouseholdMembersUseCase;
   final GetMemberMedicinesUseCase _getMemberMedicinesUseCase;
+  final RemoveMemberUseCase _removeMemberUseCase;
 
   HouseholdCubit(
       this._createHouseholdUseCase,
@@ -22,6 +24,7 @@ class HouseholdCubit extends Cubit<HouseholdState> {
       this._getUserHouseholdUseCase,
       this._getHouseholdMembersUseCase,
       this._getMemberMedicinesUseCase,
+      this._removeMemberUseCase,
       ) : super(HouseholdInitial());
 
   Future<void> createHousehold({
@@ -102,4 +105,27 @@ class HouseholdCubit extends Cubit<HouseholdState> {
           (medicines) => emit(GetMemberMedicinesSuccess(medicines)),
     );
   }
+
+  Future<void> removeMember({
+    required String householdId,
+    required String memberId,
+    required String currentUserId,
+  }) async {
+    emit(RemoveMemberLoading());
+
+    final result = await _removeMemberUseCase.invoke(
+      householdId: householdId,
+      memberId: memberId,
+      currentUserId: currentUserId,
+    );
+
+    result.fold(
+          (failure) => emit(
+        RemoveMemberError(failure.failuremessage),
+      ),
+          (_) => emit(RemoveMemberSuccess(memberId)),
+    );
+  }
+
+
 }

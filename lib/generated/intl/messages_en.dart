@@ -24,7 +24,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(count) => "${count} medicines";
 
-  static String m2(sortOption) => "Sort: ${sortOption}";
+  static String m2(name) =>
+      "This will remove ${name} from your household. This can\'t be undone.";
+
+  static String m3(sortOption) => "Sort: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -171,6 +174,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
       "Member Details",
     ),
+    "householdMemberRemovedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Member removed from the household",
+    ),
     "householdNameHint": MessageLookupByLibrary.simpleMessage(
       "e.g. Home Cabinet",
     ),
@@ -187,6 +193,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdPermissionView": MessageLookupByLibrary.simpleMessage(
       "View all members\' medicines",
     ),
+    "householdRemoveButton": MessageLookupByLibrary.simpleMessage("Remove"),
+    "householdRemoveMemberDesc": m2,
+    "householdRemoveMemberTitle": MessageLookupByLibrary.simpleMessage(
+      "Remove member?",
+    ),
     "householdSetupDescription": MessageLookupByLibrary.simpleMessage(
       "Join an existing household using its ID, or create a new one.",
     ),
@@ -202,7 +213,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Search medicines...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
-    "medicinesSortLabelCurrent": m2,
+    "medicinesSortLabelCurrent": m3,
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "Name (A–Z)",
     ),
