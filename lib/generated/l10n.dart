@@ -1134,6 +1134,11 @@ class S {
     return Intl.message('Name', name: 'name', desc: '', args: []);
   }
 
+  /// `Email`
+  String get memberEmail {
+    return Intl.message('Email', name: 'memberEmail', desc: '', args: []);
+  }
+
   /// `Member Medicines`
   String get memberMedicines {
     return Intl.message(

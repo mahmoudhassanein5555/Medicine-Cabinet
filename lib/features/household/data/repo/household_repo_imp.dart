@@ -60,6 +60,7 @@ class HouseholdRepoImp implements HouseholdRepoInterface {
         householdId: householdId,
         userId: userId,
       );
+      await _localDataSource.saveHouseholdId(dto.id);
       return Right(dto.toEntity());
     } catch (e) {
       return Left(ErrorHandler.handle(e));

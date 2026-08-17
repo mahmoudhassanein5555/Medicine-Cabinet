@@ -124,6 +124,7 @@
   "medicines": "Medicines",
   "memberInformation": "Member Information",
   "name": "Name",
+  "memberEmail": "Email",
   "memberMedicines": "Member Medicines",
   "householdRemoveMemberTitle": "Remove member?",
   "householdRemoveMemberDesc": "This will remove {name} from your household. This can't be undone.",

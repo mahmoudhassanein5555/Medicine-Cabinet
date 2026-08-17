@@ -218,6 +218,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Name (A–Z)",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("Medicines"),
+    "memberEmail": MessageLookupByLibrary.simpleMessage("Email"),
     "memberInformation": MessageLookupByLibrary.simpleMessage(
       "Member Information",
     ),

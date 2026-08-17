@@ -231,7 +231,7 @@ class MemberDetailsScreen extends StatelessWidget {
 
                           InfoCard(
                             icon: Icons.email_outlined,
-                            title: 'Email',
+                            title: l10n.memberEmail,
                             value: member.email,
                           ),
 

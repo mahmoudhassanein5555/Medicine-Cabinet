@@ -124,6 +124,7 @@
   "medicines": "الأدوية",
   "memberInformation": "معلومات العضو",
   "name": "الاسم",
+  "memberEmail": "البريد الإلكتروني",
   "memberMedicines": "أدوية العضو",
   "householdRemoveMemberTitle": "إزالة العضو؟",
   "householdRemoveMemberDesc": "سيتم إزالة {name} من منزلك. لا يمكن التراجع عن هذا الإجراء.",

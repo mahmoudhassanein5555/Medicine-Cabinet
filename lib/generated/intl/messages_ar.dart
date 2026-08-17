@@ -204,6 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "الاسم (أ–ي)",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("الأدوية"),
+    "memberEmail": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "memberInformation": MessageLookupByLibrary.simpleMessage("معلومات العضو"),
     "memberMedicines": MessageLookupByLibrary.simpleMessage("أدوية العضو"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),

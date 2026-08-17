@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:medicine_cabinet/features/household/domain/entity/medicine_entity.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -24,9 +25,6 @@ class MemberMedicinesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
     return BlocBuilder<HouseholdCubit, HouseholdState>(
       builder: (context, state) {
         if (state is GetMemberMedicinesLoading) {
@@ -52,10 +50,12 @@ class MemberMedicinesList extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 24),
               child: Center(
-                child: Text(
-                  'No medicines found',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 250,
+                  child: Lottie.asset(
+                    'assets/animations/member_details_screen.json',
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
