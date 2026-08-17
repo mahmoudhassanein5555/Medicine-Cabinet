@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:medicine_cabinet/generated/l10n.dart';
 import '../failure/failure.dart';
 import 'error.dart';
 
@@ -10,24 +10,26 @@ class ErrorHandler {
     } else if (exception is RemoteException) {
       return _handleRemoteError(exception.errormessage);
     } else if (exception is LocalException) {
-      return Failure(exception.errormessage);
+      return Failure.ofString(exception.errormessage);
+    } else if (exception is Exception) {
+      return _handleRemoteError(exception.toString());
     } else {
-      return Failure("Something went wrong, please try again later.");
+      return Failure((context) => S.of(context).somethingWentWrong);
     }
   }
 
   static Failure _handleFirebaseError(FirebaseException exception) {
     switch (exception.code) {
       case 'permission-denied':
-        return Failure("You don't have permission to perform this action.");
+        return Failure((context) => S.of(context).errorPermissionDenied);
       case 'unavailable':
-        return Failure("No internet connection or server is unavailable.");
+        return Failure((context) => S.of(context).errorNoInternet);
       case 'not-found':
-        return Failure("The requested resource was not found.");
+        return Failure((context) => S.of(context).errorNotFound);
       case 'deadline-exceeded':
-        return Failure("Connection timed out. The server is not responding.");
+        return Failure((context) => S.of(context).errorTimeout);
       default:
-        return Failure(exception.message ?? "A database error occurred.");
+        return Failure.ofString(exception.message ?? "Database error occurred.");
     }
   }
 
@@ -35,34 +37,27 @@ class ErrorHandler {
     if (message.contains("401") ||
         message.contains("Unauthorized") ||
         message.contains("Unauthenticated")) {
-      return Failure("Your session has expired. Please login again.");
+      return Failure((context) => S.of(context).errorSessionExpired);
     } else if (message.contains("403") || message.contains("Forbidden")) {
-      return Failure("You don't have permission to perform this action.");
+      return Failure((context) => S.of(context).errorPermissionDenied);
     } else if (message.contains("404") || message.contains("Not Found")) {
-      return Failure("The requested resource was not found.");
-    } else if (message.contains("500") ||
-        message.contains("Internal Server Error")) {
-      return Failure(
-        "Our server is having trouble. Please try again in a few minutes.",
-      );
-    } else if (message.isNotEmpty &&
-        !message.contains("400") &&
-        !message.contains("Exception")) {
-      return Failure(message);
-    } else if (message.contains("422") ||
-        message.contains("Unprocessable Content")) {
-      return Failure("Invalid information provided. Please check your inputs.");
+      return Failure((context) => S.of(context).errorNotFound);
+    } else if (message.contains("500") || message.contains("Internal Server Error")) {
+      return Failure((context) => S.of(context).errorInternalServer);
+    } else if (message.contains("422") || message.contains("Unprocessable Content")) {
+      return Failure((context) => S.of(context).errorInvalidInput);
     } else if (message.contains("SocketException") ||
         message.contains("Connection failed") ||
         message.contains("HandshakeException")) {
-      return Failure("No internet connection. Please check your network.");
+      return Failure((context) => S.of(context).errorNoInternet);
     } else if (message.contains("Timeout") || message.contains("Deadline")) {
-      return Failure("Connection timed out. The server is not responding.");
-    } else if (message.contains("TypeError") ||
-        message.contains("FormatException")) {
-      return Failure("We encountered a technical issue while processing data.");
+      return Failure((context) => S.of(context).errorTimeout);
+    } else if (message.contains("TypeError") || message.contains("FormatException")) {
+      return Failure((context) => S.of(context).errorTechnicalIssue);
+    } else if (message.isNotEmpty && !message.contains("400") && !message.contains("Exception")) {
+      return Failure.ofString(message);
     } else {
-      return Failure(message);
+      return Failure((context) => S.of(context).somethingWentWrong);
     }
   }
 }

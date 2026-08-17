@@ -20,9 +20,25 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(name) => "Good evening, ${name}";
+  static String m0(count) => "Added ${count} days ago";
 
-  static String m1(sortOption) => "Sort: ${sortOption}";
+  static String m1(count) => "${count} bottles remaining";
+
+  static String m2(count) => "${count} capsules remaining";
+
+  static String m3(count) => "Expires in ${count} days";
+
+  static String m4(count) => "Expires in ${count} months";
+
+  static String m5(name) => "Good evening, ${name}";
+
+  static String m6(count) => "${count} remaining";
+
+  static String m7(count) => "${count} tablets remaining";
+
+  static String m8(count) => "${count} units remaining";
+
+  static String m9(sortOption) => "Sort: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -85,12 +101,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "Scan or search a medicine...",
     ),
     "beforeYouBuyTitle": MessageLookupByLibrary.simpleMessage("Before You Buy"),
+    "chatNavLabel": MessageLookupByLibrary.simpleMessage("Chat"),
     "commonAddToCabinet": MessageLookupByLibrary.simpleMessage(
       "Add to Cabinet",
     ),
     "commonAll": MessageLookupByLibrary.simpleMessage("All"),
     "commonApply": MessageLookupByLibrary.simpleMessage("Apply"),
+    "commonBottles": MessageLookupByLibrary.simpleMessage("bottles"),
     "commonCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "commonCapsules": MessageLookupByLibrary.simpleMessage("capsules"),
     "commonContinue": MessageLookupByLibrary.simpleMessage("Continue"),
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("Date added"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -115,12 +134,56 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "Storage location",
     ),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage("Try again"),
+    "commonUnits": MessageLookupByLibrary.simpleMessage("units"),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "Update quantity",
+    ),
+    "commonUser": MessageLookupByLibrary.simpleMessage("User"),
+    "errorDatabase": MessageLookupByLibrary.simpleMessage(
+      "A database error occurred.",
+    ),
+    "errorInternalServer": MessageLookupByLibrary.simpleMessage(
+      "Our server is having trouble. Please try again in a few minutes.",
+    ),
+    "errorInvalidInput": MessageLookupByLibrary.simpleMessage(
+      "Invalid information provided. Please check your inputs.",
+    ),
+    "errorNoInternet": MessageLookupByLibrary.simpleMessage(
+      "No internet connection or server is unavailable.",
+    ),
+    "errorNotFound": MessageLookupByLibrary.simpleMessage(
+      "The requested resource was not found.",
+    ),
+    "errorPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have permission to perform this action.",
+    ),
+    "errorSessionExpired": MessageLookupByLibrary.simpleMessage(
+      "Your session has expired. Please login again.",
+    ),
+    "errorTechnicalIssue": MessageLookupByLibrary.simpleMessage(
+      "We encountered a technical issue while processing data.",
+    ),
+    "errorTimeout": MessageLookupByLibrary.simpleMessage(
+      "Connection timed out. The server is not responding.",
+    ),
+    "failedToLoadMedicines": MessageLookupByLibrary.simpleMessage(
+      "Failed to load medicines",
+    ),
+    "failedToLoadProfile": MessageLookupByLibrary.simpleMessage(
+      "Failed to load user profile",
+    ),
+    "feedNavLabel": MessageLookupByLibrary.simpleMessage("Feed"),
+    "homeAddedDaysAgo": m0,
+    "homeAddedToday": MessageLookupByLibrary.simpleMessage("Added today"),
+    "homeAddedYesterday": MessageLookupByLibrary.simpleMessage(
+      "Added yesterday",
     ),
     "homeAttentionNeeded": MessageLookupByLibrary.simpleMessage(
       "Attention needed",
     ),
+    "homeBottlesRemaining": m1,
+    "homeCapsulesRemaining": m2,
     "homeEmptyButton": MessageLookupByLibrary.simpleMessage(
       "Scan your first medicine",
     ),
@@ -130,9 +193,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "homeEmptyTitle": MessageLookupByLibrary.simpleMessage(
       "Your cabinet is empty",
     ),
-    "homeGreetingEvening": m0,
+    "homeExpiresInDays": m3,
+    "homeExpiresInMonth": MessageLookupByLibrary.simpleMessage(
+      "Expires in 1 month",
+    ),
+    "homeExpiresInMonths": m4,
+    "homeExpiresTomorrow": MessageLookupByLibrary.simpleMessage(
+      "Expires tomorrow",
+    ),
+    "homeGreetingEvening": m5,
     "homeNavLabel": MessageLookupByLibrary.simpleMessage("Home"),
     "homeRecentlyAdded": MessageLookupByLibrary.simpleMessage("Recently added"),
+    "homeRemaining": m6,
     "homeScanCta": MessageLookupByLibrary.simpleMessage("Scan Medicine"),
     "homeScanCtaSubtitle": MessageLookupByLibrary.simpleMessage(
       "Add a new item in seconds",
@@ -140,6 +212,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "homeSubtitle": MessageLookupByLibrary.simpleMessage(
       "Here\'s your medicine cabinet",
     ),
+    "homeTabletsRemaining": m7,
+    "homeUnitsRemaining": m8,
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "Add family member",
     ),
@@ -150,7 +224,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Search medicines...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
-    "medicinesSortLabelCurrent": m1,
+    "medicinesSortLabelCurrent": m9,
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "Name (A–Z)",
     ),
@@ -220,5 +294,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage(
       "Who is this for?",
     ),
+    "searchNavLabel": MessageLookupByLibrary.simpleMessage("Search"),
+    "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong, please try again later.",
+    ),
+    "somethingWrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong",
+    ),
+    "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome back"),
   };
 }

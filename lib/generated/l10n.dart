@@ -250,9 +250,54 @@ class S {
     return Intl.message('Expired', name: 'commonExpired', desc: '', args: []);
   }
 
+  /// `Try again`
+  String get commonTryAgain {
+    return Intl.message(
+      'Try again',
+      name: 'commonTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User`
+  String get commonUser {
+    return Intl.message('User', name: 'commonUser', desc: '', args: []);
+  }
+
+  /// `capsules`
+  String get commonCapsules {
+    return Intl.message('capsules', name: 'commonCapsules', desc: '', args: []);
+  }
+
+  /// `bottles`
+  String get commonBottles {
+    return Intl.message('bottles', name: 'commonBottles', desc: '', args: []);
+  }
+
+  /// `units`
+  String get commonUnits {
+    return Intl.message('units', name: 'commonUnits', desc: '', args: []);
+  }
+
   /// `Home`
   String get homeNavLabel {
     return Intl.message('Home', name: 'homeNavLabel', desc: '', args: []);
+  }
+
+  /// `Search`
+  String get searchNavLabel {
+    return Intl.message('Search', name: 'searchNavLabel', desc: '', args: []);
+  }
+
+  /// `Chat`
+  String get chatNavLabel {
+    return Intl.message('Chat', name: 'chatNavLabel', desc: '', args: []);
+  }
+
+  /// `Feed`
+  String get feedNavLabel {
+    return Intl.message('Feed', name: 'feedNavLabel', desc: '', args: []);
   }
 
   /// `Medicines`
@@ -542,6 +587,126 @@ class S {
       name: 'homeRecentlyAdded',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Expires tomorrow`
+  String get homeExpiresTomorrow {
+    return Intl.message(
+      'Expires tomorrow',
+      name: 'homeExpiresTomorrow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expires in {count} days`
+  String homeExpiresInDays(Object count) {
+    return Intl.message(
+      'Expires in $count days',
+      name: 'homeExpiresInDays',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Expires in 1 month`
+  String get homeExpiresInMonth {
+    return Intl.message(
+      'Expires in 1 month',
+      name: 'homeExpiresInMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expires in {count} months`
+  String homeExpiresInMonths(Object count) {
+    return Intl.message(
+      'Expires in $count months',
+      name: 'homeExpiresInMonths',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Added today`
+  String get homeAddedToday {
+    return Intl.message(
+      'Added today',
+      name: 'homeAddedToday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Added yesterday`
+  String get homeAddedYesterday {
+    return Intl.message(
+      'Added yesterday',
+      name: 'homeAddedYesterday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Added {count} days ago`
+  String homeAddedDaysAgo(Object count) {
+    return Intl.message(
+      'Added $count days ago',
+      name: 'homeAddedDaysAgo',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} tablets remaining`
+  String homeTabletsRemaining(Object count) {
+    return Intl.message(
+      '$count tablets remaining',
+      name: 'homeTabletsRemaining',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} capsules remaining`
+  String homeCapsulesRemaining(Object count) {
+    return Intl.message(
+      '$count capsules remaining',
+      name: 'homeCapsulesRemaining',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} bottles remaining`
+  String homeBottlesRemaining(Object count) {
+    return Intl.message(
+      '$count bottles remaining',
+      name: 'homeBottlesRemaining',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} units remaining`
+  String homeUnitsRemaining(Object count) {
+    return Intl.message(
+      '$count units remaining',
+      name: 'homeUnitsRemaining',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} remaining`
+  String homeRemaining(Object count) {
+    return Intl.message(
+      '$count remaining',
+      name: 'homeRemaining',
+      desc: '',
+      args: [count],
     );
   }
 
@@ -928,6 +1093,146 @@ class S {
   /// `About`
   String get profileAbout {
     return Intl.message('About', name: 'profileAbout', desc: '', args: []);
+  }
+
+  /// `Failed to load user profile`
+  String get failedToLoadProfile {
+    return Intl.message(
+      'Failed to load user profile',
+      name: 'failedToLoadProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load medicines`
+  String get failedToLoadMedicines {
+    return Intl.message(
+      'Failed to load medicines',
+      name: 'failedToLoadMedicines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong`
+  String get somethingWrong {
+    return Intl.message(
+      'Something went wrong',
+      name: 'somethingWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong, please try again later.`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Something went wrong, please try again later.',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have permission to perform this action.`
+  String get errorPermissionDenied {
+    return Intl.message(
+      'You don\'t have permission to perform this action.',
+      name: 'errorPermissionDenied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No internet connection or server is unavailable.`
+  String get errorNoInternet {
+    return Intl.message(
+      'No internet connection or server is unavailable.',
+      name: 'errorNoInternet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The requested resource was not found.`
+  String get errorNotFound {
+    return Intl.message(
+      'The requested resource was not found.',
+      name: 'errorNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connection timed out. The server is not responding.`
+  String get errorTimeout {
+    return Intl.message(
+      'Connection timed out. The server is not responding.',
+      name: 'errorTimeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your session has expired. Please login again.`
+  String get errorSessionExpired {
+    return Intl.message(
+      'Your session has expired. Please login again.',
+      name: 'errorSessionExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our server is having trouble. Please try again in a few minutes.`
+  String get errorInternalServer {
+    return Intl.message(
+      'Our server is having trouble. Please try again in a few minutes.',
+      name: 'errorInternalServer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid information provided. Please check your inputs.`
+  String get errorInvalidInput {
+    return Intl.message(
+      'Invalid information provided. Please check your inputs.',
+      name: 'errorInvalidInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We encountered a technical issue while processing data.`
+  String get errorTechnicalIssue {
+    return Intl.message(
+      'We encountered a technical issue while processing data.',
+      name: 'errorTechnicalIssue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A database error occurred.`
+  String get errorDatabase {
+    return Intl.message(
+      'A database error occurred.',
+      name: 'errorDatabase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome back`
+  String get welcomeBack {
+    return Intl.message(
+      'Welcome back',
+      name: 'welcomeBack',
+      desc: '',
+      args: [],
+    );
   }
 }
 
