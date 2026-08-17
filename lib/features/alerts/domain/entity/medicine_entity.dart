@@ -21,7 +21,11 @@ class MedicineEntity {
   });
   bool get isExpired =>
       expiryDate != null && expiryDate!.isBefore(DateTime.now());
+
   bool get isAvailable => quantity > 0 && !isExpired;
+
+  bool get isEnded => quantity <= 0;
+
   bool isRecentlyAdded({int days = 7}) {
     if (createdAt == null) return false;
     final cutoff = DateTime.now().subtract(Duration(days: days));

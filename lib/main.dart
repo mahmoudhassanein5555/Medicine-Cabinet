@@ -3,17 +3,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/core/theme/app_theme.dart';
+import 'package:medicine_cabinet/features/alerts/presentation/view/medicine_inventory_screen.dart';
 
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await configureDependencies();
+  //await configureDependencies();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
-
+const _testUserId ='household123';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           title: 'Medicine Cabinet',
-          home: const Scaffold(body: Center(child: Text('Hello World'))),
+          home: MedicineInventoryScreen(householdId: _testUserId),
         );
       },
     );

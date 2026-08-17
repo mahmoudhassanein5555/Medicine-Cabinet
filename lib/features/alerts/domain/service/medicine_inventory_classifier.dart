@@ -1,0 +1,43 @@
+import 'package:injectable/injectable.dart';
+
+import '../entity/medicine_entity.dart';
+import '../entity/medicine_inventory_entity.dart';
+@injectable
+class MedicineInventoryClassifier {
+  MedicineInventoryEntity classify(
+      List<MedicineEntity> medicines,
+      ) {
+    final recentlyAdded = <MedicineEntity>[];
+    final available = <MedicineEntity>[];
+    final ended = <MedicineEntity>[];
+    final expired = <MedicineEntity>[];
+
+    for (final medicine in medicines) {
+      if (medicine.isRecentlyAdded()) {
+        recentlyAdded.add(medicine);
+        continue;
+      }
+
+      if (medicine.isAvailable) {
+        available.add(medicine);
+        continue;
+      }
+
+      if (medicine.isEnded) {
+        ended.add(medicine);
+        continue;
+      }
+
+      if (medicine.isExpired) {
+        expired.add(medicine);
+      }
+    }
+
+    return MedicineInventoryEntity(
+      recentlyAdded: recentlyAdded,
+      available: available,
+      ended: ended,
+      expired: expired,
+    );
+  }
+}
