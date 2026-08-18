@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(name) => "مساء الخير، ${name}";
 
-  static String m1(sortOption) => "الترتيب: ${sortOption}";
+  static String m1(quantity) => "الكمية: ${quantity}";
+
+  static String m2(sortOption) => "الترتيب: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -133,14 +135,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "إضافة فرد من العائلة",
     ),
+    "medicineCabinet": MessageLookupByLibrary.simpleMessage("خزانة الأدوية"),
+    "medicineCategoryAll": MessageLookupByLibrary.simpleMessage("الكل"),
+    "medicineCategoryEnded": MessageLookupByLibrary.simpleMessage(
+      "المنتهية الكمية",
+    ),
+    "medicineCategoryExpired": MessageLookupByLibrary.simpleMessage(
+      "منتهية الصلاحية",
+    ),
+    "medicineCategoryRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "المضافة حديثًا",
+    ),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
+    "medicineNoEnded": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أدوية منتهية الكمية",
+    ),
+    "medicineNoExpired": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أدوية منتهية الصلاحية",
+    ),
+    "medicineNoMedicines": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أدوية",
+    ),
+    "medicineNoRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أدوية مضافة حديثًا",
+    ),
+    "medicineQuantity": m1,
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "الفيصل في البحث عن الأدوية...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
-    "medicinesSortLabelCurrent": m1,
+    "medicinesSortLabelCurrent": m2,
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "الاسم (أ–ي)",
     ),

@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -927,6 +928,101 @@ class S {
   /// `About`
   String get profileAbout {
     return Intl.message('About', name: 'profileAbout', desc: '', args: []);
+  }
+
+  /// `Medicine Cabinet`
+  String get medicineCabinet {
+    return Intl.message(
+      'Medicine Cabinet',
+      name: 'medicineCabinet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get medicineCategoryAll {
+    return Intl.message('All', name: 'medicineCategoryAll', desc: '', args: []);
+  }
+
+  /// `Recently Added`
+  String get medicineCategoryRecentlyAdded {
+    return Intl.message(
+      'Recently Added',
+      name: 'medicineCategoryRecentlyAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ended`
+  String get medicineCategoryEnded {
+    return Intl.message(
+      'Ended',
+      name: 'medicineCategoryEnded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expired`
+  String get medicineCategoryExpired {
+    return Intl.message(
+      'Expired',
+      name: 'medicineCategoryExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantity: {quantity}`
+  String medicineQuantity(Object quantity) {
+    return Intl.message(
+      'Quantity: $quantity',
+      name: 'medicineQuantity',
+      desc: '',
+      args: [quantity],
+    );
+  }
+
+  /// `No medicines found`
+  String get medicineNoMedicines {
+    return Intl.message(
+      'No medicines found',
+      name: 'medicineNoMedicines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No recently added medicines`
+  String get medicineNoRecentlyAdded {
+    return Intl.message(
+      'No recently added medicines',
+      name: 'medicineNoRecentlyAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No ended medicines`
+  String get medicineNoEnded {
+    return Intl.message(
+      'No ended medicines',
+      name: 'medicineNoEnded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No expired medicines`
+  String get medicineNoExpired {
+    return Intl.message(
+      'No expired medicines',
+      name: 'medicineNoExpired',
+      desc: '',
+      args: [],
+    );
   }
 }
 

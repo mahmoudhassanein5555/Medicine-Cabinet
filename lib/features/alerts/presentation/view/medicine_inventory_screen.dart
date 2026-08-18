@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/features/alerts/presentation/view/widget/inventory_categories.dart';
 import 'package:medicine_cabinet/features/alerts/presentation/view/widget/medicine_list.dart';
+import 'package:medicine_cabinet/features/alerts/presentation/view/widget/medicine_list_skeleton.dart';
 
 import '../../../../core/di/service_locator.dart';
 import '../view_model/alert_cubit.dart';
@@ -23,15 +24,11 @@ class MedicineInventoryScreen extends StatelessWidget {
           householdId: householdId,
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Medicine Cabinet'),
-        ),
+
         body: BlocBuilder<AlertCubit, AlertState>(
           builder: (context, state) {
             if (state is AlertLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const MedicineListSkeleton();
             }
 
             if (state is AlertError) {

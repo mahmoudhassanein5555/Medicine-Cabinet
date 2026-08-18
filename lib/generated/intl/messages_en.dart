@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(name) => "Good evening, ${name}";
 
-  static String m1(sortOption) => "Sort: ${sortOption}";
+  static String m1(quantity) => "Quantity: ${quantity}";
+
+  static String m2(sortOption) => "Sort: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -143,14 +145,34 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "Add family member",
     ),
+    "medicineCabinet": MessageLookupByLibrary.simpleMessage("Medicine Cabinet"),
+    "medicineCategoryAll": MessageLookupByLibrary.simpleMessage("All"),
+    "medicineCategoryEnded": MessageLookupByLibrary.simpleMessage("Ended"),
+    "medicineCategoryExpired": MessageLookupByLibrary.simpleMessage("Expired"),
+    "medicineCategoryRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "Recently Added",
+    ),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
+    "medicineNoEnded": MessageLookupByLibrary.simpleMessage(
+      "No ended medicines",
+    ),
+    "medicineNoExpired": MessageLookupByLibrary.simpleMessage(
+      "No expired medicines",
+    ),
+    "medicineNoMedicines": MessageLookupByLibrary.simpleMessage(
+      "No medicines found",
+    ),
+    "medicineNoRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "No recently added medicines",
+    ),
+    "medicineQuantity": m1,
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Search medicines...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
-    "medicinesSortLabelCurrent": m1,
+    "medicinesSortLabelCurrent": m2,
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "Name (A–Z)",
     ),
