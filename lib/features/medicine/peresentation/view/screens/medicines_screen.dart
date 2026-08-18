@@ -787,6 +787,7 @@ import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_sort.da
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/Medicine_sort_option.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/date_formatter.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_card.dart';
+import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_error.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_filter_chip.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_states.dart';
@@ -847,15 +848,30 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
             }
 
             if (state is MedicineErrorState) {
-              return Center(
-                child: Text(state.message, style: theme.textTheme.bodyMedium),
+              return MedicineErrorView(
+                message: state.message,
+                onRetry: () {
+                  context.read<MedicineCubit>().getMedicines(
+                    widget.householdId,
+                  );
+                },
               );
             }
 
             if (state is MedicineSuccessState) {
+              if (state.medicines.isEmpty) {
+                return MedicineErrorView(
+                  message: S.of(context).medicinesNoMedicines,
+                  onRetry: () {
+                    context.read<MedicineCubit>().getMedicines(
+                      widget.householdId,
+                    );
+                  },
+                );
+              }
+
               return _buildMedicinesContent(context, state);
             }
-
             return const SizedBox.shrink();
           },
         ),

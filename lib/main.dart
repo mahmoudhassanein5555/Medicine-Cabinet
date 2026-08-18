@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.dark,
+          debugShowCheckedModeBanner: false,
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,

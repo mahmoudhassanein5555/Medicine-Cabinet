@@ -107,5 +107,9 @@
   "profileAbout": "About",
   "medicinesSortOptionExpiry": "Expiry date",
   "medicinesSortOptionQuantity": "Quantity",
-  "medicinesSortOptionRecentlyAdded": "Recently added"
+  "medicinesSortOptionRecentlyAdded": "Recently added",
+    "commonSomethingWentWrong": "Something went wrong",
+  "commonTryAgain": "Please try again later",
+  "commonRetry": "Retry",
+  "medicinesNoMedicines": "No medicines found"
 }

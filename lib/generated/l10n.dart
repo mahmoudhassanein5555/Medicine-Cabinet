@@ -988,6 +988,41 @@ class S {
       args: [],
     );
   }
+
+  /// `Something went wrong`
+  String get commonSomethingWentWrong {
+    return Intl.message(
+      'Something went wrong',
+      name: 'commonSomethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please try again later`
+  String get commonTryAgain {
+    return Intl.message(
+      'Please try again later',
+      name: 'commonTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get commonRetry {
+    return Intl.message('Retry', name: 'commonRetry', desc: '', args: []);
+  }
+
+  /// `No medicines found`
+  String get medicinesNoMedicines {
+    return Intl.message(
+      'No medicines found',
+      name: 'medicinesNoMedicines',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

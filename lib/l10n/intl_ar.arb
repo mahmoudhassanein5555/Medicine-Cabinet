@@ -107,5 +107,9 @@
   "profileAbout": "عن التطبيق",
   "medicinesSortOptionExpiry": "تاريخ الانتهاء",
   "medicinesSortOptionQuantity": "الكمية",
-  "medicinesSortOptionRecentlyAdded": "أُضيف حديثاً"
+  "medicinesSortOptionRecentlyAdded": "أُضيف حديثاً",
+    "commonSomethingWentWrong": "حدث خطأ ما",
+  "commonTryAgain": "يرجى المحاولة مرة أخرى",
+  "commonRetry": "إعادة المحاولة",
+  "medicinesNoMedicines": "لا توجد أدوية"
 }

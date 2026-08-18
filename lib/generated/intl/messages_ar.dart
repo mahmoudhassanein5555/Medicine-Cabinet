@@ -109,11 +109,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonOr": MessageLookupByLibrary.simpleMessage("أو"),
     "commonOwner": MessageLookupByLibrary.simpleMessage("المالك"),
     "commonQuantity": MessageLookupByLibrary.simpleMessage("الكمية"),
+    "commonRetry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
     "commonReview": MessageLookupByLibrary.simpleMessage("مراجعة"),
     "commonSeeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
     "commonSkip": MessageLookupByLibrary.simpleMessage("تخطي"),
+    "commonSomethingWentWrong": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ ما",
+    ),
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "مكان التخزين",
+    ),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage(
+      "يرجى المحاولة مرة أخرى",
     ),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "تحديث الكمية",
@@ -145,6 +152,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineExpires": m1,
     "medicineRemaining": m2,
     "medicinesItemsCount": m3,
+    "medicinesNoMedicines": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أدوية",
+    ),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "  البحث عن الأدوية...",
     ),

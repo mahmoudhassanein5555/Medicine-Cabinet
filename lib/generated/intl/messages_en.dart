@@ -115,11 +115,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonOr": MessageLookupByLibrary.simpleMessage("or"),
     "commonOwner": MessageLookupByLibrary.simpleMessage("Owner"),
     "commonQuantity": MessageLookupByLibrary.simpleMessage("Quantity"),
+    "commonRetry": MessageLookupByLibrary.simpleMessage("Retry"),
     "commonReview": MessageLookupByLibrary.simpleMessage("Review"),
     "commonSeeAll": MessageLookupByLibrary.simpleMessage("See all"),
     "commonSkip": MessageLookupByLibrary.simpleMessage("Skip"),
+    "commonSomethingWentWrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong",
+    ),
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "Storage location",
+    ),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage(
+      "Please try again later",
     ),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "Update quantity",
@@ -155,6 +162,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineExpires": m1,
     "medicineRemaining": m2,
     "medicinesItemsCount": m3,
+    "medicinesNoMedicines": MessageLookupByLibrary.simpleMessage(
+      "No medicines found",
+    ),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Search medicines...",
     ),
