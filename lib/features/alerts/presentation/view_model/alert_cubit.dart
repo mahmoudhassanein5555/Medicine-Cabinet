@@ -1,9 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/features/alerts/domain/use_case/get_household_medicines_use_case.dart';
 import 'package:medicine_cabinet/features/alerts/presentation/view_model/alert_state.dart';
 
 import '../../domain/entity/medicine_inventory_category.dart';
-
+@injectable
 class AlertCubit extends Cubit<AlertState> {
   final GetHouseholdMedicinesUseCase _getHouseholdMedicinesUseCase;
   AlertCubit(this._getHouseholdMedicinesUseCase) : super(AlertInitial());

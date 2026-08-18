@@ -22,9 +22,14 @@ import '../../features/alerts/data/repo/alert_repo_imp.dart' as _i862;
 import '../../features/alerts/domain/repo/alert_repo_interface.dart' as _i682;
 import '../../features/alerts/domain/service/medicine_inventory_classifier.dart'
     as _i155;
+import '../../features/alerts/domain/use_case/get_household_medicines_use_case.dart'
+    as _i720;
+import '../../features/alerts/presentation/view_model/alert_cubit.dart'
+    as _i840;
 import '../api/api_manager.dart' as _i1047;
 import '../network/connection_checker.dart' as _i1050;
 import '../utils/shared_prefs_local_data_source.dart' as _i336;
+import 'firebase_module.dart' as _i616;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -34,6 +39,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final appModule = _$AppModule();
+    final firebaseModule = _$FirebaseModule();
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => appModule.sharedPrefs,
       preResolve: true,
@@ -42,6 +48,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i155.MedicineInventoryClassifier(),
     );
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
+    gh.lazySingleton<_i974.FirebaseFirestore>(() => firebaseModule.firestore);
     gh.lazySingleton<_i1050.NetworkInfo>(() => _i1050.NetworkInfoImpl());
     gh.lazySingleton<_i336.CacheHelper>(
       () => _i336.CacheHelper(gh<_i460.SharedPreferences>()),
@@ -52,8 +59,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i682.AlertRepoInterface>(
       () => _i862.AlertRepoImp(gh<_i39.AlertDataSourceInterface>()),
     );
+    gh.factory<_i720.GetHouseholdMedicinesUseCase>(
+      () => _i720.GetHouseholdMedicinesUseCase(
+        gh<_i682.AlertRepoInterface>(),
+        gh<_i155.MedicineInventoryClassifier>(),
+      ),
+    );
+    gh.factory<_i840.AlertCubit>(
+      () => _i840.AlertCubit(gh<_i720.GetHouseholdMedicinesUseCase>()),
+    );
     return this;
   }
 }
 
 class _$AppModule extends _i336.AppModule {}
+
+class _$FirebaseModule extends _i616.FirebaseModule {}
