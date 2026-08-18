@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:medicine_cabinet/core/constants/app_colors.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../domain/entity/medicine_inventory_category.dart';
 
 class InventoryCategoryTab extends StatelessWidget {
@@ -14,17 +16,21 @@ class InventoryCategoryTab extends StatelessWidget {
     required this.onTap,
   });
 
-  String get title {
+  String title(BuildContext context) {
+    final l10n = S.of(context);
+
     switch (category) {
       case MedicineInventoryCategory.all:
-        return 'All';
+        return l10n.medicineCategoryAll;
+
       case MedicineInventoryCategory.recentlyAdded:
-        return 'Recently Added';
+        return l10n.medicineCategoryRecentlyAdded;
+
       case MedicineInventoryCategory.ended:
-        return 'Ended';
+        return l10n.medicineCategoryEnded;
 
       case MedicineInventoryCategory.expired:
-        return 'Expired';
+        return l10n.medicineCategoryExpired;
     }
   }
 
@@ -37,14 +43,24 @@ class InventoryCategoryTab extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: isSelected
-              ? Theme.of(context).colorScheme.primary
-              : Colors.transparent,
+              ? AppColors.primaryDarkLight
+              : AppColors.textPrimaryDark,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
         child: Text(
-          title,
-          style: TextStyle(
-            color: isSelected ? Colors.white : Colors.black,
+          title(context),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontSize: 16,
             fontWeight: FontWeight.w600,
+            color: isSelected
+                ? AppColors.textPrimaryDark
+                : AppColors.primaryDarkLight,
           ),
         ),
       ),

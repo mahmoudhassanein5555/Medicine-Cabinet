@@ -5,8 +5,7 @@ import 'inventory_category_tab.dart';
 
 class InventoryCategories extends StatelessWidget {
   final MedicineInventoryCategory selectedCategory;
-  final ValueChanged<MedicineInventoryCategory>
-  onCategorySelected;
+  final ValueChanged<MedicineInventoryCategory> onCategorySelected;
 
   const InventoryCategories({
     super.key,
@@ -20,16 +19,22 @@ class InventoryCategories extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          for (final category
-          in MedicineInventoryCategory.values)
+          for (int i = 0; i < MedicineInventoryCategory.values.length; i++) ...[
+            if (i > 0)
+              const SizedBox(width: 8),
+
             InventoryCategoryTab(
-              category: category,
+              category: MedicineInventoryCategory.values[i],
               isSelected:
-              selectedCategory == category,
+              selectedCategory ==
+                  MedicineInventoryCategory.values[i],
               onTap: () {
-                onCategorySelected(category);
+                onCategorySelected(
+                  MedicineInventoryCategory.values[i],
+                );
               },
             ),
+          ],
         ],
       ),
     );

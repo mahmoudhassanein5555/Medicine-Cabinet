@@ -34,6 +34,7 @@ class MedicineListSkeleton extends StatelessWidget {
                     crossAxisAlignment:
                     CrossAxisAlignment.start,
                     children: [
+
                       Bone.text(
                         words: 2,
                       ),

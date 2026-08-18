@@ -9,21 +9,13 @@ class EmptyMedicineState extends StatelessWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 32),
-        child: Column(
-          children: [
-            SizedBox(
-              width: double.infinity,
-              height: 250,
-              child: Lottie.asset(
-                'assets/animations/empty.json',
-                fit: BoxFit.contain,
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            const Text('No medicines found'),
-          ],
+        child: SizedBox(
+          width: double.infinity,
+          height: 250,
+          child: Lottie.asset(
+            'assets/animations/empty.json',
+            fit: BoxFit.contain,
+          ),
         ),
       ),
     );
