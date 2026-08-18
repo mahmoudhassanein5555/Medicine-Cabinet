@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:medicine_cabinet/core/constants/app_strings.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:medicine_cabinet/core/di/service_locator.dart';
 import 'package:medicine_cabinet/core/utils/medicine_localization.dart';
 import 'package:medicine_cabinet/feature/medicine_details/domain/entity/medicine_entity.dart';
+import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/widgets/medicine_details_error.dart';
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/widgets/medicine_details_header.dart';
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/widgets/medicine_expiry_banner.dart';
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/widgets/medicine_hero_section.dart';
@@ -13,7 +16,6 @@ import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/wid
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view_model/medicine_details_cubit.dart';
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view_model/medicine_details_state.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class MedicineDetailsScreen extends StatelessWidget {
   final String householdId;
@@ -31,51 +33,53 @@ class MedicineDetailsScreen extends StatelessWidget {
       lazy: false,
       create: (_) => getIt<MedicineDetailsCubit>()
         ..getMedicineDetails(householdId: householdId, medicineId: medicineId),
-      child: const _MedicineDetailsView(),
+      child: _MedicineDetailsView(
+        householdId: householdId,
+        medicineId: medicineId,
+      ),
     );
   }
 }
 
 class _MedicineDetailsView extends StatelessWidget {
-  const _MedicineDetailsView();
+  final String householdId;
+  final String medicineId;
+
+  const _MedicineDetailsView({
+    required this.householdId,
+    required this.medicineId,
+  });
+
   MedicineDetailsEntity _dummyMedicine() {
     final now = DateTime.now();
 
     return MedicineDetailsEntity(
-      id: 'loading',
-      name: 'Panadol',
-      type: 'Pills',
-      quantity: 20,
+      id: AppStrings.dummyMedicineId,
+      name: AppStrings.dummyMedicineName,
+      type: AppStrings.dummyMedicineType,
+      quantity: AppStrings.dummyMedicineQuantity,
       expiryDate: now.add(const Duration(days: 30)),
-      imageUrl: '',
-      ownerId: 'Owner',
-      addedBy: 'User',
+      imageUrl: AppStrings.dummyMedicineImageUrl,
+      ownerId: AppStrings.dummyMedicineOwnerId,
+      addedBy: AppStrings.dummyMedicineAddedBy,
       createdAt: now,
       updatedAt: now,
-      storageLocation: 'Kitchen cabinet',
-      category: 'Pain relief',
+      storageLocation: AppStrings.dummyMedicineStorageLocation,
+      category: AppStrings.dummyMedicineCategory,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = S.of(context);
-
     return BlocConsumer<MedicineDetailsCubit, MedicineDetailsState>(
       listener: (context, state) {
-        if (state.status == MedicineDetailsStatus.error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errorMessage ?? 'Something went wrong'),
-            ),
-          );
-        }
-
         if (state.status == MedicineDetailsStatus.deleteSuccess) {
           Navigator.of(context).pop();
         }
       },
       builder: (context, state) {
+        final cubit = context.read<MedicineDetailsCubit>();
+
         if (state.status == MedicineDetailsStatus.initial ||
             state.status == MedicineDetailsStatus.loading) {
           return Skeletonizer(
@@ -86,26 +90,28 @@ class _MedicineDetailsView extends StatelessWidget {
 
         if (state.status == MedicineDetailsStatus.error &&
             state.medicine == null) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(l10n.medicinesTitle),
-              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-            ),
-            body: Center(
-              child: Text(state.errorMessage ?? 'Something went wrong'),
-            ),
+          return MedicineDetailsError(
+            message: state.errorMessage,
+            onRetry: () {
+              cubit.getMedicineDetails(
+                householdId: householdId,
+                medicineId: medicineId,
+              );
+            },
           );
         }
 
         final medicine = state.medicine;
 
         if (medicine == null) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(l10n.medicinesTitle),
-              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-            ),
-            body: const Center(child: Text('Medicine not found')),
+          return MedicineDetailsError(
+            message: S.of(context).medicineDetailsNotFound,
+            onRetry: () {
+              cubit.getMedicineDetails(
+                householdId: householdId,
+                medicineId: medicineId,
+              );
+            },
           );
         }
 
@@ -124,9 +130,10 @@ class _MedicineDetailsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = S.of(context);
     final cubit = context.read<MedicineDetailsCubit>();
+    final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -137,6 +144,7 @@ class _MedicineDetailsBody extends StatelessWidget {
                 onBack: () => Navigator.of(context).pop(),
               ),
             ),
+
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(
@@ -145,10 +153,17 @@ class _MedicineDetailsBody extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
+                    // Medicine image + name
                     MedicineHeroSection(medicine: medicine),
+
                     const SizedBox(height: 20),
+
+                    // Expiry status
                     MedicineExpiryBanner(medicine: medicine),
+
                     const SizedBox(height: 16),
+
+                    // Quantity + expiry date
                     Row(
                       children: [
                         Expanded(
@@ -171,14 +186,17 @@ class _MedicineDetailsBody extends StatelessWidget {
                         ),
                       ],
                     ),
+
                     const SizedBox(height: 12),
+
+                    // Owner + date added
                     Row(
                       children: [
                         Expanded(
                           child: MedicineInfoCard(
                             icon: Icons.person_outline_rounded,
                             label: l10n.commonOwner,
-                            value: medicine.ownerName ?? ".....",
+                            value: medicine.ownerName ?? '-',
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -193,20 +211,27 @@ class _MedicineDetailsBody extends StatelessWidget {
                         ),
                       ],
                     ),
+
                     const SizedBox(height: 12),
+
+                    // Storage location
                     MedicineInfoCard(
                       icon: Icons.location_on_outlined,
                       label: l10n.commonStorageLocation,
                       value: medicine.storageLocation ?? '-',
                       isFullWidth: true,
                     ),
+
                     const SizedBox(height: 24),
+
+                    // Quick actions
                     QuickActionsSection(
                       medicine: medicine,
                       cubit: cubit,
                       onEditPressed: () =>
                           _showEditDetailsDialog(context, cubit, medicine),
                     ),
+
                     const SizedBox(height: 16),
                   ],
                 ),
@@ -224,10 +249,13 @@ class _MedicineDetailsBody extends StatelessWidget {
     MedicineDetailsEntity medicine,
   ) {
     final nameController = TextEditingController(text: medicine.name);
+
     final typeController = TextEditingController(text: medicine.type);
+
     final categoryController = TextEditingController(
       text: medicine.category ?? '',
     );
+
     final locationController = TextEditingController(
       text: medicine.storageLocation ?? '',
     );
@@ -239,45 +267,62 @@ class _MedicineDetailsBody extends StatelessWidget {
       builder: (dialogContext) {
         return StatefulBuilder(
           builder: (context, setState) {
+            final l10n = S.of(context);
+
             return AlertDialog(
-              title: Text(S.of(context).commonEditDetails),
+              title: Text(l10n.commonEditDetails),
               content: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    // Name
                     TextField(
                       controller: nameController,
                       decoration: InputDecoration(
-                        labelText: S.of(context).medicineDetailsName,
+                        labelText: l10n.medicineDetailsName,
                       ),
                     ),
+
                     const SizedBox(height: 12),
+
+                    // Type
                     TextField(
                       controller: typeController,
                       decoration: InputDecoration(
-                        labelText: S.of(context).medicineDetailsType,
+                        labelText: l10n.medicineDetailsType,
                       ),
                     ),
+
                     const SizedBox(height: 12),
+
+                    // Category
                     TextField(
                       controller: categoryController,
                       decoration: InputDecoration(
-                        labelText: S.of(context).medicineDetailsCategory,
+                        labelText: l10n.medicineDetailsCategory,
                       ),
                     ),
+
                     const SizedBox(height: 12),
+
+                    // Storage location
                     TextField(
                       controller: locationController,
                       decoration: InputDecoration(
-                        labelText: S.of(context).commonStorageLocation,
+                        labelText: l10n.commonStorageLocation,
                       ),
                     ),
+
                     const SizedBox(height: 16),
+
+                    // Expiry date
                     ListTile(
                       contentPadding: EdgeInsets.zero,
-                      title: Text(S.of(context).commonExpiryDate),
+                      title: Text(l10n.commonExpiryDate),
                       subtitle: Text(
-                        '${expiryDate.day.toString().padLeft(2, '0')}/${expiryDate.month.toString().padLeft(2, '0')}/${expiryDate.year}',
+                        '${expiryDate.day.toString().padLeft(2, '0')}/'
+                        '${expiryDate.month.toString().padLeft(2, '0')}/'
+                        '${expiryDate.year}',
                       ),
                       trailing: const Icon(Icons.calendar_today_outlined),
                       onTap: () async {
@@ -300,8 +345,10 @@ class _MedicineDetailsBody extends StatelessWidget {
               ),
               actions: [
                 TextButton(
-                  onPressed: () => Navigator.pop(dialogContext),
-                  child: Text(S.of(context).commonCancel),
+                  onPressed: () {
+                    Navigator.pop(dialogContext);
+                  },
+                  child: Text(l10n.commonCancel),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -315,7 +362,7 @@ class _MedicineDetailsBody extends StatelessWidget {
 
                     Navigator.pop(dialogContext);
                   },
-                  child: Text(S.of(context).commonApply),
+                  child: Text(l10n.commonApply),
                 ),
               ],
             );

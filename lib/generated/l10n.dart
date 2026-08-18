@@ -1078,6 +1078,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Something went wrong`
+  String get commonSomethingWentWrong {
+    return Intl.message(
+      'Something went wrong',
+      name: 'commonSomethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try again`
+  String get commonTryAgain {
+    return Intl.message(
+      'Try again',
+      name: 'commonTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable to load medicine details.`
+  String get commonUnableToLoadMedicineDetails {
+    return Intl.message(
+      'Unable to load medicine details.',
+      name: 'commonUnableToLoadMedicineDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medicine not found`
+  String get medicineDetailsNotFound {
+    return Intl.message(
+      'Medicine not found',
+      name: 'medicineDetailsNotFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

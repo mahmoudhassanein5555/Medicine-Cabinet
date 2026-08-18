@@ -106,8 +106,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonReview": MessageLookupByLibrary.simpleMessage("مراجعة"),
     "commonSeeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
     "commonSkip": MessageLookupByLibrary.simpleMessage("تخطي"),
+    "commonSomethingWentWrong": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ ما",
+    ),
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "مكان التخزين",
+    ),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
+    "commonUnableToLoadMedicineDetails": MessageLookupByLibrary.simpleMessage(
+      "تعذر تحميل تفاصيل الدواء.",
     ),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "تحديث الكمية",
@@ -157,6 +164,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
     "medicineDetailsName": MessageLookupByLibrary.simpleMessage("الاسم"),
+    "medicineDetailsNotFound": MessageLookupByLibrary.simpleMessage(
+      "الدواء غير موجود",
+    ),
     "medicineDetailsType": MessageLookupByLibrary.simpleMessage("النوع"),
     "medicineTypeCapsules": MessageLookupByLibrary.simpleMessage("كبسولات"),
     "medicineTypeCream": MessageLookupByLibrary.simpleMessage("كريم"),

@@ -112,8 +112,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonReview": MessageLookupByLibrary.simpleMessage("Review"),
     "commonSeeAll": MessageLookupByLibrary.simpleMessage("See all"),
     "commonSkip": MessageLookupByLibrary.simpleMessage("Skip"),
+    "commonSomethingWentWrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong",
+    ),
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "Storage location",
+    ),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage("Try again"),
+    "commonUnableToLoadMedicineDetails": MessageLookupByLibrary.simpleMessage(
+      "Unable to load medicine details.",
     ),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "Update quantity",
@@ -167,6 +174,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
     "medicineDetailsName": MessageLookupByLibrary.simpleMessage("Name"),
+    "medicineDetailsNotFound": MessageLookupByLibrary.simpleMessage(
+      "Medicine not found",
+    ),
     "medicineDetailsType": MessageLookupByLibrary.simpleMessage("Type"),
     "medicineTypeCapsules": MessageLookupByLibrary.simpleMessage("Capsules"),
     "medicineTypeCream": MessageLookupByLibrary.simpleMessage("Cream"),

@@ -119,5 +119,9 @@
   "medicineCategoryDigestive": "Digestive",
   "medicineCategoryVitamins": "Vitamins",
   "medicineCategoryAntibiotics": "Antibiotics",
-  "medicineCategorySkinCare": "Skin care"
+  "medicineCategorySkinCare": "Skin care",
+ "commonSomethingWentWrong": "Something went wrong",
+"commonTryAgain": "Try again",
+"commonUnableToLoadMedicineDetails": "Unable to load medicine details.",
+"medicineDetailsNotFound": "Medicine not found"
 }

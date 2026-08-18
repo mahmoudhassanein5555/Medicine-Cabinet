@@ -118,5 +118,9 @@
   "medicineCategoryDigestive": "الجهاز الهضمي",
   "medicineCategoryVitamins": "الفيتامينات",
   "medicineCategoryAntibiotics": "المضادات الحيوية",
-  "medicineCategorySkinCare": "العناية بالبشرة"
+  "medicineCategorySkinCare": "العناية بالبشرة",
+  "commonSomethingWentWrong": "حدث خطأ ما",
+"commonTryAgain": "حاول مرة أخرى",
+"commonUnableToLoadMedicineDetails": "تعذر تحميل تفاصيل الدواء.",
+"medicineDetailsNotFound": "الدواء غير موجود"
 }
