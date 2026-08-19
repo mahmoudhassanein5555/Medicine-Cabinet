@@ -186,22 +186,8 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                           onPressed: isLoading
                               ? null
                               : () {
-                            final householdId = _householdIdController
-                                .text
-                                .trim();
-
-                            if (householdId.isEmpty) {
-                              AppToast.showToast(
-                                context: context,
-                                title: 'Error',
-                                description: 'Please enter household ID',
-                                type: ToastificationType.error,
-                              );
-                              return;
-                            }
-
                             context.read<HouseholdCubit>().joinHousehold(
-                              householdId: householdId,
+                              householdId: _householdIdController.text,
                               userId: widget.userId,
                             );
                           },

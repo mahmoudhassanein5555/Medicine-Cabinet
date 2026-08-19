@@ -4,6 +4,7 @@ import 'package:medicine_cabinet/features/household/domain/use_case/get_househol
 import 'package:medicine_cabinet/features/household/domain/use_case/get_member_medicines_use_case.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/view_model/household_state.dart';
 
+import '../../../domain/entity/household_member_entity.dart';
 import '../../../domain/use_case/create_household_use_case.dart';
 import '../../../domain/use_case/get_user_household_use_case.dart';
 import '../../../domain/use_case/join_household_use_case.dart';
@@ -19,13 +20,13 @@ class HouseholdCubit extends Cubit<HouseholdState> {
   final RemoveMemberUseCase _removeMemberUseCase;
 
   HouseholdCubit(
-      this._createHouseholdUseCase,
-      this._joinHouseholdUseCase,
-      this._getUserHouseholdUseCase,
-      this._getHouseholdMembersUseCase,
-      this._getMemberMedicinesUseCase,
-      this._removeMemberUseCase,
-      ) : super(HouseholdInitial());
+    this._createHouseholdUseCase,
+    this._joinHouseholdUseCase,
+    this._getUserHouseholdUseCase,
+    this._getHouseholdMembersUseCase,
+    this._getMemberMedicinesUseCase,
+    this._removeMemberUseCase,
+  ) : super(HouseholdInitial());
 
   Future<void> createHousehold({
     required String name,
@@ -43,8 +44,8 @@ class HouseholdCubit extends Cubit<HouseholdState> {
       userId: userId,
     );
     result.fold(
-          (failure) => emit(CreateHouseholdError(failure.failuremessage)),
-          (household) => emit(CreateHouseholdSuccess(household)),
+      (failure) => emit(CreateHouseholdError(failure.failuremessage)),
+      (household) => emit(CreateHouseholdSuccess(household)),
     );
   }
 
@@ -54,8 +55,8 @@ class HouseholdCubit extends Cubit<HouseholdState> {
     final result = await _getUserHouseholdUseCase.invoke(userId: userId);
 
     result.fold(
-          (failure) => emit(GetHouseholdError(failure.failuremessage)),
-          (household) => emit(GetHouseholdSuccess(household)),
+      (failure) => emit(GetHouseholdError(failure.failuremessage)),
+      (household) => emit(GetHouseholdSuccess(household)),
     );
   }
 
@@ -63,30 +64,45 @@ class HouseholdCubit extends Cubit<HouseholdState> {
     required String householdId,
     required String userId,
   }) async {
+    final id = householdId.trim();
+
+    if (id.isEmpty) {
+      emit(JoinHouseholdError('Please enter household ID'));
+      return;
+    }
+
     emit(JoinHouseholdLoading());
 
     final result = await _joinHouseholdUseCase.invoke(
-      householdId: householdId,
+      householdId: id,
       userId: userId,
     );
 
     result.fold(
-          (failure) => emit(JoinHouseholdError(failure.failuremessage)),
-          (household) => emit(JoinHouseholdSuccess(household)),
+      (failure) => emit(JoinHouseholdError(failure.failuremessage)),
+      (household) => emit(JoinHouseholdSuccess(household)),
     );
   }
 
-  Future<void> getHouseholdMembers({required String householdId}) async {
+  Future<void> getHouseholdMembers({
+    required String householdId,
+    required String currentUserId,
+  }) async {
     emit(GetMembersLoading());
 
     final result = await _getHouseholdMembersUseCase.invoke(
       householdId: householdId,
     );
 
-    result.fold(
-          (failure) => emit(GetMembersError(failure.failuremessage)),
-          (members) => emit(GetMembersSuccess(members)),
-    );
+    result.fold((failure) => emit(GetMembersError(failure.failuremessage)), (
+      members,
+    ) {
+      final isCurrentUserAdmin = members.any(
+        (member) => member.id == currentUserId && member.role == 'admin',
+      );
+
+      emit(GetMembersSuccess(members, isCurrentUserAdmin));
+    });
   }
 
   Future<void> getMemberMedicines({
@@ -101,8 +117,8 @@ class HouseholdCubit extends Cubit<HouseholdState> {
     );
 
     result.fold(
-          (failure) => emit(GetMemberMedicinesError(failure.failuremessage)),
-          (medicines) => emit(GetMemberMedicinesSuccess(medicines)),
+      (failure) => emit(GetMemberMedicinesError(failure.failuremessage)),
+      (medicines) => emit(GetMemberMedicinesSuccess(medicines)),
     );
   }
 
@@ -120,12 +136,16 @@ class HouseholdCubit extends Cubit<HouseholdState> {
     );
 
     result.fold(
-          (failure) => emit(
-        RemoveMemberError(failure.failuremessage),
-      ),
-          (_) => emit(RemoveMemberSuccess(memberId)),
+      (failure) => emit(RemoveMemberError(failure.failuremessage)),
+      (_) => emit(RemoveMemberSuccess(memberId)),
     );
   }
-
+  bool canRemoveMember({
+    required String currentUserId,
+    required String memberId,
+    required bool isCurrentUserAdmin,
+  }) {
+    return isCurrentUserAdmin && currentUserId != memberId;
+  }
 
 }

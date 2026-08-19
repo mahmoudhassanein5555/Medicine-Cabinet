@@ -60,10 +60,13 @@ class GetMembersLoading extends HouseholdState {}
 
 class GetMembersSuccess extends HouseholdState {
   final List<HouseholdMemberEntity> members;
+  final bool isCurrentUserAdmin;
 
-  GetMembersSuccess(this.members);
+  GetMembersSuccess(
+      this.members,
+      this.isCurrentUserAdmin,
+      );
 }
-
 class GetMembersError extends HouseholdState {
   final String message;
 

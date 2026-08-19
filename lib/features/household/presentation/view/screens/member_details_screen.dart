@@ -19,7 +19,7 @@ class MemberDetailsScreen extends StatelessWidget {
     required this.member,
     required this.householdId,
     required this.currentUserId,
-    required this.isCurrentUserAdmin,
+    required this.canRemoveMember,
   });
 
   final HouseholdMemberEntity member;
@@ -27,8 +27,7 @@ class MemberDetailsScreen extends StatelessWidget {
 
   final String currentUserId;
 
-  final bool isCurrentUserAdmin;
-
+  final bool canRemoveMember;
   Future<void> _confirmAndRemove(BuildContext context) async {
     final l10n = S.of(context);
     final memberName = member.name.isNotEmpty ? member.name : '';
@@ -55,8 +54,6 @@ class MemberDetailsScreen extends StatelessWidget {
     final l10n = S.of(context);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-
-    final canRemoveMember = isCurrentUserAdmin && member.id != currentUserId;
 
     return BlocProvider(
       create: (_) =>

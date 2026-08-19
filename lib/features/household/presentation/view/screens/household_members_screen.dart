@@ -39,9 +39,11 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
     final l10n = S.of(context);
 
     return BlocProvider(
-      create: (_) =>
-          getIt<HouseholdCubit>()
-            ..getHouseholdMembers(householdId: widget.householdId),
+      create: (_) => getIt<HouseholdCubit>()
+        ..getHouseholdMembers(
+          householdId: widget.householdId,
+          currentUserId: widget.userId,
+        ),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -96,14 +98,6 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                       }
                       if (state is GetMembersSuccess) {
                         final members = state.members;
-                        final currentUser = members
-                            .cast<HouseholdMemberEntity?>()
-                            .firstWhere(
-                              (member) => member?.id == widget.userId,
-                              orElse: () => null,
-                            );
-
-                        final isCurrentUserAdmin = currentUser?.role == 'admin';
 
                         if (members.isEmpty) {
                           return const Center(
@@ -111,13 +105,21 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                           );
                         }
 
+                        final cubit = context.read<HouseholdCubit>();
+
                         return ListView.separated(
                           itemCount: members.length,
-
                           separatorBuilder: (_, __) =>
                               const SizedBox(height: 14),
                           itemBuilder: (context, index) {
                             final member = members[index];
+
+                            final canRemove = cubit.canRemoveMember(
+                              currentUserId: widget.userId,
+                              memberId: member.id,
+                              isCurrentUserAdmin: state.isCurrentUserAdmin,
+                            );
+
                             return MemberCard(
                               member: member,
                               onTap: () {
@@ -128,7 +130,7 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                                       member: member,
                                       householdId: widget.householdId,
                                       currentUserId: widget.userId,
-                                      isCurrentUserAdmin: isCurrentUserAdmin,
+                                      canRemoveMember: canRemove,
                                     ),
                                   ),
                                 );
