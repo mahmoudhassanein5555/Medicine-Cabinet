@@ -7,7 +7,15 @@ abstract class AlertState {}
 
 class AlertInitial extends AlertState {}
 
-class AlertLoading extends AlertState {}
+class AlertLoading extends AlertState {
+  final MedicineInventoryEntity? inventory;
+  final MedicineInventoryCategory selectedCategory;
+
+  AlertLoading({
+    this.inventory,
+    this.selectedCategory = MedicineInventoryCategory.all,
+  });
+}
 
 class AlertSuccess extends AlertState {
   final MedicineInventoryEntity inventory;

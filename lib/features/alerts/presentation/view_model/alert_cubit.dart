@@ -35,6 +35,11 @@ class AlertCubit extends Cubit<AlertState> {
     if (currentState is! AlertSuccess) {
       return;
     }
+    emit(
+      AlertLoading(
+        selectedCategory: category,
+      ),
+    );
 
     final medicines = switch (category) {
       MedicineInventoryCategory.all => currentState.inventory.all,
