@@ -100,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("Date added"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("Delete"),
     "commonEditDetails": MessageLookupByLibrary.simpleMessage("Edit details"),
+    "commonError": MessageLookupByLibrary.simpleMessage("Error"),
     "commonExpired": MessageLookupByLibrary.simpleMessage("Expired"),
     "commonExpiringShort": MessageLookupByLibrary.simpleMessage("Expiring"),
     "commonExpiringSoon": MessageLookupByLibrary.simpleMessage("Expiring soon"),
@@ -120,6 +121,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "Storage location",
     ),
+    "commonSuccess": MessageLookupByLibrary.simpleMessage("Success"),
+    "commonUnnamed": MessageLookupByLibrary.simpleMessage("Unnamed"),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "Update quantity",
     ),
@@ -170,18 +173,31 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdJoinExistingButton": MessageLookupByLibrary.simpleMessage(
       "I have a household ID, join it",
     ),
+    "householdJoinSuccess": MessageLookupByLibrary.simpleMessage(
+      "Joined household successfully",
+    ),
+    "householdJoining": MessageLookupByLibrary.simpleMessage("Joining..."),
     "householdMedicineCount": m1,
     "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
       "Member Details",
     ),
+    "householdMemberRemovedDescription": MessageLookupByLibrary.simpleMessage(
+      "Member removed from the household",
+    ),
     "householdMemberRemovedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Member removed from the household",
+    ),
+    "householdMemberRemovedTitle": MessageLookupByLibrary.simpleMessage(
+      "Removed",
     ),
     "householdNameHint": MessageLookupByLibrary.simpleMessage(
       "e.g. Home Cabinet",
     ),
     "householdNameLabel": MessageLookupByLibrary.simpleMessage(
       "Household name",
+    ),
+    "householdNoMembersFound": MessageLookupByLibrary.simpleMessage(
+      "No household members found",
     ),
     "householdOr": MessageLookupByLibrary.simpleMessage("OR"),
     "householdPermissionAdd": MessageLookupByLibrary.simpleMessage(
@@ -197,6 +213,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdRemoveMemberDesc": m2,
     "householdRemoveMemberTitle": MessageLookupByLibrary.simpleMessage(
       "Remove member?",
+    ),
+    "householdRemoveMemberTooltip": MessageLookupByLibrary.simpleMessage(
+      "Remove member",
     ),
     "householdSetupDescription": MessageLookupByLibrary.simpleMessage(
       "Join an existing household using its ID, or create a new one.",

@@ -129,5 +129,14 @@
   "householdRemoveMemberTitle": "إزالة العضو؟",
   "householdRemoveMemberDesc": "سيتم إزالة {name} من منزلك. لا يمكن التراجع عن هذا الإجراء.",
   "householdRemoveButton": "إزالة",
-  "householdMemberRemovedSuccessfully": "تمت إزالة العضو من المنزل"
+  "householdMemberRemovedSuccessfully": "تمت إزالة العضو من المنزل",
+  "householdNoMembersFound": "لا يوجد أعضاء في المنزل",
+  "householdMemberRemovedTitle": "تمت الإزالة",
+  "householdMemberRemovedDescription": "تمت إزالة العضو من المنزل",
+  "commonError": "خطأ",
+  "householdRemoveMemberTooltip": "إزالة العضو",
+  "commonUnnamed": "بدون اسم",
+  "householdJoining": "جارٍ الانضمام...",
+  "commonSuccess": "تم بنجاح",
+  "householdJoinSuccess": "تم الانضمام إلى المنزل بنجاح"
 }

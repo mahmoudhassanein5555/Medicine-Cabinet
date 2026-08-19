@@ -64,16 +64,16 @@ class MemberDetailsScreen extends StatelessWidget {
           if (state is RemoveMemberSuccess) {
             AppToast.showToast(
               context: context,
-              title: 'Removed',
-              description: 'Member removed from the household',
+              title: l10n.householdMemberRemovedTitle,
+              description: l10n.householdMemberRemovedDescription,
               type: ToastificationType.success,
             );
-            Navigator.pop(context);
+            Navigator.pop(context, true);
           }
           if (state is RemoveMemberError) {
             AppToast.showToast(
               context: context,
-              title: 'Error',
+              title: l10n.commonError,
               description: state.message,
               type: ToastificationType.error,
             );
@@ -128,7 +128,7 @@ class MemberDetailsScreen extends StatelessWidget {
                                       color: Colors.red,
                                       size: 35,
                                     ),
-                              tooltip: 'Remove member',
+                              tooltip: l10n.householdRemoveMemberTooltip,
                             );
                           },
                         )
@@ -150,9 +150,10 @@ class MemberDetailsScreen extends StatelessWidget {
                           ),
 
                           const SizedBox(height: 10),
-
                           Text(
-                            member.name.isNotEmpty ? member.name : 'Unnamed',
+                            member.name.isNotEmpty
+                                ? member.name
+                                : l10n.commonUnnamed,
                             style: theme.textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.w800,
                               fontSize: 24,

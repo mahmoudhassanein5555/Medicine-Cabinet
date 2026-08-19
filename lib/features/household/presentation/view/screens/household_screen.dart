@@ -73,8 +73,8 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
           if (state is JoinHouseholdSuccess) {
             AppToast.showToast(
               context: context,
-              title: 'Success',
-              description: 'Joined household successfully',
+              title: l10n.commonSuccess,
+              description: l10n.householdJoinSuccess,
               type: ToastificationType.success,
             );
             Navigator.pushReplacement(
@@ -89,16 +89,17 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
           if (state is GetHouseholdError) {
             AppToast.showToast(
               context: context,
-              title: 'Error',
+              title: l10n.commonError,
               description: state.message,
               type: ToastificationType.error,
             );
-          }
+          };
+
 
           if (state is JoinHouseholdError) {
             AppToast.showToast(
               context: context,
-              title: 'Error',
+              title: l10n.commonError,
               description: state.message,
               type: ToastificationType.error,
             );
@@ -181,7 +182,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                         const SizedBox(height: 20),
                         CustomButton(
                           text: state is JoinHouseholdLoading
-                              ? 'Joining...'
+                              ? l10n.householdJoining
                               : l10n.householdJoinButton,
                           onPressed: isLoading
                               ? null

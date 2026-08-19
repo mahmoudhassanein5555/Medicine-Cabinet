@@ -129,5 +129,14 @@
   "householdRemoveMemberTitle": "Remove member?",
   "householdRemoveMemberDesc": "This will remove {name} from your household. This can't be undone.",
   "householdRemoveButton": "Remove",
-  "householdMemberRemovedSuccessfully": "Member removed from the household"
+  "householdMemberRemovedSuccessfully": "Member removed from the household",
+  "householdNoMembersFound": "No household members found",
+  "householdMemberRemovedTitle": "Removed",
+  "householdMemberRemovedDescription": "Member removed from the household",
+  "commonError": "Error",
+  "householdRemoveMemberTooltip": "Remove member",
+  "commonUnnamed": "Unnamed",
+  "householdJoining": "Joining...",
+  "commonSuccess": "Success",
+  "householdJoinSuccess": "Joined household successfully"
 }

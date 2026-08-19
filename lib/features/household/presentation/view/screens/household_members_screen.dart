@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/features/household/domain/entity/household_member_entity.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/screens/widget/member_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../../core/di/service_locator.dart';
 import '../../../../../generated/l10n.dart';
 import '../view_model/household_cubit.dart';
@@ -34,6 +33,34 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
       medicineCount: 0,
     )),
   );
+
+  Future<void> _openMemberDetails(
+    BuildContext context,
+    HouseholdMemberEntity member,
+    bool canRemove,
+  ) async {
+    final cubit = context.read<HouseholdCubit>();
+
+    final result = await Navigator.push<bool>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => MemberDetailsScreen(
+          member: member,
+          householdId: widget.householdId,
+          currentUserId: widget.userId,
+          canRemoveMember: canRemove,
+        ),
+      ),
+    );
+
+    if (mounted && result == true) {
+      await cubit.getHouseholdMembers(
+        householdId: widget.householdId,
+        currentUserId: widget.userId,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
@@ -100,8 +127,8 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                         final members = state.members;
 
                         if (members.isEmpty) {
-                          return const Center(
-                            child: Text('No household members found'),
+                          return Center(
+                            child: Text(l10n.householdNoMembersFound),
                           );
                         }
 
@@ -122,17 +149,11 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
 
                             return MemberCard(
                               member: member,
-                              onTap: () {
-                                Navigator.push(
+                              onTap: () async {
+                                await _openMemberDetails(
                                   context,
-                                  MaterialPageRoute(
-                                    builder: (_) => MemberDetailsScreen(
-                                      member: member,
-                                      householdId: widget.householdId,
-                                      currentUserId: widget.userId,
-                                      canRemoveMember: canRemove,
-                                    ),
-                                  ),
+                                  member,
+                                  canRemove,
                                 );
                               },
                             );

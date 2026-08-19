@@ -1188,6 +1188,81 @@ class S {
       args: [],
     );
   }
+
+  /// `No household members found`
+  String get householdNoMembersFound {
+    return Intl.message(
+      'No household members found',
+      name: 'householdNoMembersFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Removed`
+  String get householdMemberRemovedTitle {
+    return Intl.message(
+      'Removed',
+      name: 'householdMemberRemovedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member removed from the household`
+  String get householdMemberRemovedDescription {
+    return Intl.message(
+      'Member removed from the household',
+      name: 'householdMemberRemovedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error`
+  String get commonError {
+    return Intl.message('Error', name: 'commonError', desc: '', args: []);
+  }
+
+  /// `Remove member`
+  String get householdRemoveMemberTooltip {
+    return Intl.message(
+      'Remove member',
+      name: 'householdRemoveMemberTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unnamed`
+  String get commonUnnamed {
+    return Intl.message('Unnamed', name: 'commonUnnamed', desc: '', args: []);
+  }
+
+  /// `Joining...`
+  String get householdJoining {
+    return Intl.message(
+      'Joining...',
+      name: 'householdJoining',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get commonSuccess {
+    return Intl.message('Success', name: 'commonSuccess', desc: '', args: []);
+  }
+
+  /// `Joined household successfully`
+  String get householdJoinSuccess {
+    return Intl.message(
+      'Joined household successfully',
+      name: 'householdJoinSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

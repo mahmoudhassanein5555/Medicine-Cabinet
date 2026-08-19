@@ -94,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("تاريخ الإضافة"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("حذف"),
     "commonEditDetails": MessageLookupByLibrary.simpleMessage("تعديل التفاصيل"),
+    "commonError": MessageLookupByLibrary.simpleMessage("خطأ"),
     "commonExpired": MessageLookupByLibrary.simpleMessage("منتهي الصلاحية"),
     "commonExpiringShort": MessageLookupByLibrary.simpleMessage("ينتهي قريباً"),
     "commonExpiringSoon": MessageLookupByLibrary.simpleMessage("ينتهي قريباً"),
@@ -114,6 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "مكان التخزين",
     ),
+    "commonSuccess": MessageLookupByLibrary.simpleMessage("تم بنجاح"),
+    "commonUnnamed": MessageLookupByLibrary.simpleMessage("بدون اسم"),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "تحديث الكمية",
     ),
@@ -160,17 +163,32 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdJoinExistingButton": MessageLookupByLibrary.simpleMessage(
       "لديّ معرّف بيت وأريد الانضمام",
     ),
+    "householdJoinSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم الانضمام إلى المنزل بنجاح",
+    ),
+    "householdJoining": MessageLookupByLibrary.simpleMessage(
+      "جارٍ الانضمام...",
+    ),
     "householdMedicineCount": m1,
     "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
       "تفاصيل العضو",
     ),
+    "householdMemberRemovedDescription": MessageLookupByLibrary.simpleMessage(
+      "تمت إزالة العضو من المنزل",
+    ),
     "householdMemberRemovedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تمت إزالة العضو من المنزل",
+    ),
+    "householdMemberRemovedTitle": MessageLookupByLibrary.simpleMessage(
+      "تمت الإزالة",
     ),
     "householdNameHint": MessageLookupByLibrary.simpleMessage(
       "مثال: صيدلية البيت",
     ),
     "householdNameLabel": MessageLookupByLibrary.simpleMessage("اسم البيت"),
+    "householdNoMembersFound": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد أعضاء في المنزل",
+    ),
     "householdOr": MessageLookupByLibrary.simpleMessage("أو"),
     "householdPermissionAdd": MessageLookupByLibrary.simpleMessage(
       "إضافة أو حذف الأعضاء",
@@ -185,6 +203,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdRemoveMemberDesc": m2,
     "householdRemoveMemberTitle": MessageLookupByLibrary.simpleMessage(
       "إزالة العضو؟",
+    ),
+    "householdRemoveMemberTooltip": MessageLookupByLibrary.simpleMessage(
+      "إزالة العضو",
     ),
     "householdSetupDescription": MessageLookupByLibrary.simpleMessage(
       "انضم إلى منزل موجود باستخدام المعرّف الخاص به، أو أنشئ منزلاً جديداً.",
