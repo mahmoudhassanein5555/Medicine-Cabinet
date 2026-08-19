@@ -95,6 +95,7 @@ abstract class AppDialogs {
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: colorScheme.onSurface,
                     fontWeight: FontWeight.w500,
+                    fontSize: 20,
                     height: 1.5,
                   ),
                 ),
