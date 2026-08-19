@@ -43,6 +43,8 @@ class AlertCubit extends Cubit<AlertState> {
 
     final medicines = switch (category) {
       MedicineInventoryCategory.all => currentState.inventory.all,
+      MedicineInventoryCategory.valid =>
+      currentState.inventory.valid,
       MedicineInventoryCategory.recentlyAdded =>
         currentState.inventory.recentlyAdded,
       MedicineInventoryCategory.ended => currentState.inventory.ended,

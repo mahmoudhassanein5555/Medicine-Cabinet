@@ -59,9 +59,11 @@ class MedicineInventoryScreen extends StatelessWidget {
 
                     Text(
                       l10n.medicineCabinet,
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-
                     const SizedBox(height: 20),
 
                     InventoryCategories(

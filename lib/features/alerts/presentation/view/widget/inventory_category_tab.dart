@@ -23,6 +23,9 @@ class InventoryCategoryTab extends StatelessWidget {
       case MedicineInventoryCategory.all:
         return l10n.medicineCategoryAll;
 
+      case MedicineInventoryCategory.valid:
+        return l10n.medicineCategoryValid;
+
       case MedicineInventoryCategory.recentlyAdded:
         return l10n.medicineCategoryRecentlyAdded;
 

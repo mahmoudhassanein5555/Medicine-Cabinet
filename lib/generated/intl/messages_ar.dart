@@ -146,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineCategoryRecentlyAdded": MessageLookupByLibrary.simpleMessage(
       "المضافة حديثًا",
     ),
+    "medicineCategoryValid": MessageLookupByLibrary.simpleMessage("صالحة"),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
@@ -162,6 +163,11 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا توجد أدوية مضافة حديثًا",
     ),
     "medicineQuantity": m1,
+    "medicineStatusEnded": MessageLookupByLibrary.simpleMessage("منتهية"),
+    "medicineStatusExpired": MessageLookupByLibrary.simpleMessage(
+      "منتهية الصلاحية",
+    ),
+    "medicineStatusValid": MessageLookupByLibrary.simpleMessage("صالحة"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "الفيصل في البحث عن الأدوية...",
     ),

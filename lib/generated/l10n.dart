@@ -1024,6 +1024,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Valid`
+  String get medicineCategoryValid {
+    return Intl.message(
+      'Valid',
+      name: 'medicineCategoryValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid`
+  String get medicineStatusValid {
+    return Intl.message(
+      'Valid',
+      name: 'medicineStatusValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expired`
+  String get medicineStatusExpired {
+    return Intl.message(
+      'Expired',
+      name: 'medicineStatusExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ended`
+  String get medicineStatusEnded {
+    return Intl.message(
+      'Ended',
+      name: 'medicineStatusEnded',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -7,24 +7,26 @@ import '../entity/medicine_inventory_entity.dart';
 class MedicineInventoryClassifier {
   MedicineInventoryEntity classify(List<MedicineEntity> medicines) {
     final recentlyAdded = <MedicineEntity>[];
-    final available = <MedicineEntity>[];
+    final valid = <MedicineEntity>[];
     final ended = <MedicineEntity>[];
     final expired = <MedicineEntity>[];
 
     for (final medicine in medicines) {
       if (medicine.isRecentlyAdded()) {
         recentlyAdded.add(medicine);
-      } else if (medicine.isExpired) {
+      }
+
+      if (medicine.isExpired) {
         expired.add(medicine);
       } else if (medicine.isEnded) {
         ended.add(medicine);
       } else if (medicine.isAvailable) {
-        available.add(medicine);
+        valid.add(medicine);
       }
     }
     return MedicineInventoryEntity(
       recentlyAdded: recentlyAdded,
-      available: available,
+      valid: valid,
       ended: ended,
       expired: expired,
     );

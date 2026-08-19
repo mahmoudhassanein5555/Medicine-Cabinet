@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../domain/entity/medicine_entity.dart';
@@ -13,6 +12,7 @@ class MedicineCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = S.of(context);
     final theme = Theme.of(context);
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -43,6 +43,7 @@ class MedicineCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+
                 const SizedBox(height: 4),
 
                 Text(
@@ -54,6 +55,10 @@ class MedicineCard extends StatelessWidget {
                   l10n.medicineQuantity(medicine.quantity),
                   style: theme.textTheme.bodyMedium?.copyWith(fontSize: 20),
                 ),
+
+                const SizedBox(height: 8),
+
+                _buildStatusBadge(context),
               ],
             ),
           ),
@@ -92,6 +97,44 @@ class MedicineCard extends StatelessWidget {
       child: Icon(
         Icons.medication_outlined,
         color: Theme.of(context).colorScheme.onSurfaceVariant,
+      ),
+    );
+  }
+
+  Widget _buildStatusBadge(BuildContext context) {
+    final l10n = S.of(context);
+    final theme = Theme.of(context);
+
+    late final String text;
+    late final Color color;
+
+    if (medicine.isExpired) {
+      text = l10n.medicineStatusExpired;
+      color = Colors.red;
+    } else if (medicine.isEnded) {
+      text = l10n.medicineStatusEnded;
+      color = AppColors.warningLight;
+    } else {
+      text = l10n.medicineStatusValid;
+      color = Colors.green;
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 5,
+      ),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.12),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        text,
+        style: theme.textTheme.bodyMedium?.copyWith(
+          fontSize: 14,
+          fontWeight: FontWeight.w700,
+          color: color,
+        ),
       ),
     );
   }

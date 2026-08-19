@@ -152,6 +152,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineCategoryRecentlyAdded": MessageLookupByLibrary.simpleMessage(
       "Recently Added",
     ),
+    "medicineCategoryValid": MessageLookupByLibrary.simpleMessage("Valid"),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
@@ -168,6 +169,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "No recently added medicines",
     ),
     "medicineQuantity": m1,
+    "medicineStatusEnded": MessageLookupByLibrary.simpleMessage("Ended"),
+    "medicineStatusExpired": MessageLookupByLibrary.simpleMessage("Expired"),
+    "medicineStatusValid": MessageLookupByLibrary.simpleMessage("Valid"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Search medicines...",
     ),

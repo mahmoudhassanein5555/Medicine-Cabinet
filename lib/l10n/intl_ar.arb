@@ -111,5 +111,9 @@
   "medicineNoMedicines": "لا توجد أدوية",
   "medicineNoRecentlyAdded": "لا توجد أدوية مضافة حديثًا",
   "medicineNoEnded": "لا توجد أدوية منتهية الكمية",
-  "medicineNoExpired": "لا توجد أدوية منتهية الصلاحية"
+  "medicineNoExpired": "لا توجد أدوية منتهية الصلاحية",
+  "medicineCategoryValid": "صالحة",
+  "medicineStatusValid": "صالحة",
+  "medicineStatusExpired": "منتهية الصلاحية",
+  "medicineStatusEnded": "منتهية"
 }

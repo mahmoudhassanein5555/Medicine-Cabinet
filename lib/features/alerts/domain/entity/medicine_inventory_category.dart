@@ -1,1 +1,1 @@
-enum MedicineInventoryCategory { all, recentlyAdded, ended, expired }
+enum MedicineInventoryCategory { all, valid, recentlyAdded, ended, expired }

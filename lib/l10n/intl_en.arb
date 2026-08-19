@@ -111,5 +111,9 @@
   "medicineNoMedicines": "No medicines found",
   "medicineNoRecentlyAdded": "No recently added medicines",
   "medicineNoEnded": "No ended medicines",
-  "medicineNoExpired": "No expired medicines"
+  "medicineNoExpired": "No expired medicines",
+  "medicineCategoryValid": "Valid",
+  "medicineStatusValid": "Valid",
+  "medicineStatusExpired": "Expired",
+  "medicineStatusEnded": "Ended"
 }
