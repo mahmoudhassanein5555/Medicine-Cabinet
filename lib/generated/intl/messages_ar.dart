@@ -106,6 +106,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonLowStock": MessageLookupByLibrary.simpleMessage("مخزون منخفض"),
     "commonManage": MessageLookupByLibrary.simpleMessage("إدارة"),
     "commonMarkAsUsed": MessageLookupByLibrary.simpleMessage("تحديد كمستخدم"),
+    "commonNoEmail": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد بريد إلكتروني",
+    ),
     "commonOr": MessageLookupByLibrary.simpleMessage("أو"),
     "commonOwner": MessageLookupByLibrary.simpleMessage("المالك"),
     "commonQuantity": MessageLookupByLibrary.simpleMessage("الكمية"),
@@ -116,7 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "مكان التخزين",
     ),
     "commonSuccess": MessageLookupByLibrary.simpleMessage("تم بنجاح"),
-    "commonUnnamed": MessageLookupByLibrary.simpleMessage("بدون اسم"),
+    "commonUnnamed": MessageLookupByLibrary.simpleMessage("غير معروف"),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "تحديث الكمية",
     ),

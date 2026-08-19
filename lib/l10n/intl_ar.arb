@@ -135,8 +135,9 @@
   "householdMemberRemovedDescription": "تمت إزالة العضو من المنزل",
   "commonError": "خطأ",
   "householdRemoveMemberTooltip": "إزالة العضو",
-  "commonUnnamed": "بدون اسم",
   "householdJoining": "جارٍ الانضمام...",
   "commonSuccess": "تم بنجاح",
-  "householdJoinSuccess": "تم الانضمام إلى المنزل بنجاح"
+  "householdJoinSuccess": "تم الانضمام إلى المنزل بنجاح",
+  "commonUnnamed": "غير معروف",
+  "commonNoEmail": "لا يوجد بريد إلكتروني"
 }

@@ -24,6 +24,13 @@ class InfoCard extends StatelessWidget {
         color: colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: colorScheme.outline),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
       child: Row(
         children: [
@@ -46,7 +53,7 @@ class InfoCard extends StatelessWidget {
                   title,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurface,
-                    fontSize: 13,
+                    fontSize: 15,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -55,6 +62,7 @@ class InfoCard extends StatelessWidget {
                   value,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
+                    fontSize: 14,
                     color: colorScheme.onSurface,
                   ),
                 ),

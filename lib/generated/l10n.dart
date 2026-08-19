@@ -1234,11 +1234,6 @@ class S {
     );
   }
 
-  /// `Unnamed`
-  String get commonUnnamed {
-    return Intl.message('Unnamed', name: 'commonUnnamed', desc: '', args: []);
-  }
-
   /// `Joining...`
   String get householdJoining {
     return Intl.message(
@@ -1262,6 +1257,16 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Unnamed`
+  String get commonUnnamed {
+    return Intl.message('Unnamed', name: 'commonUnnamed', desc: '', args: []);
+  }
+
+  /// `No email`
+  String get commonNoEmail {
+    return Intl.message('No email', name: 'commonNoEmail', desc: '', args: []);
   }
 }
 

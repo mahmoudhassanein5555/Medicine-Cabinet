@@ -135,8 +135,9 @@
   "householdMemberRemovedDescription": "Member removed from the household",
   "commonError": "Error",
   "householdRemoveMemberTooltip": "Remove member",
-  "commonUnnamed": "Unnamed",
   "householdJoining": "Joining...",
   "commonSuccess": "Success",
-  "householdJoinSuccess": "Joined household successfully"
+  "householdJoinSuccess": "Joined household successfully",
+  "commonUnnamed": "Unnamed",
+  "commonNoEmail": "No email"
 }

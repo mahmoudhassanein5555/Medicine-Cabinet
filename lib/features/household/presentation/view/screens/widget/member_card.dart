@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../generated/l10n.dart';
 import '../../../../domain/entity/household_member_entity.dart';
 import 'member_avatar.dart';
 
@@ -13,6 +14,7 @@ class MemberCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = S.of(context);
 
     return Material(
       color: Colors.transparent,
@@ -29,7 +31,7 @@ class MemberCard extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.04),
-                blurRadius: 10,
+                blurRadius: 8,
                 offset: const Offset(0, 3),
               ),
             ],
@@ -46,24 +48,23 @@ class MemberCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      member.name.isNotEmpty ? member.name : 'Unnamed',
+                      member.name.isNotEmpty ? member.name :l10n.commonUnnamed,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w700,
+                        fontSize: 18,
                       ),
                     ),
                     const SizedBox(height: 4),
-                    // colorScheme.onSurface بيتغير تلقائي حسب الثيم (فاتح/غامق)
-                    // لأن AppTheme رابطه بـ AppColors.textPrimaryLight/Dark أصلاً
                     Text(
-                      member.email.isNotEmpty ? member.email : 'No email',
+                      member.email.isNotEmpty ? member.email :  l10n.commonNoEmail,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSurface,
                         fontWeight: FontWeight.w600,
-                        fontSize: 13,
+                        fontSize: 14,
                       ),
                     ),
                   ],

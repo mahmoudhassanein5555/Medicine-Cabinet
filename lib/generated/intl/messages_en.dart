@@ -112,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonLowStock": MessageLookupByLibrary.simpleMessage("Low stock"),
     "commonManage": MessageLookupByLibrary.simpleMessage("Manage"),
     "commonMarkAsUsed": MessageLookupByLibrary.simpleMessage("Mark as used"),
+    "commonNoEmail": MessageLookupByLibrary.simpleMessage("No email"),
     "commonOr": MessageLookupByLibrary.simpleMessage("or"),
     "commonOwner": MessageLookupByLibrary.simpleMessage("Owner"),
     "commonQuantity": MessageLookupByLibrary.simpleMessage("Quantity"),
