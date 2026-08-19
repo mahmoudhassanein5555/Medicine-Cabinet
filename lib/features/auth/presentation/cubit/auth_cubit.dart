@@ -30,7 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
   }) : super(AuthInitial());
 
   Future<void> login({required String email, required String password,}) async {
-    emit(AuthLoading());
+    emit(AuthLoading(AuthAction.login));
 
     try {
       final user = await loginUseCase(
@@ -50,7 +50,7 @@ class AuthCubit extends Cubit<AuthState> {
     required String email,
     required String password,
   }) async {
-    emit(AuthLoading());
+    emit(AuthLoading(AuthAction.register));
 
     try {
       final user = await registerUseCase(
@@ -66,8 +66,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
   Future<void> signInWithGoogle() async {
-    emit(AuthLoading());
-
+    emit(AuthLoading(AuthAction.googleSignIn));
     try {
       final user = await googleSignInUseCase();
       await cacheHelper.saveData(
@@ -81,7 +80,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
   Future<void> forgotPassword({required String email,}) async {
-    emit(AuthLoading());
+    emit(AuthLoading(AuthAction.forgotPassword));
     try {
       await forgotPasswordUseCase(
         email: email,
@@ -94,8 +93,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> logout() async {
-    emit(AuthLoading());
-
+    emit(AuthLoading(AuthAction.logout));
     try {
       await logoutUseCase();
       await cacheHelper.removeData(key: AppKeys.userId);

@@ -74,7 +74,13 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       },
       builder: (context, state) {
-        final isLoading = state is AuthLoading;
+        final isLoginLoading =
+            state is AuthLoading &&
+                state.action == AuthAction.login;
+
+        final isGoogleLoading =
+            state is AuthLoading &&
+                state.action == AuthAction.googleSignIn;
 
         return Scaffold(
           backgroundColor: colorScheme.surface,
@@ -181,11 +187,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     // Login Button
                     CustomButton(
-                      text: isLoading
+                      text: isLoginLoading
                           ? l10n.authLoggingIn
                           : l10n.authLoginButton,
                       onPressed: () {
-                        if (isLoading) return;
+                        if (isLoginLoading) return;
 
                         if (formKey.currentState!.validate()) {
                           context.read<AuthCubit>().login(
@@ -231,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     // Google Sign In
                     GoogleButton(
-                      isLoading: isLoading,
+                      isLoading: isGoogleLoading,
                       onPressed: () {
                         context.read<AuthCubit>().signInWithGoogle();
                       },

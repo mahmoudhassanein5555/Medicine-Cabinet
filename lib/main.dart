@@ -31,7 +31,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale = const Locale('ar');
+  Locale _locale = const Locale('en');
 
   void changeLanguage(Locale locale) {
     setState(() {
@@ -47,19 +47,19 @@ class _MyAppState extends State<MyApp> {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
-          // debugShowCheckedModeBanner: false,
-          //
-          // theme: AppTheme.lightTheme,
-          // darkTheme: AppTheme.darkTheme,
-          // themeMode: ThemeMode.system,
-
           debugShowCheckedModeBanner: false,
 
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.system,
 
-          // مؤقتًا للتجربة
-          themeMode: ThemeMode.dark,
+          // debugShowCheckedModeBanner: false,
+          //
+          // theme: AppTheme.lightTheme,
+          // darkTheme: AppTheme.darkTheme,
+          //
+          // // مؤقتًا للتجربة
+          // themeMode: ThemeMode.dark,
           locale: _locale,
 
           localizationsDelegates: const [
