@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.system,
-          locale: const Locale('en'),
+          locale: const Locale('ar'),
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
