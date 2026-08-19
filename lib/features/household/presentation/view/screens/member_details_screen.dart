@@ -163,7 +163,9 @@ class MemberDetailsScreen extends StatelessWidget {
                           const SizedBox(height: 4),
 
                           Text(
-                            member.email,
+                            member.email.isNotEmpty
+                                ? member.email
+                                : l10n.commonNoEmail,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: colorScheme.onSurface,
                               fontSize: 15,
@@ -194,7 +196,7 @@ class MemberDetailsScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 6),
                                 Text(
-                                  '${member.medicineCount} ${l10n.medicines}',
+                                  l10n.medicineCount(member.medicineCount),
                                   style: theme.textTheme.bodyMedium?.copyWith(
                                     color: colorScheme.primary,
                                     fontWeight: FontWeight.w700,

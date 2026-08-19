@@ -27,7 +27,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(name) =>
       "سيتم إزالة ${name} من منزلك. لا يمكن التراجع عن هذا الإجراء.";
 
-  static String m3(sortOption) => "الترتيب: ${sortOption}";
+  static String m3(count) => "${count} أدوية";
+
+  static String m4(date) => "الانتهاء: ${date}";
+
+  static String m5(quantity) => "الكمية: ${quantity}";
+
+  static String m6(sortOption) => "الترتيب: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -156,6 +162,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdCreateButton": MessageLookupByLibrary.simpleMessage(
       "إنشاء منزل جديد",
     ),
+    "householdCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تم إنشاء المنزل بنجاح",
+    ),
+    "householdCreating": MessageLookupByLibrary.simpleMessage(
+      "جارٍ الإنشاء...",
+    ),
     "householdIdHint": MessageLookupByLibrary.simpleMessage(
       "أدخل معرّف المنزل",
     ),
@@ -215,15 +227,18 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "householdSetupTitle": MessageLookupByLibrary.simpleMessage("إعداد المنزل"),
     "householdTitle": MessageLookupByLibrary.simpleMessage("الأسرة"),
+    "medicineCount": m3,
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
+    "medicineExpiry": m4,
+    "medicineQuantity": m5,
     "medicines": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "الفيصل في البحث عن الأدوية...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
-    "medicinesSortLabelCurrent": m3,
+    "medicinesSortLabelCurrent": m6,
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "الاسم (أ–ي)",
     ),

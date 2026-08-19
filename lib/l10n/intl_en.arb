@@ -139,5 +139,10 @@
   "commonSuccess": "Success",
   "householdJoinSuccess": "Joined household successfully",
   "commonUnnamed": "Unnamed",
-  "commonNoEmail": "No email"
+  "commonNoEmail": "No email",
+  "medicineQuantity": "Qty: {quantity}",
+  "medicineExpiry": "Expiry: {date}",
+  "householdCreating": "Creating...",
+  "householdCreatedSuccessfully": "Household created successfully",
+  "medicineCount": "{count} medicines"
 }

@@ -1268,6 +1268,56 @@ class S {
   String get commonNoEmail {
     return Intl.message('No email', name: 'commonNoEmail', desc: '', args: []);
   }
+
+  /// `Qty: {quantity}`
+  String medicineQuantity(Object quantity) {
+    return Intl.message(
+      'Qty: $quantity',
+      name: 'medicineQuantity',
+      desc: '',
+      args: [quantity],
+    );
+  }
+
+  /// `Expiry: {date}`
+  String medicineExpiry(Object date) {
+    return Intl.message(
+      'Expiry: $date',
+      name: 'medicineExpiry',
+      desc: '',
+      args: [date],
+    );
+  }
+
+  /// `Creating...`
+  String get householdCreating {
+    return Intl.message(
+      'Creating...',
+      name: 'householdCreating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Household created successfully`
+  String get householdCreatedSuccessfully {
+    return Intl.message(
+      'Household created successfully',
+      name: 'householdCreatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} medicines`
+  String medicineCount(Object count) {
+    return Intl.message(
+      '$count medicines',
+      name: 'medicineCount',
+      desc: '',
+      args: [count],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

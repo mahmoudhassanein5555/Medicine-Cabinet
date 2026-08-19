@@ -27,7 +27,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(name) =>
       "This will remove ${name} from your household. This can\'t be undone.";
 
-  static String m3(sortOption) => "Sort: ${sortOption}";
+  static String m3(count) => "${count} medicines";
+
+  static String m4(date) => "Expiry: ${date}";
+
+  static String m5(quantity) => "Qty: ${quantity}";
+
+  static String m6(sortOption) => "Sort: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -164,6 +170,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdCreateButton": MessageLookupByLibrary.simpleMessage(
       "Create a new household",
     ),
+    "householdCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Household created successfully",
+    ),
+    "householdCreating": MessageLookupByLibrary.simpleMessage("Creating..."),
     "householdIdHint": MessageLookupByLibrary.simpleMessage(
       "Enter household ID",
     ),
@@ -225,15 +235,18 @@ class MessageLookup extends MessageLookupByLibrary {
       "Set up your household",
     ),
     "householdTitle": MessageLookupByLibrary.simpleMessage("Household"),
+    "medicineCount": m3,
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
+    "medicineExpiry": m4,
+    "medicineQuantity": m5,
     "medicines": MessageLookupByLibrary.simpleMessage("Medicines"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Search medicines...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
-    "medicinesSortLabelCurrent": m3,
+    "medicinesSortLabelCurrent": m6,
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "Name (A–Z)",
     ),

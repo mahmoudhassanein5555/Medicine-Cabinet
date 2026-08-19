@@ -145,6 +145,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                           textAlign: TextAlign.center,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: colorScheme.onSurfaceVariant,
+                            fontSize: 17,
                           ),
                         ),
 
@@ -176,6 +177,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                         CustomTextField(
                           controller: _householdIdController,
                           enabled: !isLoading,
+                          hintText: l10n.householdIdHint,
                           prefixIcon: Icons.home_outlined,
                         ),
 

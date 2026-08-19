@@ -139,5 +139,11 @@
   "commonSuccess": "تم بنجاح",
   "householdJoinSuccess": "تم الانضمام إلى المنزل بنجاح",
   "commonUnnamed": "غير معروف",
-  "commonNoEmail": "لا يوجد بريد إلكتروني"
+  "commonNoEmail": "لا يوجد بريد إلكتروني",
+  "medicineQuantity": "الكمية: {quantity}",
+  "medicineExpiry": "الانتهاء: {date}",
+  "householdCreating": "جارٍ الإنشاء...",
+  "householdCreatedSuccessfully": "تم إنشاء المنزل بنجاح",
+  "medicineCount": "{count} أدوية"
+
 }

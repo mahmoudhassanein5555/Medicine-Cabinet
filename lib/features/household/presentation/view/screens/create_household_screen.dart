@@ -43,8 +43,8 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
           if (state is CreateHouseholdSuccess) {
             AppToast.showToast(
               context: context,
-              title: 'Success',
-              description: 'Household created successfully',
+              title: l10n.commonSuccess,
+              description: l10n.householdCreatedSuccessfully,
               type: ToastificationType.success,
             );
 
@@ -59,7 +59,7 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
           if (state is CreateHouseholdError) {
             AppToast.showToast(
               context: context,
-              title: 'Error',
+              title: l10n.commonError,
               description: state.message,
               type: ToastificationType.error,
             );
@@ -103,7 +103,10 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
                         Text(
                           l10n.createHouseholdDescription,
                           textAlign: TextAlign.center,
-                          style: theme.textTheme.bodyMedium,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
 
                         const SizedBox(height: 16),
@@ -140,7 +143,7 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
 
                         CustomButton(
                           text: isLoading
-                              ? 'Creating...'
+                              ? l10n.householdCreating
                               : l10n.householdCreateButton,
                           onPressed: isLoading
                               ? null
