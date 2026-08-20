@@ -111,5 +111,7 @@
     "commonSomethingWentWrong": "Something went wrong",
   "commonTryAgain": "Please try again later",
   "commonRetry": "Retry",
-  "medicinesNoMedicines": "No medicines found"
+  "medicinesNoMedicines": "No medicines found",
+  "searchStartTyping": "Start typing to search for medicines",
+"searchNoResults": "No medicines found"
 }

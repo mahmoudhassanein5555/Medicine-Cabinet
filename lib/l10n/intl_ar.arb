@@ -111,5 +111,7 @@
     "commonSomethingWentWrong": "حدث خطأ ما",
   "commonTryAgain": "يرجى المحاولة مرة أخرى",
   "commonRetry": "إعادة المحاولة",
-  "medicinesNoMedicines": "لا توجد أدوية"
+  "medicinesNoMedicines": "لا توجد أدوية",
+ "searchStartTyping": "ابدأ بالكتابة للبحث عن الأدوية",
+"searchNoResults": "لم يتم العثور على أدوية"
 }

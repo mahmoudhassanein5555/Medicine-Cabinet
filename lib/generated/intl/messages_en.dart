@@ -248,5 +248,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage(
       "Who is this for?",
     ),
+    "searchNoResults": MessageLookupByLibrary.simpleMessage(
+      "No medicines found",
+    ),
+    "searchStartTyping": MessageLookupByLibrary.simpleMessage(
+      "Start typing to search for medicines",
+    ),
   };
 }

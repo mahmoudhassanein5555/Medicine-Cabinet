@@ -234,5 +234,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanSomeoneElse": MessageLookupByLibrary.simpleMessage("شخص آخر"),
     "scanUnitTablets": MessageLookupByLibrary.simpleMessage("أقراص"),
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage("لمن هذا الدواء؟"),
+    "searchNoResults": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على أدوية",
+    ),
+    "searchStartTyping": MessageLookupByLibrary.simpleMessage(
+      "ابدأ بالكتابة للبحث عن الأدوية",
+    ),
   };
 }

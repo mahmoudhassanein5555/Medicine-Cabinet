@@ -29,6 +29,17 @@ import '../../features/medicine/domain/use_case/get_medicines_use_case.dart'
     as _i286;
 import '../../features/medicine/peresentation/view_model/medicine_cubit.dart'
     as _i776;
+import '../../features/search/data/data_source/search_data_source_imp.dart'
+    as _i821;
+import '../../features/search/data/data_source/search_data_source_interface.dart'
+    as _i384;
+import '../../features/search/data/repo/search_repo_imp.dart' as _i773;
+import '../../features/search/domain/repo/search_repo_interface.dart' as _i44;
+import '../../features/search/domain/use_case/get_search_medicine_status_use_case.dart'
+    as _i819;
+import '../../features/search/domain/use_case/search_use_case.dart' as _i128;
+import '../../features/search/peresentation/view_model/search_cubit.dart'
+    as _i585;
 import '../api/api_manager.dart' as _i1047;
 import '../network/connection_checker.dart' as _i1050;
 import '../utils/shared_prefs_local_data_source.dart' as _i336;
@@ -51,8 +62,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i509.MedicineDataSourceInterface>(
       () => _i796.MedicineDataSourceImpl(gh<_i974.FirebaseFirestore>()),
     );
+    gh.factory<_i384.SearchDataSourceInterface>(
+      () => _i821.SearchDataSourceImpl(gh<_i974.FirebaseFirestore>()),
+    );
     gh.lazySingleton<_i336.CacheHelper>(
       () => _i336.CacheHelper(gh<_i460.SharedPreferences>()),
+    );
+    gh.factory<_i44.SearchRepository>(
+      () => _i773.SearchRepositoryImpl(gh<_i384.SearchDataSourceInterface>()),
     );
     gh.lazySingleton<_i785.MedicineRepoInterface>(
       () => _i626.MedicineRepoImpl(gh<_i509.MedicineDataSourceInterface>()),
@@ -66,11 +83,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i286.GetMedicinesUseCase>(
       () => _i286.GetMedicinesUseCase(gh<_i785.MedicineRepoInterface>()),
     );
+    gh.factory<_i819.GetSearchMedicineStatusUseCase>(
+      () => _i819.GetSearchMedicineStatusUseCase(gh<_i44.SearchRepository>()),
+    );
+    gh.factory<_i128.SearchMedicinesUseCase>(
+      () => _i128.SearchMedicinesUseCase(gh<_i44.SearchRepository>()),
+    );
     gh.factory<_i776.MedicineCubit>(
       () => _i776.MedicineCubit(
         gh<_i286.GetMedicinesUseCase>(),
         gh<_i789.FilterMedicinesUseCase>(),
         gh<_i1036.GetMedicineStatusUseCase>(),
+      ),
+    );
+    gh.factory<_i585.SearchCubit>(
+      () => _i585.SearchCubit(
+        gh<_i128.SearchMedicinesUseCase>(),
+        gh<_i819.GetSearchMedicineStatusUseCase>(),
       ),
     );
     return this;

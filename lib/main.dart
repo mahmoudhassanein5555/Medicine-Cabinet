@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/screens/medicines_screen.dart';
 import 'package:medicine_cabinet/core/theme/app_theme.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
+import 'package:medicine_cabinet/features/search/peresentation/view/screens/search_screen.dart';
 
 import 'core/di/service_locator.dart';
 import 'firebase_options.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.dark,
+          themeMode: ThemeMode.system,
           debugShowCheckedModeBanner: false,
           localizationsDelegates: [
             S.delegate,
@@ -42,10 +43,11 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           locale: Locale('ar'),
-          home: BlocProvider<MedicineCubit>(
-            create: (_) => getIt<MedicineCubit>(),
-            child: MedicinesScreen(householdId: "household123"),
-          ),
+          // home: BlocProvider<MedicineCubit>(
+          //   create: (_) => getIt<MedicineCubit>(),
+          //   child: MedicinesScreen(householdId: "household123"),
+          home: const SearchScreen(householdId: 'household'),
+
           title: 'Medicine Cabinet',
         );
       },

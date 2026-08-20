@@ -1023,6 +1023,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Start typing to search for medicines`
+  String get searchStartTyping {
+    return Intl.message(
+      'Start typing to search for medicines',
+      name: 'searchStartTyping',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No medicines found`
+  String get searchNoResults {
+    return Intl.message(
+      'No medicines found',
+      name: 'searchNoResults',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
