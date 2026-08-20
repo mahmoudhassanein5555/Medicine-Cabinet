@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.system,
+          themeMode: ThemeMode.dark,
           debugShowCheckedModeBanner: false,
           localizationsDelegates: [
             S.delegate,
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           // home: BlocProvider<MedicineCubit>(
           //   create: (_) => getIt<MedicineCubit>(),
           //   child: MedicinesScreen(householdId: "household123"),
-          home: const SearchScreen(householdId: 'household'),
+          home: const SearchScreen(householdId: 'household123'),
 
           title: 'Medicine Cabinet',
         );
