@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medicine_cabinet/core/constants/app_assets.dart';
+import 'package:medicine_cabinet/core/constants/app_colors.dart';
 import 'package:medicine_cabinet/core/constants/app_strings.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
-import 'package:medicine_cabinet/core/utils/medicine_localizations.dart';
 import 'package:medicine_cabinet/core/utils/search_localizations.dart';
 import 'package:medicine_cabinet/core/widgets/custom_text_form_field.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/date_formatter.dart';
@@ -99,16 +99,35 @@ class _SearchView extends StatelessWidget {
   }
 
   Widget _buildSearchField(BuildContext context, S l10n) {
+    final theme = Theme.of(context);
+
     return CustomTextFormField(
       controller: searchController,
       hintText: l10n.medicinesSearchHint,
+      hintTextColor: theme.brightness == Brightness.dark
+          ? AppColors.textMutedDark
+          : AppColors.textMutedLight,
       onChanged: (query) {
         context.read<SearchCubit>().onSearchChanged(
           householdId: householdId,
           query: query ?? '',
         );
       },
-      prefixIcon: const Icon(Icons.search_rounded),
+      prefixIcon: Icon(
+        Icons.search_rounded,
+        color: theme.brightness == Brightness.dark
+            ? AppColors.textMutedDark
+            : AppColors.textMutedLight,
+        size: 20,
+      ),
+      suffixWidget: Icon(
+        Icons.tune_rounded,
+        color: theme.brightness == Brightness.dark
+            ? AppColors.textMutedDark
+            : AppColors.textMutedLight,
+        size: 20,
+      ),
+      borderRadius: BorderRadius.circular(22),
     );
   }
 
@@ -154,13 +173,13 @@ class _SearchView extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          // Text(
-          //   state.message,
-          //   style: theme.textTheme.bodyMedium?.copyWith(
-          //     fontWeight: FontWeight.w600,
-          //   ),
-          //   textAlign: TextAlign.center,
-          // ),
+          Text(
+            state.message,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );
@@ -174,7 +193,26 @@ class _SearchView extends StatelessWidget {
   ) {
     if (state.medicines.isEmpty) {
       return Center(
-        child: Text(l10n.searchNoResults, style: theme.textTheme.bodyMedium),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 180,
+              height: 180,
+              child: Lottie.asset(AppAssets.noSearch, fit: BoxFit.contain),
+            ),
+
+            const SizedBox(height: 20),
+
+            Text(
+              l10n.searchNoResults,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       );
     }
 
