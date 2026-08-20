@@ -186,7 +186,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileLowStockThreshold": MessageLookupByLibrary.simpleMessage(
       "Low-stock threshold",
     ),
-    "profileNavLabel": MessageLookupByLibrary.simpleMessage("Profile"),
+    "profileNavLabel": MessageLookupByLibrary.simpleMessage("profile"),
     "profileNotificationSettings": MessageLookupByLibrary.simpleMessage(
       "Notification settings",
     ),

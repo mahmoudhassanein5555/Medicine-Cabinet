@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,5 +33,12 @@ class CacheHelper {
 @module
 abstract class AppModule {
   @preResolve
-  Future<SharedPreferences> get sharedPrefs => SharedPreferences.getInstance();
+  Future<SharedPreferences> get sharedPrefs =>
+      SharedPreferences.getInstance();
+
+  @lazySingleton
+  FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
+
+  @lazySingleton
+  FirebaseFirestore get firestore => FirebaseFirestore.instance;
 }

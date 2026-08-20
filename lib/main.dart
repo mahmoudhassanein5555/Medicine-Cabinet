@@ -1,17 +1,32 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medicine_cabinet/core/theme/app_theme.dart';
 
+import 'core/di/service_locator.dart';
+import 'core/settings/app_settings_cubit.dart';
+import 'core/settings/app_settings_state.dart';
+import 'core/theme/app_theme.dart';
+import 'features/profile/presentation/screens/profile_screen.dart';
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await configureDependencies();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await configureDependencies();
+
+  runApp(
+    BlocProvider(
+      create: (_) => getIt<AppSettingsCubit>()..loadSettings(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -24,19 +39,35 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.system,
-          localizationsDelegates: [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-          title: 'Medicine Cabinet',
-          home: const Scaffold(body: Center(child: Text('Hello World'))),
+        return BlocBuilder<AppSettingsCubit, AppSettingsState>(
+          builder: (context, state) {
+            // استخراج كود اللغة الحالية من الـ State
+            final String languageCode = state.locale.languageCode;
+
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+
+              // تمرير كود اللغة لدوال الـ Theme
+              theme: AppTheme.getLightTheme(languageCode),
+              darkTheme: AppTheme.getDarkTheme(languageCode),
+              themeMode: state.themeMode,
+
+              locale: state.locale,
+
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+
+              supportedLocales: S.delegate.supportedLocales,
+
+              title: 'Medicine Cabinet',
+
+              home: const ProfileScreen(),
+            );
+          },
         );
       },
     );

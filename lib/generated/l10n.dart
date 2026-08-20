@@ -269,9 +269,9 @@ class S {
     return Intl.message('Alerts', name: 'alertsTitle', desc: '', args: []);
   }
 
-  /// `Profile`
+  /// `profile`
   String get profileNavLabel {
-    return Intl.message('Profile', name: 'profileNavLabel', desc: '', args: []);
+    return Intl.message('profile', name: 'profileNavLabel', desc: '', args: []);
   }
 
   /// `Welcome back`
