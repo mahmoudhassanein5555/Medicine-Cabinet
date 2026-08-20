@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.dark,
+          themeMode: ThemeMode.light,
           debugShowCheckedModeBanner: false,
           localizationsDelegates: [
             S.delegate,
@@ -43,14 +43,15 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           locale: Locale('ar'),
-          // home: BlocProvider<MedicineCubit>(
-          //   create: (_) => getIt<MedicineCubit>(),
-          //   child: MedicinesScreen(householdId: "household123"),
-          home: const SearchScreen(householdId: 'household123'),
-
           title: 'Medicine Cabinet',
+          home: BlocProvider<MedicineCubit>(
+            create: (_) => getIt<MedicineCubit>(),
+            child: MedicinesScreen(householdId: "household123"),
+          ),
         );
       },
     );
   }
 }
+
+// home: const SearchScreen(householdId: 'household123'),

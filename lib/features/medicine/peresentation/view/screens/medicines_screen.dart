@@ -13,6 +13,7 @@ import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/me
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_filter_chip.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_states.dart';
+import 'package:medicine_cabinet/features/search/peresentation/view/screens/search_screen.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -54,36 +55,29 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
-      body: SafeArea(
-        child: BlocBuilder<MedicineCubit, MedicineState>(
-          builder: (context, state) {
-            if (state is MedicineLoadingState) {
-              return _buildMedicinesContent(
-                context,
-                MedicineSuccessState(
-                  medicines: const [],
-                  selectedFilter: MedicineFilter.all,
-                ),
-                isLoading: true,
-              );
-            }
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: BlocBuilder<MedicineCubit, MedicineState>(
+            builder: (context, state) {
+              if (state is MedicineLoadingState) {
+                return _buildMedicinesContent(
+                  context,
+                  MedicineSuccessState(
+                    medicines: const [],
+                    selectedFilter: MedicineFilter.all,
+                  ),
+                  isLoading: true,
+                  householdId: widget.householdId,
+                );
+              }
 
-            if (state is MedicineErrorState) {
-              return MedicineErrorView(
-                message: state.message,
-                onRetry: () {
-                  context.read<MedicineCubit>().getMedicines(
-                    widget.householdId,
-                  );
-                },
-              );
-            }
-
-            if (state is MedicineSuccessState) {
-              if (state.medicines.isEmpty) {
+              if (state is MedicineErrorState) {
                 return MedicineErrorView(
-                  message: S.of(context).medicinesNoMedicines,
+                  message: state.message,
                   onRetry: () {
                     context.read<MedicineCubit>().getMedicines(
                       widget.householdId,
@@ -92,10 +86,27 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                 );
               }
 
-              return _buildMedicinesContent(context, state);
-            }
-            return const SizedBox.shrink();
-          },
+              if (state is MedicineSuccessState) {
+                if (state.medicines.isEmpty) {
+                  return MedicineErrorView(
+                    message: S.of(context).medicinesNoMedicines,
+                    onRetry: () {
+                      context.read<MedicineCubit>().getMedicines(
+                        widget.householdId,
+                      );
+                    },
+                  );
+                }
+
+                return _buildMedicinesContent(
+                  context,
+                  state,
+                  householdId: widget.householdId,
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
         ),
       ),
     );
@@ -105,6 +116,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
     BuildContext context,
     MedicineSuccessState state, {
     bool isLoading = false,
+    required String householdId,
   }) {
     final theme = Theme.of(context);
     final l10n = S.of(context);
@@ -134,30 +146,36 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                 const SizedBox(height: 16),
 
                 /// Search
-                CustomTextFormField(
-                  controller: searchController,
-                  hintText: l10n.medicinesSearchHint,
-                  hintTextColor: theme.brightness == Brightness.dark
-                      ? AppColors.textMutedDark
-                      : AppColors.textMutedLight,
-                  onChanged: (value) {
-                    // Search logic later.
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => SearchScreen(householdId: householdId),
+                      ),
+                    );
                   },
-                  prefixIcon: Icon(
-                    Icons.search_rounded,
-                    color: theme.brightness == Brightness.dark
-                        ? AppColors.textMutedDark
-                        : AppColors.textMutedLight,
-                    size: 20,
+                  child: AbsorbPointer(
+                    child: CustomTextFormField(
+                      controller: searchController,
+                      hintText: l10n.medicinesSearchHint,
+                      hintTextColor: theme.brightness == Brightness.dark
+                          ? AppColors.textMutedDark
+                          : AppColors.textMutedLight,
+                      onChanged: (value) {
+                        // Search logic later.
+                      },
+                      prefixIcon: Icon(
+                        Icons.search_rounded,
+                        color: theme.brightness == Brightness.dark
+                            ? AppColors.textMutedDark
+                            : AppColors.textMutedLight,
+                        size: 20,
+                      ),
+
+                      borderRadius: BorderRadius.circular(22),
+                    ),
                   ),
-                  suffixWidget: Icon(
-                    Icons.tune_rounded,
-                    color: theme.brightness == Brightness.dark
-                        ? AppColors.textMutedDark
-                        : AppColors.textMutedLight,
-                    size: 20,
-                  ),
-                  borderRadius: BorderRadius.circular(22),
                 ),
 
                 const SizedBox(height: 14),

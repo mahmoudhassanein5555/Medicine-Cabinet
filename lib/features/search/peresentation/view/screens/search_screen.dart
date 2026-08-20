@@ -58,40 +58,45 @@ class _SearchView extends StatelessWidget {
     final theme = Theme.of(context);
     final l10n = S.of(context);
 
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Column(
-            children: [
-              _buildSearchField(context, l10n),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: Column(
+              children: [
+                _buildSearchField(context, l10n),
 
-              const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
-              Expanded(
-                child: BlocBuilder<SearchCubit, SearchStates>(
-                  builder: (context, state) {
-                    if (state is SearchInitialState) {
-                      return _buildInitialState(context, theme, l10n);
-                    }
+                Expanded(
+                  child: BlocBuilder<SearchCubit, SearchStates>(
+                    builder: (context, state) {
+                      if (state is SearchInitialState) {
+                        return _buildInitialState(context, theme, l10n);
+                      }
 
-                    if (state is SearchLoadingState) {
-                      return const _SearchLoadingList();
-                    }
+                      if (state is SearchLoadingState) {
+                        return const _SearchLoadingList();
+                      }
 
-                    if (state is SearchErrorState) {
-                      return _buildErrorState(context, state, theme);
-                    }
+                      if (state is SearchErrorState) {
+                        return _buildErrorState(context, state, theme);
+                      }
 
-                    if (state is SearchSuccessState) {
-                      return _buildSuccessState(context, state, theme, l10n);
-                    }
+                      if (state is SearchSuccessState) {
+                        return _buildSuccessState(context, state, theme, l10n);
+                      }
 
-                    return const SizedBox.shrink();
-                  },
+                      return const SizedBox.shrink();
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -120,13 +125,7 @@ class _SearchView extends StatelessWidget {
             : AppColors.textMutedLight,
         size: 20,
       ),
-      suffixWidget: Icon(
-        Icons.tune_rounded,
-        color: theme.brightness == Brightness.dark
-            ? AppColors.textMutedDark
-            : AppColors.textMutedLight,
-        size: 20,
-      ),
+
       borderRadius: BorderRadius.circular(22),
     );
   }
@@ -168,7 +167,7 @@ class _SearchView extends StatelessWidget {
           SizedBox(
             width: 180,
             height: 180,
-            child: Lottie.asset(AppAssets.search, fit: BoxFit.contain),
+            child: Lottie.asset(AppAssets.noSearch, fit: BoxFit.contain),
           ),
 
           const SizedBox(height: 20),

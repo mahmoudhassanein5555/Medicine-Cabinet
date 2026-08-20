@@ -69,19 +69,16 @@ class MedicineRepoImpl implements MedicineRepoInterface {
       return MedicineStatus.expired;
     }
 
-    // Expiring soon
     final daysUntilExpiry = medicine.expiryDate.difference(now).inDays;
 
     if (daysUntilExpiry >= 0 && daysUntilExpiry <= 30) {
       return MedicineStatus.expiring;
     }
 
-    // Low stock
     if (medicine.quantity <= 5) {
       return MedicineStatus.lowStock;
     }
 
-    // Healthy
     return MedicineStatus.healthy;
   }
 }
