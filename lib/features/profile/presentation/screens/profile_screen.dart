@@ -90,13 +90,22 @@ class _ProfileView extends StatelessWidget {
         // =========================
 
         if (state is ProfileError) {
-          return const Scaffold(
-            body: SizedBox.shrink(),
+          return Scaffold(
+            body: Center(
+              child: Text(
+                ErrorLocalization.getMessage(
+                  state.message,
+                  S.of(context),
+                ),
+              ),
+            ),
           );
         }
 
         return const Scaffold(
-          body: SizedBox.shrink(),
+          body: Center(
+            child: ProfileSkeleton(),
+          ),
         );
       },
     );

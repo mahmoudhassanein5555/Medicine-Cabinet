@@ -27,7 +27,11 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  Future<void> updateUserProfile({required String name, String? photoUrl,}) async {
+  Future<void> updateUserProfile({
+    required String name,
+    String? photoUrl,
+  }) async {
+
     final currentState = state;
 
     if (currentState is ProfileLoaded) {
@@ -35,13 +39,18 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
 
     try {
+
       final profile = await updateProfile(
         name: name,
         photoUrl: photoUrl,
       );
 
+
       emit(ProfileLoaded(profile));
+
     } catch (e) {
+      print('ERROR: $e');
+
       emit(ProfileError(e.toString()));
     }
   }
