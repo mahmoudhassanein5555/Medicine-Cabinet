@@ -15,11 +15,17 @@ class ProfileLoaded extends ProfileState {
 class ProfileUpdating extends ProfileState {
   final ProfileEntity profile;
 
- ProfileUpdating(this.profile);
+  ProfileUpdating(this.profile);
+}
+
+class ProfileUpdateSuccess extends ProfileState {
+  final ProfileEntity profile;
+
+  ProfileUpdateSuccess(this.profile);
 }
 
 class ProfileError extends ProfileState {
   final String message;
 
- ProfileError(this.message);
+  ProfileError(this.message);
 }

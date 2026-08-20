@@ -89,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("تاريخ الإضافة"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("حذف"),
     "commonEditDetails": MessageLookupByLibrary.simpleMessage("تعديل التفاصيل"),
+    "commonError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
     "commonExpired": MessageLookupByLibrary.simpleMessage("منتهي الصلاحية"),
     "commonExpiringShort": MessageLookupByLibrary.simpleMessage("ينتهي قريباً"),
     "commonExpiringSoon": MessageLookupByLibrary.simpleMessage("ينتهي قريباً"),
@@ -108,6 +109,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonSkip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "مكان التخزين",
+    ),
+    "commonSuccess": MessageLookupByLibrary.simpleMessage("تم بنجاح"),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage(
+      " يرجى المحاولة مرة أخرى.",
     ),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "تحديث الكمية",
@@ -167,23 +172,71 @@ class MessageLookup extends MessageLookupByLibrary {
       "تفضيلات التطبيق",
     ),
     "profileAppSection": MessageLookupByLibrary.simpleMessage("التطبيق"),
+    "profileCancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+    "profileChangePhoto": MessageLookupByLibrary.simpleMessage("تغيير الصورة"),
     "profileDarkMode": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
+    "profileEmailAddress": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني",
+    ),
     "profileExpiryReminderSettings": MessageLookupByLibrary.simpleMessage(
       "إعدادات تذكير انتهاء الصلاحية",
+    ),
+    "profileFullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
+    "profileImageUploadFailed": MessageLookupByLibrary.simpleMessage(
+      "فشل رفع صورة الملف الشخصي.",
+    ),
+    "profileLoadFailed": MessageLookupByLibrary.simpleMessage(
+      "تعذر تحميل الملف الشخصي. يرجى المحاولة مرة أخرى.",
+    ),
+    "profileLogout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "profileLogoutConfirmation": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     ),
     "profileLowStockThreshold": MessageLookupByLibrary.simpleMessage(
       "حد نقص المخزون",
     ),
+    "profileNameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
     "profileNavLabel": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "profileNetworkError": MessageLookupByLibrary.simpleMessage(
+      "يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
+    ),
+    "profileNotFound": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على الملف الشخصي.",
+    ),
     "profileNotificationSettings": MessageLookupByLibrary.simpleMessage(
       "إعدادات الإشعارات",
     ),
+    "profileOperationFailed": MessageLookupByLibrary.simpleMessage(
+      "تعذر إكمال العملية. يرجى المحاولة مرة أخرى.",
+    ),
+    "profilePermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "ليس لديك صلاحية لتنفيذ هذه العملية.",
+    ),
     "profilePersonalInformation": MessageLookupByLibrary.simpleMessage(
+      "المعلومات الشخصية",
+    ),
+    "profilePersonalInformationTitle": MessageLookupByLibrary.simpleMessage(
       "المعلومات الشخصية",
     ),
     "profilePrivacy": MessageLookupByLibrary.simpleMessage("الخصوصية"),
     "profileRemindersSection": MessageLookupByLibrary.simpleMessage(
       "التذكيرات",
+    ),
+    "profileSaveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
+    "profileSavingChanges": MessageLookupByLibrary.simpleMessage(
+      "جاري حفظ البيانات...",
+    ),
+    "profileServerError": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
+    ),
+    "profileUpdateFailed": MessageLookupByLibrary.simpleMessage(
+      "تعذر تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
+    ),
+    "profileUpdateSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم تحديث الملف الشخصي بنجاح",
+    ),
+    "profileUserNotAuthenticated": MessageLookupByLibrary.simpleMessage(
+      "لم يتم تسجيل الدخول. يرجى تسجيل الدخول مرة أخرى.",
     ),
     "scanAddedTitle": MessageLookupByLibrary.simpleMessage(
       "تمت الإضافة إلى صيدليتك",

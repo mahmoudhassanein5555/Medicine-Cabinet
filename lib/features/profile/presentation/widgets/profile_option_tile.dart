@@ -7,12 +7,14 @@ class ProfileOptionTile extends StatelessWidget {
     required this.onTap,
     this.trailingText,
     this.showDivider = true,
+    this.color,
   });
 
   final String title;
   final VoidCallback onTap;
   final String? trailingText;
   final bool showDivider;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +29,10 @@ class ProfileOptionTile extends StatelessWidget {
           ),
           title: Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
+              color: color,
             ),
           ),
           trailing: trailingText != null

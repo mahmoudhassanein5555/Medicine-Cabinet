@@ -101,5 +101,30 @@
   "profilePrivacy": "Privacy",
   "profileAppPreferences": "App preferences",
   "profileDarkMode": "Dark mode",
-  "profileAbout": "About"
+  "profileAbout": "About",
+  "profilePersonalInformationTitle": "Personal Information",
+  "profileFullName": "Full Name",
+  "profileEmailAddress": "Email Address",
+  "profileChangePhoto": "Change Photo",
+  "profileSaveChanges": "Save Changes",
+  "profileUpdateSuccess": "Profile updated successfully",
+  "profileNameRequired": "Name is required",
+  "profileImageUploadFailed": "Failed to upload profile picture.",
+  "profileSavingChanges": "Saving changes...",
+  "profileLogout": "Logout",
+  "profileLogoutConfirmation": "Are you sure you want to logout?",
+  "profileCancel": "Cancel",
+  "profileUserNotAuthenticated": "You are not authenticated. Please log in again.",
+  "profileLoadFailed": "Unable to load your profile. Please try again.",
+  "profileUpdateFailed": "Unable to update your profile. Please try again.",
+  "profileNotFound": "Profile not found.",
+  "profilePermissionDenied": "You don't have permission to perform this operation.",
+  "profileNetworkError": "Please check your internet connection and try again.",
+  "profileOperationFailed": "The operation could not be completed. Please try again.",
+  "commonSuccess": "Success",
+  "commonError": "Error",
+  "commonTryAgain": "Please try again",
+  "profileServerError": "Something went wrong. Please try again later."
+
+
 }

@@ -18,6 +18,7 @@ class CustomTextFormField extends StatefulWidget {
     this.action,
     this.focusNode,
     this.borderRadius,
+    this.enabled = true,
   });
   final TextEditingController? controller;
   final bool isPassword;
@@ -31,6 +32,7 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputAction? action;
   final FocusNode? focusNode;
   final BorderRadius? borderRadius;
+  final bool enabled;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -53,6 +55,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
+      enabled: widget.enabled,
       validator: widget.validator,
       onChanged: (text) {
         widget.onChanged?.call(text);

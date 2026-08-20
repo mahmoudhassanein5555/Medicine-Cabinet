@@ -269,9 +269,9 @@ class S {
     return Intl.message('Alerts', name: 'alertsTitle', desc: '', args: []);
   }
 
-  /// `profile`
+  /// `Profile`
   String get profileNavLabel {
-    return Intl.message('profile', name: 'profileNavLabel', desc: '', args: []);
+    return Intl.message('Profile', name: 'profileNavLabel', desc: '', args: []);
   }
 
   /// `Welcome back`
@@ -927,6 +927,216 @@ class S {
   /// `About`
   String get profileAbout {
     return Intl.message('About', name: 'profileAbout', desc: '', args: []);
+  }
+
+  /// `Personal Information`
+  String get profilePersonalInformationTitle {
+    return Intl.message(
+      'Personal Information',
+      name: 'profilePersonalInformationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full Name`
+  String get profileFullName {
+    return Intl.message(
+      'Full Name',
+      name: 'profileFullName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email Address`
+  String get profileEmailAddress {
+    return Intl.message(
+      'Email Address',
+      name: 'profileEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Photo`
+  String get profileChangePhoto {
+    return Intl.message(
+      'Change Photo',
+      name: 'profileChangePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Changes`
+  String get profileSaveChanges {
+    return Intl.message(
+      'Save Changes',
+      name: 'profileSaveChanges',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile updated successfully`
+  String get profileUpdateSuccess {
+    return Intl.message(
+      'Profile updated successfully',
+      name: 'profileUpdateSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is required`
+  String get profileNameRequired {
+    return Intl.message(
+      'Name is required',
+      name: 'profileNameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to upload profile picture.`
+  String get profileImageUploadFailed {
+    return Intl.message(
+      'Failed to upload profile picture.',
+      name: 'profileImageUploadFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saving changes...`
+  String get profileSavingChanges {
+    return Intl.message(
+      'Saving changes...',
+      name: 'profileSavingChanges',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get profileLogout {
+    return Intl.message('Logout', name: 'profileLogout', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to logout?`
+  String get profileLogoutConfirmation {
+    return Intl.message(
+      'Are you sure you want to logout?',
+      name: 'profileLogoutConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get profileCancel {
+    return Intl.message('Cancel', name: 'profileCancel', desc: '', args: []);
+  }
+
+  /// `You are not authenticated. Please log in again.`
+  String get profileUserNotAuthenticated {
+    return Intl.message(
+      'You are not authenticated. Please log in again.',
+      name: 'profileUserNotAuthenticated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable to load your profile. Please try again.`
+  String get profileLoadFailed {
+    return Intl.message(
+      'Unable to load your profile. Please try again.',
+      name: 'profileLoadFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable to update your profile. Please try again.`
+  String get profileUpdateFailed {
+    return Intl.message(
+      'Unable to update your profile. Please try again.',
+      name: 'profileUpdateFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile not found.`
+  String get profileNotFound {
+    return Intl.message(
+      'Profile not found.',
+      name: 'profileNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have permission to perform this operation.`
+  String get profilePermissionDenied {
+    return Intl.message(
+      'You don\'t have permission to perform this operation.',
+      name: 'profilePermissionDenied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your internet connection and try again.`
+  String get profileNetworkError {
+    return Intl.message(
+      'Please check your internet connection and try again.',
+      name: 'profileNetworkError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The operation could not be completed. Please try again.`
+  String get profileOperationFailed {
+    return Intl.message(
+      'The operation could not be completed. Please try again.',
+      name: 'profileOperationFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get commonSuccess {
+    return Intl.message('Success', name: 'commonSuccess', desc: '', args: []);
+  }
+
+  /// `Error`
+  String get commonError {
+    return Intl.message('Error', name: 'commonError', desc: '', args: []);
+  }
+
+  /// `Please try again`
+  String get commonTryAgain {
+    return Intl.message(
+      'Please try again',
+      name: 'commonTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong. Please try again later.`
+  String get profileServerError {
+    return Intl.message(
+      'Something went wrong. Please try again later.',
+      name: 'profileServerError',
+      desc: '',
+      args: [],
+    );
   }
 }
 

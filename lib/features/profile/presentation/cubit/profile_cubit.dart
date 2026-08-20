@@ -1,8 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+
 import '../../domain/usecases/get_profile.dart';
 import '../../domain/usecases/update_profile.dart';
 import 'profile_state.dart';
-import 'package:injectable/injectable.dart';
 
 @injectable
 class ProfileCubit extends Cubit<ProfileState> {
@@ -26,10 +27,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  Future<void> updateUserProfile({
-    required String name,
-    String? photoUrl,
-  }) async {
+  Future<void> updateUserProfile({required String name, String? photoUrl,}) async {
     final currentState = state;
 
     if (currentState is ProfileLoaded) {
@@ -47,4 +45,5 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(ProfileError(e.toString()));
     }
   }
+
 }

@@ -95,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("Date added"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("Delete"),
     "commonEditDetails": MessageLookupByLibrary.simpleMessage("Edit details"),
+    "commonError": MessageLookupByLibrary.simpleMessage("Error"),
     "commonExpired": MessageLookupByLibrary.simpleMessage("Expired"),
     "commonExpiringShort": MessageLookupByLibrary.simpleMessage("Expiring"),
     "commonExpiringSoon": MessageLookupByLibrary.simpleMessage("Expiring soon"),
@@ -115,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "Storage location",
     ),
+    "commonSuccess": MessageLookupByLibrary.simpleMessage("Success"),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage("Please try again"),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "Update quantity",
     ),
@@ -179,23 +182,73 @@ class MessageLookup extends MessageLookupByLibrary {
       "App preferences",
     ),
     "profileAppSection": MessageLookupByLibrary.simpleMessage("App"),
+    "profileCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "profileChangePhoto": MessageLookupByLibrary.simpleMessage("Change Photo"),
     "profileDarkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
+    "profileEmailAddress": MessageLookupByLibrary.simpleMessage(
+      "Email Address",
+    ),
     "profileExpiryReminderSettings": MessageLookupByLibrary.simpleMessage(
       "Expiry reminder settings",
+    ),
+    "profileFullName": MessageLookupByLibrary.simpleMessage("Full Name"),
+    "profileImageUploadFailed": MessageLookupByLibrary.simpleMessage(
+      "Failed to upload profile picture.",
+    ),
+    "profileLoadFailed": MessageLookupByLibrary.simpleMessage(
+      "Unable to load your profile. Please try again.",
+    ),
+    "profileLogout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "profileLogoutConfirmation": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to logout?",
     ),
     "profileLowStockThreshold": MessageLookupByLibrary.simpleMessage(
       "Low-stock threshold",
     ),
-    "profileNavLabel": MessageLookupByLibrary.simpleMessage("profile"),
+    "profileNameRequired": MessageLookupByLibrary.simpleMessage(
+      "Name is required",
+    ),
+    "profileNavLabel": MessageLookupByLibrary.simpleMessage("Profile"),
+    "profileNetworkError": MessageLookupByLibrary.simpleMessage(
+      "Please check your internet connection and try again.",
+    ),
+    "profileNotFound": MessageLookupByLibrary.simpleMessage(
+      "Profile not found.",
+    ),
     "profileNotificationSettings": MessageLookupByLibrary.simpleMessage(
       "Notification settings",
+    ),
+    "profileOperationFailed": MessageLookupByLibrary.simpleMessage(
+      "The operation could not be completed. Please try again.",
+    ),
+    "profilePermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have permission to perform this operation.",
     ),
     "profilePersonalInformation": MessageLookupByLibrary.simpleMessage(
       "Personal information",
     ),
+    "profilePersonalInformationTitle": MessageLookupByLibrary.simpleMessage(
+      "Personal Information",
+    ),
     "profilePrivacy": MessageLookupByLibrary.simpleMessage("Privacy"),
     "profileRemindersSection": MessageLookupByLibrary.simpleMessage(
       "Reminders",
+    ),
+    "profileSaveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
+    "profileSavingChanges": MessageLookupByLibrary.simpleMessage(
+      "Saving changes...",
+    ),
+    "profileServerError": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong. Please try again later.",
+    ),
+    "profileUpdateFailed": MessageLookupByLibrary.simpleMessage(
+      "Unable to update your profile. Please try again.",
+    ),
+    "profileUpdateSuccess": MessageLookupByLibrary.simpleMessage(
+      "Profile updated successfully",
+    ),
+    "profileUserNotAuthenticated": MessageLookupByLibrary.simpleMessage(
+      "You are not authenticated. Please log in again.",
     ),
     "scanAddedTitle": MessageLookupByLibrary.simpleMessage(
       "Added to your cabinet",
