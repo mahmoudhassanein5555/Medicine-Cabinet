@@ -1208,6 +1208,36 @@ class S {
       args: [],
     );
   }
+
+  /// `{count} units`
+  String profileUnits(Object count) {
+    return Intl.message(
+      '$count units',
+      name: 'profileUnits',
+      desc: 'Number of medicine units',
+      args: [count],
+    );
+  }
+
+  /// `Show medicine name in notifications`
+  String get profileShowMedicineName {
+    return Intl.message(
+      'Show medicine name in notifications',
+      name: 'profileShowMedicineName',
+      desc: 'Privacy setting for showing medicine names in notifications',
+      args: [],
+    );
+  }
+
+  /// `When enabled, the medicine name will appear in notifications.`
+  String get profileShowMedicineNameDescription {
+    return Intl.message(
+      'When enabled, the medicine name will appear in notifications.',
+      name: 'profileShowMedicineNameDescription',
+      desc: 'Description of the medicine name notification privacy setting',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

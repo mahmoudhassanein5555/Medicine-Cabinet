@@ -135,5 +135,18 @@
   },
   "profileReminder7Days": "قبل 7 أيام",
   "profileReminder14Days": "قبل 14 يومًا",
-  "profileReminder30Days": "قبل 30 يومًا"
+  "profileReminder30Days": "قبل 30 يومًا",
+  "profileLowStockThreshold": "حد المخزون المنخفض",
+  "profileUnits": "{count} وحدات",
+  "@profileUnits": {
+    "description": "عدد وحدات الدواء"
+  },
+  "profileShowMedicineName": "إظهار اسم الدواء في الإشعارات",
+  "@profileShowMedicineName": {
+    "description": "إعداد الخصوصية لعرض أسماء الأدوية في الإشعارات"
+  },
+  "profileShowMedicineNameDescription": "عند التفعيل، سيظهر اسم الدواء في الإشعارات.",
+  "@profileShowMedicineNameDescription": {
+    "description": "وصف إعداد خصوصية الإشعار باسم الدواء"
+   }
 }

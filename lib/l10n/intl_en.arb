@@ -135,7 +135,22 @@
   },
   "profileReminder7Days": "7 days before",
   "profileReminder14Days": "14 days before",
-  "profileReminder30Days": "30 days before"
+  "profileReminder30Days": "30 days before",
+  "profileLowStockThreshold": "Low-stock threshold",
+  "profileUnits": "{count} units",
+  "@profileUnits": {
+    "description": "Number of medicine units"
+  },
+  "profileShowMedicineName": "Show medicine name in notifications",
+  "@profileShowMedicineName": {
+    "description": "Privacy setting for showing medicine names in notifications"
+  },
+
+  "profileShowMedicineNameDescription": "When enabled, the medicine name will appear in notifications.",
+  "@profileShowMedicineNameDescription": {
+    "description": "Description of the medicine name notification privacy setting"
+  }
+
 
 
 }

@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(days) => "قبل ${days} يوم";
 
+  static String m3(count) => "${count} وحدات";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "alertsFilterExpiry": MessageLookupByLibrary.simpleMessage("الصلاحية"),
@@ -202,7 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     ),
     "profileLowStockThreshold": MessageLookupByLibrary.simpleMessage(
-      "حد نقص المخزون",
+      "حد المخزون المنخفض",
     ),
     "profileNameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
     "profileNavLabel": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
@@ -245,6 +247,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileServerError": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
     ),
+    "profileShowMedicineName": MessageLookupByLibrary.simpleMessage(
+      "إظهار اسم الدواء في الإشعارات",
+    ),
+    "profileShowMedicineNameDescription": MessageLookupByLibrary.simpleMessage(
+      "عند التفعيل، سيظهر اسم الدواء في الإشعارات.",
+    ),
+    "profileUnits": m3,
     "profileUpdateFailed": MessageLookupByLibrary.simpleMessage(
       "تعذر تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
     ),

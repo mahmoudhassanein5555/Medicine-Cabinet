@@ -10,6 +10,8 @@ import '../../../../core/localization/error_localization.dart';
 import '../../../../core/settings/app_settings_cubit.dart';
 import '../../../../generated/l10n.dart';
 import '../../domain/entities/profile_entity.dart';
+import '../cubit/low_stock_settings_cubit.dart';
+import '../cubit/privacy_settings_cubit.dart';
 import '../cubit/profile_cubit.dart';
 import '../cubit/profile_state.dart';
 import '../cubit/reminder_settings_cubi.dart';
@@ -26,11 +28,13 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => getIt<ProfileCubit>()..loadProfile()),
+        BlocProvider(create: (_) => getIt<ReminderSettingsCubit>()),
         BlocProvider(
-          create: (_) => getIt<ProfileCubit>()..loadProfile(),
+          create: (_) => getIt<LowStockSettingsCubit>(),
         ),
         BlocProvider(
-          create: (_) => getIt<ReminderSettingsCubit>(),
+          create: (_) => getIt<PrivacySettingsCubit>(),
         ),
       ],
       child: const _ProfileView(),
@@ -54,10 +58,7 @@ class _ProfileView extends StatelessWidget {
           AppToast.showToast(
             context: context,
             title: strings.commonTryAgain,
-            description: ErrorLocalization.getMessage(
-              state.message,
-              strings,
-            ),
+            description: ErrorLocalization.getMessage(state.message, strings),
             type: ToastificationType.error,
           );
         }
@@ -66,7 +67,6 @@ class _ProfileView extends StatelessWidget {
       // =====================================================
       // Builder
       // =====================================================
-
       builder: (context, state) {
         // =========================
         // Loading
@@ -81,16 +81,10 @@ class _ProfileView extends StatelessWidget {
         // =========================
 
         if (state is ProfileLoaded) {
-          return _buildContent(
-            context,
-            state.profile,
-          );
+          return _buildContent(context, state.profile);
         }
         if (state is ProfileUpdateSuccess) {
-          return _buildContent(
-            context,
-            state.profile,
-          );
+          return _buildContent(context, state.profile);
         }
 
         // =========================
@@ -101,20 +95,13 @@ class _ProfileView extends StatelessWidget {
           return Scaffold(
             body: Center(
               child: Text(
-                ErrorLocalization.getMessage(
-                  state.message,
-                  S.of(context),
-                ),
+                ErrorLocalization.getMessage(state.message, S.of(context)),
               ),
             ),
           );
         }
 
-        return const Scaffold(
-          body: Center(
-            child: ProfileSkeleton(),
-          ),
-        );
+        return const Scaffold(body: Center(child: ProfileSkeleton()));
       },
     );
   }
@@ -123,18 +110,12 @@ class _ProfileView extends StatelessWidget {
   // Profile Content
   // =====================================================
 
-  Widget _buildContent(
-      BuildContext context,
-      ProfileEntity profile,
-      ) {
+  Widget _buildContent(BuildContext context, ProfileEntity profile) {
     final strings = S.of(context);
 
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -143,17 +124,13 @@ class _ProfileView extends StatelessWidget {
             // =========================
             // Profile Header
             // =========================
-
-            ProfileHeader(
-              profile: profile,
-            ),
+            ProfileHeader(profile: profile),
 
             const SizedBox(height: 24),
 
             // =========================
             // Account
             // =========================
-
             ProfileSection(
               title: strings.profileAccountSection,
               children: [
@@ -165,9 +142,7 @@ class _ProfileView extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (_) => BlocProvider.value(
                           value: context.read<ProfileCubit>(),
-                          child: PersonalInformationScreen(
-                            profile: profile,
-                          ),
+                          child: PersonalInformationScreen(profile: profile),
                         ),
                       ),
                     );
@@ -189,7 +164,6 @@ class _ProfileView extends StatelessWidget {
             // =========================
             // Reminders
             // =========================
-
             ProfileSection(
               title: strings.profileRemindersSection,
               children: [
@@ -197,7 +171,9 @@ class _ProfileView extends StatelessWidget {
                   builder: (context, reminderDays) {
                     return ProfileOptionTile(
                       title: strings.profileExpiryReminderSettings,
-                      trailingText: S.of(context).profileDaysBefore(reminderDays),
+                      trailingText: S
+                          .of(context)
+                          .profileDaysBefore(reminderDays),
                       onTap: () {
                         _showReminderSettingsDialog(context);
                       },
@@ -205,13 +181,17 @@ class _ProfileView extends StatelessWidget {
                   },
                 ),
 
-                ProfileOptionTile(
-                  title: 'Low-stock threshold',
-                  trailingText: '5 units',
-                  onTap: () {
-                    // TODO: Open Low-stock Threshold
+                BlocBuilder<LowStockSettingsCubit, int>(
+                  builder: (context, threshold) {
+                    return ProfileOptionTile(
+                      title: strings.profileLowStockThreshold,
+                      trailingText: strings.profileUnits(threshold),
+                      onTap: () {
+                        _showLowStockDialog(context);
+                      },
+                      showDivider: false,
+                    );
                   },
-                  showDivider: false,
                 ),
               ],
             ),
@@ -221,38 +201,27 @@ class _ProfileView extends StatelessWidget {
             // =========================
             // App
             // =========================
-
             ProfileSection(
               title: strings.profileAppSection,
               children: [
                 ProfileOptionTile(
                   title: strings.profilePrivacy,
                   onTap: () {
-                    // TODO: Open Privacy
+                    _showPrivacyDialog(context);
                   },
                 ),
 
-                ProfileOptionTile(
-                  title: strings.profileAppPreferences,
-                  onTap: () {
-                    // TODO: Open App Preferences
-                  },
-                ),
+
 
                 ProfileSwitchTile(
                   title: strings.profileDarkMode,
-                  value: Theme.of(context).brightness ==
-                      Brightness.dark,
+                  value: Theme.of(context).brightness == Brightness.dark,
                   onChanged: (value) {
-                    context
-                        .read<AppSettingsCubit>()
-                        .toggleTheme(value);
+                    context.read<AppSettingsCubit>().toggleTheme(value);
                   },
                 ),
 
-                _LanguageTile(
-                  showDivider: false,
-                ),
+                _LanguageTile(showDivider: false),
               ],
             ),
 
@@ -261,7 +230,6 @@ class _ProfileView extends StatelessWidget {
             // =========================
             // Information
             // =========================
-
             ProfileSection(
               title: 'Information',
               children: [
@@ -280,7 +248,6 @@ class _ProfileView extends StatelessWidget {
             // =========================
             // Logout
             // =========================
-
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
@@ -307,6 +274,45 @@ class _ProfileView extends StatelessWidget {
   // =====================================================
   // About Dialog
   // =====================================================
+  void _showLowStockDialog(BuildContext context) {
+    final lowStockCubit = context.read<LowStockSettingsCubit>();
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return BlocProvider.value(
+          value: lowStockCubit,
+          child: BlocBuilder<LowStockSettingsCubit, int>(
+            builder: (context, currentThreshold) {
+              final strings = S.of(context);
+
+              return AlertDialog(
+                title: Text(strings.profileLowStockThreshold),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _LowStockOption(
+                      threshold: 3,
+                      currentThreshold: currentThreshold,
+                    ),
+                    _LowStockOption(
+                      threshold: 5,
+                      currentThreshold: currentThreshold,
+                    ),
+                    _LowStockOption(
+                      threshold: 10,
+                      currentThreshold: currentThreshold,
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+  // =====================================================
 
   void _showAboutDialog(BuildContext context) {
     showDialog(
@@ -316,7 +322,7 @@ class _ProfileView extends StatelessWidget {
           title: const Text('Medicine Cabinet'),
           content: const Text(
             'Medicine Cabinet helps you manage your medicines, '
-                'reminders, expiry dates, and stock levels easily.',
+            'reminders, expiry dates, and stock levels easily.',
           ),
           actions: [
             TextButton(
@@ -332,6 +338,43 @@ class _ProfileView extends StatelessWidget {
   }
 
   // =====================================================
+  void _showPrivacyDialog(BuildContext context) {
+    final privacyCubit = context.read<PrivacySettingsCubit>();
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return BlocProvider.value(
+          value: privacyCubit,
+          child: BlocBuilder<PrivacySettingsCubit, bool>(
+            builder: (context, showMedicineName) {
+              final strings = S.of(context);
+
+              return AlertDialog(
+                title: Text(strings.profilePrivacy),
+                content: SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(
+                    strings.profileShowMedicineName,
+                  ),
+                  subtitle: Text(
+                    strings.profileShowMedicineNameDescription,
+                  ),
+                  value: showMedicineName,
+                  onChanged: (value) {
+                    context
+                        .read<PrivacySettingsCubit>()
+                        .changeShowMedicineName(value);
+                  },
+                ),
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+  // =====================================================
   void _showReminderSettingsDialog(BuildContext context) {
     final reminderCubit = context.read<ReminderSettingsCubit>();
 
@@ -345,24 +388,13 @@ class _ProfileView extends StatelessWidget {
               final strings = S.of(context);
 
               return AlertDialog(
-                title: Text(
-                  strings.profileExpiryReminderTitle,
-                ),
+                title: Text(strings.profileExpiryReminderTitle),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    _ReminderOption(
-                      days: 7,
-                      currentDays: currentDays,
-                    ),
-                    _ReminderOption(
-                      days: 14,
-                      currentDays: currentDays,
-                    ),
-                    _ReminderOption(
-                      days: 30,
-                      currentDays: currentDays,
-                    ),
+                    _ReminderOption(days: 7, currentDays: currentDays),
+                    _ReminderOption(days: 14, currentDays: currentDays),
+                    _ReminderOption(days: 30, currentDays: currentDays),
                   ],
                 ),
               );
@@ -398,7 +430,7 @@ class _ReminderOption extends StatelessWidget {
   final int days;
   final int currentDays;
 
-  const _ReminderOption({required this.days,required this.currentDays,});
+  const _ReminderOption({required this.days, required this.currentDays});
 
   @override
   Widget build(BuildContext context) {
@@ -406,13 +438,38 @@ class _ReminderOption extends StatelessWidget {
 
     return ListTile(
       title: Text(S.of(context).profileDaysBefore(days)),
-      trailing: isSelected
-          ? const Icon(Icons.check)
-          : null,
+      trailing: isSelected ? const Icon(Icons.check) : null,
       onTap: () async {
-        await context
-            .read<ReminderSettingsCubit>()
-            .changeReminderDays(days);
+        await context.read<ReminderSettingsCubit>().changeReminderDays(days);
+
+        if (context.mounted) {
+          Navigator.pop(context);
+        }
+      },
+    );
+  }
+}
+
+// =====================================================
+class _LowStockOption extends StatelessWidget {
+  final int threshold;
+  final int currentThreshold;
+
+  const _LowStockOption({
+    required this.threshold,
+    required this.currentThreshold,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = S.of(context);
+    final isSelected = threshold == currentThreshold;
+
+    return ListTile(
+      title: Text(strings.profileUnits(threshold)),
+      trailing: isSelected ? const Icon(Icons.check) : null,
+      onTap: () async {
+        await context.read<LowStockSettingsCubit>().changeThreshold(threshold);
 
         if (context.mounted) {
           Navigator.pop(context);
@@ -426,30 +483,23 @@ class _ReminderOption extends StatelessWidget {
 // =====================================================
 
 class _LanguageTile extends StatelessWidget {
-  const _LanguageTile({
-    this.showDivider = true,
-  });
+  const _LanguageTile({this.showDivider = true});
 
   final bool showDivider;
 
   @override
   Widget build(BuildContext context) {
     final appSettings = context.watch<AppSettingsCubit>();
-    final currentLanguage =
-        appSettings.state.locale.languageCode;
+    final currentLanguage = appSettings.state.locale.languageCode;
 
     final colorScheme = Theme.of(context).colorScheme;
 
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 4,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           child: Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 S.of(context).profileLanguage,
@@ -476,16 +526,13 @@ class _LanguageTile extends StatelessWidget {
                   onChanged: (value) {
                     if (value == null) return;
 
-                    context
-                        .read<AppSettingsCubit>()
-                        .changeLanguage(
+                    context.read<AppSettingsCubit>().changeLanguage(
                       value == 'ar',
                     );
                   },
                   icon: Icon(
                     Icons.keyboard_arrow_down,
-                    color:
-                    colorScheme.onSurfaceVariant,
+                    color: colorScheme.onSurfaceVariant,
                   ),
                 ),
               ),
@@ -505,8 +552,3 @@ class _LanguageTile extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(days) => "${days} days before";
 
+  static String m3(count) => "${count} units";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "alertsFilterExpiry": MessageLookupByLibrary.simpleMessage("Expiry"),
@@ -259,6 +261,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileServerError": MessageLookupByLibrary.simpleMessage(
       "Something went wrong. Please try again later.",
     ),
+    "profileShowMedicineName": MessageLookupByLibrary.simpleMessage(
+      "Show medicine name in notifications",
+    ),
+    "profileShowMedicineNameDescription": MessageLookupByLibrary.simpleMessage(
+      "When enabled, the medicine name will appear in notifications.",
+    ),
+    "profileUnits": m3,
     "profileUpdateFailed": MessageLookupByLibrary.simpleMessage(
       "Unable to update your profile. Please try again.",
     ),

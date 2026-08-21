@@ -25,6 +25,10 @@ import '../../features/profile/domain/repositories/profile_repository.dart'
     as _i894;
 import '../../features/profile/domain/usecases/get_profile.dart' as _i72;
 import '../../features/profile/domain/usecases/update_profile.dart' as _i78;
+import '../../features/profile/presentation/cubit/low_stock_settings_cubit.dart'
+    as _i600;
+import '../../features/profile/presentation/cubit/privacy_settings_cubit.dart'
+    as _i138;
 import '../../features/profile/presentation/cubit/profile_cubit.dart' as _i36;
 import '../../features/profile/presentation/cubit/reminder_settings_cubi.dart'
     as _i48;
@@ -68,6 +72,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i336.CacheHelper>(
       () => _i336.CacheHelper(gh<_i460.SharedPreferences>()),
+    );
+    gh.factory<_i600.LowStockSettingsCubit>(
+      () => _i600.LowStockSettingsCubit(gh<_i336.CacheHelper>()),
+    );
+    gh.factory<_i138.PrivacySettingsCubit>(
+      () => _i138.PrivacySettingsCubit(gh<_i336.CacheHelper>()),
     );
     gh.lazySingleton<_i798.AppSettingsCubit>(
       () => _i798.AppSettingsCubit(cacheHelper: gh<_i336.CacheHelper>()),
