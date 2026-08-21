@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:medicine_cabinet/feature/medicine_details/domain/use_case/get_owner_name_use_case.dart';
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view_model/medicine_details_state.dart';
 
 import '../../domain/use_case/delete_medicine_use_case.dart';
@@ -14,14 +13,12 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
   final UpdateMedicineQuantityUseCase updateMedicineQuantityUseCase;
   final EditMedicineDetailsUseCase editMedicineDetailsUseCase;
   final DeleteMedicineUseCase deleteMedicineUseCase;
-  final GetOwnerNameUseCase getOwnerNameUseCase;
 
   MedicineDetailsCubit(
     this.getMedicineDetailsUseCase,
     this.updateMedicineQuantityUseCase,
     this.editMedicineDetailsUseCase,
     this.deleteMedicineUseCase,
-    this.getOwnerNameUseCase,
   ) : super(const MedicineDetailsState());
 
   Future<void> getMedicineDetails({
@@ -50,28 +47,13 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
           ),
         );
       },
-      (medicine) async {
-        final ownerResult = await getOwnerNameUseCase.invoke(medicine.ownerId);
-
-        ownerResult.fold(
-          (failure) {
-            emit(
-              state.copyWith(
-                status: MedicineDetailsStatus.success,
-                medicine: medicine,
-                errorMessage: null,
-              ),
-            );
-          },
-          (ownerName) {
-            emit(
-              state.copyWith(
-                status: MedicineDetailsStatus.success,
-                medicine: medicine.copyWith(ownerName: ownerName),
-                errorMessage: null,
-              ),
-            );
-          },
+      (medicine) {
+        emit(
+          state.copyWith(
+            status: MedicineDetailsStatus.success,
+            medicine: medicine,
+            errorMessage: null,
+          ),
         );
       },
     );

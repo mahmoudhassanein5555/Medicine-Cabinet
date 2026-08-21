@@ -29,5 +29,4 @@ abstract class MedicineDetailsRepoInterface {
     required String householdId,
     required String medicineId,
   });
-  Future<Either<Failure, String?>> getOwnerName(String ownerId);
 }

@@ -26,5 +26,4 @@ abstract class MedicineDetailsDataSourceInterface {
     required String householdId,
     required String medicineId,
   });
-  Future<String?> getOwnerName(String ownerId);
 }
