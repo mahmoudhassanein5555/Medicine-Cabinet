@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(sortOption) => "Sort: ${sortOption}";
 
+  static String m2(days) => "${days} days before";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "alertsFilterExpiry": MessageLookupByLibrary.simpleMessage("Expiry"),
@@ -182,19 +184,26 @@ class MessageLookup extends MessageLookupByLibrary {
       "App preferences",
     ),
     "profileAppSection": MessageLookupByLibrary.simpleMessage("App"),
+    "profileArabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "profileCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "profileChangePhoto": MessageLookupByLibrary.simpleMessage("Change Photo"),
     "profileDarkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
+    "profileDaysBefore": m2,
     "profileEmailAddress": MessageLookupByLibrary.simpleMessage(
       "Email Address",
     ),
+    "profileEnglish": MessageLookupByLibrary.simpleMessage("English"),
     "profileExpiryReminderSettings": MessageLookupByLibrary.simpleMessage(
       "Expiry reminder settings",
+    ),
+    "profileExpiryReminderTitle": MessageLookupByLibrary.simpleMessage(
+      "Expiry Reminder",
     ),
     "profileFullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "profileImageUploadFailed": MessageLookupByLibrary.simpleMessage(
       "Failed to upload profile picture.",
     ),
+    "profileLanguage": MessageLookupByLibrary.simpleMessage("Language"),
     "profileLoadFailed": MessageLookupByLibrary.simpleMessage(
       "Unable to load your profile. Please try again.",
     ),
@@ -231,6 +240,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "Personal Information",
     ),
     "profilePrivacy": MessageLookupByLibrary.simpleMessage("Privacy"),
+    "profileReminder14Days": MessageLookupByLibrary.simpleMessage(
+      "14 days before",
+    ),
+    "profileReminder30Days": MessageLookupByLibrary.simpleMessage(
+      "30 days before",
+    ),
+    "profileReminder7Days": MessageLookupByLibrary.simpleMessage(
+      "7 days before",
+    ),
     "profileRemindersSection": MessageLookupByLibrary.simpleMessage(
       "Reminders",
     ),

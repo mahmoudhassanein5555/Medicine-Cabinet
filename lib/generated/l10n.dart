@@ -1138,6 +1138,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Language`
+  String get profileLanguage {
+    return Intl.message(
+      'Language',
+      name: 'profileLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get profileEnglish {
+    return Intl.message('English', name: 'profileEnglish', desc: '', args: []);
+  }
+
+  /// `Arabic`
+  String get profileArabic {
+    return Intl.message('Arabic', name: 'profileArabic', desc: '', args: []);
+  }
+
+  /// `Expiry Reminder`
+  String get profileExpiryReminderTitle {
+    return Intl.message(
+      'Expiry Reminder',
+      name: 'profileExpiryReminderTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{days} days before`
+  String profileDaysBefore(Object days) {
+    return Intl.message(
+      '$days days before',
+      name: 'profileDaysBefore',
+      desc: 'Number of days before medicine expiry',
+      args: [days],
+    );
+  }
+
+  /// `7 days before`
+  String get profileReminder7Days {
+    return Intl.message(
+      '7 days before',
+      name: 'profileReminder7Days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `14 days before`
+  String get profileReminder14Days {
+    return Intl.message(
+      '14 days before',
+      name: 'profileReminder14Days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `30 days before`
+  String get profileReminder30Days {
+    return Intl.message(
+      '30 days before',
+      name: 'profileReminder30Days',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

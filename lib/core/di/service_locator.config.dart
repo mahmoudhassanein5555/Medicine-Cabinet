@@ -26,6 +26,8 @@ import '../../features/profile/domain/repositories/profile_repository.dart'
 import '../../features/profile/domain/usecases/get_profile.dart' as _i72;
 import '../../features/profile/domain/usecases/update_profile.dart' as _i78;
 import '../../features/profile/presentation/cubit/profile_cubit.dart' as _i36;
+import '../../features/profile/presentation/cubit/reminder_settings_cubi.dart'
+    as _i48;
 import '../api/api_manager.dart' as _i1047;
 import '../network/connection_checker.dart' as _i1050;
 import '../settings/app_settings_cubit.dart' as _i798;
@@ -69,6 +71,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i798.AppSettingsCubit>(
       () => _i798.AppSettingsCubit(cacheHelper: gh<_i336.CacheHelper>()),
+    );
+    gh.factory<_i48.ReminderSettingsCubit>(
+      () => _i48.ReminderSettingsCubit(gh<_i336.CacheHelper>()),
     );
     gh.factory<_i36.ProfileCubit>(
       () => _i36.ProfileCubit(

@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(sortOption) => "الترتيب: ${sortOption}";
 
+  static String m2(days) => "قبل ${days} يوم";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "alertsFilterExpiry": MessageLookupByLibrary.simpleMessage("الصلاحية"),
@@ -172,19 +174,26 @@ class MessageLookup extends MessageLookupByLibrary {
       "تفضيلات التطبيق",
     ),
     "profileAppSection": MessageLookupByLibrary.simpleMessage("التطبيق"),
+    "profileArabic": MessageLookupByLibrary.simpleMessage("العربية"),
     "profileCancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "profileChangePhoto": MessageLookupByLibrary.simpleMessage("تغيير الصورة"),
     "profileDarkMode": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
+    "profileDaysBefore": m2,
     "profileEmailAddress": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني",
     ),
+    "profileEnglish": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
     "profileExpiryReminderSettings": MessageLookupByLibrary.simpleMessage(
       "إعدادات تذكير انتهاء الصلاحية",
+    ),
+    "profileExpiryReminderTitle": MessageLookupByLibrary.simpleMessage(
+      "تذكير انتهاء الصلاحية",
     ),
     "profileFullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "profileImageUploadFailed": MessageLookupByLibrary.simpleMessage(
       "فشل رفع صورة الملف الشخصي.",
     ),
+    "profileLanguage": MessageLookupByLibrary.simpleMessage("اللغة"),
     "profileLoadFailed": MessageLookupByLibrary.simpleMessage(
       "تعذر تحميل الملف الشخصي. يرجى المحاولة مرة أخرى.",
     ),
@@ -219,6 +228,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "المعلومات الشخصية",
     ),
     "profilePrivacy": MessageLookupByLibrary.simpleMessage("الخصوصية"),
+    "profileReminder14Days": MessageLookupByLibrary.simpleMessage(
+      "قبل 14 يومًا",
+    ),
+    "profileReminder30Days": MessageLookupByLibrary.simpleMessage(
+      "قبل 30 يومًا",
+    ),
+    "profileReminder7Days": MessageLookupByLibrary.simpleMessage("قبل 7 أيام"),
     "profileRemindersSection": MessageLookupByLibrary.simpleMessage(
       "التذكيرات",
     ),

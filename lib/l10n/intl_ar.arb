@@ -124,5 +124,16 @@
   "commonSuccess": "تم بنجاح",
   "commonError": "حدث خطأ",
   "commonTryAgain": " يرجى المحاولة مرة أخرى.",
-  "profileServerError": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا."
+  "profileServerError": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
+  "profileLanguage": "اللغة",
+  "profileEnglish": "الإنجليزية",
+  "profileArabic": "العربية",
+  "profileExpiryReminderTitle": "تذكير انتهاء الصلاحية",
+  "profileDaysBefore": "قبل {days} يوم",
+  "@profileDaysBefore": {
+    "description": "عدد الأيام قبل انتهاء صلاحية الدواء"
+  },
+  "profileReminder7Days": "قبل 7 أيام",
+  "profileReminder14Days": "قبل 14 يومًا",
+  "profileReminder30Days": "قبل 30 يومًا"
 }

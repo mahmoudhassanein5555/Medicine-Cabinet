@@ -124,7 +124,18 @@
   "commonSuccess": "Success",
   "commonError": "Error",
   "commonTryAgain": "Please try again",
-  "profileServerError": "Something went wrong. Please try again later."
+  "profileServerError": "Something went wrong. Please try again later.",
+  "profileLanguage": "Language",
+  "profileEnglish": "English",
+  "profileArabic": "Arabic",
+  "profileExpiryReminderTitle": "Expiry Reminder",
+  "profileDaysBefore": "{days} days before",
+  "@profileDaysBefore": {
+    "description": "Number of days before medicine expiry"
+  },
+  "profileReminder7Days": "7 days before",
+  "profileReminder14Days": "14 days before",
+  "profileReminder30Days": "30 days before"
 
 
 }

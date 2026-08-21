@@ -12,6 +12,7 @@ import '../../../../generated/l10n.dart';
 import '../../domain/entities/profile_entity.dart';
 import '../cubit/profile_cubit.dart';
 import '../cubit/profile_state.dart';
+import '../cubit/reminder_settings_cubi.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_option_tile.dart';
 import '../widgets/profile_section.dart';
@@ -23,8 +24,15 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<ProfileCubit>()..loadProfile(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => getIt<ProfileCubit>()..loadProfile(),
+        ),
+        BlocProvider(
+          create: (_) => getIt<ReminderSettingsCubit>(),
+        ),
+      ],
       child: const _ProfileView(),
     );
   }
@@ -185,11 +193,15 @@ class _ProfileView extends StatelessWidget {
             ProfileSection(
               title: strings.profileRemindersSection,
               children: [
-                ProfileOptionTile(
-                  title: strings.profileExpiryReminderSettings,
-                  trailingText: '14 days before',
-                  onTap: () {
-                    // TODO: Open Expiry Reminder Settings
+                BlocBuilder<ReminderSettingsCubit, int>(
+                  builder: (context, reminderDays) {
+                    return ProfileOptionTile(
+                      title: strings.profileExpiryReminderSettings,
+                      trailingText: S.of(context).profileDaysBefore(reminderDays),
+                      onTap: () {
+                        _showReminderSettingsDialog(context);
+                      },
+                    );
                   },
                 ),
 
@@ -320,6 +332,47 @@ class _ProfileView extends StatelessWidget {
   }
 
   // =====================================================
+  void _showReminderSettingsDialog(BuildContext context) {
+    final reminderCubit = context.read<ReminderSettingsCubit>();
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return BlocProvider.value(
+          value: reminderCubit,
+          child: BlocBuilder<ReminderSettingsCubit, int>(
+            builder: (context, currentDays) {
+              final strings = S.of(context);
+
+              return AlertDialog(
+                title: Text(
+                  strings.profileExpiryReminderTitle,
+                ),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _ReminderOption(
+                      days: 7,
+                      currentDays: currentDays,
+                    ),
+                    _ReminderOption(
+                      days: 14,
+                      currentDays: currentDays,
+                    ),
+                    _ReminderOption(
+                      days: 30,
+                      currentDays: currentDays,
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+  // =====================================================
   // Logout Dialog
   // =====================================================
 
@@ -340,6 +393,34 @@ class _ProfileView extends StatelessWidget {
   }
 }
 
+// =====================================================
+class _ReminderOption extends StatelessWidget {
+  final int days;
+  final int currentDays;
+
+  const _ReminderOption({required this.days,required this.currentDays,});
+
+  @override
+  Widget build(BuildContext context) {
+    final isSelected = days == currentDays;
+
+    return ListTile(
+      title: Text(S.of(context).profileDaysBefore(days)),
+      trailing: isSelected
+          ? const Icon(Icons.check)
+          : null,
+      onTap: () async {
+        await context
+            .read<ReminderSettingsCubit>()
+            .changeReminderDays(days);
+
+        if (context.mounted) {
+          Navigator.pop(context);
+        }
+      },
+    );
+  }
+}
 // =====================================================
 // Language Dropdown
 // =====================================================
@@ -370,9 +451,9 @@ class _LanguageTile extends StatelessWidget {
             mainAxisAlignment:
             MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Language',
-                style: TextStyle(
+              Text(
+                S.of(context).profileLanguage,
+                style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                 ),
@@ -382,14 +463,14 @@ class _LanguageTile extends StatelessWidget {
                 child: DropdownButton<String>(
                   value: currentLanguage,
                   borderRadius: BorderRadius.circular(12),
-                  items: const [
+                  items: [
                     DropdownMenuItem(
                       value: 'en',
-                      child: Text('English'),
+                      child: Text(S.of(context).profileEnglish),
                     ),
                     DropdownMenuItem(
                       value: 'ar',
-                      child: Text('العربية'),
+                      child: Text(S.of(context).profileArabic),
                     ),
                   ],
                   onChanged: (value) {
@@ -424,6 +505,8 @@ class _LanguageTile extends StatelessWidget {
     );
   }
 }
+
+
 
 
 
