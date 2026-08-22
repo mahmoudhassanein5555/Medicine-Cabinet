@@ -157,7 +157,7 @@ class _ExpiryBadge extends StatelessWidget {
       ),
       child: Text(
         isExpired ? 'Expired' : 'Valid',
-        style: TextStyle(color: color, fontSize: 11, fontWeight: FontWeight.w700),
+        style: TextStyle(color: color, fontSize: 15, fontWeight: FontWeight.w700),
       ),
     );
   }

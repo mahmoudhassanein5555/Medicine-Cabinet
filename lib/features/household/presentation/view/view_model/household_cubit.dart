@@ -3,8 +3,6 @@ import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/features/household/domain/use_case/get_household_member_use_case.dart';
 import 'package:medicine_cabinet/features/household/domain/use_case/get_member_medicines_use_case.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/view_model/household_state.dart';
-
-import '../../../domain/entity/household_member_entity.dart';
 import '../../../domain/use_case/create_household_use_case.dart';
 import '../../../domain/use_case/get_user_household_use_case.dart';
 import '../../../domain/use_case/join_household_use_case.dart';
