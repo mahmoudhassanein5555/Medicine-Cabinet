@@ -854,46 +854,6 @@ class S {
     );
   }
 
-  /// `Reminders`
-  String get profileRemindersSection {
-    return Intl.message(
-      'Reminders',
-      name: 'profileRemindersSection',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Notification settings`
-  String get profileNotificationSettings {
-    return Intl.message(
-      'Notification settings',
-      name: 'profileNotificationSettings',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Expiry reminder settings`
-  String get profileExpiryReminderSettings {
-    return Intl.message(
-      'Expiry reminder settings',
-      name: 'profileExpiryReminderSettings',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Low-stock threshold`
-  String get profileLowStockThreshold {
-    return Intl.message(
-      'Low-stock threshold',
-      name: 'profileLowStockThreshold',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `App`
   String get profileAppSection {
     return Intl.message('App', name: 'profileAppSection', desc: '', args: []);
@@ -902,16 +862,6 @@ class S {
   /// `Privacy`
   String get profilePrivacy {
     return Intl.message('Privacy', name: 'profilePrivacy', desc: '', args: []);
-  }
-
-  /// `App preferences`
-  String get profileAppPreferences {
-    return Intl.message(
-      'App preferences',
-      name: 'profileAppPreferences',
-      desc: '',
-      args: [],
-    );
   }
 
   /// `Dark mode`
@@ -1034,11 +984,6 @@ class S {
     );
   }
 
-  /// `Cancel`
-  String get profileCancel {
-    return Intl.message('Cancel', name: 'profileCancel', desc: '', args: []);
-  }
-
   /// `You are not authenticated. Please log in again.`
   String get profileUserNotAuthenticated {
     return Intl.message(
@@ -1159,84 +1104,39 @@ class S {
     return Intl.message('Arabic', name: 'profileArabic', desc: '', args: []);
   }
 
-  /// `Expiry Reminder`
-  String get profileExpiryReminderTitle {
+  /// `App version`
+  String get profileAppVersion {
     return Intl.message(
-      'Expiry Reminder',
-      name: 'profileExpiryReminderTitle',
+      'App version',
+      name: 'profileAppVersion',
       desc: '',
       args: [],
     );
   }
 
-  /// `{days} days before`
-  String profileDaysBefore(Object days) {
+  /// `Information`
+  String get profileInformationSection {
     return Intl.message(
-      '$days days before',
-      name: 'profileDaysBefore',
-      desc: 'Number of days before medicine expiry',
-      args: [days],
-    );
-  }
-
-  /// `7 days before`
-  String get profileReminder7Days {
-    return Intl.message(
-      '7 days before',
-      name: 'profileReminder7Days',
+      'Information',
+      name: 'profileInformationSection',
       desc: '',
       args: [],
     );
   }
 
-  /// `14 days before`
-  String get profileReminder14Days {
+  /// `Medicine Cabinet helps you manage your medicines, expiry dates, and stock levels easily.`
+  String get profileAboutDescription {
     return Intl.message(
-      '14 days before',
-      name: 'profileReminder14Days',
+      'Medicine Cabinet helps you manage your medicines, expiry dates, and stock levels easily.',
+      name: 'profileAboutDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `30 days before`
-  String get profileReminder30Days {
-    return Intl.message(
-      '30 days before',
-      name: 'profileReminder30Days',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `{count} units`
-  String profileUnits(Object count) {
-    return Intl.message(
-      '$count units',
-      name: 'profileUnits',
-      desc: 'Number of medicine units',
-      args: [count],
-    );
-  }
-
-  /// `Show medicine name in notifications`
-  String get profileShowMedicineName {
-    return Intl.message(
-      'Show medicine name in notifications',
-      name: 'profileShowMedicineName',
-      desc: 'Privacy setting for showing medicine names in notifications',
-      args: [],
-    );
-  }
-
-  /// `When enabled, the medicine name will appear in notifications.`
-  String get profileShowMedicineNameDescription {
-    return Intl.message(
-      'When enabled, the medicine name will appear in notifications.',
-      name: 'profileShowMedicineNameDescription',
-      desc: 'Description of the medicine name notification privacy setting',
-      args: [],
-    );
+  /// `Close`
+  String get commonClose {
+    return Intl.message('Close', name: 'commonClose', desc: '', args: []);
   }
 }
 

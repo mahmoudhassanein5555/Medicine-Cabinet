@@ -24,10 +24,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(sortOption) => "الترتيب: ${sortOption}";
 
-  static String m2(days) => "قبل ${days} يوم";
-
-  static String m3(count) => "${count} وحدات";
-
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "alertsFilterExpiry": MessageLookupByLibrary.simpleMessage("الصلاحية"),
@@ -51,14 +47,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "authLoginButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "authLoginLink": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "authLoginSubtitle": MessageLookupByLibrary.simpleMessage(
-      "سجّل الدخول لعرض صيدلية أسرِتك.",
+      "سجّل الدخول لعرض صيدلية أسرتك.",
     ),
     "authLoginTitle": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك"),
     "authNoAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
     "authPasswordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "authRegisterButton": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "authRegisterSubtitle": MessageLookupByLibrary.simpleMessage(
-      "أنشئ صيدلية أسرِتك في دقيقة واحدة.",
+      "أنشئ صيدلية أسرتك في دقيقة واحدة.",
     ),
     "authRegisterTitle": MessageLookupByLibrary.simpleMessage("إنشاء حسابك"),
     "authSignUpLink": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
@@ -89,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonAll": MessageLookupByLibrary.simpleMessage("الكل"),
     "commonApply": MessageLookupByLibrary.simpleMessage("تطبيق"),
     "commonCancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+    "commonClose": MessageLookupByLibrary.simpleMessage("إغلاق"),
     "commonContinue": MessageLookupByLibrary.simpleMessage("متابعة"),
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("تاريخ الإضافة"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("حذف"),
@@ -116,7 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "commonSuccess": MessageLookupByLibrary.simpleMessage("تم بنجاح"),
     "commonTryAgain": MessageLookupByLibrary.simpleMessage(
-      " يرجى المحاولة مرة أخرى.",
+      "يرجى المحاولة مرة أخرى.",
     ),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "تحديث الكمية",
@@ -146,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
-      "الفيصل في البحث عن الأدوية...",
+      "ابحث عن الأدوية...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
     "medicinesSortLabelCurrent": m1,
@@ -164,36 +161,32 @@ class MessageLookup extends MessageLookupByLibrary {
       "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء، أو قبل أن ينفد لديك.",
     ),
     "onboardingExpiryTitle": MessageLookupByLibrary.simpleMessage(
-      "لا تفوّت تاريخ انتهاء صلاحية",
+      "لا تفوّت تاريخ انتهاء الصلاحية",
     ),
     "onboardingKnowDesc": MessageLookupByLibrary.simpleMessage(
       "احفظ كل دواء تمتلكه عائلتك منظماً في مكان واحد مشترك وواضح.",
     ),
     "onboardingKnowTitle": MessageLookupByLibrary.simpleMessage("اعرف ما لديك"),
     "profileAbout": MessageLookupByLibrary.simpleMessage("عن التطبيق"),
-    "profileAccountSection": MessageLookupByLibrary.simpleMessage("الحساب"),
-    "profileAppPreferences": MessageLookupByLibrary.simpleMessage(
-      "تفضيلات التطبيق",
+    "profileAboutDescription": MessageLookupByLibrary.simpleMessage(
+      "يساعدك تطبيق Medicine Cabinet على إدارة أدويتك وتواريخ انتهاء صلاحيتها ومستويات مخزونها بسهولة.",
     ),
+    "profileAccountSection": MessageLookupByLibrary.simpleMessage("الحساب"),
     "profileAppSection": MessageLookupByLibrary.simpleMessage("التطبيق"),
+    "profileAppVersion": MessageLookupByLibrary.simpleMessage("إصدار التطبيق"),
     "profileArabic": MessageLookupByLibrary.simpleMessage("العربية"),
-    "profileCancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "profileChangePhoto": MessageLookupByLibrary.simpleMessage("تغيير الصورة"),
     "profileDarkMode": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
-    "profileDaysBefore": m2,
     "profileEmailAddress": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني",
     ),
     "profileEnglish": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
-    "profileExpiryReminderSettings": MessageLookupByLibrary.simpleMessage(
-      "إعدادات تذكير انتهاء الصلاحية",
-    ),
-    "profileExpiryReminderTitle": MessageLookupByLibrary.simpleMessage(
-      "تذكير انتهاء الصلاحية",
-    ),
     "profileFullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "profileImageUploadFailed": MessageLookupByLibrary.simpleMessage(
       "فشل رفع صورة الملف الشخصي.",
+    ),
+    "profileInformationSection": MessageLookupByLibrary.simpleMessage(
+      "معلومات",
     ),
     "profileLanguage": MessageLookupByLibrary.simpleMessage("اللغة"),
     "profileLoadFailed": MessageLookupByLibrary.simpleMessage(
@@ -203,9 +196,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileLogoutConfirmation": MessageLookupByLibrary.simpleMessage(
       "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     ),
-    "profileLowStockThreshold": MessageLookupByLibrary.simpleMessage(
-      "حد المخزون المنخفض",
-    ),
     "profileNameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
     "profileNavLabel": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "profileNetworkError": MessageLookupByLibrary.simpleMessage(
@@ -213,9 +203,6 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "profileNotFound": MessageLookupByLibrary.simpleMessage(
       "لم يتم العثور على الملف الشخصي.",
-    ),
-    "profileNotificationSettings": MessageLookupByLibrary.simpleMessage(
-      "إعدادات الإشعارات",
     ),
     "profileOperationFailed": MessageLookupByLibrary.simpleMessage(
       "تعذر إكمال العملية. يرجى المحاولة مرة أخرى.",
@@ -230,16 +217,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "المعلومات الشخصية",
     ),
     "profilePrivacy": MessageLookupByLibrary.simpleMessage("الخصوصية"),
-    "profileReminder14Days": MessageLookupByLibrary.simpleMessage(
-      "قبل 14 يومًا",
-    ),
-    "profileReminder30Days": MessageLookupByLibrary.simpleMessage(
-      "قبل 30 يومًا",
-    ),
-    "profileReminder7Days": MessageLookupByLibrary.simpleMessage("قبل 7 أيام"),
-    "profileRemindersSection": MessageLookupByLibrary.simpleMessage(
-      "التذكيرات",
-    ),
     "profileSaveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
     "profileSavingChanges": MessageLookupByLibrary.simpleMessage(
       "جاري حفظ البيانات...",
@@ -247,13 +224,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileServerError": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
     ),
-    "profileShowMedicineName": MessageLookupByLibrary.simpleMessage(
-      "إظهار اسم الدواء في الإشعارات",
-    ),
-    "profileShowMedicineNameDescription": MessageLookupByLibrary.simpleMessage(
-      "عند التفعيل، سيظهر اسم الدواء في الإشعارات.",
-    ),
-    "profileUnits": m3,
     "profileUpdateFailed": MessageLookupByLibrary.simpleMessage(
       "تعذر تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
     ),

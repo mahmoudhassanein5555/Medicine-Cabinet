@@ -24,10 +24,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(sortOption) => "Sort: ${sortOption}";
 
-  static String m2(days) => "${days} days before";
-
-  static String m3(count) => "${count} units";
-
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "alertsFilterExpiry": MessageLookupByLibrary.simpleMessage("Expiry"),
@@ -95,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonAll": MessageLookupByLibrary.simpleMessage("All"),
     "commonApply": MessageLookupByLibrary.simpleMessage("Apply"),
     "commonCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "commonClose": MessageLookupByLibrary.simpleMessage("Close"),
     "commonContinue": MessageLookupByLibrary.simpleMessage("Continue"),
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("Date added"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -181,29 +178,25 @@ class MessageLookup extends MessageLookupByLibrary {
       "Know what you have",
     ),
     "profileAbout": MessageLookupByLibrary.simpleMessage("About"),
-    "profileAccountSection": MessageLookupByLibrary.simpleMessage("Account"),
-    "profileAppPreferences": MessageLookupByLibrary.simpleMessage(
-      "App preferences",
+    "profileAboutDescription": MessageLookupByLibrary.simpleMessage(
+      "Medicine Cabinet helps you manage your medicines, expiry dates, and stock levels easily.",
     ),
+    "profileAccountSection": MessageLookupByLibrary.simpleMessage("Account"),
     "profileAppSection": MessageLookupByLibrary.simpleMessage("App"),
+    "profileAppVersion": MessageLookupByLibrary.simpleMessage("App version"),
     "profileArabic": MessageLookupByLibrary.simpleMessage("Arabic"),
-    "profileCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "profileChangePhoto": MessageLookupByLibrary.simpleMessage("Change Photo"),
     "profileDarkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
-    "profileDaysBefore": m2,
     "profileEmailAddress": MessageLookupByLibrary.simpleMessage(
       "Email Address",
     ),
     "profileEnglish": MessageLookupByLibrary.simpleMessage("English"),
-    "profileExpiryReminderSettings": MessageLookupByLibrary.simpleMessage(
-      "Expiry reminder settings",
-    ),
-    "profileExpiryReminderTitle": MessageLookupByLibrary.simpleMessage(
-      "Expiry Reminder",
-    ),
     "profileFullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "profileImageUploadFailed": MessageLookupByLibrary.simpleMessage(
       "Failed to upload profile picture.",
+    ),
+    "profileInformationSection": MessageLookupByLibrary.simpleMessage(
+      "Information",
     ),
     "profileLanguage": MessageLookupByLibrary.simpleMessage("Language"),
     "profileLoadFailed": MessageLookupByLibrary.simpleMessage(
@@ -212,9 +205,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileLogout": MessageLookupByLibrary.simpleMessage("Logout"),
     "profileLogoutConfirmation": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to logout?",
-    ),
-    "profileLowStockThreshold": MessageLookupByLibrary.simpleMessage(
-      "Low-stock threshold",
     ),
     "profileNameRequired": MessageLookupByLibrary.simpleMessage(
       "Name is required",
@@ -225,9 +215,6 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "profileNotFound": MessageLookupByLibrary.simpleMessage(
       "Profile not found.",
-    ),
-    "profileNotificationSettings": MessageLookupByLibrary.simpleMessage(
-      "Notification settings",
     ),
     "profileOperationFailed": MessageLookupByLibrary.simpleMessage(
       "The operation could not be completed. Please try again.",
@@ -242,18 +229,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Personal Information",
     ),
     "profilePrivacy": MessageLookupByLibrary.simpleMessage("Privacy"),
-    "profileReminder14Days": MessageLookupByLibrary.simpleMessage(
-      "14 days before",
-    ),
-    "profileReminder30Days": MessageLookupByLibrary.simpleMessage(
-      "30 days before",
-    ),
-    "profileReminder7Days": MessageLookupByLibrary.simpleMessage(
-      "7 days before",
-    ),
-    "profileRemindersSection": MessageLookupByLibrary.simpleMessage(
-      "Reminders",
-    ),
     "profileSaveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
     "profileSavingChanges": MessageLookupByLibrary.simpleMessage(
       "Saving changes...",
@@ -261,13 +236,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileServerError": MessageLookupByLibrary.simpleMessage(
       "Something went wrong. Please try again later.",
     ),
-    "profileShowMedicineName": MessageLookupByLibrary.simpleMessage(
-      "Show medicine name in notifications",
-    ),
-    "profileShowMedicineNameDescription": MessageLookupByLibrary.simpleMessage(
-      "When enabled, the medicine name will appear in notifications.",
-    ),
-    "profileUnits": m3,
     "profileUpdateFailed": MessageLookupByLibrary.simpleMessage(
       "Unable to update your profile. Please try again.",
     ),

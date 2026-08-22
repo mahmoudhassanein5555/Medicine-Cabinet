@@ -168,7 +168,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
           // Update Success
           // =========================
 
-          if (state is ProfileLoaded) {
+          if (state is ProfileUpdateSuccess) {
             AppToast.showToast(
               context: context,
               title: l10n.commonSuccess,

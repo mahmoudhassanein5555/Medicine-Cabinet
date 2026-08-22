@@ -27,12 +27,14 @@
   "commonLow": "منخفض",
   "commonLowStock": "مخزون منخفض",
   "commonExpired": "منتهي الصلاحية",
+
   "homeNavLabel": "الرئيسية",
   "medicinesTitle": "الأدوية",
   "alertsTitle": "التنبيهات",
   "profileNavLabel": "الملف الشخصي",
+
   "authLoginTitle": "مرحباً بعودتك",
-  "authLoginSubtitle": "سجّل الدخول لعرض صيدلية أسرِتك.",
+  "authLoginSubtitle": "سجّل الدخول لعرض صيدلية أسرتك.",
   "authEmailLabel": "البريد الإلكتروني",
   "authPasswordLabel": "كلمة المرور",
   "authForgotPassword": "نسيت كلمة المرور؟",
@@ -40,20 +42,23 @@
   "authContinueWithGoogle": "المتابعة باستخدام Google",
   "authNoAccount": "ليس لديك حساب؟",
   "authSignUpLink": "إنشاء حساب",
+
   "authRegisterTitle": "إنشاء حسابك",
-  "authRegisterSubtitle": "أنشئ صيدلية أسرِتك في دقيقة واحدة.",
+  "authRegisterSubtitle": "أنشئ صيدلية أسرتك في دقيقة واحدة.",
   "authFullNameLabel": "الاسم الكامل",
   "authConfirmPasswordLabel": "تأكيد كلمة المرور",
   "authTermsNotice": "بالمتابعة، فإنك توافق على الشروط وسياسة الخصوصية.",
   "authRegisterButton": "إنشاء حساب",
   "authHaveAccount": "لديك حساب بالفعل؟",
   "authLoginLink": "تسجيل الدخول",
+
   "onboardingKnowTitle": "اعرف ما لديك",
   "onboardingKnowDesc": "احفظ كل دواء تمتلكه عائلتك منظماً في مكان واحد مشترك وواضح.",
-  "onboardingExpiryTitle": "لا تفوّت تاريخ انتهاء صلاحية",
+  "onboardingExpiryTitle": "لا تفوّت تاريخ انتهاء الصلاحية",
   "onboardingExpiryDesc": "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء، أو قبل أن ينفد لديك.",
   "onboardingBuyTitle": "تحقق قبل الشراء",
   "onboardingBuyDesc": "امسح الدواء في المتجر واعرف فوراً ما إذا كان موجوداً لدى عائلتك بالفعل.",
+
   "homeGreetingEvening": "مساء الخير، {name}",
   "homeSubtitle": "إليك صيدليتك",
   "homeScanCta": "مسح دواء",
@@ -63,11 +68,13 @@
   "homeEmptyTitle": "صيدليتك فارغة",
   "homeEmptyDesc": "امسح أول دواء تمتلكه وسوف يظهر هنا، منظماً وجاهزاً للمتابعة.",
   "homeEmptyButton": "امسح أول دواء لديك",
-  "medicinesSearchHint": "الفيصل في البحث عن الأدوية...",
+
+  "medicinesSearchHint": "ابحث عن الأدوية...",
   "medicinesSortBy": "ترتيب حسب",
   "medicinesSortLabelCurrent": "الترتيب: {sortOption}",
   "medicinesSortOptionName": "الاسم (أ–ي)",
   "medicineDetailsDeleteDesc": "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
+
   "scanHint": "قم بمحاذاة ملصق العبوة داخل الإطار",
   "scanCapture": "التقاط",
   "scanEnterManually": "إدخال التفاصيل يدوياً",
@@ -79,6 +86,7 @@
   "scanAddedTitle": "تمت الإضافة إلى صيدليتك",
   "scanScanAnother": "مسح دواء آخر",
   "scanBackToHome": "العودة للرئيسية",
+
   "beforeYouBuyTitle": "قبل أن تشتري",
   "beforeYouBuySearchHint": "امسح أو ابحث عن دواء...",
   "beforeYouBuyAlreadyTitle": "موجود بالفعل في صيدليتك",
@@ -87,21 +95,22 @@
   "beforeYouBuyNotice": "قد يكون لديك هذا الدواء في المنزل بالفعل.",
   "beforeYouBuyNotFoundTitle": "غير موجود في صيدليتك",
   "beforeYouBuyNoMatchTitle": "لم يتم العثور على دواء مطابق",
+
   "alertsFilterExpiry": "الصلاحية",
   "alertsToday": "اليوم",
   "alertsYesterday": "أمس",
+
   "householdAddMember": "إضافة فرد من العائلة",
+
   "profileAccountSection": "الحساب",
   "profilePersonalInformation": "المعلومات الشخصية",
-  "profileRemindersSection": "التذكيرات",
-  "profileNotificationSettings": "إعدادات الإشعارات",
-  "profileExpiryReminderSettings": "إعدادات تذكير انتهاء الصلاحية",
-  "profileLowStockThreshold": "حد نقص المخزون",
+
   "profileAppSection": "التطبيق",
   "profilePrivacy": "الخصوصية",
-  "profileAppPreferences": "تفضيلات التطبيق",
   "profileDarkMode": "الوضع الداكن",
+
   "profileAbout": "عن التطبيق",
+
   "profilePersonalInformationTitle": "المعلومات الشخصية",
   "profileFullName": "الاسم الكامل",
   "profileEmailAddress": "البريد الإلكتروني",
@@ -111,9 +120,10 @@
   "profileNameRequired": "الاسم مطلوب",
   "profileImageUploadFailed": "فشل رفع صورة الملف الشخصي.",
   "profileSavingChanges": "جاري حفظ البيانات...",
+
   "profileLogout": "تسجيل الخروج",
   "profileLogoutConfirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
-  "profileCancel": "إلغاء",
+
   "profileUserNotAuthenticated": "لم يتم تسجيل الدخول. يرجى تسجيل الدخول مرة أخرى.",
   "profileLoadFailed": "تعذر تحميل الملف الشخصي. يرجى المحاولة مرة أخرى.",
   "profileUpdateFailed": "تعذر تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
@@ -121,32 +131,22 @@
   "profilePermissionDenied": "ليس لديك صلاحية لتنفيذ هذه العملية.",
   "profileNetworkError": "يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
   "profileOperationFailed": "تعذر إكمال العملية. يرجى المحاولة مرة أخرى.",
+
   "commonSuccess": "تم بنجاح",
   "commonError": "حدث خطأ",
-  "commonTryAgain": " يرجى المحاولة مرة أخرى.",
+  "commonTryAgain": "يرجى المحاولة مرة أخرى.",
   "profileServerError": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
+
   "profileLanguage": "اللغة",
   "profileEnglish": "الإنجليزية",
   "profileArabic": "العربية",
-  "profileExpiryReminderTitle": "تذكير انتهاء الصلاحية",
-  "profileDaysBefore": "قبل {days} يوم",
-  "@profileDaysBefore": {
-    "description": "عدد الأيام قبل انتهاء صلاحية الدواء"
-  },
-  "profileReminder7Days": "قبل 7 أيام",
-  "profileReminder14Days": "قبل 14 يومًا",
-  "profileReminder30Days": "قبل 30 يومًا",
-  "profileLowStockThreshold": "حد المخزون المنخفض",
+
   "profileUnits": "{count} وحدات",
   "@profileUnits": {
     "description": "عدد وحدات الدواء"
   },
-  "profileShowMedicineName": "إظهار اسم الدواء في الإشعارات",
-  "@profileShowMedicineName": {
-    "description": "إعداد الخصوصية لعرض أسماء الأدوية في الإشعارات"
-  },
-  "profileShowMedicineNameDescription": "عند التفعيل، سيظهر اسم الدواء في الإشعارات.",
-  "@profileShowMedicineNameDescription": {
-    "description": "وصف إعداد خصوصية الإشعار باسم الدواء"
-   }
+  "profileAppVersion": "إصدار التطبيق",
+  "profileInformationSection": "معلومات",
+  "profileAboutDescription": "يساعدك تطبيق Medicine Cabinet على إدارة أدويتك وتواريخ انتهاء صلاحيتها ومستويات مخزونها بسهولة.",
+  "commonClose": "إغلاق"
 }

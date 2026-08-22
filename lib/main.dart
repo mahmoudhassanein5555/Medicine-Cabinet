@@ -41,13 +41,12 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return BlocBuilder<AppSettingsCubit, AppSettingsState>(
           builder: (context, state) {
-            // استخراج كود اللغة الحالية من الـ State
+
             final String languageCode = state.locale.languageCode;
 
             return MaterialApp(
               debugShowCheckedModeBanner: false,
 
-              // تمرير كود اللغة لدوال الـ Theme
               theme: AppTheme.getLightTheme(languageCode),
               darkTheme: AppTheme.getDarkTheme(languageCode),
               themeMode: state.themeMode,

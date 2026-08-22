@@ -1,5 +1,6 @@
 {
   "@@locale": "en",
+
   "commonContinue": "Continue",
   "commonSkip": "Skip",
   "commonGetStarted": "Get started",
@@ -27,10 +28,12 @@
   "commonLow": "Low",
   "commonLowStock": "Low stock",
   "commonExpired": "Expired",
+
   "homeNavLabel": "Home",
   "medicinesTitle": "Medicines",
   "alertsTitle": "Alerts",
   "profileNavLabel": "Profile",
+
   "authLoginTitle": "Welcome back",
   "authLoginSubtitle": "Log in to see your household's medicine cabinet.",
   "authEmailLabel": "Email",
@@ -40,6 +43,7 @@
   "authContinueWithGoogle": "Continue with Google",
   "authNoAccount": "Don't have an account?",
   "authSignUpLink": "Sign up",
+
   "authRegisterTitle": "Create your account",
   "authRegisterSubtitle": "Set up your household's medicine cabinet in a minute.",
   "authFullNameLabel": "Full name",
@@ -48,12 +52,14 @@
   "authRegisterButton": "Create account",
   "authHaveAccount": "Already have an account?",
   "authLoginLink": "Log in",
+
   "onboardingKnowTitle": "Know what you have",
   "onboardingKnowDesc": "Keep every medicine your household owns organized in one clear, shared place.",
   "onboardingExpiryTitle": "Never miss an expiry",
   "onboardingExpiryDesc": "Get a gentle nudge before a medicine expires, or before you run low on it.",
   "onboardingBuyTitle": "Check before you buy",
   "onboardingBuyDesc": "Scan a medicine at the store and instantly see if your household already has it.",
+
   "homeGreetingEvening": "Good evening, {name}",
   "homeSubtitle": "Here's your medicine cabinet",
   "homeScanCta": "Scan Medicine",
@@ -63,11 +69,13 @@
   "homeEmptyTitle": "Your cabinet is empty",
   "homeEmptyDesc": "Scan the first medicine you own and it'll show up here, organized and ready to track.",
   "homeEmptyButton": "Scan your first medicine",
+
   "medicinesSearchHint": "Search medicines...",
   "medicinesSortBy": "Sort by",
   "medicinesSortLabelCurrent": "Sort: {sortOption}",
   "medicinesSortOptionName": "Name (A–Z)",
   "medicineDetailsDeleteDesc": "This removes it from your cabinet inventory. This can't be undone.",
+
   "scanHint": "Align the package label within the frame",
   "scanCapture": "Capture",
   "scanEnterManually": "Enter details manually",
@@ -79,6 +87,7 @@
   "scanAddedTitle": "Added to your cabinet",
   "scanScanAnother": "Scan another",
   "scanBackToHome": "Back to Home",
+
   "beforeYouBuyTitle": "Before You Buy",
   "beforeYouBuySearchHint": "Scan or search a medicine...",
   "beforeYouBuyAlreadyTitle": "Already in your cabinet",
@@ -87,21 +96,22 @@
   "beforeYouBuyNotice": "You may already have this medicine at home.",
   "beforeYouBuyNotFoundTitle": "Not in your cabinet",
   "beforeYouBuyNoMatchTitle": "No matching medicine found",
+
   "alertsFilterExpiry": "Expiry",
   "alertsToday": "Today",
   "alertsYesterday": "Yesterday",
+
   "householdAddMember": "Add family member",
+
   "profileAccountSection": "Account",
   "profilePersonalInformation": "Personal information",
-  "profileRemindersSection": "Reminders",
-  "profileNotificationSettings": "Notification settings",
-  "profileExpiryReminderSettings": "Expiry reminder settings",
-  "profileLowStockThreshold": "Low-stock threshold",
+
   "profileAppSection": "App",
   "profilePrivacy": "Privacy",
-  "profileAppPreferences": "App preferences",
   "profileDarkMode": "Dark mode",
+
   "profileAbout": "About",
+
   "profilePersonalInformationTitle": "Personal Information",
   "profileFullName": "Full Name",
   "profileEmailAddress": "Email Address",
@@ -111,9 +121,10 @@
   "profileNameRequired": "Name is required",
   "profileImageUploadFailed": "Failed to upload profile picture.",
   "profileSavingChanges": "Saving changes...",
+
   "profileLogout": "Logout",
   "profileLogoutConfirmation": "Are you sure you want to logout?",
-  "profileCancel": "Cancel",
+
   "profileUserNotAuthenticated": "You are not authenticated. Please log in again.",
   "profileLoadFailed": "Unable to load your profile. Please try again.",
   "profileUpdateFailed": "Unable to update your profile. Please try again.",
@@ -121,36 +132,17 @@
   "profilePermissionDenied": "You don't have permission to perform this operation.",
   "profileNetworkError": "Please check your internet connection and try again.",
   "profileOperationFailed": "The operation could not be completed. Please try again.",
+
   "commonSuccess": "Success",
   "commonError": "Error",
   "commonTryAgain": "Please try again",
   "profileServerError": "Something went wrong. Please try again later.",
+
   "profileLanguage": "Language",
   "profileEnglish": "English",
   "profileArabic": "Arabic",
-  "profileExpiryReminderTitle": "Expiry Reminder",
-  "profileDaysBefore": "{days} days before",
-  "@profileDaysBefore": {
-    "description": "Number of days before medicine expiry"
-  },
-  "profileReminder7Days": "7 days before",
-  "profileReminder14Days": "14 days before",
-  "profileReminder30Days": "30 days before",
-  "profileLowStockThreshold": "Low-stock threshold",
-  "profileUnits": "{count} units",
-  "@profileUnits": {
-    "description": "Number of medicine units"
-  },
-  "profileShowMedicineName": "Show medicine name in notifications",
-  "@profileShowMedicineName": {
-    "description": "Privacy setting for showing medicine names in notifications"
-  },
-
-  "profileShowMedicineNameDescription": "When enabled, the medicine name will appear in notifications.",
-  "@profileShowMedicineNameDescription": {
-    "description": "Description of the medicine name notification privacy setting"
-  }
-
-
-
+  "profileAppVersion": "App version",
+  "profileInformationSection": "Information",
+  "profileAboutDescription": "Medicine Cabinet helps you manage your medicines, expiry dates, and stock levels easily.",
+  "commonClose": "Close"
 }
