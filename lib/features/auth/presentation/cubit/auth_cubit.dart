@@ -61,7 +61,7 @@ class AuthCubit extends Cubit<AuthState> {
         email: email,
         password: password,
       );
-
+      await cacheHelper.saveData(key: AppKeys.userId, value: user.id);
       emit(AuthSuccess(user));
     } catch (e) {
       final failure = ErrorHandler.handle(e);

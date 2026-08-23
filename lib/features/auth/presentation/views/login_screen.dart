@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/register_screen.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/auth_header.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/google_button.dart';
+import 'package:medicine_cabinet/features/home/presentation/view/home_screen.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../core/di/service_locator.dart';
@@ -59,7 +60,15 @@ class _LoginScreenState extends State<LoginScreen> {
             description: l10n.authLoginSuccess,
             type: ToastificationType.success,
           );
-          // TODO: Navigate to Home
+
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(
+                userId: state.user.id,
+                householdId: state.user.id,
+              ),
+            ),
+          );
         }
 
         if (state is AuthError) {
