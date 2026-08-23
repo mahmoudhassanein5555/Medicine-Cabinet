@@ -6,9 +6,9 @@ import 'onboarding_page_data.dart';
 import 'onboarding_page_view.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key, required this.onFinished});
+  const OnboardingScreen({super.key, this.onFinished});
 
-  final VoidCallback onFinished;
+  final void Function(BuildContext context)? onFinished;
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -33,7 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     void next() {
       if (isLastPage) {
-        widget.onFinished();
+        widget.onFinished?.call(context);
         return;
       }
       _controller.nextPage(
@@ -92,7 +92,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             const SizedBox(height: 12),
             TextButton(
-              onPressed: widget.onFinished,
+              onPressed: () => widget.onFinished?.call(context),
               child: Text(
                 s.onboardingSkip,
                 style: TextStyle(

@@ -72,14 +72,14 @@ class _MyAppState extends State<MyApp> {
             resolveInitialRoute: () async {
               return 'onboarding';
             },
-            onNavigate: (context, route) {
+            onNavigate: (splashContext, route) {
               Navigator.pushReplacement(
-                context,
+                splashContext,
                 MaterialPageRoute(
                   builder: (_) => OnboardingScreen(
-                    onFinished: () {
+                    onFinished: (onboardingContext) {
                       Navigator.pushReplacement(
-                        context,
+                        onboardingContext,
                         MaterialPageRoute(
                           builder: (_) => BlocProvider(
                             create: (_) => getIt<AuthCubit>(),
