@@ -101,5 +101,17 @@
   "profilePrivacy": "Privacy",
   "profileAppPreferences": "App preferences",
   "profileDarkMode": "Dark mode",
-  "profileAbout": "About"
+  "profileAbout": "About",
+  "splashWordmark": "Medicine Cabinet",
+  "splashTagline": "Your household's medicines, organized.",
+  "splashLoadingText": "Preparing your cabinet…",
+  "onboardingTitle1": "Know what you have",
+  "onboardingDesc1": "Keep every medicine your household owns organized in one clear, shared place.",
+  "onboardingTitle2": "Never miss an expiry",
+  "onboardingDesc2": "Get a gentle nudge before a medicine expires, or before you run low on it.",
+  "onboardingTitle3": "Check before you buy",
+  "onboardingDesc3": "Scan a medicine at the store and instantly see if your household already has it.",
+  "onboardingGetStarted": "Get started",
+  "onboardingContinue": "Continue",
+  "onboardingSkip": "Skip"
 }

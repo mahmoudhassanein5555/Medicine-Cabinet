@@ -161,17 +161,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "onboardingBuyTitle": MessageLookupByLibrary.simpleMessage(
       "Check before you buy",
     ),
+    "onboardingContinue": MessageLookupByLibrary.simpleMessage("Continue"),
+    "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
+      "Keep every medicine your household owns organized in one clear, shared place.",
+    ),
+    "onboardingDesc2": MessageLookupByLibrary.simpleMessage(
+      "Get a gentle nudge before a medicine expires, or before you run low on it.",
+    ),
+    "onboardingDesc3": MessageLookupByLibrary.simpleMessage(
+      "Scan a medicine at the store and instantly see if your household already has it.",
+    ),
     "onboardingExpiryDesc": MessageLookupByLibrary.simpleMessage(
       "Get a gentle nudge before a medicine expires, or before you run low on it.",
     ),
     "onboardingExpiryTitle": MessageLookupByLibrary.simpleMessage(
       "Never miss an expiry",
     ),
+    "onboardingGetStarted": MessageLookupByLibrary.simpleMessage("Get started"),
     "onboardingKnowDesc": MessageLookupByLibrary.simpleMessage(
       "Keep every medicine your household owns organized in one clear, shared place.",
     ),
     "onboardingKnowTitle": MessageLookupByLibrary.simpleMessage(
       "Know what you have",
+    ),
+    "onboardingSkip": MessageLookupByLibrary.simpleMessage("Skip"),
+    "onboardingTitle1": MessageLookupByLibrary.simpleMessage(
+      "Know what you have",
+    ),
+    "onboardingTitle2": MessageLookupByLibrary.simpleMessage(
+      "Never miss an expiry",
+    ),
+    "onboardingTitle3": MessageLookupByLibrary.simpleMessage(
+      "Check before you buy",
     ),
     "profileAbout": MessageLookupByLibrary.simpleMessage("About"),
     "profileAccountSection": MessageLookupByLibrary.simpleMessage("Account"),
@@ -220,5 +241,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage(
       "Who is this for?",
     ),
+    "splashLoadingText": MessageLookupByLibrary.simpleMessage(
+      "Preparing your cabinet…",
+    ),
+    "splashTagline": MessageLookupByLibrary.simpleMessage(
+      "Your household\'s medicines, organized.",
+    ),
+    "splashWordmark": MessageLookupByLibrary.simpleMessage("Medicine Cabinet"),
   };
 }

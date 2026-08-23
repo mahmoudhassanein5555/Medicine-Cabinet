@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -927,6 +928,121 @@ class S {
   /// `About`
   String get profileAbout {
     return Intl.message('About', name: 'profileAbout', desc: '', args: []);
+  }
+
+  /// `Medicine Cabinet`
+  String get splashWordmark {
+    return Intl.message(
+      'Medicine Cabinet',
+      name: 'splashWordmark',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your household's medicines, organized.`
+  String get splashTagline {
+    return Intl.message(
+      'Your household\'s medicines, organized.',
+      name: 'splashTagline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preparing your cabinet…`
+  String get splashLoadingText {
+    return Intl.message(
+      'Preparing your cabinet…',
+      name: 'splashLoadingText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Know what you have`
+  String get onboardingTitle1 {
+    return Intl.message(
+      'Know what you have',
+      name: 'onboardingTitle1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Keep every medicine your household owns organized in one clear, shared place.`
+  String get onboardingDesc1 {
+    return Intl.message(
+      'Keep every medicine your household owns organized in one clear, shared place.',
+      name: 'onboardingDesc1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Never miss an expiry`
+  String get onboardingTitle2 {
+    return Intl.message(
+      'Never miss an expiry',
+      name: 'onboardingTitle2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get a gentle nudge before a medicine expires, or before you run low on it.`
+  String get onboardingDesc2 {
+    return Intl.message(
+      'Get a gentle nudge before a medicine expires, or before you run low on it.',
+      name: 'onboardingDesc2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check before you buy`
+  String get onboardingTitle3 {
+    return Intl.message(
+      'Check before you buy',
+      name: 'onboardingTitle3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan a medicine at the store and instantly see if your household already has it.`
+  String get onboardingDesc3 {
+    return Intl.message(
+      'Scan a medicine at the store and instantly see if your household already has it.',
+      name: 'onboardingDesc3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get started`
+  String get onboardingGetStarted {
+    return Intl.message(
+      'Get started',
+      name: 'onboardingGetStarted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get onboardingContinue {
+    return Intl.message(
+      'Continue',
+      name: 'onboardingContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get onboardingSkip {
+    return Intl.message('Skip', name: 'onboardingSkip', desc: '', args: []);
   }
 }
 

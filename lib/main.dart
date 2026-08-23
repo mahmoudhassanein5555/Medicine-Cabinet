@@ -4,6 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/core/theme/app_theme.dart';
 
+import 'features/onboarding/onboarding_screen.dart';
+import 'features/splash_screen.dart';
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
@@ -36,7 +38,25 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           title: 'Medicine Cabinet',
-          home: const Scaffold(body: Center(child: Text('Hello World'))),
+          home: SplashScreen(
+            resolveInitialRoute: () async {
+              // هنا ممكن تحطي منطق فحص هل دي أول مرة أم لا (مثلاً عبر SharedPreferences)
+              // للوقت الحالي هنرجع شاشة الـ Onboarding
+              return 'onboarding';
+            },
+            onNavigate: (context, route) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => OnboardingScreen(
+                    onFinished: () {
+                      // الانتقال للشاشة الرئيسية بعد إنهاء الـ Onboarding
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
         );
       },
     );

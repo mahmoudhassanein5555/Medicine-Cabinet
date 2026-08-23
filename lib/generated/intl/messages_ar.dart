@@ -151,16 +151,33 @@ class MessageLookup extends MessageLookupByLibrary {
     "onboardingBuyTitle": MessageLookupByLibrary.simpleMessage(
       "تحقق قبل الشراء",
     ),
+    "onboardingContinue": MessageLookupByLibrary.simpleMessage("متابعة"),
+    "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
+      "حافظ على تنظيم كل دواء يمتلكه منزلك في مكان واحد واضح ومشترك.",
+    ),
+    "onboardingDesc2": MessageLookupByLibrary.simpleMessage(
+      "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء أو قبل نفاده.",
+    ),
+    "onboardingDesc3": MessageLookupByLibrary.simpleMessage(
+      "امسح رمز الدواء في المتجر وتاكد فوراً عما إذا كان منزلك يمتلكه بالفعل أم لا.",
+    ),
     "onboardingExpiryDesc": MessageLookupByLibrary.simpleMessage(
       "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء، أو قبل أن ينفد لديك.",
     ),
     "onboardingExpiryTitle": MessageLookupByLibrary.simpleMessage(
       "لا تفوّت تاريخ انتهاء صلاحية",
     ),
+    "onboardingGetStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "onboardingKnowDesc": MessageLookupByLibrary.simpleMessage(
       "احفظ كل دواء تمتلكه عائلتك منظماً في مكان واحد مشترك وواضح.",
     ),
     "onboardingKnowTitle": MessageLookupByLibrary.simpleMessage("اعرف ما لديك"),
+    "onboardingSkip": MessageLookupByLibrary.simpleMessage("تخطي"),
+    "onboardingTitle1": MessageLookupByLibrary.simpleMessage("اعرف ما تملكه"),
+    "onboardingTitle2": MessageLookupByLibrary.simpleMessage(
+      "لا تفوتك صلاحية دواء",
+    ),
+    "onboardingTitle3": MessageLookupByLibrary.simpleMessage("تحقق قبل الشراء"),
     "profileAbout": MessageLookupByLibrary.simpleMessage("عن التطبيق"),
     "profileAccountSection": MessageLookupByLibrary.simpleMessage("الحساب"),
     "profileAppPreferences": MessageLookupByLibrary.simpleMessage(
@@ -206,5 +223,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanSomeoneElse": MessageLookupByLibrary.simpleMessage("شخص آخر"),
     "scanUnitTablets": MessageLookupByLibrary.simpleMessage("أقراص"),
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage("لمن هذا الدواء؟"),
+    "splashLoadingText": MessageLookupByLibrary.simpleMessage(
+      "جاري تجهيز خزانتك...",
+    ),
+    "splashTagline": MessageLookupByLibrary.simpleMessage(
+      "أدوية منزلك، منظمة في مكان واحد.",
+    ),
+    "splashWordmark": MessageLookupByLibrary.simpleMessage("خزانة الأدوية"),
   };
 }

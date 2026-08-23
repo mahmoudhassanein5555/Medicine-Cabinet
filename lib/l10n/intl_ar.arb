@@ -101,5 +101,18 @@
   "profilePrivacy": "الخصوصية",
   "profileAppPreferences": "تفضيلات التطبيق",
   "profileDarkMode": "الوضع الداكن",
-  "profileAbout": "عن التطبيق"
+  "profileAbout": "عن التطبيق",
+  "splashWordmark": "خزانة الأدوية",
+  "splashTagline": "أدوية منزلك، منظمة في مكان واحد.",
+  "splashLoadingText": "جاري تجهيز خزانتك...",
+  "onboardingTitle1": "اعرف ما تملكه",
+  "onboardingDesc1": "حافظ على تنظيم كل دواء يمتلكه منزلك في مكان واحد واضح ومشترك.",
+  "onboardingTitle2": "لا تفوتك صلاحية دواء",
+  "onboardingDesc2": "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء أو قبل نفاده.",
+  "onboardingTitle3": "تحقق قبل الشراء",
+  "onboardingDesc3": "امسح رمز الدواء في المتجر وتاكد فوراً عما إذا كان منزلك يمتلكه بالفعل أم لا.",
+  "onboardingGetStarted": "ابدأ الآن",
+  "onboardingContinue": "متابعة",
+  "onboardingSkip": "تخطي"
+
 }
