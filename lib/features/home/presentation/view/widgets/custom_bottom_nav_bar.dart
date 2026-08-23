@@ -1,23 +1,32 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/core/constants/app_colors.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/home_screen.dart';
+import 'package:medicine_cabinet/features/home/presentation/view/widgets/profile_tab_view.dart';
 import 'package:medicine_cabinet/features/home/presentation/view_model/home_cubit.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
-  const CustomBottomNavBar({super.key});
+  final String? userId;
+  final String? householdId;
+
+  const CustomBottomNavBar({
+    super.key,
+    this.userId,
+    this.householdId,
+  });
 
   @override
   State<CustomBottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<CustomBottomNavBar> {
-  final userId = "FlwarNVYFWM17QKlEnUm";
-  final householdId = "household123";
+  late final String effectiveUserId;
+  late final String effectiveHouseholdId;
   int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   late final List<Widget> _screens;
@@ -25,16 +34,24 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
   @override
   void initState() {
     super.initState();
+    effectiveUserId = widget.userId ??
+        FirebaseAuth.instance.currentUser?.uid ??
+        "FlwarNVYFWM17QKlEnUm";
+    effectiveHouseholdId = widget.householdId ?? effectiveUserId;
+
     _screens = [
       BlocProvider(
         lazy: false,
         create: (_) => getIt<HomeCubit>(),
-        child: HomeScreen(userId: userId, householdId: householdId),
+        child: HomeScreen(
+          userId: effectiveUserId,
+          householdId: effectiveHouseholdId,
+        ),
       ),
       const Center(child: Text('Search Screen')),
       const Center(child: Text('Chat Screen')),
       const Center(child: Text('Feed Screen')),
-      const Center(child: Text('Personal Screen')),
+      ProfileTabView(userId: effectiveUserId),
     ];
   }
 
@@ -91,3 +108,4 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
     );
   }
 }
+

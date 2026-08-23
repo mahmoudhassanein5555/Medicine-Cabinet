@@ -199,7 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonHealthy": MessageLookupByLibrary.simpleMessage("سليم"),
     "commonHousehold": MessageLookupByLibrary.simpleMessage("المنزل"),
     "commonLow": MessageLookupByLibrary.simpleMessage("منخفض"),
-    "commonLowStock": MessageLookupByLibrary.simpleMessage("مخزون منخفض"),
+    "commonLowStock": MessageLookupByLibrary.simpleMessage("المخزون المنتهي"),
     "commonManage": MessageLookupByLibrary.simpleMessage("إدارة"),
     "commonMarkAsUsed": MessageLookupByLibrary.simpleMessage("تحديد كمستخدم"),
     "commonOr": MessageLookupByLibrary.simpleMessage("أو"),

@@ -66,45 +66,48 @@ class HomeHeaderWidget extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          width: 48.r,
-          height: 48.r,
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.primaryDarkVariant
-                : AppColors.primaryLight,
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: (isDark ? AppColors.primaryDark : AppColors.primaryLight)
-                    .withValues(alpha: 0.2),
-                blurRadius: 8,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
-          alignment: Alignment.center,
-          child: user.photoUrl.isNotEmpty
-              ? ClipOval(
-                  child: CachedNetworkImage(
-                    imageUrl: user.photoUrl,
-                    width: 48.r,
-                    height: 48.r,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Center(
-                      child: SizedBox(
-                        width: 18.r,
-                        height: 18.r,
-                        child: const CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: Colors.white,
+        GestureDetector(
+          onTap: onMenuPressed,
+          child: Container(
+            width: 48.r,
+            height: 48.r,
+            decoration: BoxDecoration(
+              color: isDark
+                  ? AppColors.primaryDarkVariant
+                  : AppColors.primaryLight,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: (isDark ? AppColors.primaryDark : AppColors.primaryLight)
+                      .withValues(alpha: 0.2),
+                  blurRadius: 8,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            alignment: Alignment.center,
+            child: user.photoUrl.isNotEmpty
+                ? ClipOval(
+                    child: CachedNetworkImage(
+                      imageUrl: user.photoUrl,
+                      width: 48.r,
+                      height: 48.r,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Center(
+                        child: SizedBox(
+                          width: 18.r,
+                          height: 18.r,
+                          child: const CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
+                      errorWidget: (context, url, error) => _buildInitial(),
                     ),
-                    errorWidget: (context, url, error) => _buildInitial(),
-                  ),
-                )
-              : _buildInitial(),
+                  )
+                : _buildInitial(),
+          ),
         ),
       ],
     );

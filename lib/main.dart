@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:medicine_cabinet/core/theme/app_theme.dart';
 
 import 'features/auth/presentation/cubit/auth_cubit.dart';
 import 'features/auth/presentation/views/login_screen.dart';
+import 'features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/splash_screen.dart';
 import 'firebase_options.dart';
@@ -73,27 +75,40 @@ class _MyAppState extends State<MyApp> {
 
           home: SplashScreen(
             resolveInitialRoute: () async {
+              final currentUser = FirebaseAuth.instance.currentUser;
+              if (currentUser != null) {
+                return 'home';
+              }
               return 'onboarding';
             },
             onNavigate: (splashContext, route) {
-              Navigator.pushReplacement(
-                splashContext,
-                MaterialPageRoute(
-                  builder: (_) => OnboardingScreen(
-                    onFinished: (onboardingContext) {
-                      Navigator.pushReplacement(
-                        onboardingContext,
-                        MaterialPageRoute(
-                          builder: (_) => BlocProvider(
-                            create: (_) => getIt<AuthCubit>(),
-                            child: const LoginScreen(),
-                          ),
-                        ),
-                      );
-                    },
+              if (route == 'home') {
+                Navigator.pushReplacement(
+                  splashContext,
+                  MaterialPageRoute(
+                    builder: (_) => const CustomBottomNavBar(),
                   ),
-                ),
-              );
+                );
+              } else {
+                Navigator.pushReplacement(
+                  splashContext,
+                  MaterialPageRoute(
+                    builder: (_) => OnboardingScreen(
+                      onFinished: (onboardingContext) {
+                        Navigator.pushReplacement(
+                          onboardingContext,
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider(
+                              create: (_) => getIt<AuthCubit>(),
+                              child: const LoginScreen(),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              }
             },
           ),
         );

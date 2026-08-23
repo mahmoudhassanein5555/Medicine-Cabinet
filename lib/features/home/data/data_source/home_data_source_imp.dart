@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:medicine_cabinet/core/errors/error.dart';
 import 'package:medicine_cabinet/features/home/data/data_source/home_data_source.dart';
 import 'package:medicine_cabinet/features/home/data/models/medicine_dto.dart';
@@ -16,7 +17,27 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     final docSnapshot = await _firestore.collection('users').doc(userId).get();
 
     if (!docSnapshot.exists || docSnapshot.data() == null) {
-      throw RemoteException('');
+      final currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null && currentUser.uid == userId) {
+        final userDto = UserDto(
+          email: currentUser.email ?? '',
+          householdId: userId,
+          name: (currentUser.displayName != null &&
+                  currentUser.displayName!.isNotEmpty)
+              ? currentUser.displayName!
+              : (currentUser.email?.split('@').first ?? 'User'),
+          photoUrl: currentUser.photoURL ?? '',
+          createdAt: DateTime.now(),
+        );
+        try {
+          await _firestore
+              .collection('users')
+              .doc(userId)
+              .set(userDto.toJson(), SetOptions(merge: true));
+        } catch (_) {}
+        return userDto;
+      }
+      throw RemoteException('User profile not found');
     }
 
     return UserDto.fromFirestore(docSnapshot);

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:medicine_cabinet/features/auth/presentation/cubit/auth_state.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/auth_header.dart';
+import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../core/dialogs/app_toasts.dart';
@@ -63,7 +64,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
             type: ToastificationType.success,
           );
 
-          Navigator.pop(context);
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => CustomBottomNavBar(
+                userId: state.user.id,
+                householdId: state.user.id,
+              ),
+            ),
+            (route) => false,
+          );
         }
 
         if (state is AuthError) {
@@ -79,7 +88,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         final isLoading = state is AuthLoading;
 
         return Scaffold(
-
           body: SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
@@ -289,9 +297,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         Text(
                           l10n.authHaveAccount,
-                          style: TextStyle(
-                            color: colorScheme.onSurfaceVariant,
-                          ),
+                          style: TextStyle(color: colorScheme.onSurfaceVariant),
                         ),
                         TextButton(
                           onPressed: () {

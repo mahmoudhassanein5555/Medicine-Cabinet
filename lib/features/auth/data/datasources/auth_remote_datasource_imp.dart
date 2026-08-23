@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
@@ -6,8 +7,12 @@ import 'package:medicine_cabinet/features/auth/data/datasources/auth_remote_data
 @LazySingleton(as: AuthRemoteDataSource)
 class AuthRemoteDatasourceImp implements AuthRemoteDataSource {
   final FirebaseAuth firebaseAuth;
+  final FirebaseFirestore _firestore;
 
-  AuthRemoteDatasourceImp(this.firebaseAuth);
+  AuthRemoteDatasourceImp(
+    this.firebaseAuth, {
+    FirebaseFirestore? firestore,
+  }) : _firestore = firestore ?? FirebaseFirestore.instance;
 
   @override
   Future<void> forgotPassword({required String email}) async {
@@ -41,9 +46,18 @@ class AuthRemoteDatasourceImp implements AuthRemoteDataSource {
       email: email,
       password: password,
     );
-    await credential.user!.updateDisplayName(name);
+    final user = credential.user!;
+    await user.updateDisplayName(name);
 
-    return credential.user!;
+    await _firestore.collection('users').doc(user.uid).set({
+      'name': name,
+      'email': email,
+      'householdId': user.uid,
+      'photoUrl': user.photoURL ?? '',
+      'createdAt': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
+
+    return user;
   }
 
   @override
@@ -61,7 +75,19 @@ class AuthRemoteDatasourceImp implements AuthRemoteDataSource {
     );
 
     final userCredential = await firebaseAuth.signInWithCredential(credential);
+    final user = userCredential.user!;
 
-    return userCredential.user!;
+    final userDoc = await _firestore.collection('users').doc(user.uid).get();
+    if (!userDoc.exists) {
+      await _firestore.collection('users').doc(user.uid).set({
+        'name': user.displayName ?? '',
+        'email': user.email ?? '',
+        'householdId': user.uid,
+        'photoUrl': user.photoURL ?? '',
+        'createdAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+    }
+
+    return user;
   }
 }

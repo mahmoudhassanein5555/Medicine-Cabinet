@@ -234,10 +234,10 @@ class S {
     return Intl.message('Low', name: 'commonLow', desc: '', args: []);
   }
 
-  /// `Low stock`
+  /// `Ended stock`
   String get commonLowStock {
     return Intl.message(
-      'Low stock',
+      'Ended stock',
       name: 'commonLowStock',
       desc: '',
       args: [],

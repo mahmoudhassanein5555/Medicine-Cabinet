@@ -201,7 +201,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonHealthy": MessageLookupByLibrary.simpleMessage("Healthy"),
     "commonHousehold": MessageLookupByLibrary.simpleMessage("Household"),
     "commonLow": MessageLookupByLibrary.simpleMessage("Low"),
-    "commonLowStock": MessageLookupByLibrary.simpleMessage("Low stock"),
+    "commonLowStock": MessageLookupByLibrary.simpleMessage("Ended stock"),
     "commonManage": MessageLookupByLibrary.simpleMessage("Manage"),
     "commonMarkAsUsed": MessageLookupByLibrary.simpleMessage("Mark as used"),
     "commonOr": MessageLookupByLibrary.simpleMessage("or"),

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/register_screen.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/auth_header.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/google_button.dart';
-import 'package:medicine_cabinet/features/home/presentation/view/home_screen.dart';
+import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../core/di/service_locator.dart';
@@ -46,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
@@ -61,13 +62,14 @@ class _LoginScreenState extends State<LoginScreen> {
             type: ToastificationType.success,
           );
 
-          Navigator.of(context).pushReplacement(
+          Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => HomeScreen(
+              builder: (context) => CustomBottomNavBar(
                 userId: state.user.id,
                 householdId: state.user.id,
               ),
             ),
+            (route) => false,
           );
         }
 
@@ -82,12 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       builder: (context, state) {
         final isLoginLoading =
-            state is AuthLoading &&
-                state.action == AuthAction.login;
+            state is AuthLoading && state.action == AuthAction.login;
 
         final isGoogleLoading =
-            state is AuthLoading &&
-                state.action == AuthAction.googleSignIn;
+            state is AuthLoading && state.action == AuthAction.googleSignIn;
 
         return Scaffold(
           backgroundColor: colorScheme.surface,
@@ -215,6 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             email: emailController.text.trim(),
                             password: passwordController.text,
                           );
+                          
                         }
                       },
                     ),
@@ -224,16 +225,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     // OR
                     Row(
                       children: [
-                        Expanded(
-                          child: Divider(
-                            color: colorScheme.outline,
-                          ),
-                        ),
+                        Expanded(child: Divider(color: colorScheme.outline)),
 
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
                             l10n.commonOr,
                             style: TextStyle(
@@ -242,11 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
 
-                        Expanded(
-                          child: Divider(
-                            color: colorScheme.outline,
-                          ),
-                        ),
+                        Expanded(child: Divider(color: colorScheme.outline)),
                       ],
                     ),
 
@@ -268,9 +259,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Text(
                           l10n.authNoAccount,
-                          style: TextStyle(
-                            color: colorScheme.onSurfaceVariant,
-                          ),
+                          style: TextStyle(color: colorScheme.onSurfaceVariant),
                         ),
 
                         TextButton(
