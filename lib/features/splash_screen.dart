@@ -75,7 +75,6 @@ class _SplashScreenState extends State<SplashScreen>
         ? 'assets/images/splash_cabinet_dark.json'
         : 'assets/images/splash_cabinet_light.json';
 
-    // جلب النصوص من ملفات الترجمة
     final s = S.of(context);
 
     return Scaffold(

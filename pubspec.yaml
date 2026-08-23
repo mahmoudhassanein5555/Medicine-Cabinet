@@ -39,17 +39,7 @@ dependencies:
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.1
-flutter_launcher_icons:
-  android: true
-  ios: false
-  image_path: "assets/icons/app_icon.png"
-  adaptive_icon_background: "#1E6E5A"
-  adaptive_icon_foreground: "assets/icons/app_icon_foreground.png"
 
-# Native splash — static "closed cabinet" mark, shown by the OS itself
-# before Dart boots. Colors match the Lottie splash's background exactly
-# (assets/lottie/splash_cabinet_light.json / _dark.json) so the handoff
-# into the animated Flutter splash is seamless, not a color jump.
 flutter_native_splash:
   color: "#FAFCFB"
   image: assets/images/splash_logo_light.png

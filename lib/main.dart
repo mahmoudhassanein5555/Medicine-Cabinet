@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.system,
+          locale: const Locale('ar'),
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -40,8 +41,7 @@ class MyApp extends StatelessWidget {
           title: 'Medicine Cabinet',
           home: SplashScreen(
             resolveInitialRoute: () async {
-              // هنا ممكن تحطي منطق فحص هل دي أول مرة أم لا (مثلاً عبر SharedPreferences)
-              // للوقت الحالي هنرجع شاشة الـ Onboarding
+
               return 'onboarding';
             },
             onNavigate: (context, route) {
