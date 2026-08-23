@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/core/errors/error_handler.dart';
 import 'package:medicine_cabinet/core/failure/failure.dart';
 import 'package:medicine_cabinet/features/medicine_scan/data/data_source/medicine_scan_data_source.dart';
@@ -9,6 +11,7 @@ import 'package:medicine_cabinet/features/medicine_scan/domain/entity/medicine_s
 import 'package:medicine_cabinet/features/medicine_scan/domain/entity/member_entity.dart';
 import 'package:medicine_cabinet/features/medicine_scan/domain/repository/medicine_scan_repository.dart';
 
+@LazySingleton(as: MedicineScanRepository)
 class MedicineScanRepositoryImp implements MedicineScanRepository {
   final MedicineScanDataSource medicineScanDataSource;
   MedicineScanRepositoryImp({required this.medicineScanDataSource});
@@ -19,8 +22,12 @@ class MedicineScanRepositoryImp implements MedicineScanRepository {
     try {
       final modelResponse = await medicineScanDataSource.analyzeMidicine(image);
       final entityResponse = modelResponse.toEntity();
+
       return Right(entityResponse);
     } catch (e) {
+      debugPrint(
+        "Failedddddddddddddddddddddddddddddddddddddddddddddddddd(*Rebo*)",
+      );
       return Left(ErrorHandler.handle(e));
     }
   }
@@ -28,10 +35,11 @@ class MedicineScanRepositoryImp implements MedicineScanRepository {
   @override
   Future<Either<Failure, Unit>> addMedicine(
     MedicineEntity medicineEntity,
+    String houseId,
   ) async {
     try {
       final medicineModel = MedicineModel.fromEntity(medicineEntity);
-      await medicineScanDataSource.addMedicine(medicineModel);
+      await medicineScanDataSource.addMedicine(medicineModel, houseId);
       return Right(unit);
     } catch (e) {
       return Left(ErrorHandler.handle(e));

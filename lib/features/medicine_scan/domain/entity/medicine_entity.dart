@@ -11,9 +11,10 @@ class MedicineEntity {
   final String storageLocation;
   final String type;
   final DateTime updatedAt;
+  final String description;
 
   MedicineEntity({
-    required this.id,
+    required this.id ,
     required this.addedBy,
     required this.category,
     required this.createdAt,
@@ -25,5 +26,6 @@ class MedicineEntity {
     required this.storageLocation,
     required this.type,
     required this.updatedAt,
+    required this.description,
   });
 }

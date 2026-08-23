@@ -14,6 +14,7 @@ class MedicineModel {
   final String storageLocation;
   final String type;
   final DateTime updatedAt;
+  final String description;
 
   MedicineModel({
     required this.id,
@@ -28,6 +29,7 @@ class MedicineModel {
     required this.storageLocation,
     required this.type,
     required this.updatedAt,
+    required this.description,
   });
 
   factory MedicineModel.fromEntity(MedicineEntity entity) {
@@ -44,6 +46,7 @@ class MedicineModel {
       storageLocation: entity.storageLocation,
       type: entity.type,
       updatedAt: entity.updatedAt,
+      description: entity.description,
     );
   }
 
@@ -61,6 +64,7 @@ class MedicineModel {
       storageLocation: storageLocation,
       type: type,
       updatedAt: updatedAt,
+      description: description,
     );
   }
 
@@ -78,6 +82,7 @@ class MedicineModel {
       storageLocation: json['storageLocation'] as String,
       type: json['type'] as String,
       updatedAt: (json['updatedAt'] as Timestamp).toDate(),
+      description: json["description"],
     );
   }
 
@@ -95,6 +100,7 @@ class MedicineModel {
       'storageLocation': storageLocation,
       'type': type,
       'updatedAt': Timestamp.fromDate(updatedAt),
+      "description": description,
     };
   }
 }

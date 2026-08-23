@@ -6,6 +6,6 @@ import 'package:medicine_cabinet/features/medicine_scan/data/models/member_model
 
 abstract class MedicineScanDataSource {
   Future<MedicineScanModel> analyzeMidicine(File image);
-  Future<void> addMedicine(MedicineModel medicine);
+  Future<void> addMedicine(MedicineModel medicine, String houseId);
   Future<List<MemberModel>> getHouseholdMembers(String houseHoldId);
 }

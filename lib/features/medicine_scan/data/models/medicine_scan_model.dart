@@ -5,7 +5,8 @@ class MedicineScanModel {
   final String? category;
   final String type;
   final DateTime? expiryDate;
-  Future<String?>? imageUrl;
+  final String? description;
+  final String? imageUrl;
 
   MedicineScanModel({
     this.name = "",
@@ -13,6 +14,7 @@ class MedicineScanModel {
     this.type = "",
     this.expiryDate,
     this.imageUrl,
+    this.description,
   });
 
   factory MedicineScanModel.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class MedicineScanModel {
       expiryDate: json['expiryDate'] != null
           ? DateTime.tryParse(json['expiryDate'] as String)
           : null,
+      description: json['description'] as String?,
     );
   }
 
@@ -32,6 +35,7 @@ class MedicineScanModel {
       category: entity.category,
       type: entity.type,
       expiryDate: entity.expiryDate,
+      description: entity.description,
     );
   }
 
@@ -41,6 +45,8 @@ class MedicineScanModel {
       category: category,
       type: type,
       expiryDate: expiryDate,
+      description: description,
+      imageUrl: imageUrl
     );
   }
 
@@ -50,6 +56,7 @@ class MedicineScanModel {
       'category': category,
       'type': type,
       'expiryDate': expiryDate?.toIso8601String(),
+      'description': description,
     };
   }
 }

@@ -8,7 +8,10 @@ import 'package:medicine_cabinet/features/medicine_scan/domain/entity/member_ent
 
 abstract class MedicineScanRepository {
   Future<Either<Failure, MedicineScanEntity>> analyzeMidicine(File image);
-  Future<Either<Failure, Unit>> addMedicine(MedicineEntity medicineEntity);
+  Future<Either<Failure, Unit>> addMedicine(
+    MedicineEntity medicineEntity,
+    String houseId,
+  );
   Future<Either<Failure, List<MemberEntity>>> getHouseholdMembers(
     String houseHoldId,
   );

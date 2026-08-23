@@ -89,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("تاريخ الإضافة"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("حذف"),
     "commonEditDetails": MessageLookupByLibrary.simpleMessage("تعديل التفاصيل"),
+    "commonError": MessageLookupByLibrary.simpleMessage("خطأ"),
     "commonExpired": MessageLookupByLibrary.simpleMessage("منتهي الصلاحية"),
     "commonExpiringShort": MessageLookupByLibrary.simpleMessage("ينتهي قريباً"),
     "commonExpiringSoon": MessageLookupByLibrary.simpleMessage("ينتهي قريباً"),
@@ -185,26 +186,114 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileRemindersSection": MessageLookupByLibrary.simpleMessage(
       "التذكيرات",
     ),
+    "scanAddMedicineButton": MessageLookupByLibrary.simpleMessage(
+      "إضافة الدواء",
+    ),
     "scanAddedTitle": MessageLookupByLibrary.simpleMessage(
       "تمت الإضافة إلى صيدليتك",
     ),
+    "scanAnalyzingSubtitle": MessageLookupByLibrary.simpleMessage(
+      "يرجى الانتظار بينما نقرأ ونعالج\nتفاصيل العبوة...",
+    ),
+    "scanAnalyzingTitle": MessageLookupByLibrary.simpleMessage(
+      "جاري تحليل الدواء",
+    ),
     "scanBackToHome": MessageLookupByLibrary.simpleMessage("العودة للرئيسية"),
     "scanCapture": MessageLookupByLibrary.simpleMessage("التقاط"),
+    "scanCategoryHint": MessageLookupByLibrary.simpleMessage(
+      "مثال: مسكن للآلام، مضاد حيوي، باراسيتامول",
+    ),
+    "scanCategoryLabel": MessageLookupByLibrary.simpleMessage(
+      "الفئة / المادة الفعالة",
+    ),
+    "scanCategoryValidation": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال الفئة أو المادة الفعالة",
+    ),
+    "scanConfirmMedicineTitle": MessageLookupByLibrary.simpleMessage(
+      "تأكيد الدواء",
+    ),
     "scanEnterManually": MessageLookupByLibrary.simpleMessage(
       "إدخال التفاصيل يدوياً",
     ),
+    "scanExpiryDateHint": MessageLookupByLibrary.simpleMessage("سنة-شهر-يوم"),
+    "scanExpiryDateValidation": MessageLookupByLibrary.simpleMessage(
+      "يرجى اختيار تاريخ الانتهاء",
+    ),
+    "scanFailedToAddMedicine": MessageLookupByLibrary.simpleMessage(
+      "فشل في إضافة الدواء",
+    ),
+    "scanFailedToLoadMembers": MessageLookupByLibrary.simpleMessage(
+      "فشل في تحميل أفراد العائلة",
+    ),
+    "scanFieldRequired": MessageLookupByLibrary.simpleMessage("مطلوب"),
+    "scanFormTypeHint": MessageLookupByLibrary.simpleMessage(
+      "مثال: أقراص، شراب",
+    ),
+    "scanFormTypeLabel": MessageLookupByLibrary.simpleMessage("الشكل / النوع"),
     "scanHint": MessageLookupByLibrary.simpleMessage(
       "قم بمحاذاة ملصق العبوة داخل الإطار",
+    ),
+    "scanHintAlignBox": MessageLookupByLibrary.simpleMessage(
+      "قم بمحاذاة عبوة الدواء أو الشريط داخل الإطار",
     ),
     "scanHowManyDoYouHave": MessageLookupByLibrary.simpleMessage(
       "كم عدد القطع لديك؟",
     ),
+    "scanMedicineAddedSuccess": MessageLookupByLibrary.simpleMessage(
+      "تمت إضافة الدواء بنجاح!",
+    ),
+    "scanMedicineDetailsTitle": MessageLookupByLibrary.simpleMessage(
+      "تفاصيل الدواء",
+    ),
     "scanMedicineFoundTitle": MessageLookupByLibrary.simpleMessage(
       "تم العثور على الدواء",
     ),
+    "scanMedicineNameHint": MessageLookupByLibrary.simpleMessage(
+      "مثال: بنادول إكسترا، أموكسيسيلين",
+    ),
+    "scanMedicineNameLabel": MessageLookupByLibrary.simpleMessage("اسم الدواء"),
+    "scanMedicineNameValidation": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال اسم الدواء",
+    ),
+    "scanMedicineTitle": MessageLookupByLibrary.simpleMessage("مسح دواء"),
+    "scanMissingInfoDesc": MessageLookupByLibrary.simpleMessage(
+      "يرجى مراجعة وتعبئة التفاصيل المطلوبة.",
+    ),
+    "scanMissingInfoTitle": MessageLookupByLibrary.simpleMessage(
+      "معلومات ناقصة",
+    ),
+    "scanNoMembersFound": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على أفراد",
+    ),
+    "scanNoPhotoPreview": MessageLookupByLibrary.simpleMessage(
+      "لا توجد معاينة لصورة الدواء",
+    ),
+    "scanNotesHint": MessageLookupByLibrary.simpleMessage(
+      "مثال: تناول قرص واحد بعد الوجبات مرتين يومياً",
+    ),
+    "scanNotesLabel": MessageLookupByLibrary.simpleMessage(
+      "ملاحظات وتعليمات الجرعة",
+    ),
+    "scanPackagePhotoTitle": MessageLookupByLibrary.simpleMessage(
+      "صورة العبوة",
+    ),
+    "scanRetakePhoto": MessageLookupByLibrary.simpleMessage("إعادة التقاط"),
+    "scanReviewConfirmNotice": MessageLookupByLibrary.simpleMessage(
+      "يرجى مراجعة وتأكيد التفاصيل قبل الحفظ في صيدليتك.",
+    ),
     "scanScanAnother": MessageLookupByLibrary.simpleMessage("مسح دواء آخر"),
+    "scanSelectProfile": MessageLookupByLibrary.simpleMessage(
+      "اختر الملف الشخصي",
+    ),
     "scanSomeoneElse": MessageLookupByLibrary.simpleMessage("شخص آخر"),
+    "scanStorageLocationHint": MessageLookupByLibrary.simpleMessage(
+      "مثال: درج غرفة النوم، الثلاجة، صندوق الأدوية",
+    ),
+    "scanStorageLocationValidation": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال مكان التخزين",
+    ),
     "scanUnitTablets": MessageLookupByLibrary.simpleMessage("أقراص"),
+    "scanUnitsDefault": MessageLookupByLibrary.simpleMessage("وحدات"),
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage("لمن هذا الدواء؟"),
   };
 }

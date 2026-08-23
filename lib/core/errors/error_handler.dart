@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../failure/failure.dart';
 import 'error.dart';
@@ -7,8 +9,16 @@ class ErrorHandler {
   static Failure handle(dynamic exception) {
     if (exception is FirebaseException) {
       return _handleFirebaseError(exception);
-    } else if (exception is RemoteException) {
-      return _handleRemoteError(exception.errormessage);
+    } else if (exception is DioException) {
+      debugPrint(
+        "***************************************************************************",
+      );
+
+      debugPrint(exception.message);
+      debugPrint(
+        "***************************************************************************",
+      );
+      return _handleRemoteError(exception.message!);
     } else if (exception is LocalException) {
       return Failure(exception.errormessage);
     } else {
