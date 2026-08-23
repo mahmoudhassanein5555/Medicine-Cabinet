@@ -113,7 +113,7 @@ class _SplashScreenState extends State<SplashScreen>
                 s.splashTagline,
                 textAlign: TextAlign.center,
                 style: textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurface.withOpacity(0.6),
+                  color: colorScheme.onSurface.withValues(alpha: 0.6),
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),
@@ -130,7 +130,7 @@ class _SplashScreenState extends State<SplashScreen>
                   Text(
                     s.splashLoadingText,
                     style: textTheme.labelSmall?.copyWith(
-                      color: colorScheme.onSurface.withOpacity(0.45),
+                      color: colorScheme.onSurface.withValues(alpha: 0.45),
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),

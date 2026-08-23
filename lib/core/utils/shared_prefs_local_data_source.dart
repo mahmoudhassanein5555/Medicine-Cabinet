@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,11 +8,26 @@ class CacheHelper {
 
   CacheHelper(this._sharedPreferences);
 
-  Future<bool> saveData({required String key, required dynamic value}) async {
-    if (value is String) return await _sharedPreferences.setString(key, value);
-    if (value is int) return await _sharedPreferences.setInt(key, value);
-    if (value is bool) return await _sharedPreferences.setBool(key, value);
-    if (value is double) return await _sharedPreferences.setDouble(key, value);
+  Future<bool> saveData({
+    required String key,
+    required dynamic value,
+  }) async {
+    if (value is String) {
+      return await _sharedPreferences.setString(key, value);
+    }
+
+    if (value is int) {
+      return await _sharedPreferences.setInt(key, value);
+    }
+
+    if (value is bool) {
+      return await _sharedPreferences.setBool(key, value);
+    }
+
+    if (value is double) {
+      return await _sharedPreferences.setDouble(key, value);
+    }
+
     return false;
   }
 
@@ -31,5 +47,10 @@ class CacheHelper {
 @module
 abstract class AppModule {
   @preResolve
-  Future<SharedPreferences> get sharedPrefs => SharedPreferences.getInstance();
+  Future<SharedPreferences> get sharedPrefs =>
+      SharedPreferences.getInstance();
+
+  @lazySingleton
+  FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
 }
+

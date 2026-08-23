@@ -36,30 +36,99 @@ class MessageLookup extends MessageLookupByLibrary {
     "authContinueWithGoogle": MessageLookupByLibrary.simpleMessage(
       "المتابعة باستخدام Google",
     ),
+    "authCreatingAccount": MessageLookupByLibrary.simpleMessage(
+      "جاري إنشاء الحساب...",
+    ),
+    "authEmailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
+      "هذا البريد الإلكتروني مستخدم بالفعل.",
+    ),
     "authEmailLabel": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "authForgotPassword": MessageLookupByLibrary.simpleMessage(
       "نسيت كلمة المرور؟",
     ),
     "authFullNameLabel": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
+    "authGoogleSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم تسجيل الدخول باستخدام Google بنجاح",
+    ),
     "authHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟",
+    ),
+    "authInvalidCredential": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    ),
+    "authInvalidEmail": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال بريد إلكتروني صحيح.",
+    ),
+    "authLoggingIn": MessageLookupByLibrary.simpleMessage(
+      "جاري تسجيل الدخول...",
     ),
     "authLoginButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "authLoginLink": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "authLoginSubtitle": MessageLookupByLibrary.simpleMessage(
       "سجّل الدخول لعرض صيدلية أسرِتك.",
     ),
+    "authLoginSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم تسجيل الدخول بنجاح",
+    ),
     "authLoginTitle": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك"),
+    "authNetworkError": MessageLookupByLibrary.simpleMessage(
+      "يرجى التحقق من اتصالك بالإنترنت.",
+    ),
     "authNoAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
     "authPasswordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "authPasswordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "كلمتا المرور غير متطابقتين",
+    ),
+    "authPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "ليس لديك صلاحية لتنفيذ هذا الإجراء.",
+    ),
     "authRegisterButton": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "authRegisterSubtitle": MessageLookupByLibrary.simpleMessage(
       "أنشئ صيدلية أسرِتك في دقيقة واحدة.",
     ),
+    "authRegisterSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم إنشاء الحساب بنجاح",
+    ),
     "authRegisterTitle": MessageLookupByLibrary.simpleMessage("إنشاء حسابك"),
+    "authResetPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.",
+    ),
+    "authResetPasswordSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم إرسال رابط إعادة تعيين كلمة المرور بنجاح.",
+    ),
+    "authResetPasswordTitle": MessageLookupByLibrary.simpleMessage(
+      "إعادة تعيين كلمة المرور",
+    ),
+    "authResourceNotFound": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على المورد المطلوب.",
+    ),
+    "authSendResetEmail": MessageLookupByLibrary.simpleMessage(
+      "إرسال رابط إعادة التعيين",
+    ),
+    "authSendingResetEmail": MessageLookupByLibrary.simpleMessage(
+      "جاري الإرسال...",
+    ),
+    "authServerError": MessageLookupByLibrary.simpleMessage(
+      "حدثت مشكلة في الخادم. يرجى المحاولة لاحقًا.",
+    ),
+    "authSessionExpired": MessageLookupByLibrary.simpleMessage(
+      "انتهت صلاحية الجلسة. يرجى تسجيل الدخول مرة أخرى.",
+    ),
     "authSignUpLink": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "authTermsNotice": MessageLookupByLibrary.simpleMessage(
       "بالمتابعة، فإنك توافق على الشروط وسياسة الخصوصية.",
+    ),
+    "authTooManyRequests": MessageLookupByLibrary.simpleMessage(
+      "محاولات كثيرة جدًا. يرجى المحاولة لاحقًا.",
+    ),
+    "authUserNotFound": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد حساب مرتبط بهذا البريد الإلكتروني.",
+    ),
+    "authWeakPassword": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور ضعيفة جدًا.",
+    ),
+    "authWrongPassword": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
     ),
     "beforeYouBuyAlreadyTitle": MessageLookupByLibrary.simpleMessage(
       "موجود بالفعل في صيدليتك",
@@ -89,6 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("تاريخ الإضافة"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("حذف"),
     "commonEditDetails": MessageLookupByLibrary.simpleMessage("تعديل التفاصيل"),
+    "commonError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
     "commonExpired": MessageLookupByLibrary.simpleMessage("منتهي الصلاحية"),
     "commonExpiringShort": MessageLookupByLibrary.simpleMessage("ينتهي قريباً"),
     "commonExpiringSoon": MessageLookupByLibrary.simpleMessage("ينتهي قريباً"),
@@ -108,6 +178,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonSkip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "مكان التخزين",
+    ),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ ما، يرجى المحاولة مرة أخرى.",
     ),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "تحديث الكمية",
@@ -230,5 +303,35 @@ class MessageLookup extends MessageLookupByLibrary {
       "أدوية منزلك، منظمة في مكان واحد.",
     ),
     "splashWordmark": MessageLookupByLibrary.simpleMessage("خزانة الأدوية"),
+    "validationCodeLength": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يتكون الكود من 6 أرقام على الأقل",
+    ),
+    "validationCodeRequired": MessageLookupByLibrary.simpleMessage(
+      "الكود مطلوب",
+    ),
+    "validationEmailRequired": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني مطلوب",
+    ),
+    "validationInvalidEmail": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريدًا إلكترونيًا صحيحًا",
+    ),
+    "validationInvalidPassword": MessageLookupByLibrary.simpleMessage(
+      "أدخل كلمة مرور صحيحة",
+    ),
+    "validationInvalidPhone": MessageLookupByLibrary.simpleMessage(
+      "أدخل رقم هاتف صحيح",
+    ),
+    "validationNameRequired": MessageLookupByLibrary.simpleMessage(
+      "الاسم مطلوب",
+    ),
+    "validationPasswordRequired": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور مطلوبة",
+    ),
+    "validationPasswordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "كلمتا المرور غير متطابقتين",
+    ),
+    "validationPhoneRequired": MessageLookupByLibrary.simpleMessage(
+      "أدخل رقم هاتف صحيح",
+    ),
   };
 }

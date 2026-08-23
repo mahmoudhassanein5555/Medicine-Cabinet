@@ -67,7 +67,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   borderRadius: BorderRadius.circular(28),
                   boxShadow: [
                     BoxShadow(
-                      color: colorScheme.primary.withOpacity(0.25),
+                      color: colorScheme.primary.withValues(alpha: 0.25),
                       blurRadius: 20,
                       offset: const Offset(0, 4),
                     ),
@@ -133,7 +133,7 @@ class _DotIndicator extends StatelessWidget {
           decoration: BoxDecoration(
             color: isActive
                 ? colorScheme.primary
-                : colorScheme.primary.withOpacity(0.2),
+                : colorScheme.primary.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(4),
           ),
         );

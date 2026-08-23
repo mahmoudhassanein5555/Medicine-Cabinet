@@ -1,15 +1,15 @@
-// //* dart run build_runner build --delete-conflicting-outputs
+//* dart run build_runner build --delete-conflicting-outputs
 
-// import 'package:get_it/get_it.dart';
-// import 'package:injectable/injectable.dart';
+import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 
-// import 'service_locator.config.dart';
+import 'service_locator.config.dart';
 
-// final getIt = GetIt.instance;
+final getIt = GetIt.instance;
 
-// @InjectableInit(
-//   initializerName: 'init',
-//   preferRelativeImports: true,
-//   asExtension: true,
-// )
-// Future<void> configureDependencies() async => getIt.init();
+@InjectableInit(
+  initializerName: 'init',
+  preferRelativeImports: true,
+  asExtension: true,
+)
+Future<void> configureDependencies() async => getIt.init();

@@ -34,7 +34,7 @@ class OnboardingPageView extends StatelessWidget {
             data.description,
             textAlign: TextAlign.center,
             style: textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSurface.withOpacity(0.6),
+              color: colorScheme.onSurface.withValues(alpha: 0.6),
               fontSize: 16,
               height: 1.5,
             ),
