@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medicine_cabinet/core/bloc_observer/bloc_observer.dart';
+import 'package:medicine_cabinet/core/di/service_locator.dart';
 import 'package:medicine_cabinet/core/theme/app_theme.dart';
 
-import 'core/di/service_locator.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
 import 'features/auth/presentation/views/login_screen.dart';
 import 'features/onboarding/onboarding_screen.dart';
@@ -21,6 +22,8 @@ void main() async {
   );
 
   await configureDependencies();
+
+  Bloc.observer = AppBlocObserver();
 
   runApp(const MyApp());
 }

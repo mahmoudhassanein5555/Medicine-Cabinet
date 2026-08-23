@@ -44,7 +44,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSuccess(user));
     } catch (e) {
       final failure = ErrorHandler.handle(e);
-      emit(AuthError(failure.failuremessage));
+      emit(AuthError(failure));
     }
   }
 
@@ -65,7 +65,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSuccess(user));
     } catch (e) {
       final failure = ErrorHandler.handle(e);
-      emit(AuthError(failure.failuremessage));
+      emit(AuthError(failure));
     }
   }
 
@@ -80,7 +80,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSuccess(user));
     } catch (e) {
       final failure = ErrorHandler.handle(e);
-      emit(AuthError(failure.failuremessage));
+      emit(AuthError(failure));
     }
   }
 
@@ -95,7 +95,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(ForgotPasswordSuccess());
     } catch (e) {
       final failure = ErrorHandler.handle(e);
-      emit(AuthError(failure.failuremessage));
+      emit(AuthError(failure));
     }
   }
 
@@ -107,7 +107,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthInitial());
     } catch (e) {
       final failure = ErrorHandler.handle(e);
-      emit(AuthError(failure.failuremessage));
+      emit(AuthError(failure));
     }
   }
 }

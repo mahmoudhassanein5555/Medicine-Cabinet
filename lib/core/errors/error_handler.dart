@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:medicine_cabinet/generated/l10n.dart';
 
 import '../failure/failure.dart';
 import 'error.dart';
@@ -7,114 +8,223 @@ class ErrorHandler {
   static Failure handle(dynamic exception) {
     if (exception is FirebaseAuthException) {
       return _handleFirebaseAuthError(exception);
-    } else if (exception is FirebaseException) {
-      return _handleFirebaseError(exception);
-    } else if (exception is RemoteException) {
-      return _handleRemoteError(exception.errormessage);
-    } else if (exception is LocalException) {
-      return Failure(exception.errormessage);
-    } else {
-      return Failure('commonTryAgain');
     }
+
+    if (exception is FirebaseException) {
+      return _handleFirebaseError(exception);
+    }
+
+    if (exception is RemoteException) {
+      return _handleRemoteError(exception.errormessage);
+    }
+
+    if (exception is LocalException) {
+      return Failure.ofString(exception.errormessage);
+    }
+
+    if (exception is Exception) {
+      return _handleRemoteError(exception.toString());
+    }
+
+    return Failure(
+      (context) => S.of(context).commonError,
+    );
   }
+
+  // ---------------------------------------------------------------------------
+  // Firebase Authentication
+  // ---------------------------------------------------------------------------
 
   static Failure _handleFirebaseAuthError(
-      FirebaseAuthException exception,
-      ) {
+    FirebaseAuthException exception,
+  ) {
     switch (exception.code) {
       case 'invalid-email':
-        return Failure('authInvalidEmail');
+        return Failure(
+          (context) => S.of(context).authInvalidEmail,
+        );
 
       case 'user-not-found':
-        return Failure('authUserNotFound');
+        return Failure(
+          (context) => S.of(context).authUserNotFound,
+        );
 
       case 'wrong-password':
-        return Failure('authWrongPassword');
+        return Failure(
+          (context) => S.of(context).authWrongPassword,
+        );
 
       case 'invalid-credential':
-        return Failure('authInvalidCredential');
+        return Failure(
+          (context) => S.of(context).authInvalidCredential,
+        );
 
       case 'email-already-in-use':
-        return Failure('authEmailAlreadyInUse');
+        return Failure(
+          (context) => S.of(context).authEmailAlreadyInUse,
+        );
 
       case 'weak-password':
-        return Failure('authWeakPassword');
+        return Failure(
+          (context) => S.of(context).authWeakPassword,
+        );
 
       case 'too-many-requests':
-        return Failure('authTooManyRequests');
+        return Failure(
+          (context) => S.of(context).authTooManyRequests,
+        );
 
       case 'network-request-failed':
-        return Failure('authNetworkError');
+        return Failure(
+          (context) => S.of(context).authNetworkError,
+        );
+
+      case 'user-disabled':
+        return Failure(
+          (context) => S.of(context).authUserDisabled,
+        );
+
+      case 'operation-not-allowed':
+        return Failure(
+          (context) => S.of(context).authOperationNotAllowed,
+        );
+
+      case 'account-exists-with-different-credential':
+      case 'credential-already-in-use':
+        return Failure(
+          (context) => S.of(context).authAccountExistsWithDifferentCredential,
+        );
 
       default:
-        return Failure('commonTryAgain');
+        return Failure(
+          (context) => S.of(context).commonTryAgain,
+        );
     }
   }
+
+  // ---------------------------------------------------------------------------
+  // Firebase / Firestore
+  // ---------------------------------------------------------------------------
 
   static Failure _handleFirebaseError(
-      FirebaseException exception,
-      ) {
+    FirebaseException exception,
+  ) {
     switch (exception.code) {
       case 'permission-denied':
-        return Failure('authPermissionDenied');
+        return Failure(
+          (context) => S.of(context).authPermissionDenied,
+        );
 
       case 'unavailable':
-        return Failure('authNetworkError');
+        return Failure(
+          (context) => S.of(context).authNetworkError,
+        );
 
       case 'not-found':
-        return Failure('authResourceNotFound');
+        return Failure(
+          (context) => S.of(context).authResourceNotFound,
+        );
 
       case 'deadline-exceeded':
-        return Failure('commonTryAgain');
+        return Failure(
+          (context) => S.of(context).commonTryAgain,
+        );
 
       default:
-        return Failure('commonTryAgain');
+        return Failure(
+          (context) => S.of(context).commonTryAgain,
+        );
     }
   }
 
+  // ---------------------------------------------------------------------------
+  // Remote / API
+  // ---------------------------------------------------------------------------
+
   static Failure _handleRemoteError(String message) {
-    if (message.contains('401') ||
-        message.contains('Unauthorized') ||
-        message.contains('Unauthenticated')) {
-      return Failure('authSessionExpired');
+    final normalizedMessage = message.toLowerCase();
+
+    // 401 - Unauthorized
+    if (normalizedMessage.contains('401') ||
+        normalizedMessage.contains('unauthorized') ||
+        normalizedMessage.contains('unauthenticated')) {
+      return Failure(
+        (context) => S.of(context).authSessionExpired,
+      );
     }
 
-    if (message.contains('403') ||
-        message.contains('Forbidden')) {
-      return Failure('authPermissionDenied');
+    // 403 - Forbidden
+    if (normalizedMessage.contains('403') ||
+        normalizedMessage.contains('forbidden')) {
+      return Failure(
+        (context) => S.of(context).authPermissionDenied,
+      );
     }
 
-    if (message.contains('404') ||
-        message.contains('Not Found')) {
-      return Failure('authResourceNotFound');
+    // 404 - Not Found
+    if (normalizedMessage.contains('404') ||
+        normalizedMessage.contains('not found')) {
+      return Failure(
+        (context) => S.of(context).authResourceNotFound,
+      );
     }
 
-    if (message.contains('500') ||
-        message.contains('Internal Server Error')) {
-      return Failure('authServerError');
+    // 422 - Validation error
+    if (normalizedMessage.contains('422') ||
+        normalizedMessage.contains('unprocessable content') ||
+        normalizedMessage.contains('unprocessable entity')) {
+      return Failure(
+        (context) => S.of(context).commonTryAgain,
+      );
     }
 
-    if (message.contains('422') ||
-        message.contains('Unprocessable Content')) {
-      return Failure('commonTryAgain');
+    // 500 - Server error
+    if (normalizedMessage.contains('500') ||
+        normalizedMessage.contains('internal server error')) {
+      return Failure(
+        (context) => S.of(context).authServerError,
+      );
     }
 
-    if (message.contains('SocketException') ||
-        message.contains('Connection failed') ||
-        message.contains('HandshakeException')) {
-      return Failure('authNetworkError');
+    // Network errors
+    if (normalizedMessage.contains('socketexception') ||
+        normalizedMessage.contains('connection failed') ||
+        normalizedMessage.contains('connection refused') ||
+        normalizedMessage.contains('connection reset') ||
+        normalizedMessage.contains('handshakeexception') ||
+        normalizedMessage.contains('network is unreachable')) {
+      return Failure(
+        (context) => S.of(context).authNetworkError,
+      );
     }
 
-    if (message.contains('Timeout') ||
-        message.contains('Deadline')) {
-      return Failure('commonTryAgain');
+    // Timeout
+    if (normalizedMessage.contains('timeout') ||
+        normalizedMessage.contains('deadline exceeded') ||
+        normalizedMessage.contains('deadline-exceeded')) {
+      return Failure(
+        (context) => S.of(context).commonTryAgain,
+      );
     }
 
-    if (message.contains('TypeError') ||
-        message.contains('FormatException')) {
-      return Failure('commonTryAgain');
+    // Parsing / type errors
+    if (normalizedMessage.contains('typeerror') ||
+        normalizedMessage.contains('formatexception') ||
+        normalizedMessage.contains('jsonexception')) {
+      return Failure(
+        (context) => S.of(context).commonTryAgain,
+      );
     }
 
-    return Failure('commonTryAgain');
+    // If we have a meaningful server message, return it.
+    if (message.isNotEmpty &&
+        !normalizedMessage.contains('exception') &&
+        !normalizedMessage.contains('400')) {
+      return Failure.ofString(message);
+    }
+
+    return Failure(
+      (context) => S.of(context).commonError,
+    );
   }
 }

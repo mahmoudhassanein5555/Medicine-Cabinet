@@ -70,10 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           AppToast.showToast(
             context: context,
             title: l10n.commonError,
-            description: ErrorLocalization.getMessage(
-              state.message,
-              l10n,
-            ),
+            description: state.failure.getMessage(context),
             type: ToastificationType.error,
           );
         }

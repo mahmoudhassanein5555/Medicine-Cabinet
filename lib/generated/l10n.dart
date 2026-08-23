@@ -249,9 +249,54 @@ class S {
     return Intl.message('Expired', name: 'commonExpired', desc: '', args: []);
   }
 
+  /// `Something went wrong, please try again.`
+  String get commonTryAgain {
+    return Intl.message(
+      'Something went wrong, please try again.',
+      name: 'commonTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User`
+  String get commonUser {
+    return Intl.message('User', name: 'commonUser', desc: '', args: []);
+  }
+
+  /// `capsules`
+  String get commonCapsules {
+    return Intl.message('capsules', name: 'commonCapsules', desc: '', args: []);
+  }
+
+  /// `bottles`
+  String get commonBottles {
+    return Intl.message('bottles', name: 'commonBottles', desc: '', args: []);
+  }
+
+  /// `units`
+  String get commonUnits {
+    return Intl.message('units', name: 'commonUnits', desc: '', args: []);
+  }
+
   /// `Home`
   String get homeNavLabel {
     return Intl.message('Home', name: 'homeNavLabel', desc: '', args: []);
+  }
+
+  /// `Search`
+  String get searchNavLabel {
+    return Intl.message('Search', name: 'searchNavLabel', desc: '', args: []);
+  }
+
+  /// `Chat`
+  String get chatNavLabel {
+    return Intl.message('Chat', name: 'chatNavLabel', desc: '', args: []);
+  }
+
+  /// `Feed`
+  String get feedNavLabel {
+    return Intl.message('Feed', name: 'feedNavLabel', desc: '', args: []);
   }
 
   /// `Medicines`
@@ -424,6 +469,276 @@ class S {
     return Intl.message('Log in', name: 'authLoginLink', desc: '', args: []);
   }
 
+  /// `Logging in...`
+  String get authLoggingIn {
+    return Intl.message(
+      'Logging in...',
+      name: 'authLoggingIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Creating account...`
+  String get authCreatingAccount {
+    return Intl.message(
+      'Creating account...',
+      name: 'authCreatingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get authPasswordsDoNotMatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'authPasswordsDoNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Your Password`
+  String get authResetPasswordTitle {
+    return Intl.message(
+      'Reset Your Password',
+      name: 'authResetPasswordTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email address and we'll send you a link to reset your password.`
+  String get authResetPasswordSubtitle {
+    return Intl.message(
+      'Enter your email address and we\'ll send you a link to reset your password.',
+      name: 'authResetPasswordSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sending...`
+  String get authSendingResetEmail {
+    return Intl.message(
+      'Sending...',
+      name: 'authSendingResetEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Reset Link`
+  String get authSendResetEmail {
+    return Intl.message(
+      'Send Reset Link',
+      name: 'authSendResetEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password reset email sent successfully.`
+  String get authResetPasswordSuccess {
+    return Intl.message(
+      'Password reset email sent successfully.',
+      name: 'authResetPasswordSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logged in successfully`
+  String get authLoginSuccess {
+    return Intl.message(
+      'Logged in successfully',
+      name: 'authLoginSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account created successfully`
+  String get authRegisterSuccess {
+    return Intl.message(
+      'Account created successfully',
+      name: 'authRegisterSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logged in with Google successfully`
+  String get authGoogleSuccess {
+    return Intl.message(
+      'Logged in with Google successfully',
+      name: 'authGoogleSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email address.`
+  String get authInvalidEmail {
+    return Intl.message(
+      'Please enter a valid email address.',
+      name: 'authInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No account was found with this email.`
+  String get authUserNotFound {
+    return Intl.message(
+      'No account was found with this email.',
+      name: 'authUserNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incorrect email or password.`
+  String get authWrongPassword {
+    return Intl.message(
+      'Incorrect email or password.',
+      name: 'authWrongPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incorrect email or password.`
+  String get authInvalidCredential {
+    return Intl.message(
+      'Incorrect email or password.',
+      name: 'authInvalidCredential',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This email is already in use.`
+  String get authEmailAlreadyInUse {
+    return Intl.message(
+      'This email is already in use.',
+      name: 'authEmailAlreadyInUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password is too weak.`
+  String get authWeakPassword {
+    return Intl.message(
+      'Your password is too weak.',
+      name: 'authWeakPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Too many attempts. Please try again later.`
+  String get authTooManyRequests {
+    return Intl.message(
+      'Too many attempts. Please try again later.',
+      name: 'authTooManyRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your internet connection.`
+  String get authNetworkError {
+    return Intl.message(
+      'Please check your internet connection.',
+      name: 'authNetworkError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have permission to perform this action.`
+  String get authPermissionDenied {
+    return Intl.message(
+      'You don\'t have permission to perform this action.',
+      name: 'authPermissionDenied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The requested resource was not found.`
+  String get authResourceNotFound {
+    return Intl.message(
+      'The requested resource was not found.',
+      name: 'authResourceNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our server is having trouble. Please try again later.`
+  String get authServerError {
+    return Intl.message(
+      'Our server is having trouble. Please try again later.',
+      name: 'authServerError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your session has expired. Please login again.`
+  String get authSessionExpired {
+    return Intl.message(
+      'Your session has expired. Please login again.',
+      name: 'authSessionExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This account has been disabled.`
+  String get authUserDisabled {
+    return Intl.message(
+      'This account has been disabled.',
+      name: 'authUserDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operation not allowed. Please contact support.`
+  String get authOperationNotAllowed {
+    return Intl.message(
+      'Operation not allowed. Please contact support.',
+      name: 'authOperationNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An account already exists with the same email address using a different login method.`
+  String get authAccountExistsWithDifferentCredential {
+    return Intl.message(
+      'An account already exists with the same email address using a different login method.',
+      name: 'authAccountExistsWithDifferentCredential',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google sign-in was cancelled.`
+  String get authGoogleSignInCancelled {
+    return Intl.message(
+      'Google sign-in was cancelled.',
+      name: 'authGoogleSignInCancelled',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Know what you have`
   String get onboardingKnowTitle {
     return Intl.message(
@@ -484,6 +799,91 @@ class S {
     );
   }
 
+  /// `Know what you have`
+  String get onboardingTitle1 {
+    return Intl.message(
+      'Know what you have',
+      name: 'onboardingTitle1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Keep every medicine your household owns organized in one clear, shared place.`
+  String get onboardingDesc1 {
+    return Intl.message(
+      'Keep every medicine your household owns organized in one clear, shared place.',
+      name: 'onboardingDesc1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Never miss an expiry`
+  String get onboardingTitle2 {
+    return Intl.message(
+      'Never miss an expiry',
+      name: 'onboardingTitle2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get a gentle nudge before a medicine expires, or before you run low on it.`
+  String get onboardingDesc2 {
+    return Intl.message(
+      'Get a gentle nudge before a medicine expires, or before you run low on it.',
+      name: 'onboardingDesc2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check before you buy`
+  String get onboardingTitle3 {
+    return Intl.message(
+      'Check before you buy',
+      name: 'onboardingTitle3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan a medicine at the store and instantly see if your household already has it.`
+  String get onboardingDesc3 {
+    return Intl.message(
+      'Scan a medicine at the store and instantly see if your household already has it.',
+      name: 'onboardingDesc3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get started`
+  String get onboardingGetStarted {
+    return Intl.message(
+      'Get started',
+      name: 'onboardingGetStarted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get onboardingContinue {
+    return Intl.message(
+      'Continue',
+      name: 'onboardingContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get onboardingSkip {
+    return Intl.message('Skip', name: 'onboardingSkip', desc: '', args: []);
+  }
+
   /// `Good evening, {name}`
   String homeGreetingEvening(Object name) {
     return Intl.message(
@@ -541,6 +941,126 @@ class S {
       name: 'homeRecentlyAdded',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Expires tomorrow`
+  String get homeExpiresTomorrow {
+    return Intl.message(
+      'Expires tomorrow',
+      name: 'homeExpiresTomorrow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expires in {count} days`
+  String homeExpiresInDays(Object count) {
+    return Intl.message(
+      'Expires in $count days',
+      name: 'homeExpiresInDays',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Expires in 1 month`
+  String get homeExpiresInMonth {
+    return Intl.message(
+      'Expires in 1 month',
+      name: 'homeExpiresInMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expires in {count} months`
+  String homeExpiresInMonths(Object count) {
+    return Intl.message(
+      'Expires in $count months',
+      name: 'homeExpiresInMonths',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Added today`
+  String get homeAddedToday {
+    return Intl.message(
+      'Added today',
+      name: 'homeAddedToday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Added yesterday`
+  String get homeAddedYesterday {
+    return Intl.message(
+      'Added yesterday',
+      name: 'homeAddedYesterday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Added {count} days ago`
+  String homeAddedDaysAgo(Object count) {
+    return Intl.message(
+      'Added $count days ago',
+      name: 'homeAddedDaysAgo',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} tablets remaining`
+  String homeTabletsRemaining(Object count) {
+    return Intl.message(
+      '$count tablets remaining',
+      name: 'homeTabletsRemaining',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} capsules remaining`
+  String homeCapsulesRemaining(Object count) {
+    return Intl.message(
+      '$count capsules remaining',
+      name: 'homeCapsulesRemaining',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} bottles remaining`
+  String homeBottlesRemaining(Object count) {
+    return Intl.message(
+      '$count bottles remaining',
+      name: 'homeBottlesRemaining',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} units remaining`
+  String homeUnitsRemaining(Object count) {
+    return Intl.message(
+      '$count units remaining',
+      name: 'homeUnitsRemaining',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} remaining`
+  String homeRemaining(Object count) {
+    return Intl.message(
+      '$count remaining',
+      name: 'homeRemaining',
+      desc: '',
+      args: [count],
     );
   }
 
@@ -959,171 +1479,6 @@ class S {
     );
   }
 
-  /// `Know what you have`
-  String get onboardingTitle1 {
-    return Intl.message(
-      'Know what you have',
-      name: 'onboardingTitle1',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Keep every medicine your household owns organized in one clear, shared place.`
-  String get onboardingDesc1 {
-    return Intl.message(
-      'Keep every medicine your household owns organized in one clear, shared place.',
-      name: 'onboardingDesc1',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Never miss an expiry`
-  String get onboardingTitle2 {
-    return Intl.message(
-      'Never miss an expiry',
-      name: 'onboardingTitle2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Get a gentle nudge before a medicine expires, or before you run low on it.`
-  String get onboardingDesc2 {
-    return Intl.message(
-      'Get a gentle nudge before a medicine expires, or before you run low on it.',
-      name: 'onboardingDesc2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Check before you buy`
-  String get onboardingTitle3 {
-    return Intl.message(
-      'Check before you buy',
-      name: 'onboardingTitle3',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Scan a medicine at the store and instantly see if your household already has it.`
-  String get onboardingDesc3 {
-    return Intl.message(
-      'Scan a medicine at the store and instantly see if your household already has it.',
-      name: 'onboardingDesc3',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Get started`
-  String get onboardingGetStarted {
-    return Intl.message(
-      'Get started',
-      name: 'onboardingGetStarted',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Continue`
-  String get onboardingContinue {
-    return Intl.message(
-      'Continue',
-      name: 'onboardingContinue',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Skip`
-  String get onboardingSkip {
-    return Intl.message('Skip', name: 'onboardingSkip', desc: '', args: []);
-  }
-
-  /// `Logging in...`
-  String get authLoggingIn {
-    return Intl.message(
-      'Logging in...',
-      name: 'authLoggingIn',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Creating account...`
-  String get authCreatingAccount {
-    return Intl.message(
-      'Creating account...',
-      name: 'authCreatingAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Passwords do not match`
-  String get authPasswordsDoNotMatch {
-    return Intl.message(
-      'Passwords do not match',
-      name: 'authPasswordsDoNotMatch',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Reset Your Password`
-  String get authResetPasswordTitle {
-    return Intl.message(
-      'Reset Your Password',
-      name: 'authResetPasswordTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter your email address and we'll send you a link to reset your password.`
-  String get authResetPasswordSubtitle {
-    return Intl.message(
-      'Enter your email address and we\'ll send you a link to reset your password.',
-      name: 'authResetPasswordSubtitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sending...`
-  String get authSendingResetEmail {
-    return Intl.message(
-      'Sending...',
-      name: 'authSendingResetEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Send Reset Link`
-  String get authSendResetEmail {
-    return Intl.message(
-      'Send Reset Link',
-      name: 'authSendResetEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password reset email sent successfully.`
-  String get authResetPasswordSuccess {
-    return Intl.message(
-      'Password reset email sent successfully.',
-      name: 'authResetPasswordSuccess',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Something went wrong`
   String get commonError {
     return Intl.message(
@@ -1134,161 +1489,131 @@ class S {
     );
   }
 
-  /// `Logged in successfully`
-  String get authLoginSuccess {
+  /// `Failed to load user profile`
+  String get failedToLoadProfile {
     return Intl.message(
-      'Logged in successfully',
-      name: 'authLoginSuccess',
+      'Failed to load user profile',
+      name: 'failedToLoadProfile',
       desc: '',
       args: [],
     );
   }
 
-  /// `Account created successfully`
-  String get authRegisterSuccess {
+  /// `Failed to load medicines`
+  String get failedToLoadMedicines {
     return Intl.message(
-      'Account created successfully',
-      name: 'authRegisterSuccess',
+      'Failed to load medicines',
+      name: 'failedToLoadMedicines',
       desc: '',
       args: [],
     );
   }
 
-  /// `Logged in with Google successfully`
-  String get authGoogleSuccess {
+  /// `Something went wrong`
+  String get somethingWrong {
     return Intl.message(
-      'Logged in with Google successfully',
-      name: 'authGoogleSuccess',
+      'Something went wrong',
+      name: 'somethingWrong',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please enter a valid email address.`
-  String get authInvalidEmail {
+  /// `Something went wrong, please try again later.`
+  String get somethingWentWrong {
     return Intl.message(
-      'Please enter a valid email address.',
-      name: 'authInvalidEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No account was found with this email.`
-  String get authUserNotFound {
-    return Intl.message(
-      'No account was found with this email.',
-      name: 'authUserNotFound',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Incorrect email or password.`
-  String get authWrongPassword {
-    return Intl.message(
-      'Incorrect email or password.',
-      name: 'authWrongPassword',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Incorrect email or password.`
-  String get authInvalidCredential {
-    return Intl.message(
-      'Incorrect email or password.',
-      name: 'authInvalidCredential',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `This email is already in use.`
-  String get authEmailAlreadyInUse {
-    return Intl.message(
-      'This email is already in use.',
-      name: 'authEmailAlreadyInUse',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your password is too weak.`
-  String get authWeakPassword {
-    return Intl.message(
-      'Your password is too weak.',
-      name: 'authWeakPassword',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Too many attempts. Please try again later.`
-  String get authTooManyRequests {
-    return Intl.message(
-      'Too many attempts. Please try again later.',
-      name: 'authTooManyRequests',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please check your internet connection.`
-  String get authNetworkError {
-    return Intl.message(
-      'Please check your internet connection.',
-      name: 'authNetworkError',
+      'Something went wrong, please try again later.',
+      name: 'somethingWentWrong',
       desc: '',
       args: [],
     );
   }
 
   /// `You don't have permission to perform this action.`
-  String get authPermissionDenied {
+  String get errorPermissionDenied {
     return Intl.message(
       'You don\'t have permission to perform this action.',
-      name: 'authPermissionDenied',
+      name: 'errorPermissionDenied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No internet connection or server is unavailable.`
+  String get errorNoInternet {
+    return Intl.message(
+      'No internet connection or server is unavailable.',
+      name: 'errorNoInternet',
       desc: '',
       args: [],
     );
   }
 
   /// `The requested resource was not found.`
-  String get authResourceNotFound {
+  String get errorNotFound {
     return Intl.message(
       'The requested resource was not found.',
-      name: 'authResourceNotFound',
+      name: 'errorNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Our server is having trouble. Please try again later.`
-  String get authServerError {
+  /// `Connection timed out. The server is not responding.`
+  String get errorTimeout {
     return Intl.message(
-      'Our server is having trouble. Please try again later.',
-      name: 'authServerError',
+      'Connection timed out. The server is not responding.',
+      name: 'errorTimeout',
       desc: '',
       args: [],
     );
   }
 
   /// `Your session has expired. Please login again.`
-  String get authSessionExpired {
+  String get errorSessionExpired {
     return Intl.message(
       'Your session has expired. Please login again.',
-      name: 'authSessionExpired',
+      name: 'errorSessionExpired',
       desc: '',
       args: [],
     );
   }
 
-  /// `Something went wrong, please try again.`
-  String get commonTryAgain {
+  /// `Our server is having trouble. Please try again in a few minutes.`
+  String get errorInternalServer {
     return Intl.message(
-      'Something went wrong, please try again.',
-      name: 'commonTryAgain',
+      'Our server is having trouble. Please try again in a few minutes.',
+      name: 'errorInternalServer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid information provided. Please check your inputs.`
+  String get errorInvalidInput {
+    return Intl.message(
+      'Invalid information provided. Please check your inputs.',
+      name: 'errorInvalidInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We encountered a technical issue while processing data.`
+  String get errorTechnicalIssue {
+    return Intl.message(
+      'We encountered a technical issue while processing data.',
+      name: 'errorTechnicalIssue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A database error occurred.`
+  String get errorDatabase {
+    return Intl.message(
+      'A database error occurred.',
+      name: 'errorDatabase',
       desc: '',
       args: [],
     );
@@ -1389,6 +1714,16 @@ class S {
     return Intl.message(
       'Code should be at least 6 digits',
       name: 'validationCodeLength',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome back`
+  String get welcomeBack {
+    return Intl.message(
+      'Welcome back',
+      name: 'welcomeBack',
       desc: '',
       args: [],
     );

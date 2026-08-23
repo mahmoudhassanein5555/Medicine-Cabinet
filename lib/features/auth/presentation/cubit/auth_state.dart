@@ -1,3 +1,4 @@
+import 'package:medicine_cabinet/core/failure/failure.dart';
 import 'package:medicine_cabinet/features/auth/domain/entities/user_entity.dart';
 
 abstract class AuthState {}
@@ -23,10 +24,11 @@ class AuthSuccess extends AuthState {
 
   AuthSuccess(this.user);
 }
+
 class ForgotPasswordSuccess extends AuthState {}
 
 class AuthError extends AuthState {
-  final String message;
+  final Failure failure;
 
-  AuthError(this.message);
+  AuthError(this.failure);
 }

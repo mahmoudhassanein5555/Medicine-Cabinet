@@ -40,6 +40,18 @@ abstract class ErrorLocalization {
       case 'authSessionExpired':
         return l10n.authSessionExpired;
 
+      case 'authUserDisabled':
+        return l10n.authUserDisabled;
+
+      case 'authOperationNotAllowed':
+        return l10n.authOperationNotAllowed;
+
+      case 'authAccountExistsWithDifferentCredential':
+        return l10n.authAccountExistsWithDifferentCredential;
+
+      case 'authGoogleSignInCancelled':
+        return l10n.authGoogleSignInCancelled;
+
       case 'commonTryAgain':
         return l10n.commonTryAgain;
 

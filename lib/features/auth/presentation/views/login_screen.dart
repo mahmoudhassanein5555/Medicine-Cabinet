@@ -9,6 +9,7 @@ import 'package:toastification/toastification.dart';
 import '../../../../core/di/service_locator.dart';
 import '../../../../core/dialogs/app_toasts.dart';
 import '../../../../core/localization/error_localization.dart';
+import '../../../../core/utils/validator_functions.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../generated/l10n.dart';
@@ -65,10 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
           AppToast.showToast(
             context: context,
             title: l10n.commonError,
-            description: ErrorLocalization.getMessage(
-              state.message,
-              l10n,
-            ),
+            description: state.failure.getMessage(context),
             type: ToastificationType.error,
           );
         }
@@ -123,6 +121,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: 'ahmed@family.mail',
                       hintTextColor: colorScheme.onSurfaceVariant,
                       keyboardType: TextInputType.emailAddress,
+                      validator: (value) {
+                        final error = Validator.validateEmail(value);
+                        if (error == null) return null;
+                        return ErrorLocalization.getMessage(error, l10n);
+                      },
                       prefixIcon: Icon(
                         Icons.email_outlined,
                         color: colorScheme.onSurfaceVariant,
@@ -151,6 +154,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintTextColor: colorScheme.onSurfaceVariant,
                       isPassword: true,
                       action: TextInputAction.done,
+                      validator: (value) {
+                        final error = Validator.validatePassword(value);
+                        if (error == null) return null;
+                        return ErrorLocalization.getMessage(error, l10n);
+                      },
                       prefixIcon: Icon(
                         Icons.lock_outline,
                         color: colorScheme.onSurfaceVariant,
