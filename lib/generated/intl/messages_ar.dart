@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "alertsFilterExpiry": MessageLookupByLibrary.simpleMessage("الصلاحية"),
+    "alertsNavLabel": MessageLookupByLibrary.simpleMessage("التنبيهات"),
     "alertsTitle": MessageLookupByLibrary.simpleMessage("التنبيهات"),
     "alertsToday": MessageLookupByLibrary.simpleMessage("اليوم"),
     "alertsYesterday": MessageLookupByLibrary.simpleMessage("أمس"),
@@ -177,7 +178,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "امسح أو ابحث عن دواء...",
     ),
     "beforeYouBuyTitle": MessageLookupByLibrary.simpleMessage("قبل أن تشتري"),
-    "chatNavLabel": MessageLookupByLibrary.simpleMessage("المحادثة"),
     "commonAddToCabinet": MessageLookupByLibrary.simpleMessage(
       "إضافة إلى الصيدلية",
     ),
@@ -252,7 +252,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "failedToLoadProfile": MessageLookupByLibrary.simpleMessage(
       "فشل تحميل الملف الشخصي",
     ),
-    "feedNavLabel": MessageLookupByLibrary.simpleMessage("المنشورات"),
     "homeAddedDaysAgo": m0,
     "homeAddedToday": MessageLookupByLibrary.simpleMessage("أُضيف اليوم"),
     "homeAddedYesterday": MessageLookupByLibrary.simpleMessage("أُضيف أمس"),
@@ -291,6 +290,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
+    "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "ابحث عن الأدوية...",
     ),
@@ -378,7 +378,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanSomeoneElse": MessageLookupByLibrary.simpleMessage("شخص آخر"),
     "scanUnitTablets": MessageLookupByLibrary.simpleMessage("أقراص"),
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage("لمن هذا الدواء؟"),
-    "searchNavLabel": MessageLookupByLibrary.simpleMessage("البحث"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ ما، يرجى المحاولة لاحقاً.",
     ),

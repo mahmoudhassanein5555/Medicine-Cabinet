@@ -14,11 +14,7 @@ class CustomBottomNavBar extends StatefulWidget {
   final String? userId;
   final String? householdId;
 
-  const CustomBottomNavBar({
-    super.key,
-    this.userId,
-    this.householdId,
-  });
+  const CustomBottomNavBar({super.key, this.userId, this.householdId});
 
   @override
   State<CustomBottomNavBar> createState() => _BottomNavBarState();
@@ -34,7 +30,8 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
   @override
   void initState() {
     super.initState();
-    effectiveUserId = widget.userId ??
+    effectiveUserId =
+        widget.userId ??
         FirebaseAuth.instance.currentUser?.uid ??
         "FlwarNVYFWM17QKlEnUm";
     effectiveHouseholdId = widget.householdId ?? effectiveUserId;
@@ -71,16 +68,12 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
               label: S.of(context).homeNavLabel,
             ),
             CurvedNavigationBarItem(
-              child: const Icon(Icons.search),
-              label: S.of(context).searchNavLabel,
-            ),
-            CurvedNavigationBarItem(
-              child: const Icon(Icons.chat_bubble_outline),
-              label: S.of(context).chatNavLabel,
+              child: const Icon(Icons.medical_information),
+              label: S.of(context).medicinesNavLabel,
             ),
             CurvedNavigationBarItem(
               child: const Icon(Icons.newspaper),
-              label: S.of(context).feedNavLabel,
+              label: S.of(context).alertsNavLabel,
             ),
             CurvedNavigationBarItem(
               child: const Icon(Icons.perm_identity),
@@ -108,4 +101,3 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
     );
   }
 }
-

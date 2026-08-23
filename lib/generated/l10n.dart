@@ -284,19 +284,19 @@ class S {
     return Intl.message('Home', name: 'homeNavLabel', desc: '', args: []);
   }
 
-  /// `Search`
-  String get searchNavLabel {
-    return Intl.message('Search', name: 'searchNavLabel', desc: '', args: []);
+  /// `Medicines`
+  String get medicinesNavLabel {
+    return Intl.message(
+      'Medicines',
+      name: 'medicinesNavLabel',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `Chat`
-  String get chatNavLabel {
-    return Intl.message('Chat', name: 'chatNavLabel', desc: '', args: []);
-  }
-
-  /// `Feed`
-  String get feedNavLabel {
-    return Intl.message('Feed', name: 'feedNavLabel', desc: '', args: []);
+  /// `Alerts`
+  String get alertsNavLabel {
+    return Intl.message('Alerts', name: 'alertsNavLabel', desc: '', args: []);
   }
 
   /// `Medicines`

@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "alertsFilterExpiry": MessageLookupByLibrary.simpleMessage("Expiry"),
+    "alertsNavLabel": MessageLookupByLibrary.simpleMessage("Alerts"),
     "alertsTitle": MessageLookupByLibrary.simpleMessage("Alerts"),
     "alertsToday": MessageLookupByLibrary.simpleMessage("Today"),
     "alertsYesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),
@@ -179,7 +180,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Scan or search a medicine...",
     ),
     "beforeYouBuyTitle": MessageLookupByLibrary.simpleMessage("Before You Buy"),
-    "chatNavLabel": MessageLookupByLibrary.simpleMessage("Chat"),
     "commonAddToCabinet": MessageLookupByLibrary.simpleMessage(
       "Add to Cabinet",
     ),
@@ -254,7 +254,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "failedToLoadProfile": MessageLookupByLibrary.simpleMessage(
       "Failed to load user profile",
     ),
-    "feedNavLabel": MessageLookupByLibrary.simpleMessage("Feed"),
     "homeAddedDaysAgo": m0,
     "homeAddedToday": MessageLookupByLibrary.simpleMessage("Added today"),
     "homeAddedYesterday": MessageLookupByLibrary.simpleMessage(
@@ -301,6 +300,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
+    "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("Medicines"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Search medicines...",
     ),
@@ -396,7 +396,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage(
       "Who is this for?",
     ),
-    "searchNavLabel": MessageLookupByLibrary.simpleMessage("Search"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong, please try again later.",
     ),

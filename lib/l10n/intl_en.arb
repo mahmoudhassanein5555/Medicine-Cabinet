@@ -35,9 +35,8 @@
   "commonUnits": "units",
 
   "homeNavLabel": "Home",
-  "searchNavLabel": "Search",
-  "chatNavLabel": "Chat",
-  "feedNavLabel": "Feed",
+  "medicinesNavLabel": "Medicines",
+  "alertsNavLabel":"Alerts",
   "medicinesTitle": "Medicines",
   "alertsTitle": "Alerts",
   "profileNavLabel": "Profile",
