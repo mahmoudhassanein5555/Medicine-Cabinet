@@ -14,7 +14,7 @@ class MedicineDetailsDto {
   final DateTime updatedAt;
   final String? storageLocation;
   final String? category;
-
+  final String? description;
   const MedicineDetailsDto({
     required this.id,
     required this.name,
@@ -28,6 +28,7 @@ class MedicineDetailsDto {
     required this.updatedAt,
     this.storageLocation,
     this.category,
+    this.description,
   });
 
   factory MedicineDetailsDto.fromFirestore(
@@ -52,6 +53,7 @@ class MedicineDetailsDto {
 
       storageLocation: data['storageLocation'] as String?,
       category: data['category'] as String?,
+      description: data['description'] as String?,
     );
   }
 
@@ -68,6 +70,7 @@ class MedicineDetailsDto {
       'updatedAt': Timestamp.fromDate(updatedAt),
       'storageLocation': storageLocation,
       'category': category,
+      'description': description,
     };
   }
 
@@ -85,6 +88,7 @@ class MedicineDetailsDto {
       updatedAt: updatedAt,
       storageLocation: storageLocation,
       category: category,
+      description: description,
     );
   }
 
@@ -102,6 +106,7 @@ class MedicineDetailsDto {
       updatedAt: entity.updatedAt,
       storageLocation: entity.storageLocation,
       category: entity.category,
+      description: entity.description,
     );
   }
 }

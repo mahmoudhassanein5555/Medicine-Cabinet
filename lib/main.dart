@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: S.delegate.supportedLocales,
           title: 'Medicine Cabinet',
           home: MedicineDetailsScreen(
-            medicineId: 't8lSnPTlNMQWJWriVpou',
+            medicineId: '9bjV1oE2byf9rKpNxwOg',
             householdId: 'household123',
           ),
         );

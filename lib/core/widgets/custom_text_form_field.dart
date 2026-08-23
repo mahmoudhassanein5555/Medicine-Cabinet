@@ -18,6 +18,7 @@ class CustomTextFormField extends StatefulWidget {
     this.action,
     this.focusNode,
     this.borderRadius,
+    this.maxLines = 1,
   });
   final TextEditingController? controller;
   final bool isPassword;
@@ -31,6 +32,7 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputAction? action;
   final FocusNode? focusNode;
   final BorderRadius? borderRadius;
+  final int maxLines;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();

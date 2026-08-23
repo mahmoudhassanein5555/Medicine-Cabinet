@@ -173,6 +173,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
+    "medicineDetailsDescription": MessageLookupByLibrary.simpleMessage(
+      "Description",
+    ),
     "medicineDetailsName": MessageLookupByLibrary.simpleMessage("Name"),
     "medicineDetailsNotFound": MessageLookupByLibrary.simpleMessage(
       "Medicine not found",
@@ -181,10 +184,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineTypeCapsules": MessageLookupByLibrary.simpleMessage("Capsules"),
     "medicineTypeCream": MessageLookupByLibrary.simpleMessage("Cream"),
     "medicineTypeDrops": MessageLookupByLibrary.simpleMessage("Drops"),
+    "medicineTypeEntericCoatedTablets": MessageLookupByLibrary.simpleMessage(
+      "Enteric Coated Tablets",
+    ),
     "medicineTypeInhaler": MessageLookupByLibrary.simpleMessage("Inhaler"),
+    "medicineTypeLiquid": MessageLookupByLibrary.simpleMessage("Liquid"),
     "medicineTypeOintment": MessageLookupByLibrary.simpleMessage("Ointment"),
     "medicineTypePills": MessageLookupByLibrary.simpleMessage("Pills"),
+    "medicineTypeSolutionForImOralUse": MessageLookupByLibrary.simpleMessage(
+      "Solution for IM injection / oral use",
+    ),
     "medicineTypeSyrup": MessageLookupByLibrary.simpleMessage("Syrup"),
+    "medicineTypeTablets": MessageLookupByLibrary.simpleMessage("Tablets"),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Search medicines...",
     ),

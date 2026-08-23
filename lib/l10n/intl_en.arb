@@ -123,5 +123,11 @@
  "commonSomethingWentWrong": "Something went wrong",
 "commonTryAgain": "Try again",
 "commonUnableToLoadMedicineDetails": "Unable to load medicine details.",
-"medicineDetailsNotFound": "Medicine not found"
+"medicineDetailsNotFound": "Medicine not found",
+"medicineDetailsDescription": "Description",
+"medicineTypeEntericCoatedTablets": "Enteric Coated Tablets",
+"medicineTypeLiquid": "Liquid",
+"medicineTypeSolutionForImOralUse": "Solution for IM injection / oral use",
+"medicineTypeTablets": "Tablets"
+
 }

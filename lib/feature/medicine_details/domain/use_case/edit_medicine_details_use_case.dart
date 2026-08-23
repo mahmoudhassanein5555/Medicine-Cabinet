@@ -17,6 +17,7 @@ class EditMedicineDetailsUseCase {
     required String category,
     required DateTime expiryDate,
     required String storageLocation,
+    required String? description,
   }) {
     return repository.editMedicineDetails(
       householdId: householdId,
@@ -26,6 +27,7 @@ class EditMedicineDetailsUseCase {
       category: category,
       expiryDate: expiryDate,
       storageLocation: storageLocation,
+      description: description,
     );
   }
 }

@@ -25,7 +25,6 @@ class MedicineDetailsRepoImp implements MedicineDetailsRepoInterface {
 
       return Right(dto.toEntity());
     } catch (e) {
-      print('Error in getMedicineDetails: $e');
       return Left(Failure(e.toString()));
     }
   }
@@ -58,6 +57,7 @@ class MedicineDetailsRepoImp implements MedicineDetailsRepoInterface {
     required String category,
     required DateTime expiryDate,
     required String storageLocation,
+    required String? description,
   }) async {
     try {
       await dataSource.editMedicineDetails(
@@ -68,6 +68,7 @@ class MedicineDetailsRepoImp implements MedicineDetailsRepoInterface {
         category: category,
         expiryDate: expiryDate,
         storageLocation: storageLocation,
+        description: description,
       );
 
       return const Right(null);

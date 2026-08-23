@@ -56,6 +56,7 @@ class MedicineDetailsDataSourceImp
     required String category,
     required DateTime expiryDate,
     required String storageLocation,
+    required String? description,
   }) async {
     await _getMedicinesCollection(householdId).doc(medicineId).update({
       'name': name,
@@ -63,6 +64,7 @@ class MedicineDetailsDataSourceImp
       'category': category,
       'expiryDate': Timestamp.fromDate(expiryDate),
       'storageLocation': storageLocation,
+      'description': description,
       'updatedAt': FieldValue.serverTimestamp(),
     });
   }

@@ -7,6 +7,7 @@ class AppStrings {
   static const String dummyMedicineAddedBy = 'User';
   static const String dummyMedicineStorageLocation = 'Kitchen cabinet';
   static const String dummyMedicineCategory = 'Pain relief';
+  static const String dummyMedicineDescription = 'Description';
 
   static const int dummyMedicineQuantity = 20;
 }

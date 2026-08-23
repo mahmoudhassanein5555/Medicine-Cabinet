@@ -108,6 +108,7 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
     required String category,
     required DateTime expiryDate,
     required String storageLocation,
+    required String? description,
   }) async {
     final medicine = state.medicine;
     final householdId = state.householdId;
@@ -129,6 +130,7 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
       category: category,
       expiryDate: expiryDate,
       storageLocation: storageLocation,
+      description: description,
     );
 
     result.fold(

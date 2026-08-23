@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:medicine_cabinet/core/constants/app_strings.dart';
+import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/widgets/custom_text_field.dart';
+import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/widgets/medicine_description_section.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:medicine_cabinet/core/di/service_locator.dart';
-import 'package:medicine_cabinet/core/utils/medicine_localization.dart';
+import 'package:medicine_cabinet/core/utils/medicine_details_localization.dart';
 import 'package:medicine_cabinet/feature/medicine_details/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/widgets/medicine_details_error.dart';
 import 'package:medicine_cabinet/feature/medicine_details/peresentation/view/widgets/medicine_details_header.dart';
@@ -66,6 +68,7 @@ class _MedicineDetailsView extends StatelessWidget {
       updatedAt: now,
       storageLocation: AppStrings.dummyMedicineStorageLocation,
       category: AppStrings.dummyMedicineCategory,
+      description: AppStrings.dummyMedicineDescription,
     );
   }
 
@@ -160,6 +163,10 @@ class _MedicineDetailsBody extends StatelessWidget {
 
                     // Expiry status
                     MedicineExpiryBanner(medicine: medicine),
+                    const SizedBox(height: 12),
+                    MedicineDescriptionSection(
+                      description: medicine.description,
+                    ),
 
                     const SizedBox(height: 16),
 
@@ -251,6 +258,9 @@ class _MedicineDetailsBody extends StatelessWidget {
     final nameController = TextEditingController(text: medicine.name);
 
     final typeController = TextEditingController(text: medicine.type);
+    final descriptionController = TextEditingController(
+      text: medicine.description ?? '',
+    );
 
     final categoryController = TextEditingController(
       text: medicine.category ?? '',
@@ -275,46 +285,36 @@ class _MedicineDetailsBody extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Name
-                    TextField(
+                    CustomTextField(
                       controller: nameController,
-                      decoration: InputDecoration(
-                        labelText: l10n.medicineDetailsName,
-                      ),
+                      labelText: l10n.medicineDetailsName,
                     ),
-
                     const SizedBox(height: 12),
 
-                    // Type
-                    TextField(
+                    CustomTextField(
                       controller: typeController,
-                      decoration: InputDecoration(
-                        labelText: l10n.medicineDetailsType,
-                      ),
+                      labelText: l10n.medicineDetailsType,
                     ),
-
                     const SizedBox(height: 12),
 
-                    // Category
-                    TextField(
+                    CustomTextField(
                       controller: categoryController,
-                      decoration: InputDecoration(
-                        labelText: l10n.medicineDetailsCategory,
-                      ),
+                      labelText: l10n.medicineDetailsCategory,
                     ),
-
                     const SizedBox(height: 12),
 
-                    // Storage location
-                    TextField(
-                      controller: locationController,
-                      decoration: InputDecoration(
-                        labelText: l10n.commonStorageLocation,
-                      ),
+                    CustomTextField(
+                      controller: descriptionController,
+                      labelText: l10n.medicineDetailsDescription,
+                      maxLines: 4,
                     ),
+                    const SizedBox(height: 12),
 
+                    CustomTextField(
+                      controller: locationController,
+                      labelText: l10n.commonStorageLocation,
+                    ),
                     const SizedBox(height: 16),
-
                     // Expiry date
                     ListTile(
                       contentPadding: EdgeInsets.zero,
@@ -358,6 +358,7 @@ class _MedicineDetailsBody extends StatelessWidget {
                       category: categoryController.text.trim(),
                       expiryDate: expiryDate,
                       storageLocation: locationController.text.trim(),
+                      description: descriptionController.text.trim(),
                     );
 
                     Navigator.pop(dialogContext);

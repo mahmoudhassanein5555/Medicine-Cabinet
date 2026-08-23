@@ -23,6 +23,7 @@ abstract class MedicineDetailsRepoInterface {
     required String category,
     required DateTime expiryDate,
     required String storageLocation,
+    required String? description,
   });
 
   Future<Either<Failure, void>> deleteMedicine({
