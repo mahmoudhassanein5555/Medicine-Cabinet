@@ -19,15 +19,21 @@
   "commonHousehold": "Household",
   "commonOwner": "Owner",
   "commonQuantity": "Quantity",
+
+  "medicinesItemsCount": "{count} items",
+  "medicineRemaining": "{count} remaining",
+  "medicineExpires": "Expires {date}",
   "commonExpiryDate": "Expiry date",
   "commonDateAdded": "Date added",
   "commonStorageLocation": "Storage location",
+
   "commonHealthy": "Healthy",
   "commonExpiringSoon": "Expiring soon",
   "commonExpiringShort": "Expiring",
   "commonLow": "Low",
   "commonLowStock": "Ended stock",
   "commonExpired": "Expired",
+
   "commonTryAgain": "Something went wrong, please try again.",
   "commonUser": "User",
   "commonCapsules": "capsules",
@@ -36,7 +42,7 @@
 
   "homeNavLabel": "Home",
   "medicinesNavLabel": "Medicines",
-  "alertsNavLabel":"Alerts",
+  "alertsNavLabel": "Alerts",
   "medicinesTitle": "Medicines",
   "alertsTitle": "Alerts",
   "profileNavLabel": "Profile",
@@ -104,6 +110,7 @@
   "onboardingDesc2": "Get a gentle nudge before a medicine expires, or before you run low on it.",
   "onboardingTitle3": "Check before you buy",
   "onboardingDesc3": "Scan a medicine at the store and instantly see if your household already has it.",
+
   "onboardingGetStarted": "Get started",
   "onboardingContinue": "Continue",
   "onboardingSkip": "Skip",
@@ -114,18 +121,22 @@
   "homeScanCtaSubtitle": "Add a new item in seconds",
   "homeAttentionNeeded": "Attention needed",
   "homeRecentlyAdded": "Recently added",
+
   "homeExpiresTomorrow": "Expires tomorrow",
   "homeExpiresInDays": "Expires in {count} days",
   "homeExpiresInMonth": "Expires in 1 month",
   "homeExpiresInMonths": "Expires in {count} months",
+
   "homeAddedToday": "Added today",
   "homeAddedYesterday": "Added yesterday",
   "homeAddedDaysAgo": "Added {count} days ago",
+
   "homeTabletsRemaining": "{count} tablets remaining",
   "homeCapsulesRemaining": "{count} capsules remaining",
   "homeBottlesRemaining": "{count} bottles remaining",
   "homeUnitsRemaining": "{count} units remaining",
   "homeRemaining": "{count} remaining",
+
   "homeEmptyTitle": "Your cabinet is empty",
   "homeEmptyDesc": "Scan the first medicine you own and it'll show up here, organized and ready to track.",
   "homeEmptyButton": "Scan your first medicine",
@@ -134,6 +145,10 @@
   "medicinesSortBy": "Sort by",
   "medicinesSortLabelCurrent": "Sort: {sortOption}",
   "medicinesSortOptionName": "Name (A–Z)",
+  "medicinesSortOptionExpiry": "Expiry date",
+  "medicinesSortOptionQuantity": "Quantity",
+  "medicinesSortOptionRecentlyAdded": "Recently added",
+  "medicinesNoMedicines": "No medicines found",
 
   "medicineDetailsDeleteDesc": "This removes it from your cabinet inventory. This can't be undone.",
 
@@ -181,11 +196,15 @@
   "splashLoadingText": "Setting up your cabinet...",
 
   "commonError": "Something went wrong",
+  "commonSomethingWentWrong": "Something went wrong",
+  "somethingWrong": "Something went wrong",
+  "somethingWentWrong": "Something went wrong, please try again later.",
+  "commonRetry": "Retry",
+
+  "commonTryAgainLater": "Please try again later",
 
   "failedToLoadProfile": "Failed to load user profile",
   "failedToLoadMedicines": "Failed to load medicines",
-  "somethingWrong": "Something went wrong",
-  "somethingWentWrong": "Something went wrong, please try again later.",
 
   "errorPermissionDenied": "You don't have permission to perform this action.",
   "errorNoInternet": "No internet connection or server is unavailable.",
@@ -207,6 +226,9 @@
   "validationInvalidPhone": "Enter a valid phone number",
   "validationCodeRequired": "Code cannot be empty",
   "validationCodeLength": "Code should be at least 6 digits",
+
+  "searchStartTyping": "Start typing to search for medicines",
+  "searchNoResults": "No medicines found",
 
   "welcomeBack": "Welcome back"
 }

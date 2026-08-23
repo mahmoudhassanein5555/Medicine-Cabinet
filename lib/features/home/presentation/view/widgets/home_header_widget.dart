@@ -9,11 +9,7 @@ class HomeHeaderWidget extends StatelessWidget {
   final UserEntity user;
   final VoidCallback? onMenuPressed;
 
-  const HomeHeaderWidget({
-    super.key,
-    required this.user,
-    this.onMenuPressed,
-  });
+  const HomeHeaderWidget({super.key, required this.user, this.onMenuPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +74,9 @@ class HomeHeaderWidget extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: (isDark ? AppColors.primaryDark : AppColors.primaryLight)
-                      .withValues(alpha: 0.2),
+                  color:
+                      (isDark ? AppColors.primaryDark : AppColors.primaryLight)
+                          .withValues(alpha: 0.2),
                   blurRadius: 8,
                   offset: const Offset(0, 3),
                 ),

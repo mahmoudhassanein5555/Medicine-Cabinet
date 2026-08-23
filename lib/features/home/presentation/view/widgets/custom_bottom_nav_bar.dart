@@ -8,6 +8,8 @@ import 'package:medicine_cabinet/core/di/service_locator.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/home_screen.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/widgets/profile_tab_view.dart';
 import 'package:medicine_cabinet/features/home/presentation/view_model/home_cubit.dart';
+import 'package:medicine_cabinet/features/medicine/peresentation/view/screens/medicines_screen.dart';
+import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
@@ -45,7 +47,10 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
           householdId: effectiveHouseholdId,
         ),
       ),
-      const Center(child: Text('Search Screen')),
+      BlocProvider(
+        create: (_) => getIt<MedicineCubit>(),
+        child: MedicinesScreen(householdId: "household123"),
+      ),
       const Center(child: Text('Chat Screen')),
       const Center(child: Text('Feed Screen')),
       ProfileTabView(userId: effectiveUserId),

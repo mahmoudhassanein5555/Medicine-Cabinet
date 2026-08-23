@@ -4,24 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:medicine_cabinet/core/bloc_observer/bloc_observer.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
 import 'package:medicine_cabinet/core/theme/app_theme.dart';
 
-import 'features/auth/presentation/cubit/auth_cubit.dart';
-import 'features/auth/presentation/views/login_screen.dart';
-import 'features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
-import 'features/onboarding/onboarding_screen.dart';
-import 'features/splash_screen.dart';
+import 'package:medicine_cabinet/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:medicine_cabinet/features/auth/presentation/views/login_screen.dart';
+
+import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
+
+import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
+
+import 'package:medicine_cabinet/features/onboarding/onboarding_screen.dart';
+import 'package:medicine_cabinet/features/splash_screen.dart';
+
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await configureDependencies();
 
@@ -56,6 +60,8 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
 
+          title: 'Medicine Cabinet',
+
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.system,
@@ -71,14 +77,14 @@ class _MyAppState extends State<MyApp> {
 
           supportedLocales: S.delegate.supportedLocales,
 
-          title: 'Medicine Cabinet',
-
           home: SplashScreen(
             resolveInitialRoute: () async {
               final currentUser = FirebaseAuth.instance.currentUser;
+
               if (currentUser != null) {
                 return 'home';
               }
+
               return 'onboarding';
             },
             onNavigate: (splashContext, route) {
@@ -86,7 +92,10 @@ class _MyAppState extends State<MyApp> {
                 Navigator.pushReplacement(
                   splashContext,
                   MaterialPageRoute(
-                    builder: (_) => const CustomBottomNavBar(),
+                    builder: (_) => BlocProvider<MedicineCubit>(
+                      create: (_) => getIt<MedicineCubit>(),
+                      child: const CustomBottomNavBar(),
+                    ),
                   ),
                 );
               } else {
@@ -116,3 +125,5 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+// home: const SearchScreen(householdId: 'household123');

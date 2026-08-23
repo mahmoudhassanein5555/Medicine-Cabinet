@@ -10,9 +10,9 @@ class AuthRemoteDatasourceImp implements AuthRemoteDataSource {
   final FirebaseFirestore _firestore;
 
   AuthRemoteDatasourceImp(
-    this.firebaseAuth, {
-    FirebaseFirestore? firestore,
-  }) : _firestore = firestore ?? FirebaseFirestore.instance;
+    this.firebaseAuth,
+    this._firestore,
+  );
 
   @override
   Future<void> forgotPassword({required String email}) async {

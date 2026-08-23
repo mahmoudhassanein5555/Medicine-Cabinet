@@ -67,6 +67,8 @@ dev_dependencies:
   # Code Generation
   build_runner: ^2.4.15
   injectable_generator: ^2.6.2
+
+  # Localization
   intl_utils: ^2.8.14
 
   # App Icons

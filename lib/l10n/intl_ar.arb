@@ -1,5 +1,6 @@
 {
   "@@locale": "ar",
+
   "commonContinue": "متابعة",
   "commonSkip": "تخطي",
   "commonGetStarted": "ابدأ الآن",
@@ -18,26 +19,31 @@
   "commonHousehold": "المنزل",
   "commonOwner": "المالك",
   "commonQuantity": "الكمية",
+
   "commonExpiryDate": "تاريخ الانتهاء",
   "commonDateAdded": "تاريخ الإضافة",
   "commonStorageLocation": "مكان التخزين",
+
   "commonHealthy": "سليم",
   "commonExpiringSoon": "ينتهي قريباً",
   "commonExpiringShort": "ينتهي قريباً",
   "commonLow": "منخفض",
   "commonLowStock": "المخزون المنتهي",
   "commonExpired": "منتهي الصلاحية",
+
   "commonTryAgain": "حدث خطأ ما، يرجى المحاولة مرة أخرى.",
   "commonUser": "المستخدم",
   "commonCapsules": "كبسولات",
   "commonBottles": "زجاجات",
   "commonUnits": "وحدات",
+
   "homeNavLabel": "الرئيسية",
   "medicinesNavLabel": "الأدوية",
   "alertsNavLabel": "التنبيهات",
   "medicinesTitle": "الأدوية",
   "alertsTitle": "التنبيهات",
   "profileNavLabel": "الملف الشخصي",
+
   "authLoginTitle": "مرحباً بعودتك",
   "authLoginSubtitle": "سجّل الدخول لعرض صيدلية أسرتك.",
   "authEmailLabel": "البريد الإلكتروني",
@@ -47,6 +53,7 @@
   "authContinueWithGoogle": "المتابعة باستخدام Google",
   "authNoAccount": "ليس لديك حساب؟",
   "authSignUpLink": "إنشاء حساب",
+
   "authRegisterTitle": "إنشاء حسابك",
   "authRegisterSubtitle": "أنشئ صيدلية أسرتك في دقيقة واحدة.",
   "authFullNameLabel": "الاسم الكامل",
@@ -55,17 +62,21 @@
   "authRegisterButton": "إنشاء حساب",
   "authHaveAccount": "لديك حساب بالفعل؟",
   "authLoginLink": "تسجيل الدخول",
+
   "authLoggingIn": "جاري تسجيل الدخول...",
   "authCreatingAccount": "جاري إنشاء الحساب...",
   "authPasswordsDoNotMatch": "كلمتا المرور غير متطابقتين",
+
   "authResetPasswordTitle": "إعادة تعيين كلمة المرور",
   "authResetPasswordSubtitle": "أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.",
   "authSendingResetEmail": "جاري الإرسال...",
   "authSendResetEmail": "إرسال رابط إعادة التعيين",
   "authResetPasswordSuccess": "تم إرسال رابط إعادة تعيين كلمة المرور بنجاح.",
+
   "authLoginSuccess": "تم تسجيل الدخول بنجاح",
   "authRegisterSuccess": "تم إنشاء الحساب بنجاح",
   "authGoogleSuccess": "تم تسجيل الدخول باستخدام Google بنجاح",
+
   "authInvalidEmail": "يرجى إدخال بريد إلكتروني صحيح.",
   "authUserNotFound": "لا يوجد حساب مرتبط بهذا البريد الإلكتروني.",
   "authWrongPassword": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
@@ -82,47 +93,68 @@
   "authOperationNotAllowed": "العملية غير مسموح بها. يرجى التواصل مع الدعم.",
   "authAccountExistsWithDifferentCredential": "يوجد حساب بالفعل بهذا البريد الإلكتروني بطريقة تسجيل دخول مختلفة.",
   "authGoogleSignInCancelled": "تم إلغاء تسجيل الدخول باستخدام Google.",
+
   "onboardingKnowTitle": "اعرف ما لديك",
   "onboardingKnowDesc": "احفظ كل دواء تمتلكه عائلتك منظماً في مكان واحد مشترك وواضح.",
+
   "onboardingExpiryTitle": "لا تفوّت تاريخ انتهاء صلاحية",
   "onboardingExpiryDesc": "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء، أو قبل أن ينفد لديك.",
+
   "onboardingBuyTitle": "تحقق قبل الشراء",
   "onboardingBuyDesc": "امسح الدواء في المتجر واعرف فوراً ما إذا كان موجوداً لدى عائلتك بالفعل.",
+
   "onboardingTitle1": "اعرف ما تملكه",
   "onboardingDesc1": "حافظ على تنظيم كل دواء يمتلكه منزلك في مكان واحد واضح ومشترك.",
   "onboardingTitle2": "لا تفوتك صلاحية دواء",
   "onboardingDesc2": "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء أو قبل نفاده.",
   "onboardingTitle3": "تحقق قبل الشراء",
   "onboardingDesc3": "امسح رمز الدواء في المتجر وتأكد فوراً عما إذا كان منزلك يمتلكه بالفعل أم لا.",
+
   "onboardingGetStarted": "ابدأ الآن",
   "onboardingContinue": "متابعة",
   "onboardingSkip": "تخطي",
+
   "homeGreetingEvening": "مساء الخير، {name}",
   "homeSubtitle": "إليك صيدليتك",
   "homeScanCta": "مسح دواء",
   "homeScanCtaSubtitle": "أضف عنصراً جديداً في ثوانٍ",
   "homeAttentionNeeded": "يحتاج انتباهك",
   "homeRecentlyAdded": "أُضيف حديثاً",
+
   "homeExpiresTomorrow": "ينتهي غداً",
   "homeExpiresInDays": "ينتهي خلال {count} أيام",
   "homeExpiresInMonth": "ينتهي خلال شهر واحد",
   "homeExpiresInMonths": "ينتهي خلال {count} أشهر",
+
   "homeAddedToday": "أُضيف اليوم",
   "homeAddedYesterday": "أُضيف أمس",
   "homeAddedDaysAgo": "أُضيف منذ {count} أيام",
+
   "homeTabletsRemaining": "{count} أقراص متبقية",
   "homeCapsulesRemaining": "{count} كبسولات متبقية",
   "homeBottlesRemaining": "{count} زجاجات متبقية",
   "homeUnitsRemaining": "{count} وحدات متبقية",
   "homeRemaining": "{count} متبقٍ",
+
   "homeEmptyTitle": "صيدليتك فارغة",
   "homeEmptyDesc": "امسح أول دواء تمتلكه وسوف يظهر هنا، منظماً وجاهزاً للمتابعة.",
   "homeEmptyButton": "امسح أول دواء لديك",
+
   "medicinesSearchHint": "ابحث عن الأدوية...",
   "medicinesSortBy": "ترتيب حسب",
   "medicinesSortLabelCurrent": "الترتيب: {sortOption}",
   "medicinesSortOptionName": "الاسم (أ–ي)",
+  "medicinesSortOptionExpiry": "تاريخ الانتهاء",
+  "medicinesSortOptionQuantity": "الكمية",
+  "medicinesSortOptionRecentlyAdded": "أُضيف حديثاً",
+  "medicinesNoMedicines": "لا توجد أدوية",
+
+  "medicinesItemsCount": "{count} دواء",
+  "medicineRemaining": "متبقي {count}",
+  "medicineExpires": "ينتهي في {date}",
+
   "medicineDetailsDeleteDesc": "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
+
   "scanHint": "قم بمحاذاة ملصق العبوة داخل الإطار",
   "scanCapture": "التقاط",
   "scanEnterManually": "إدخال التفاصيل يدوياً",
@@ -134,6 +166,7 @@
   "scanAddedTitle": "تمت الإضافة إلى صيدليتك",
   "scanScanAnother": "مسح دواء آخر",
   "scanBackToHome": "العودة للرئيسية",
+
   "beforeYouBuyTitle": "قبل أن تشتري",
   "beforeYouBuySearchHint": "امسح أو ابحث عن دواء...",
   "beforeYouBuyAlreadyTitle": "موجود بالفعل في صيدليتك",
@@ -142,10 +175,13 @@
   "beforeYouBuyNotice": "قد يكون لديك هذا الدواء في المنزل بالفعل.",
   "beforeYouBuyNotFoundTitle": "غير موجود في صيدليتك",
   "beforeYouBuyNoMatchTitle": "لم يتم العثور على دواء مطابق",
+
   "alertsFilterExpiry": "الصلاحية",
   "alertsToday": "اليوم",
   "alertsYesterday": "أمس",
+
   "householdAddMember": "إضافة فرد من العائلة",
+
   "profileAccountSection": "الحساب",
   "profilePersonalInformation": "المعلومات الشخصية",
   "profileRemindersSection": "التذكيرات",
@@ -157,14 +193,22 @@
   "profileAppPreferences": "تفضيلات التطبيق",
   "profileDarkMode": "الوضع الداكن",
   "profileAbout": "عن التطبيق",
+
   "splashWordmark": "خزانة الأدوية",
   "splashTagline": "أدوية منزلك، منظمة في مكان واحد.",
   "splashLoadingText": "جاري تجهيز خزانتك...",
+
   "commonError": "حدث خطأ",
+  "commonSomethingWentWrong": "حدث خطأ ما",
+  "commonTryAgain": "حدث خطأ ما، يرجى المحاولة مرة أخرى.",
+  "commonRetry": "إعادة المحاولة",
+
   "somethingWrong": "حدث خطأ",
+  "somethingWentWrong": "حدث خطأ ما، يرجى المحاولة لاحقاً.",
+
   "failedToLoadProfile": "فشل تحميل الملف الشخصي",
   "failedToLoadMedicines": "فشل تحميل قائمة الأدوية",
-  "somethingWentWrong": "حدث خطأ ما، يرجى المحاولة لاحقاً.",
+
   "errorPermissionDenied": "ليس لديك صلاحية للقيام بهذا الإجراء.",
   "errorNoInternet": "لا يوجد اتصال بالإنترنت أو الخادم غير متاح.",
   "errorNotFound": "العنصر المطلوب غير موجود.",
@@ -174,6 +218,7 @@
   "errorInvalidInput": "البيانات المدخلة غير صحيحة. يرجى التحقق من مدخلاتك.",
   "errorTechnicalIssue": "حدث خطأ فني أثناء معالجة البيانات.",
   "errorDatabase": "حدث خطأ في قاعدة البيانات.",
+
   "validationEmailRequired": "البريد الإلكتروني مطلوب",
   "validationInvalidEmail": "أدخل بريدًا إلكترونيًا صحيحًا",
   "validationPasswordRequired": "كلمة المرور مطلوبة",
@@ -184,5 +229,9 @@
   "validationInvalidPhone": "أدخل رقم هاتف صحيح",
   "validationCodeRequired": "الكود مطلوب",
   "validationCodeLength": "يجب أن يتكون الكود من 6 أرقام على الأقل",
+
+  "searchStartTyping": "ابدأ بالكتابة للبحث عن الأدوية",
+  "searchNoResults": "لم يتم العثور على أدوية",
+
   "welcomeBack": "مرحباً بعودتك"
 }

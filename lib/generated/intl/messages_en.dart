@@ -38,7 +38,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(count) => "${count} units remaining";
 
-  static String m9(sortOption) => "Sort: ${sortOption}";
+  static String m9(date) => "Expires ${date}";
+
+  static String m10(count) => "${count} remaining";
+
+  static String m11(count) => "${count} items";
+
+  static String m12(sortOption) => "Sort: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -207,14 +213,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonOr": MessageLookupByLibrary.simpleMessage("or"),
     "commonOwner": MessageLookupByLibrary.simpleMessage("Owner"),
     "commonQuantity": MessageLookupByLibrary.simpleMessage("Quantity"),
+    "commonRetry": MessageLookupByLibrary.simpleMessage("Retry"),
     "commonReview": MessageLookupByLibrary.simpleMessage("Review"),
     "commonSeeAll": MessageLookupByLibrary.simpleMessage("See all"),
     "commonSkip": MessageLookupByLibrary.simpleMessage("Skip"),
+    "commonSomethingWentWrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong",
+    ),
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "Storage location",
     ),
     "commonTryAgain": MessageLookupByLibrary.simpleMessage(
       "Something went wrong, please try again.",
+    ),
+    "commonTryAgainLater": MessageLookupByLibrary.simpleMessage(
+      "Please try again later",
     ),
     "commonUnits": MessageLookupByLibrary.simpleMessage("units"),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
@@ -300,14 +313,29 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
+    "medicineExpires": m9,
+    "medicineRemaining": m10,
+    "medicinesItemsCount": m11,
     "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("Medicines"),
+    "medicinesNoMedicines": MessageLookupByLibrary.simpleMessage(
+      "No medicines found",
+    ),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Search medicines...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
-    "medicinesSortLabelCurrent": m9,
+    "medicinesSortLabelCurrent": m12,
+    "medicinesSortOptionExpiry": MessageLookupByLibrary.simpleMessage(
+      "Expiry date",
+    ),
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "Name (A–Z)",
+    ),
+    "medicinesSortOptionQuantity": MessageLookupByLibrary.simpleMessage(
+      "Quantity",
+    ),
+    "medicinesSortOptionRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "Recently added",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("Medicines"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(
@@ -395,6 +423,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanUnitTablets": MessageLookupByLibrary.simpleMessage("tablets"),
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage(
       "Who is this for?",
+    ),
+    "searchNoResults": MessageLookupByLibrary.simpleMessage(
+      "No medicines found",
+    ),
+    "searchStartTyping": MessageLookupByLibrary.simpleMessage(
+      "Start typing to search for medicines",
     ),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong, please try again later.",

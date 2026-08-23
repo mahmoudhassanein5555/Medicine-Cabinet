@@ -38,7 +38,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(count) => "${count} وحدات متبقية";
 
-  static String m9(sortOption) => "الترتيب: ${sortOption}";
+  static String m9(date) => "ينتهي في ${date}";
+
+  static String m10(count) => "متبقي ${count}";
+
+  static String m11(count) => "${count} دواء";
+
+  static String m12(sortOption) => "الترتيب: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -205,9 +211,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonOr": MessageLookupByLibrary.simpleMessage("أو"),
     "commonOwner": MessageLookupByLibrary.simpleMessage("المالك"),
     "commonQuantity": MessageLookupByLibrary.simpleMessage("الكمية"),
+    "commonRetry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
     "commonReview": MessageLookupByLibrary.simpleMessage("مراجعة"),
     "commonSeeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
     "commonSkip": MessageLookupByLibrary.simpleMessage("تخطي"),
+    "commonSomethingWentWrong": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ ما",
+    ),
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "مكان التخزين",
     ),
@@ -290,14 +300,29 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
+    "medicineExpires": m9,
+    "medicineRemaining": m10,
+    "medicinesItemsCount": m11,
     "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("الأدوية"),
+    "medicinesNoMedicines": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أدوية",
+    ),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
       "ابحث عن الأدوية...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
-    "medicinesSortLabelCurrent": m9,
+    "medicinesSortLabelCurrent": m12,
+    "medicinesSortOptionExpiry": MessageLookupByLibrary.simpleMessage(
+      "تاريخ الانتهاء",
+    ),
     "medicinesSortOptionName": MessageLookupByLibrary.simpleMessage(
       "الاسم (أ–ي)",
+    ),
+    "medicinesSortOptionQuantity": MessageLookupByLibrary.simpleMessage(
+      "الكمية",
+    ),
+    "medicinesSortOptionRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "أُضيف حديثاً",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(
@@ -378,6 +403,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanSomeoneElse": MessageLookupByLibrary.simpleMessage("شخص آخر"),
     "scanUnitTablets": MessageLookupByLibrary.simpleMessage("أقراص"),
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage("لمن هذا الدواء؟"),
+    "searchNoResults": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على أدوية",
+    ),
+    "searchStartTyping": MessageLookupByLibrary.simpleMessage(
+      "ابدأ بالكتابة للبحث عن الأدوية",
+    ),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ ما، يرجى المحاولة لاحقاً.",
     ),

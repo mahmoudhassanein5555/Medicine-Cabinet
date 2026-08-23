@@ -174,6 +174,36 @@ class S {
     return Intl.message('Quantity', name: 'commonQuantity', desc: '', args: []);
   }
 
+  /// `{count} items`
+  String medicinesItemsCount(Object count) {
+    return Intl.message(
+      '$count items',
+      name: 'medicinesItemsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} remaining`
+  String medicineRemaining(Object count) {
+    return Intl.message(
+      '$count remaining',
+      name: 'medicineRemaining',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Expires {date}`
+  String medicineExpires(Object date) {
+    return Intl.message(
+      'Expires $date',
+      name: 'medicineExpires',
+      desc: '',
+      args: [date],
+    );
+  }
+
   /// `Expiry date`
   String get commonExpiryDate {
     return Intl.message(
@@ -1129,6 +1159,46 @@ class S {
     );
   }
 
+  /// `Expiry date`
+  String get medicinesSortOptionExpiry {
+    return Intl.message(
+      'Expiry date',
+      name: 'medicinesSortOptionExpiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantity`
+  String get medicinesSortOptionQuantity {
+    return Intl.message(
+      'Quantity',
+      name: 'medicinesSortOptionQuantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recently added`
+  String get medicinesSortOptionRecentlyAdded {
+    return Intl.message(
+      'Recently added',
+      name: 'medicinesSortOptionRecentlyAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No medicines found`
+  String get medicinesNoMedicines {
+    return Intl.message(
+      'No medicines found',
+      name: 'medicinesNoMedicines',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `This removes it from your cabinet inventory. This can't be undone.`
   String get medicineDetailsDeleteDesc {
     return Intl.message(
@@ -1489,21 +1559,11 @@ class S {
     );
   }
 
-  /// `Failed to load user profile`
-  String get failedToLoadProfile {
+  /// `Something went wrong`
+  String get commonSomethingWentWrong {
     return Intl.message(
-      'Failed to load user profile',
-      name: 'failedToLoadProfile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Failed to load medicines`
-  String get failedToLoadMedicines {
-    return Intl.message(
-      'Failed to load medicines',
-      name: 'failedToLoadMedicines',
+      'Something went wrong',
+      name: 'commonSomethingWentWrong',
       desc: '',
       args: [],
     );
@@ -1524,6 +1584,41 @@ class S {
     return Intl.message(
       'Something went wrong, please try again later.',
       name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get commonRetry {
+    return Intl.message('Retry', name: 'commonRetry', desc: '', args: []);
+  }
+
+  /// `Please try again later`
+  String get commonTryAgainLater {
+    return Intl.message(
+      'Please try again later',
+      name: 'commonTryAgainLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load user profile`
+  String get failedToLoadProfile {
+    return Intl.message(
+      'Failed to load user profile',
+      name: 'failedToLoadProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load medicines`
+  String get failedToLoadMedicines {
+    return Intl.message(
+      'Failed to load medicines',
+      name: 'failedToLoadMedicines',
       desc: '',
       args: [],
     );
@@ -1714,6 +1809,26 @@ class S {
     return Intl.message(
       'Code should be at least 6 digits',
       name: 'validationCodeLength',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start typing to search for medicines`
+  String get searchStartTyping {
+    return Intl.message(
+      'Start typing to search for medicines',
+      name: 'searchStartTyping',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No medicines found`
+  String get searchNoResults {
+    return Intl.message(
+      'No medicines found',
+      name: 'searchNoResults',
       desc: '',
       args: [],
     );
