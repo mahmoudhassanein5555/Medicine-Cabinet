@@ -7,10 +7,18 @@ class AppTheme {
   AppTheme._();
 
   // ============================================================
+  // Dynamic Font Helper
+  // ============================================================
+  static String _getFontFamily(String languageCode) {
+    return languageCode == 'ar' ? 'Tajawal' : 'Roboto';
+  }
+
+  // ============================================================
   // Light Theme
   // ============================================================
+  static ThemeData getLightTheme(String languageCode) {
+    final fontFamily = _getFontFamily(languageCode);
 
-  static ThemeData get lightTheme {
     const colorScheme = ColorScheme.light(
       primary: AppColors.primaryLight,
       onPrimary: Colors.white,
@@ -37,20 +45,16 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
-
-      // Default font
-      fontFamily: 'Tajawal',
-
+      fontFamily: fontFamily,
       colorScheme: colorScheme,
-
       scaffoldBackgroundColor: AppColors.backgroundLight,
 
       // ========================================================
       // App Bar
       // ========================================================
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.primaryLight,
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColors.textPrimaryLight,
         elevation: 0,
         centerTitle: true,
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -76,18 +80,42 @@ class AppTheme {
       ),
 
       // ========================================================
-      // Typography
+      // Typography (مطابق للـ UI والـ Design exact)
       // ========================================================
-      textTheme: const TextTheme(
+      textTheme: TextTheme(
+        // عناوين اسم المستخدم والعناوين البارزة
+        titleLarge: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: AppColors.textPrimaryLight,
+          fontFamily: fontFamily,
+        ),
+        // عناوين الأقسام الرئيسية (ACCOUNT, REMINDERS, APP)
+        titleSmall: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: AppColors.textSecondaryLight,
+          letterSpacing: 1.1,
+          fontFamily: fontFamily,
+        ),
+        // نصوص العناوين في القوائم (Personal information, Privacy...)
+        bodyLarge: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+          color: AppColors.textPrimaryLight,
+          fontFamily: fontFamily,
+        ),
+        // النصوص الفرعية على اليمين (14 days before, الإيميل)
+        bodyMedium: TextStyle(
+          fontSize: 13,
+          color: AppColors.textSecondaryLight,
+          fontFamily: fontFamily,
+        ),
         headlineMedium: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryLight,
-        ),
-        bodyLarge: TextStyle(fontSize: 16, color: AppColors.textPrimaryLight),
-        bodyMedium: TextStyle(
-          fontSize: 14,
-          color: AppColors.textSecondaryLight,
+          fontFamily: fontFamily,
         ),
       ),
     );
@@ -96,8 +124,9 @@ class AppTheme {
   // ============================================================
   // Dark Theme
   // ============================================================
+  static ThemeData getDarkTheme(String languageCode) {
+    final fontFamily = _getFontFamily(languageCode);
 
-  static ThemeData get darkTheme {
     const colorScheme = ColorScheme.dark(
       primary: AppColors.primaryDark,
       onPrimary: AppColors.backgroundDark,
@@ -123,19 +152,15 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
-
-      // Default font
-      fontFamily: 'Tajawal',
-
+      fontFamily: fontFamily,
       colorScheme: colorScheme,
-
       scaffoldBackgroundColor: AppColors.backgroundDark,
 
       // ========================================================
       // App Bar
       // ========================================================
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.surfaceDark,
+        backgroundColor: Colors.transparent,
         foregroundColor: AppColors.textPrimaryDark,
         elevation: 0,
         centerTitle: true,
@@ -164,14 +189,37 @@ class AppTheme {
       // ========================================================
       // Typography
       // ========================================================
-      textTheme: const TextTheme(
+      textTheme: TextTheme(
+        titleLarge: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: AppColors.textPrimaryDark,
+          fontFamily: fontFamily,
+        ),
+        titleSmall: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: AppColors.textSecondaryDark,
+          letterSpacing: 1.1,
+          fontFamily: fontFamily,
+        ),
+        bodyLarge: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+          color: AppColors.textPrimaryDark,
+          fontFamily: fontFamily,
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 13,
+          color: AppColors.textSecondaryDark,
+          fontFamily: fontFamily,
+        ),
         headlineMedium: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryDark,
+          fontFamily: fontFamily,
         ),
-        bodyLarge: TextStyle(fontSize: 16, color: AppColors.textPrimaryDark),
-        bodyMedium: TextStyle(fontSize: 14, color: AppColors.textSecondaryDark),
       ),
     );
   }

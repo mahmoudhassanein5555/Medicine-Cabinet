@@ -1,5 +1,6 @@
 {
   "@@locale": "en",
+
   "commonContinue": "Continue",
   "commonSkip": "Skip",
   "commonGetStarted": "Get started",
@@ -35,12 +36,20 @@
   "commonCapsules": "capsules",
   "commonBottles": "bottles",
   "commonUnits": "units",
+  "commonSuccess": "Success",
+  "commonError": "Something went wrong",
+  "commonSomethingWentWrong": "Something went wrong",
+  "commonRetry": "Retry",
+  "commonTryAgainLater": "Please try again later",
+  "commonClose": "Close",
+
   "homeNavLabel": "Home",
   "medicinesNavLabel": "Medicines",
   "alertsNavLabel": "Alerts",
   "medicinesTitle": "Medicines",
   "alertsTitle": "Alerts",
   "profileNavLabel": "Profile",
+
   "authLoginTitle": "Welcome back",
   "authLoginSubtitle": "Log in to see your household's medicine cabinet.",
   "authEmailLabel": "Email",
@@ -50,6 +59,7 @@
   "authContinueWithGoogle": "Continue with Google",
   "authNoAccount": "Don't have an account?",
   "authSignUpLink": "Sign up",
+
   "authRegisterTitle": "Create your account",
   "authRegisterSubtitle": "Set up your household's medicine cabinet in a minute.",
   "authFullNameLabel": "Full name",
@@ -85,6 +95,7 @@
   "authOperationNotAllowed": "Operation not allowed. Please contact support.",
   "authAccountExistsWithDifferentCredential": "An account already exists with the same email address using a different login method.",
   "authGoogleSignInCancelled": "Google sign-in was cancelled.",
+
   "onboardingKnowTitle": "Know what you have",
   "onboardingKnowDesc": "Keep every medicine your household owns organized in one clear, shared place.",
   "onboardingExpiryTitle": "Never miss an expiry",
@@ -100,6 +111,7 @@
   "onboardingGetStarted": "Get started",
   "onboardingContinue": "Continue",
   "onboardingSkip": "Skip",
+
   "homeGreetingEvening": "Good evening, {name}",
   "homeSubtitle": "Here's your medicine cabinet",
   "homeScanCta": "Scan Medicine",
@@ -121,6 +133,7 @@
   "homeEmptyTitle": "Your cabinet is empty",
   "homeEmptyDesc": "Scan the first medicine you own and it'll show up here, organized and ready to track.",
   "homeEmptyButton": "Scan your first medicine",
+
   "medicinesSearchHint": "Search medicines...",
   "medicinesSortBy": "Sort by",
   "medicinesSortLabelCurrent": "Sort: {sortOption}",
@@ -130,6 +143,7 @@
   "medicinesSortOptionRecentlyAdded": "Recently added",
   "medicinesNoMedicines": "No medicines found",
   "medicineDetailsDeleteDesc": "This removes it from your cabinet inventory. This can't be undone.",
+
   "scanHint": "Align the package label within the frame",
   "scanCapture": "Capture",
   "scanEnterManually": "Enter details manually",
@@ -141,6 +155,7 @@
   "scanAddedTitle": "Added to your cabinet",
   "scanScanAnother": "Scan another",
   "scanBackToHome": "Back to Home",
+
   "beforeYouBuyTitle": "Before You Buy",
   "beforeYouBuySearchHint": "Scan or search a medicine...",
   "beforeYouBuyAlreadyTitle": "Already in your cabinet",
@@ -149,28 +164,54 @@
   "beforeYouBuyNotice": "You may already have this medicine at home.",
   "beforeYouBuyNotFoundTitle": "Not in your cabinet",
   "beforeYouBuyNoMatchTitle": "No matching medicine found",
+
   "alertsFilterExpiry": "Expiry",
   "alertsToday": "Today",
   "alertsYesterday": "Yesterday",
+
   "householdAddMember": "Add family member",
+
   "profileAccountSection": "Account",
   "profilePersonalInformation": "Personal information",
-  "profileRemindersSection": "Reminders",
   "profileNotificationSettings": "Notification settings",
   "profileExpiryReminderSettings": "Expiry reminder settings",
-  "profileLowStockThreshold": "Low-stock threshold",
+  "profilePersonalInformationTitle": "Personal Information",
+  "profileFullName": "Full Name",
+  "profileEmailAddress": "Email Address",
+  "profileChangePhoto": "Change Photo",
+  "profileSaveChanges": "Save Changes",
+  "profileUpdateSuccess": "Profile updated successfully",
+  "profileNameRequired": "Name is required",
+  "profileImageUploadFailed": "Failed to upload profile picture.",
+  "profileSavingChanges": "Saving changes...",
+
   "profileAppSection": "App",
   "profilePrivacy": "Privacy",
-  "profileAppPreferences": "App preferences",
   "profileDarkMode": "Dark mode",
   "profileAbout": "About",
+  "profileLanguage": "Language",
+  "profileEnglish": "English",
+  "profileArabic": "Arabic",
+  "profileAppVersion": "App version",
+  "profileInformationSection": "Information",
+  "profileAboutDescription": "Medicine Cabinet helps you manage your medicines, expiry dates, and stock levels easily.",
+
+  "profileLogout": "Logout",
+  "profileLogoutConfirmation": "Are you sure you want to logout?",
+
+  "profileUserNotAuthenticated": "You are not authenticated. Please log in again.",
+  "profileLoadFailed": "Unable to load your profile. Please try again.",
+  "profileUpdateFailed": "Unable to update your profile. Please try again.",
+  "profileNotFound": "Profile not found.",
+  "profilePermissionDenied": "You don't have permission to perform this operation.",
+  "profileNetworkError": "Please check your internet connection and try again.",
+  "profileOperationFailed": "The operation could not be completed. Please try again.",
+  "profileServerError": "Something went wrong. Please try again later.",
+
   "splashWordmark": "Medicine Cabinet",
   "splashTagline": "Your household medicines, organized in one place.",
   "splashLoadingText": "Setting up your cabinet...",
-  "commonError": "Something went wrong",
-  "commonSomethingWentWrong": "Something went wrong",
-  "commonRetry": "Retry",
-  "commonTryAgainLater": "Please try again later",
+  
   "somethingWrong": "Something went wrong",
   "somethingWentWrong": "Something went wrong, please try again later.",
   "failedToLoadProfile": "Failed to load user profile",
@@ -184,6 +225,7 @@
   "errorInvalidInput": "Invalid information provided. Please check your inputs.",
   "errorTechnicalIssue": "We encountered a technical issue while processing data.",
   "errorDatabase": "A database error occurred.",
+
   "validationEmailRequired": "Email cannot be empty",
   "validationInvalidEmail": "Enter a valid email address",
   "validationPasswordRequired": "Password cannot be empty",

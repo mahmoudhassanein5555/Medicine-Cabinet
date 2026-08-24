@@ -192,6 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonBottles": MessageLookupByLibrary.simpleMessage("زجاجات"),
     "commonCancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "commonCapsules": MessageLookupByLibrary.simpleMessage("كبسولات"),
+    "commonClose": MessageLookupByLibrary.simpleMessage("إغلاق"),
     "commonContinue": MessageLookupByLibrary.simpleMessage("متابعة"),
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("تاريخ الإضافة"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("حذف"),
@@ -221,6 +222,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "مكان التخزين",
     ),
+    "commonSuccess": MessageLookupByLibrary.simpleMessage("تم بنجاح"),
     "commonTryAgain": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ ما، يرجى المحاولة مرة أخرى.",
     ),
@@ -345,7 +347,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء، أو قبل أن ينفد لديك.",
     ),
     "onboardingExpiryTitle": MessageLookupByLibrary.simpleMessage(
-      "لا تفوّت تاريخ انتهاء صلاحية",
+      "لا تفوّت تاريخ انتهاء الصلاحية",
     ),
     "onboardingGetStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "onboardingKnowDesc": MessageLookupByLibrary.simpleMessage(
@@ -359,28 +361,76 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "onboardingTitle3": MessageLookupByLibrary.simpleMessage("تحقق قبل الشراء"),
     "profileAbout": MessageLookupByLibrary.simpleMessage("عن التطبيق"),
+    "profileAboutDescription": MessageLookupByLibrary.simpleMessage(
+      "يساعدك تطبيق Medicine Cabinet على إدارة أدويتك وتواريخ انتهاء صلاحيتها ومستويات مخزونها بسهولة.",
+    ),
     "profileAccountSection": MessageLookupByLibrary.simpleMessage("الحساب"),
-    "profileAppPreferences": MessageLookupByLibrary.simpleMessage(
-      "تفضيلات التطبيق",
-    ),
     "profileAppSection": MessageLookupByLibrary.simpleMessage("التطبيق"),
+    "profileAppVersion": MessageLookupByLibrary.simpleMessage("إصدار التطبيق"),
+    "profileArabic": MessageLookupByLibrary.simpleMessage("العربية"),
+    "profileChangePhoto": MessageLookupByLibrary.simpleMessage("تغيير الصورة"),
     "profileDarkMode": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
+    "profileEmailAddress": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني",
+    ),
+    "profileEnglish": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
     "profileExpiryReminderSettings": MessageLookupByLibrary.simpleMessage(
-      "إعدادات تذكير انتهاء الصلاحية",
+      "إعدادات تذكير الصلاحية",
     ),
-    "profileLowStockThreshold": MessageLookupByLibrary.simpleMessage(
-      "حد نقص المخزون",
+    "profileFullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
+    "profileImageUploadFailed": MessageLookupByLibrary.simpleMessage(
+      "فشل رفع صورة الملف الشخصي.",
     ),
+    "profileInformationSection": MessageLookupByLibrary.simpleMessage(
+      "معلومات",
+    ),
+    "profileLanguage": MessageLookupByLibrary.simpleMessage("اللغة"),
+    "profileLoadFailed": MessageLookupByLibrary.simpleMessage(
+      "تعذر تحميل الملف الشخصي. يرجى المحاولة مرة أخرى.",
+    ),
+    "profileLogout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "profileLogoutConfirmation": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    ),
+    "profileNameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
     "profileNavLabel": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "profileNetworkError": MessageLookupByLibrary.simpleMessage(
+      "يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
+    ),
+    "profileNotFound": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على الملف الشخصي.",
+    ),
     "profileNotificationSettings": MessageLookupByLibrary.simpleMessage(
       "إعدادات الإشعارات",
+    ),
+    "profileOperationFailed": MessageLookupByLibrary.simpleMessage(
+      "تعذر إكمال العملية. يرجى المحاولة مرة أخرى.",
+    ),
+    "profilePermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "ليس لديك صلاحية لتنفيذ هذه العملية.",
     ),
     "profilePersonalInformation": MessageLookupByLibrary.simpleMessage(
       "المعلومات الشخصية",
     ),
+    "profilePersonalInformationTitle": MessageLookupByLibrary.simpleMessage(
+      "المعلومات الشخصية",
+    ),
     "profilePrivacy": MessageLookupByLibrary.simpleMessage("الخصوصية"),
-    "profileRemindersSection": MessageLookupByLibrary.simpleMessage(
-      "التذكيرات",
+    "profileSaveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
+    "profileSavingChanges": MessageLookupByLibrary.simpleMessage(
+      "جاري حفظ البيانات...",
+    ),
+    "profileServerError": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
+    ),
+    "profileUpdateFailed": MessageLookupByLibrary.simpleMessage(
+      "تعذر تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
+    ),
+    "profileUpdateSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم تحديث الملف الشخصي بنجاح",
+    ),
+    "profileUserNotAuthenticated": MessageLookupByLibrary.simpleMessage(
+      "لم يتم تسجيل الدخول. يرجى تسجيل الدخول مرة أخرى.",
     ),
     "scanAddMedicineButton": MessageLookupByLibrary.simpleMessage(
       "إضافة الدواء",

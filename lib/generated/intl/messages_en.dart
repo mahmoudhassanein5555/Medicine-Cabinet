@@ -194,6 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonBottles": MessageLookupByLibrary.simpleMessage("bottles"),
     "commonCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "commonCapsules": MessageLookupByLibrary.simpleMessage("capsules"),
+    "commonClose": MessageLookupByLibrary.simpleMessage("Close"),
     "commonContinue": MessageLookupByLibrary.simpleMessage("Continue"),
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("Date added"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -223,6 +224,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "Storage location",
     ),
+    "commonSuccess": MessageLookupByLibrary.simpleMessage("Success"),
     "commonTryAgain": MessageLookupByLibrary.simpleMessage(
       "Something went wrong, please try again.",
     ),
@@ -378,28 +380,78 @@ class MessageLookup extends MessageLookupByLibrary {
       "Check before you buy",
     ),
     "profileAbout": MessageLookupByLibrary.simpleMessage("About"),
-    "profileAccountSection": MessageLookupByLibrary.simpleMessage("Account"),
-    "profileAppPreferences": MessageLookupByLibrary.simpleMessage(
-      "App preferences",
+    "profileAboutDescription": MessageLookupByLibrary.simpleMessage(
+      "Medicine Cabinet helps you manage your medicines, expiry dates, and stock levels easily.",
     ),
+    "profileAccountSection": MessageLookupByLibrary.simpleMessage("Account"),
     "profileAppSection": MessageLookupByLibrary.simpleMessage("App"),
+    "profileAppVersion": MessageLookupByLibrary.simpleMessage("App version"),
+    "profileArabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+    "profileChangePhoto": MessageLookupByLibrary.simpleMessage("Change Photo"),
     "profileDarkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
+    "profileEmailAddress": MessageLookupByLibrary.simpleMessage(
+      "Email Address",
+    ),
+    "profileEnglish": MessageLookupByLibrary.simpleMessage("English"),
     "profileExpiryReminderSettings": MessageLookupByLibrary.simpleMessage(
       "Expiry reminder settings",
     ),
-    "profileLowStockThreshold": MessageLookupByLibrary.simpleMessage(
-      "Low-stock threshold",
+    "profileFullName": MessageLookupByLibrary.simpleMessage("Full Name"),
+    "profileImageUploadFailed": MessageLookupByLibrary.simpleMessage(
+      "Failed to upload profile picture.",
+    ),
+    "profileInformationSection": MessageLookupByLibrary.simpleMessage(
+      "Information",
+    ),
+    "profileLanguage": MessageLookupByLibrary.simpleMessage("Language"),
+    "profileLoadFailed": MessageLookupByLibrary.simpleMessage(
+      "Unable to load your profile. Please try again.",
+    ),
+    "profileLogout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "profileLogoutConfirmation": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to logout?",
+    ),
+    "profileNameRequired": MessageLookupByLibrary.simpleMessage(
+      "Name is required",
     ),
     "profileNavLabel": MessageLookupByLibrary.simpleMessage("Profile"),
+    "profileNetworkError": MessageLookupByLibrary.simpleMessage(
+      "Please check your internet connection and try again.",
+    ),
+    "profileNotFound": MessageLookupByLibrary.simpleMessage(
+      "Profile not found.",
+    ),
     "profileNotificationSettings": MessageLookupByLibrary.simpleMessage(
       "Notification settings",
+    ),
+    "profileOperationFailed": MessageLookupByLibrary.simpleMessage(
+      "The operation could not be completed. Please try again.",
+    ),
+    "profilePermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have permission to perform this operation.",
     ),
     "profilePersonalInformation": MessageLookupByLibrary.simpleMessage(
       "Personal information",
     ),
+    "profilePersonalInformationTitle": MessageLookupByLibrary.simpleMessage(
+      "Personal Information",
+    ),
     "profilePrivacy": MessageLookupByLibrary.simpleMessage("Privacy"),
-    "profileRemindersSection": MessageLookupByLibrary.simpleMessage(
-      "Reminders",
+    "profileSaveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
+    "profileSavingChanges": MessageLookupByLibrary.simpleMessage(
+      "Saving changes...",
+    ),
+    "profileServerError": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong. Please try again later.",
+    ),
+    "profileUpdateFailed": MessageLookupByLibrary.simpleMessage(
+      "Unable to update your profile. Please try again.",
+    ),
+    "profileUpdateSuccess": MessageLookupByLibrary.simpleMessage(
+      "Profile updated successfully",
+    ),
+    "profileUserNotAuthenticated": MessageLookupByLibrary.simpleMessage(
+      "You are not authenticated. Please log in again.",
     ),
     "scanAddMedicineButton": MessageLookupByLibrary.simpleMessage(
       "Add Medicine",

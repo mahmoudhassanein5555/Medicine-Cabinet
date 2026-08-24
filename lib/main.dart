@@ -7,6 +7,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/core/bloc_observer/bloc_observer.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
+import 'package:medicine_cabinet/core/settings/app_settings_cubit.dart';
+import 'package:medicine_cabinet/core/settings/app_settings_state.dart';
 import 'package:medicine_cabinet/core/theme/app_theme.dart';
 import 'package:medicine_cabinet/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/login_screen.dart';
@@ -14,38 +16,37 @@ import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/features/onboarding/onboarding_screen.dart';
 import 'package:medicine_cabinet/features/splash_screen.dart';
+
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
+  // Dependency Injection
   await configureDependencies();
 
+  // Environment variables
   await dotenv.load(fileName: '.env');
 
+  // Bloc Observer
   Bloc.observer = AppBlocObserver();
 
-  runApp(const MyApp());
+  runApp(
+    BlocProvider<AppSettingsCubit>(
+      create: (_) => getIt<AppSettingsCubit>()..loadSettings(),
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  Locale _locale = const Locale('en');
-
-  void changeLanguage(Locale locale) {
-    setState(() {
-      _locale = locale;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,69 +55,79 @@ class _MyAppState extends State<MyApp> {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
+        return BlocBuilder<AppSettingsCubit, AppSettingsState>(
+          builder: (context, state) {
+            final String languageCode = state.locale.languageCode;
 
-          title: 'Medicine Cabinet',
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
 
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.system,
+              title: 'Medicine Cabinet',
 
-          locale: _locale,
+              // Theme
+              theme: AppTheme.getLightTheme(languageCode),
+              darkTheme: AppTheme.getDarkTheme(languageCode),
+              themeMode: state.themeMode,
 
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
+              // Localization
+              locale: state.locale,
 
-          supportedLocales: S.delegate.supportedLocales,
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
 
-          home: SplashScreen(
-            resolveInitialRoute: () async {
-              final currentUser = FirebaseAuth.instance.currentUser;
+              supportedLocales: S.delegate.supportedLocales,
 
-              if (currentUser != null) {
-                return 'home';
-              }
+              // Initial Screen
+              home: SplashScreen(
+                resolveInitialRoute: () async {
+                  final currentUser = FirebaseAuth.instance.currentUser;
 
-              return 'onboarding';
-            },
-            onNavigate: (splashContext, route) {
-              if (route == 'home') {
-                Navigator.pushReplacement(
-                  splashContext,
-                  MaterialPageRoute(
-                    builder: (_) => BlocProvider<MedicineCubit>(
-                      create: (_) => getIt<MedicineCubit>(),
-                      child: const CustomBottomNavBar(),
-                    ),
-                  ),
-                );
-              } else {
-                Navigator.pushReplacement(
-                  splashContext,
-                  MaterialPageRoute(
-                    builder: (_) => OnboardingScreen(
-                      onFinished: (onboardingContext) {
-                        Navigator.pushReplacement(
-                          onboardingContext,
-                          MaterialPageRoute(
-                            builder: (_) => BlocProvider(
-                              create: (_) => getIt<AuthCubit>(),
-                              child: const LoginScreen(),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                );
-              }
-            },
-          ),
+                  if (currentUser != null) {
+                    return 'home';
+                  }
+
+                  return 'onboarding';
+                },
+
+                onNavigate: (splashContext, route) {
+                  if (route == 'home') {
+                    Navigator.pushReplacement(
+                      splashContext,
+                      MaterialPageRoute(
+                        builder: (_) => BlocProvider<MedicineCubit>(
+                          create: (_) => getIt<MedicineCubit>(),
+                          child: const CustomBottomNavBar(),
+                        ),
+                      ),
+                    );
+                  } else {
+                    Navigator.pushReplacement(
+                      splashContext,
+                      MaterialPageRoute(
+                        builder: (_) => OnboardingScreen(
+                          onFinished: (onboardingContext) {
+                            Navigator.pushReplacement(
+                              onboardingContext,
+                              MaterialPageRoute(
+                                builder: (_) => BlocProvider<AuthCubit>(
+                                  create: (_) => getIt<AuthCubit>(),
+                                  child: const LoginScreen(),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
+            );
+          },
         );
       },
     );

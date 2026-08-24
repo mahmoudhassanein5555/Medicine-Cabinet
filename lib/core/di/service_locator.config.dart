@@ -62,6 +62,17 @@ import '../../features/medicine_scan/domain/use_case/get_house_holds_members_use
     as _i306;
 import '../../features/medicine_scan/presentation/view_model/medicine_scan_cubit.dart'
     as _i187;
+import '../../features/profile/data/datasource/profile_remote_data_source.dart'
+    as _i559;
+import '../../features/profile/data/datasource/profile_remote_data_source_imp.dart'
+    as _i9;
+import '../../features/profile/data/repositories/profile_repository_impl.dart'
+    as _i334;
+import '../../features/profile/domain/repositories/profile_repository.dart'
+    as _i894;
+import '../../features/profile/domain/usecases/get_profile.dart' as _i72;
+import '../../features/profile/domain/usecases/update_profile.dart' as _i78;
+import '../../features/profile/presentation/cubit/profile_cubit.dart' as _i36;
 import '../../features/search/data/data_source/search_data_source_imp.dart'
     as _i821;
 import '../../features/search/data/data_source/search_data_source_interface.dart'
@@ -75,6 +86,7 @@ import '../../features/search/peresentation/view_model/search_cubit.dart'
     as _i585;
 import '../api/api_manager.dart' as _i1047;
 import '../network/connection_checker.dart' as _i1050;
+import '../settings/app_settings_cubit.dart' as _i798;
 import '../utils/shared_prefs_local_data_source.dart' as _i336;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -94,6 +106,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i974.FirebaseFirestore>(() => appModule.firestore);
     gh.lazySingleton<_i361.Dio>(() => appModule.dio);
     gh.lazySingleton<_i1050.NetworkInfo>(() => _i1050.NetworkInfoImpl());
+    gh.lazySingleton<_i559.ProfileRemoteDataSource>(
+      () => _i9.ProfileRemoteDataSourceImpl(
+        firebaseAuth: gh<_i59.FirebaseAuth>(),
+        firestore: gh<_i974.FirebaseFirestore>(),
+      ),
+    );
+    gh.lazySingleton<_i894.ProfileRepository>(
+      () => _i334.ProfileRepositoryImpl(
+        remoteDataSource: gh<_i559.ProfileRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i72.GetProfile>(
+      () => _i72.GetProfile(gh<_i894.ProfileRepository>()),
+    );
+    gh.lazySingleton<_i78.UpdateProfile>(
+      () => _i78.UpdateProfile(gh<_i894.ProfileRepository>()),
+    );
     gh.lazySingleton<_i507.MedicineScanDataSource>(
       () => _i130.MedicineScanDataSourceImp(
         firebaseFirestore: gh<_i974.FirebaseFirestore>(),
@@ -121,12 +150,21 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i44.SearchRepository>(
       () => _i773.SearchRepositoryImpl(gh<_i384.SearchDataSourceInterface>()),
     );
+    gh.lazySingleton<_i798.AppSettingsCubit>(
+      () => _i798.AppSettingsCubit(cacheHelper: gh<_i336.CacheHelper>()),
+    );
     gh.lazySingleton<_i785.MedicineRepoInterface>(
       () => _i626.MedicineRepoImpl(gh<_i509.MedicineDataSourceInterface>()),
     );
     gh.lazySingleton<_i510.MedicineScanRepository>(
       () => _i1028.MedicineScanRepositoryImp(
         medicineScanDataSource: gh<_i507.MedicineScanDataSource>(),
+      ),
+    );
+    gh.factory<_i36.ProfileCubit>(
+      () => _i36.ProfileCubit(
+        getProfile: gh<_i72.GetProfile>(),
+        updateProfile: gh<_i78.UpdateProfile>(),
       ),
     );
     gh.factory<_i789.FilterMedicinesUseCase>(

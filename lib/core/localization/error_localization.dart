@@ -3,7 +3,9 @@ import '../../generated/l10n.dart';
 abstract class ErrorLocalization {
   static String getMessage(String key, S l10n) {
     switch (key) {
-    // Auth errors
+      // =========================
+      // Auth errors
+      // =========================
       case 'authInvalidEmail':
         return l10n.authInvalidEmail;
 
@@ -52,10 +54,36 @@ abstract class ErrorLocalization {
       case 'authGoogleSignInCancelled':
         return l10n.authGoogleSignInCancelled;
 
-      case 'commonTryAgain':
-        return l10n.commonTryAgain;
+      // =========================
+      // Profile errors
+      // =========================
+      case 'profileUserNotAuthenticated':
+        return l10n.profileUserNotAuthenticated;
 
-    // Validation errors
+      case 'profileLoadFailed':
+        return l10n.profileLoadFailed;
+
+      case 'profileUpdateFailed':
+        return l10n.profileUpdateFailed;
+
+      case 'profileNotFound':
+        return l10n.profileNotFound;
+
+      case 'profilePermissionDenied':
+        return l10n.profilePermissionDenied;
+
+      case 'profileNetworkError':
+        return l10n.profileNetworkError;
+
+      case 'profileOperationFailed':
+        return l10n.profileOperationFailed;
+
+      case 'profileServerError':
+        return l10n.profileServerError;
+
+      // =========================
+      // Validation errors
+      // =========================
       case 'validationEmailRequired':
         return l10n.validationEmailRequired;
 
@@ -85,6 +113,12 @@ abstract class ErrorLocalization {
 
       case 'validationCodeLength':
         return l10n.validationCodeLength;
+
+      // =========================
+      // Common
+      // =========================
+      case 'commonTryAgain':
+        return l10n.commonTryAgain;
 
       default:
         return l10n.commonTryAgain;
