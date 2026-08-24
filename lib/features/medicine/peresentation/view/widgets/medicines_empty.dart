@@ -4,11 +4,8 @@ import 'package:lottie/lottie.dart';
 import 'package:medicine_cabinet/core/constants/app_assets.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
-class MedicinesError extends StatelessWidget {
-  final String? message;
-  final VoidCallback? onRetry;
-
-  const MedicinesError({super.key, this.message, this.onRetry});
+class EmptyMedicines extends StatelessWidget {
+  const EmptyMedicines({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,31 +18,21 @@ class MedicinesError extends StatelessWidget {
         child: Column(
           children: [
             Lottie.asset(
-              AppAssets.errorAnimation,
-              width: 220,
-              height: 220,
+              AppAssets.nodata,
+              width: 300,
+              height: 300,
               fit: BoxFit.contain,
             ),
 
             const SizedBox(height: 12),
 
             Text(
-              message ?? l10n.commonSomethingWentWrong,
+              l10n.medicinesNoMedicines,
               textAlign: TextAlign.center,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
-
-            if (onRetry != null) ...[
-              const SizedBox(height: 16),
-
-              ElevatedButton.icon(
-                onPressed: onRetry,
-                icon: const Icon(Icons.refresh_rounded),
-                label: Text(l10n.commonRetry),
-              ),
-            ],
           ],
         ),
       ),

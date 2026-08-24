@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/core/constants/app_colors.dart';
-import 'package:medicine_cabinet/core/constants/app_strings.dart';
 import 'package:medicine_cabinet/core/utils/medicine_localizations.dart';
 import 'package:medicine_cabinet/core/widgets/custom_text_form_field.dart';
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_filter.dart';
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_sort.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/Medicine_sort_option.dart';
-import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/date_formatter.dart';
-import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_card.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_error.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_filter_chip.dart';
+import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicines_empty.dart';
+import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicines_list.dart';
+import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicines_loading.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_states.dart';
 import 'package:medicine_cabinet/features/search/peresentation/view/screens/search_screen.dart';
@@ -53,8 +53,6 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -63,6 +61,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
         body: SafeArea(
           child: BlocBuilder<MedicineCubit, MedicineState>(
             builder: (context, state) {
+              /// Loading
               if (state is MedicineLoadingState) {
                 return _buildMedicinesContent(
                   context,
@@ -75,8 +74,9 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                 );
               }
 
+              /// Real error
               if (state is MedicineErrorState) {
-                return MedicineErrorView(
+                return MedicinesError(
                   message: state.message,
                   onRetry: () {
                     context.read<MedicineCubit>().getMedicines(
@@ -86,24 +86,15 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                 );
               }
 
+              /// Success
               if (state is MedicineSuccessState) {
-                if (state.medicines.isEmpty) {
-                  return MedicineErrorView(
-                    message: S.of(context).medicinesNoMedicines,
-                    onRetry: () {
-                      context.read<MedicineCubit>().getMedicines(
-                        widget.householdId,
-                      );
-                    },
-                  );
-                }
-
                 return _buildMedicinesContent(
                   context,
                   state,
                   householdId: widget.householdId,
                 );
               }
+
               return const SizedBox.shrink();
             },
           ),
@@ -127,6 +118,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
 
     return CustomScrollView(
       slivers: [
+        /// Header + Search + Filters + Sort
         SliverPadding(
           padding: const EdgeInsets.fromLTRB(33, 28, 33, 0),
           sliver: SliverToBoxAdapter(
@@ -162,9 +154,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                       hintTextColor: theme.brightness == Brightness.dark
                           ? AppColors.textMutedDark
                           : AppColors.textMutedLight,
-                      onChanged: (value) {
-                        // Search logic later.
-                      },
+                      onChanged: (_) {},
                       prefixIcon: Icon(
                         Icons.search_rounded,
                         color: theme.brightness == Brightness.dark
@@ -172,7 +162,6 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                             : AppColors.textMutedLight,
                         size: 20,
                       ),
-
                       borderRadius: BorderRadius.circular(22),
                     ),
                   ),
@@ -205,7 +194,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
 
                 const SizedBox(height: 20),
 
-                /// Items + Sort
+                /// Items count + Sort
                 Row(
                   children: [
                     Text(
@@ -235,7 +224,9 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
+
                           const SizedBox(width: 2),
+
                           Icon(
                             Icons.keyboard_arrow_down_rounded,
                             size: 18,
@@ -253,47 +244,13 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
           ),
         ),
 
-        /// Medicines
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 33),
-          sliver: SliverList.separated(
-            itemCount: isLoading ? 5 : medicines.length,
-            separatorBuilder: (_, __) {
-              return const SizedBox(height: 11);
-            },
-            itemBuilder: (context, index) {
-              if (isLoading) {
-                return Skeletonizer(
-                  enabled: true,
-                  child: MedicineCard(
-                    name: AppStrings.dummyMedicineName,
-                    type: AppStrings.dummyMedicineType,
-                    remaining: 12,
-                    expiry: AppStrings.dummyMedicineExpiry,
-                    addedBy: AppStrings.dummyMedicineAddedBy,
-                    status: AppStrings.dummyMedicineStatus,
-                  ),
-                );
-              }
-
-              final medicine = medicines[index];
-
-              final status = context.read<MedicineCubit>().getMedicineStatus(
-                medicine,
-              );
-
-              return MedicineCard(
-                imageUrl: medicine.imageUrl,
-                name: medicine.name,
-                type: medicine.type,
-                remaining: medicine.quantity,
-                expiry: formatExpiryDate(context, medicine.expiryDate),
-                addedBy: medicine.addedBy,
-                status: getMedicineStatusTitle(context, status),
-              );
-            },
-          ),
-        ),
+        /// Medicines section
+        if (isLoading)
+          const MedicinesLoading()
+        else if (medicines.isEmpty)
+          const EmptyMedicines()
+        else
+          MedicinesList(medicines: medicines),
 
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
       ],
@@ -371,6 +328,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
 
                   const SizedBox(height: 14),
 
+                  /// Expiry date
                   MedicineSortOption(
                     title: l10n.medicinesSortOptionExpiry,
                     value: MedicineSort.expiryDate,
@@ -382,6 +340,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                     },
                   ),
 
+                  /// Name
                   MedicineSortOption(
                     title: l10n.medicinesSortOptionName,
                     value: MedicineSort.name,
@@ -393,6 +352,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                     },
                   ),
 
+                  /// Quantity
                   MedicineSortOption(
                     title: l10n.medicinesSortOptionQuantity,
                     value: MedicineSort.quantity,
@@ -404,6 +364,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                     },
                   ),
 
+                  /// Recently added
                   MedicineSortOption(
                     title: l10n.medicinesSortOptionRecentlyAdded,
                     value: MedicineSort.recentlyAdded,
