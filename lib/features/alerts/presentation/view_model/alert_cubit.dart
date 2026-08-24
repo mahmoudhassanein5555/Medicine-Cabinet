@@ -4,6 +4,7 @@ import 'package:medicine_cabinet/features/alerts/domain/use_case/get_household_m
 import 'package:medicine_cabinet/features/alerts/presentation/view_model/alert_state.dart';
 
 import '../../domain/entity/medicine_inventory_category.dart';
+
 @injectable
 class AlertCubit extends Cubit<AlertState> {
   final GetHouseholdMedicinesUseCase _getHouseholdMedicinesUseCase;
@@ -35,16 +36,11 @@ class AlertCubit extends Cubit<AlertState> {
     if (currentState is! AlertSuccess) {
       return;
     }
-    emit(
-      AlertLoading(
-        selectedCategory: category,
-      ),
-    );
+    emit(AlertLoading(selectedCategory: category));
 
     final medicines = switch (category) {
       MedicineInventoryCategory.all => currentState.inventory.all,
-      MedicineInventoryCategory.valid =>
-      currentState.inventory.valid,
+      MedicineInventoryCategory.valid => currentState.inventory.valid,
       MedicineInventoryCategory.recentlyAdded =>
         currentState.inventory.recentlyAdded,
       MedicineInventoryCategory.ended => currentState.inventory.ended,
