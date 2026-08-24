@@ -15,6 +15,7 @@ class MedicineDetailsDto {
   final String? storageLocation;
   final String? category;
   final String? description;
+  final String? ownerName;
   const MedicineDetailsDto({
     required this.id,
     required this.name,
@@ -29,6 +30,7 @@ class MedicineDetailsDto {
     this.storageLocation,
     this.category,
     this.description,
+    this.ownerName,
   });
 
   factory MedicineDetailsDto.fromFirestore(
@@ -54,6 +56,7 @@ class MedicineDetailsDto {
       storageLocation: data['storageLocation'] as String?,
       category: data['category'] as String?,
       description: data['description'] as String?,
+      ownerName: data['ownerName'] as String?,
     );
   }
 
@@ -71,6 +74,7 @@ class MedicineDetailsDto {
       'storageLocation': storageLocation,
       'category': category,
       'description': description,
+      'ownerName': ownerName,
     };
   }
 
@@ -89,6 +93,7 @@ class MedicineDetailsDto {
       storageLocation: storageLocation,
       category: category,
       description: description,
+      ownerName: ownerName,
     );
   }
 
@@ -107,6 +112,7 @@ class MedicineDetailsDto {
       storageLocation: entity.storageLocation,
       category: entity.category,
       description: entity.description,
+      ownerName: entity.ownerName,
     );
   }
 }

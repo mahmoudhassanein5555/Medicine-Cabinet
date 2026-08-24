@@ -203,9 +203,7 @@ class _MedicineDetailsBody extends StatelessWidget {
                           child: MedicineInfoCard(
                             icon: Icons.person_outline_rounded,
                             label: l10n.commonOwner,
-                            value: medicine.addedBy.isNotEmpty
-                                ? medicine.addedBy
-                                : 'no name',
+                            value: medicine.ownerName ?? '-',
                           ),
                         ),
                         const SizedBox(width: 12),
