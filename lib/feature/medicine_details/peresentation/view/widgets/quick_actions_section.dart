@@ -24,14 +24,6 @@ class QuickActionsSection extends StatelessWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    final successColor = isDark
-        ? AppColors.successDark
-        : AppColors.successLight;
-
-    final successBackground = isDark
-        ? AppColors.successDark.withValues(alpha: 0.12)
-        : AppColors.successContainerLight;
-
     final errorColor = isDark ? AppColors.errorDark : AppColors.errorLight;
 
     final errorBackground = isDark
@@ -40,6 +32,7 @@ class QuickActionsSection extends StatelessWidget {
 
     return Column(
       children: [
+        /// Update Quantity + Edit Details
         Row(
           children: [
             Expanded(
@@ -63,34 +56,16 @@ class QuickActionsSection extends StatelessWidget {
 
         const SizedBox(height: 12),
 
-        Row(
-          children: [
-            Expanded(
-              child: ActionButton(
-                icon: Icons.check_rounded,
-                label: l10n.commonMarkAsUsed,
-                color: successColor,
-                backgroundColor: successBackground,
-                onPressed: () {
-                  if (medicine.quantity > 0) {
-                    cubit.updateQuantity(quantity: medicine.quantity - 1);
-                  }
-                },
-              ),
-            ),
-
-            const SizedBox(width: 12),
-
-            Expanded(
-              child: ActionButton(
-                icon: Icons.delete_outline_rounded,
-                label: l10n.commonDelete,
-                color: errorColor,
-                backgroundColor: errorBackground,
-                onPressed: () => _showDeleteDialog(context),
-              ),
-            ),
-          ],
+        /// Delete - Full Width
+        SizedBox(
+          width: double.infinity,
+          child: ActionButton(
+            icon: Icons.delete_outline_rounded,
+            label: l10n.commonDelete,
+            color: errorColor,
+            backgroundColor: errorBackground,
+            onPressed: () => _showDeleteDialog(context),
+          ),
         ),
       ],
     );
