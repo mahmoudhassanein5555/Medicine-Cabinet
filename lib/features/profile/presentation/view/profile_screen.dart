@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicine_cabinet/features/profile/presentation/screens/personal_information_screen.dart';
+import 'package:medicine_cabinet/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:medicine_cabinet/features/auth/presentation/cubit/auth_state.dart';
+import 'package:medicine_cabinet/features/auth/presentation/views/login_screen.dart';
+import 'package:medicine_cabinet/features/profile/presentation/view/personal_information_screen.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../core/dialogs/app_dialogs.dart';
 import '../../../../core/di/service_locator.dart';
 import '../../../../core/dialogs/app_toasts.dart';
-import '../../../../core/localization/error_localization.dart';
 import '../../../../core/settings/app_settings_cubit.dart';
 import '../../../../generated/l10n.dart';
 import '../../domain/entities/profile_entity.dart';
-import '../cubit/profile_cubit.dart';
-import '../cubit/profile_state.dart';
+import '../view_model/profile_cubit.dart';
+import '../view_model/profile_state.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_option_tile.dart';
 import '../widgets/profile_section.dart';
@@ -23,8 +25,16 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<ProfileCubit>()..loadProfile(),
+    // 1. استخدام MultiBlocProvider لتوفير الـ AuthCubit والـ ProfileCubit
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => getIt<ProfileCubit>()..loadProfile(),
+        ),
+        BlocProvider(
+          create: (_) => getIt<AuthCubit>(),
+        ),
+      ],
       child: const _ProfileView(),
     );
   }
@@ -43,10 +53,7 @@ class _ProfileView extends StatelessWidget {
           AppToast.showToast(
             context: context,
             title: strings.commonTryAgain,
-            description: ErrorLocalization.getMessage(
-              state.message,
-              strings,
-            ),
+            description: state.failure.getMessage(context),
             type: ToastificationType.error,
           );
         }
@@ -79,22 +86,11 @@ class _ProfileView extends StatelessWidget {
 
         if (state is ProfileError) {
           return Scaffold(
-            body: Center(
-              child: Text(
-                ErrorLocalization.getMessage(
-                  state.message,
-                  S.of(context),
-                ),
-              ),
-            ),
+            body: Center(child: Text(state.failure.getMessage(context))),
           );
         }
 
-        return const Scaffold(
-          body: Center(
-            child: ProfileSkeleton(),
-          ),
-        );
+        return const Scaffold(body: Center(child: ProfileSkeleton()));
       },
     );
   }
@@ -103,18 +99,12 @@ class _ProfileView extends StatelessWidget {
   // Profile Content
   // =====================================================
 
-  Widget _buildContent(
-      BuildContext context,
-      ProfileEntity profile,
-      ) {
+  Widget _buildContent(BuildContext context, ProfileEntity profile) {
     final strings = S.of(context);
 
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -123,7 +113,6 @@ class _ProfileView extends StatelessWidget {
             // =========================
             // Profile Header
             // =========================
-
             ProfileHeader(profile: profile),
 
             const SizedBox(height: 24),
@@ -131,7 +120,6 @@ class _ProfileView extends StatelessWidget {
             // =========================
             // Account
             // =========================
-
             ProfileSection(
               title: strings.profileAccountSection,
               children: [
@@ -143,9 +131,7 @@ class _ProfileView extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (_) => BlocProvider.value(
                           value: context.read<ProfileCubit>(),
-                          child: PersonalInformationScreen(
-                            profile: profile,
-                          ),
+                          child: PersonalInformationScreen(profile: profile),
                         ),
                       ),
                     );
@@ -167,7 +153,6 @@ class _ProfileView extends StatelessWidget {
             // =========================
             // App
             // =========================
-
             ProfileSection(
               title: strings.profileAppSection,
               children: [
@@ -176,21 +161,19 @@ class _ProfileView extends StatelessWidget {
                   title: strings.profileDarkMode,
                   value: Theme.of(context).brightness == Brightness.dark,
                   onChanged: (value) {
-                    context
-                        .read<AppSettingsCubit>()
-                        .toggleTheme(value);
+                    context.read<AppSettingsCubit>().toggleTheme(value);
                   },
                 ),
 
                 // Language
-                _LanguageTile(showDivider: true),
+                const _LanguageTile(showDivider: true),
 
                 // App Version
                 ProfileOptionTile(
                   title: strings.profileAppVersion,
                   trailingText: '1.0.0',
                   showDivider: false,
-                  onTap: () {  },
+                  onTap: () {},
                 ),
               ],
             ),
@@ -200,7 +183,6 @@ class _ProfileView extends StatelessWidget {
             // =========================
             // Information
             // =========================
-
             ProfileSection(
               title: strings.profileInformationSection,
               children: [
@@ -219,21 +201,50 @@ class _ProfileView extends StatelessWidget {
             // =========================
             // Logout
             // =========================
-
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: ProfileOptionTile(
-                title: strings.profileLogout,
-                color: Colors.red,
-                onTap: () {
-                  _showLogoutDialog(context);
-                },
-                showDivider: false,
-              ),
+            BlocConsumer<AuthCubit, AuthState>(
+              listener: (BuildContext context, state) {
+                if (state is AuthInitial) {
+                  Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => BlocProvider(
+                        create: (_) => getIt<AuthCubit>(),
+                        child: const LoginScreen(),
+                      ),
+                    ),
+                    (route) => false,
+                  );
+                } else if (state is AuthError) {
+                  AppToast.showToast(
+                    context: context,
+                    title: strings.commonError,
+                    description: state.failure.getMessage(context),
+                    type: ToastificationType.error,
+                  );
+                }
+              },
+              builder: (BuildContext context, state) {
+                if (state is AuthLoading && state.action == AuthAction.logout) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
+                return Material(
+                  color: Theme.of(context).cardColor,
+                  borderRadius: BorderRadius.circular(16),
+                  clipBehavior: Clip.antiAlias,
+                  child: ProfileOptionTile(
+                    title: strings.profileLogout,
+                    color: Colors.red,
+                    onTap: () {
+                      _showLogoutDialog(context);
+                    },
+                    showDivider: false,
+                  ),
+                );
+              },
             ),
 
             const SizedBox(height: 40),
@@ -255,9 +266,7 @@ class _ProfileView extends StatelessWidget {
       builder: (context) {
         return AlertDialog(
           title: Text(strings.profileAbout),
-          content: Text(
-            strings.profileAboutDescription,
-          ),
+          content: Text(strings.profileAboutDescription),
           actions: [
             TextButton(
               onPressed: () {
@@ -284,9 +293,8 @@ class _ProfileView extends StatelessWidget {
       content: strings.profileLogoutConfirmation,
       cancelText: strings.commonCancel,
       confirmText: strings.profileLogout,
-      confirmButtonColor: Colors.red,
       onConfirm: () {
-        // TODO: Connect logout logic
+        context.read<AuthCubit>().logout();
       },
     );
   }
@@ -297,9 +305,7 @@ class _ProfileView extends StatelessWidget {
 // =====================================================
 
 class _LanguageTile extends StatelessWidget {
-  const _LanguageTile({
-    this.showDivider = true,
-  });
+  const _LanguageTile({this.showDivider = true});
 
   final bool showDivider;
 
@@ -307,18 +313,14 @@ class _LanguageTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final appSettings = context.watch<AppSettingsCubit>();
 
-    final currentLanguage =
-        appSettings.state.locale.languageCode;
+    final currentLanguage = appSettings.state.locale.languageCode;
 
     final colorScheme = Theme.of(context).colorScheme;
 
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 4,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -329,7 +331,6 @@ class _LanguageTile extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-
               DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
                   value: currentLanguage,
@@ -337,23 +338,19 @@ class _LanguageTile extends StatelessWidget {
                   items: [
                     DropdownMenuItem(
                       value: 'en',
-                      child: Text(
-                        S.of(context).profileEnglish,
-                      ),
+                      child: Text(S.of(context).profileEnglish),
                     ),
                     DropdownMenuItem(
                       value: 'ar',
-                      child: Text(
-                        S.of(context).profileArabic,
-                      ),
+                      child: Text(S.of(context).profileArabic),
                     ),
                   ],
                   onChanged: (value) {
                     if (value == null) return;
 
-                    context
-                        .read<AppSettingsCubit>()
-                        .changeLanguage(value == 'ar');
+                    context.read<AppSettingsCubit>().changeLanguage(
+                      value == 'ar',
+                    );
                   },
                   icon: Icon(
                     Icons.keyboard_arrow_down,
@@ -364,7 +361,6 @@ class _LanguageTile extends StatelessWidget {
             ],
           ),
         ),
-
         if (showDivider)
           Divider(
             height: 1,

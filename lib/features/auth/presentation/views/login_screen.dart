@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/register_screen.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/auth_header.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/google_button.dart';
-import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
+import 'package:medicine_cabinet/features/household/presentation/view/view/household_screen.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../core/di/service_locator.dart';
@@ -64,10 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => CustomBottomNavBar(
-                userId: state.user.id,
-                householdId: state.user.id,
-              ),
+              builder: (context) => HouseholdScreen(userId: state.user.id),
             ),
             (route) => false,
           );
@@ -215,7 +212,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             email: emailController.text.trim(),
                             password: passwordController.text,
                           );
-                          
                         }
                       },
                     ),

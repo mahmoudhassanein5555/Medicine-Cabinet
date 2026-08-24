@@ -38,15 +38,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(count) => "${count} وحدات متبقية";
 
-  static String m9(date) => "ينتهي في ${date}";
+  static String m9(count) => "${count} أدوية";
 
-  static String m10(quantity) => "الكمية: ${quantity}";
+  static String m10(name) =>
+      "سيتم إزالة ${name} من منزلك. لا يمكن التراجع عن هذا الإجراء.";
 
-  static String m11(count) => "متبقي ${count}";
+  static String m11(count) => "${count} أدوية";
 
-  static String m12(count) => "${count} دواء";
+  static String m12(date) => "ينتهي في ${date}";
 
-  static String m13(sortOption) => "الترتيب: ${sortOption}";
+  static String m13(date) => "الانتهاء: ${date}";
+
+  static String m14(quantity) => "الكمية: ${quantity}";
+
+  static String m15(count) => "متبقي ${count}";
+
+  static String m16(count) => "${count} دواء";
+
+  static String m17(sortOption) => "الترتيب: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -211,6 +220,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonLowStock": MessageLookupByLibrary.simpleMessage("المخزون المنتهي"),
     "commonManage": MessageLookupByLibrary.simpleMessage("إدارة"),
     "commonMarkAsUsed": MessageLookupByLibrary.simpleMessage("تحديد كمستخدم"),
+    "commonNoEmail": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد بريد إلكتروني",
+    ),
     "commonOr": MessageLookupByLibrary.simpleMessage("أو"),
     "commonOwner": MessageLookupByLibrary.simpleMessage("المالك"),
     "commonQuantity": MessageLookupByLibrary.simpleMessage("الكمية"),
@@ -229,10 +241,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "حدث خطأ ما، يرجى المحاولة مرة أخرى.",
     ),
     "commonUnits": MessageLookupByLibrary.simpleMessage("وحدات"),
+    "commonUnnamed": MessageLookupByLibrary.simpleMessage("غير معروف"),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "تحديث الكمية",
     ),
     "commonUser": MessageLookupByLibrary.simpleMessage("المستخدم"),
+    "createHouseholdDescription": MessageLookupByLibrary.simpleMessage(
+      "أعطِ بيتك اسماً ليساعد عائلتك على البقاء منظمة.",
+    ),
+    "createHouseholdTitle": MessageLookupByLibrary.simpleMessage(
+      "إنشاء بيت جديد",
+    ),
     "errorDatabase": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ في قاعدة البيانات.",
     ),
@@ -301,6 +320,89 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "إضافة فرد من العائلة",
     ),
+    "householdAdminTitle": MessageLookupByLibrary.simpleMessage(
+      "بصفتك مسؤول البيت، يمكنك:",
+    ),
+    "householdCreateButton": MessageLookupByLibrary.simpleMessage(
+      "إنشاء منزل جديد",
+    ),
+    "householdCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تم إنشاء المنزل بنجاح",
+    ),
+    "householdCreating": MessageLookupByLibrary.simpleMessage(
+      "جارٍ الإنشاء...",
+    ),
+    "householdIdHint": MessageLookupByLibrary.simpleMessage(
+      "أدخل معرّف المنزل",
+    ),
+    "householdIdLabel": MessageLookupByLibrary.simpleMessage("معرّف المنزل"),
+    "householdJoinButton": MessageLookupByLibrary.simpleMessage(
+      "الانضمام إلى المنزل",
+    ),
+    "householdJoinExistingButton": MessageLookupByLibrary.simpleMessage(
+      "لديّ معرّف بيت وأريد الانضمام",
+    ),
+    "householdJoinSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم الانضمام إلى المنزل بنجاح",
+    ),
+    "householdJoining": MessageLookupByLibrary.simpleMessage(
+      "جارٍ الانضمام...",
+    ),
+    "householdMedicineCount": m9,
+    "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
+      "تفاصيل العضو",
+    ),
+    "householdMemberRemovedDescription": MessageLookupByLibrary.simpleMessage(
+      "تمت إزالة العضو من المنزل",
+    ),
+    "householdMemberRemovedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تمت إزالة العضو من المنزل",
+    ),
+    "householdMemberRemovedTitle": MessageLookupByLibrary.simpleMessage(
+      "تمت الإزالة",
+    ),
+    "householdNameHint": MessageLookupByLibrary.simpleMessage(
+      "مثال: صيدلية البيت",
+    ),
+    "householdNameLabel": MessageLookupByLibrary.simpleMessage("اسم البيت"),
+    "householdNoMembersFound": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد أعضاء في المنزل",
+    ),
+    "householdOr": MessageLookupByLibrary.simpleMessage("أو"),
+    "householdPermissionAdd": MessageLookupByLibrary.simpleMessage(
+      "إضافة أو حذف الأعضاء",
+    ),
+    "householdPermissionManage": MessageLookupByLibrary.simpleMessage(
+      "إدارة البيت",
+    ),
+    "householdPermissionView": MessageLookupByLibrary.simpleMessage(
+      "عرض أدوية جميع الأعضاء",
+    ),
+    "householdRemoveButton": MessageLookupByLibrary.simpleMessage("إزالة"),
+    "householdRemoveMemberDesc": m10,
+    "householdRemoveMemberTitle": MessageLookupByLibrary.simpleMessage(
+      "إزالة العضو؟",
+    ),
+    "householdRemoveMemberTooltip": MessageLookupByLibrary.simpleMessage(
+      "إزالة العضو",
+    ),
+    "householdSetupDescription": MessageLookupByLibrary.simpleMessage(
+      "انضم إلى منزل موجود باستخدام المعرّف الخاص به، أو أنشئ منزلاً جديداً.",
+    ),
+    "householdSetupTitle": MessageLookupByLibrary.simpleMessage("إعداد المنزل"),
+    "householdTitle": MessageLookupByLibrary.simpleMessage("الأسرة"),
+    "logoutFailedDescription": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ أثناء تسجيل الخروج. حاول مرة أخرى.",
+    ),
+    "logoutFailedTitle": MessageLookupByLibrary.simpleMessage(
+      "فشل تسجيل الخروج",
+    ),
+    "logoutSuccessDescription": MessageLookupByLibrary.simpleMessage(
+      "تم تسجيل خروجك بنجاح.",
+    ),
+    "logoutSuccessTitle": MessageLookupByLibrary.simpleMessage(
+      "تم تسجيل الخروج",
+    ),
     "medicineCabinet": MessageLookupByLibrary.simpleMessage("خزانة الأدوية"),
     "medicineCategoryAll": MessageLookupByLibrary.simpleMessage("الكل"),
     "medicineCategoryEnded": MessageLookupByLibrary.simpleMessage(
@@ -313,10 +415,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "المضافة حديثًا",
     ),
     "medicineCategoryValid": MessageLookupByLibrary.simpleMessage("صالحة"),
+    "medicineCount": m11,
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
-    "medicineExpires": m9,
+    "medicineExpires": m12,
+    "medicineExpiry": m13,
     "medicineNoEnded": MessageLookupByLibrary.simpleMessage(
       "لا توجد أدوية منتهية الكمية",
     ),
@@ -329,14 +433,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineNoRecentlyAdded": MessageLookupByLibrary.simpleMessage(
       "لا توجد أدوية مضافة حديثًا",
     ),
-    "medicineQuantity": m10,
-    "medicineRemaining": m11,
+    "medicineQuantity": m14,
+    "medicineRemaining": m15,
     "medicineStatusEnded": MessageLookupByLibrary.simpleMessage("منتهية"),
     "medicineStatusExpired": MessageLookupByLibrary.simpleMessage(
       "منتهية الصلاحية",
     ),
     "medicineStatusValid": MessageLookupByLibrary.simpleMessage("صالحة"),
-    "medicinesItemsCount": m12,
+    "medicines": MessageLookupByLibrary.simpleMessage("الأدوية"),
+    "medicinesItemsCount": m16,
     "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "medicinesNoMedicines": MessageLookupByLibrary.simpleMessage(
       "لا توجد أدوية",
@@ -345,7 +450,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ابحث عن الأدوية...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
-    "medicinesSortLabelCurrent": m13,
+    "medicinesSortLabelCurrent": m17,
     "medicinesSortOptionExpiry": MessageLookupByLibrary.simpleMessage(
       "تاريخ الانتهاء",
     ),
@@ -359,6 +464,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "أُضيف حديثاً",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("الأدوية"),
+    "memberEmail": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "memberInformation": MessageLookupByLibrary.simpleMessage("معلومات العضو"),
+    "memberMedicines": MessageLookupByLibrary.simpleMessage("أدوية العضو"),
+    "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(
       "امسح الدواء في المتجر واعرف فوراً ما إذا كان موجوداً لدى عائلتك بالفعل.",
     ),

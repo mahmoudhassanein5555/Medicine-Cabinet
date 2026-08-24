@@ -1,6 +1,5 @@
 {
   "@@locale": "en",
-
   "commonContinue": "Continue",
   "commonSkip": "Skip",
   "commonGetStarted": "Get started",
@@ -42,14 +41,12 @@
   "commonRetry": "Retry",
   "commonTryAgainLater": "Please try again later",
   "commonClose": "Close",
-
   "homeNavLabel": "Home",
   "medicinesNavLabel": "Medicines",
   "alertsNavLabel": "Alerts",
   "medicinesTitle": "Medicines",
   "alertsTitle": "Alerts",
   "profileNavLabel": "Profile",
-
   "authLoginTitle": "Welcome back",
   "authLoginSubtitle": "Log in to see your household's medicine cabinet.",
   "authEmailLabel": "Email",
@@ -59,7 +56,6 @@
   "authContinueWithGoogle": "Continue with Google",
   "authNoAccount": "Don't have an account?",
   "authSignUpLink": "Sign up",
-
   "authRegisterTitle": "Create your account",
   "authRegisterSubtitle": "Set up your household's medicine cabinet in a minute.",
   "authFullNameLabel": "Full name",
@@ -95,7 +91,6 @@
   "authOperationNotAllowed": "Operation not allowed. Please contact support.",
   "authAccountExistsWithDifferentCredential": "An account already exists with the same email address using a different login method.",
   "authGoogleSignInCancelled": "Google sign-in was cancelled.",
-
   "onboardingKnowTitle": "Know what you have",
   "onboardingKnowDesc": "Keep every medicine your household owns organized in one clear, shared place.",
   "onboardingExpiryTitle": "Never miss an expiry",
@@ -111,7 +106,6 @@
   "onboardingGetStarted": "Get started",
   "onboardingContinue": "Continue",
   "onboardingSkip": "Skip",
-
   "homeGreetingEvening": "Good evening, {name}",
   "homeSubtitle": "Here's your medicine cabinet",
   "homeScanCta": "Scan Medicine",
@@ -133,7 +127,6 @@
   "homeEmptyTitle": "Your cabinet is empty",
   "homeEmptyDesc": "Scan the first medicine you own and it'll show up here, organized and ready to track.",
   "homeEmptyButton": "Scan your first medicine",
-
   "medicinesSearchHint": "Search medicines...",
   "medicinesSortBy": "Sort by",
   "medicinesSortLabelCurrent": "Sort: {sortOption}",
@@ -143,7 +136,6 @@
   "medicinesSortOptionRecentlyAdded": "Recently added",
   "medicinesNoMedicines": "No medicines found",
   "medicineDetailsDeleteDesc": "This removes it from your cabinet inventory. This can't be undone.",
-
   "scanHint": "Align the package label within the frame",
   "scanCapture": "Capture",
   "scanEnterManually": "Enter details manually",
@@ -155,7 +147,6 @@
   "scanAddedTitle": "Added to your cabinet",
   "scanScanAnother": "Scan another",
   "scanBackToHome": "Back to Home",
-
   "beforeYouBuyTitle": "Before You Buy",
   "beforeYouBuySearchHint": "Scan or search a medicine...",
   "beforeYouBuyAlreadyTitle": "Already in your cabinet",
@@ -164,13 +155,10 @@
   "beforeYouBuyNotice": "You may already have this medicine at home.",
   "beforeYouBuyNotFoundTitle": "Not in your cabinet",
   "beforeYouBuyNoMatchTitle": "No matching medicine found",
-
   "alertsFilterExpiry": "Expiry",
   "alertsToday": "Today",
   "alertsYesterday": "Yesterday",
-
   "householdAddMember": "Add family member",
-
   "profileAccountSection": "Account",
   "profilePersonalInformation": "Personal information",
   "profileNotificationSettings": "Notification settings",
@@ -184,7 +172,6 @@
   "profileNameRequired": "Name is required",
   "profileImageUploadFailed": "Failed to upload profile picture.",
   "profileSavingChanges": "Saving changes...",
-
   "profileAppSection": "App",
   "profilePrivacy": "Privacy",
   "profileDarkMode": "Dark mode",
@@ -195,10 +182,8 @@
   "profileAppVersion": "App version",
   "profileInformationSection": "Information",
   "profileAboutDescription": "Medicine Cabinet helps you manage your medicines, expiry dates, and stock levels easily.",
-
   "profileLogout": "Logout",
   "profileLogoutConfirmation": "Are you sure you want to logout?",
-
   "profileUserNotAuthenticated": "You are not authenticated. Please log in again.",
   "profileLoadFailed": "Unable to load your profile. Please try again.",
   "profileUpdateFailed": "Unable to update your profile. Please try again.",
@@ -207,11 +192,9 @@
   "profileNetworkError": "Please check your internet connection and try again.",
   "profileOperationFailed": "The operation could not be completed. Please try again.",
   "profileServerError": "Something went wrong. Please try again later.",
-
   "splashWordmark": "Medicine Cabinet",
   "splashTagline": "Your household medicines, organized in one place.",
   "splashLoadingText": "Setting up your cabinet...",
-  
   "somethingWrong": "Something went wrong",
   "somethingWentWrong": "Something went wrong, please try again later.",
   "failedToLoadProfile": "Failed to load user profile",
@@ -225,7 +208,6 @@
   "errorInvalidInput": "Invalid information provided. Please check your inputs.",
   "errorTechnicalIssue": "We encountered a technical issue while processing data.",
   "errorDatabase": "A database error occurred.",
-
   "validationEmailRequired": "Email cannot be empty",
   "validationInvalidEmail": "Enter a valid email address",
   "validationPasswordRequired": "Password cannot be empty",
@@ -236,59 +218,43 @@
   "validationInvalidPhone": "Enter a valid phone number",
   "validationCodeRequired": "Code cannot be empty",
   "validationCodeLength": "Code should be at least 6 digits",
-
   "searchStartTyping": "Start typing to search for medicines",
   "searchNoResults": "No medicines found",
-
   "welcomeBack": "Welcome back",
-
   "scanMedicineTitle": "Scan Medicine",
   "scanHintAlignBox": "Align medicine box or strip in frame",
   "scanAnalyzingTitle": "Analyzing Medicine",
   "scanAnalyzingSubtitle": "Please wait while we read and process\nthe package details...",
-
   "scanMissingInfoTitle": "Missing Information",
   "scanMissingInfoDesc": "Please review and fill in the required details.",
-
   "scanConfirmMedicineTitle": "Confirm Medicine",
   "scanReviewConfirmNotice": "Please review and confirm details before saving to your cabinet.",
-
   "scanMedicineAddedSuccess": "Medicine added successfully!",
   "scanFailedToAddMedicine": "Failed to add medicine",
-
   "scanPackagePhotoTitle": "Package Photo",
   "scanRetakePhoto": "Retake",
   "scanNoPhotoPreview": "No medicine photo preview",
-
   "scanMedicineDetailsTitle": "Medicine Details",
   "scanMedicineNameLabel": "Medicine Name",
   "scanMedicineNameHint": "e.g. Panadol Extra, Amoxicillin",
   "scanMedicineNameValidation": "Please enter the medicine name",
-
   "scanCategoryLabel": "Category / Active Ingredient",
   "scanCategoryHint": "e.g. Pain Relief, Antibiotic, Paracetamol",
   "scanCategoryValidation": "Please enter category or active ingredient",
-
   "scanFormTypeLabel": "Form / Type",
   "scanFormTypeHint": "e.g. Tablets, Syrup",
   "scanFieldRequired": "Required",
-
   "scanExpiryDateHint": "YYYY-MM-DD",
   "scanExpiryDateValidation": "Please select the expiry date",
-
   "scanStorageLocationHint": "e.g. Bedroom Drawer, Fridge, Medicine Box",
   "scanStorageLocationValidation": "Please enter storage location",
-
   "scanNotesLabel": "Notes & Dosage Instructions",
   "scanNotesHint": "e.g. Take 1 tablet after meals twice daily",
-
   "scanSelectProfile": "Select profile",
   "scanNoMembersFound": "No household members found",
   "scanFailedToLoadMembers": "Failed to load members",
-
   "scanUnitsDefault": "Units",
   "scanAddMedicineButton": "Add Medicine",
-
   "medicineCabinet": "Medicine Cabinet",
   "medicineCategoryAll": "All",
   "medicineCategoryRecentlyAdded": "Recently Added",
@@ -302,5 +268,49 @@
   "medicineCategoryValid": "Valid",
   "medicineStatusValid": "Valid",
   "medicineStatusExpired": "Expired",
-  "medicineStatusEnded": "Ended"
+  "medicineStatusEnded": "Ended",
+  "householdSetupTitle": "Set up your household",
+  "householdSetupDescription": "Join an existing household using its ID, or create a new one.",
+  "householdIdLabel": "Household ID",
+  "householdIdHint": "Enter household ID",
+  "householdJoinButton": "Join household",
+  "householdOr": "OR",
+  "householdCreateButton": "Create a new household",
+  "createHouseholdTitle": "Create a new household",
+  "createHouseholdDescription": "Give your household a name to help your family stay organized.",
+  "householdNameLabel": "Household name",
+  "householdNameHint": "e.g. Home Cabinet",
+  "householdAdminTitle": "As the household owner, you can:",
+  "householdPermissionAdd": "Add or remove members",
+  "householdPermissionManage": "Manage the household",
+  "householdPermissionView": "View all members' medicines",
+  "householdJoinExistingButton": "I have a household ID, join it",
+  "householdTitle": "Household",
+  "householdMedicineCount": "{count} medicines",
+  "householdMemberDetails": "Member Details",
+  "medicines": "Medicines",
+  "memberInformation": "Member Information",
+  "name": "Name",
+  "memberEmail": "Email",
+  "memberMedicines": "Member Medicines",
+  "householdRemoveMemberTitle": "Remove member?",
+  "householdRemoveMemberDesc": "This will remove {name} from your household. This can't be undone.",
+  "householdRemoveButton": "Remove",
+  "householdMemberRemovedSuccessfully": "Member removed from the household",
+  "householdNoMembersFound": "No household members found",
+  "householdMemberRemovedTitle": "Removed",
+  "householdMemberRemovedDescription": "Member removed from the household",
+  "householdRemoveMemberTooltip": "Remove member",
+  "householdJoining": "Joining...",
+  "householdJoinSuccess": "Joined household successfully",
+  "commonUnnamed": "Unnamed",
+  "commonNoEmail": "No email",
+  "medicineExpiry": "Expiry: {date}",
+  "householdCreating": "Creating...",
+  "householdCreatedSuccessfully": "Household created successfully",
+  "medicineCount": "{count} medicines",
+  "logoutSuccessTitle": "Logged Out",
+  "logoutSuccessDescription": "You have been logged out successfully.",
+  "logoutFailedTitle": "Logout Failed",
+  "logoutFailedDescription": "Something went wrong while logging out. Please try again."
 }

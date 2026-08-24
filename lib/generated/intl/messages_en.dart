@@ -38,15 +38,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m8(count) => "${count} units remaining";
 
-  static String m9(date) => "Expires ${date}";
+  static String m9(count) => "${count} medicines";
 
-  static String m10(quantity) => "Quantity: ${quantity}";
+  static String m10(name) =>
+      "This will remove ${name} from your household. This can\'t be undone.";
 
-  static String m11(count) => "${count} remaining";
+  static String m11(count) => "${count} medicines";
 
-  static String m12(count) => "${count} items";
+  static String m12(date) => "Expires ${date}";
 
-  static String m13(sortOption) => "Sort: ${sortOption}";
+  static String m13(date) => "Expiry: ${date}";
+
+  static String m14(quantity) => "Quantity: ${quantity}";
+
+  static String m15(count) => "${count} remaining";
+
+  static String m16(count) => "${count} items";
+
+  static String m17(sortOption) => "Sort: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -213,6 +222,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonLowStock": MessageLookupByLibrary.simpleMessage("Ended stock"),
     "commonManage": MessageLookupByLibrary.simpleMessage("Manage"),
     "commonMarkAsUsed": MessageLookupByLibrary.simpleMessage("Mark as used"),
+    "commonNoEmail": MessageLookupByLibrary.simpleMessage("No email"),
     "commonOr": MessageLookupByLibrary.simpleMessage("or"),
     "commonOwner": MessageLookupByLibrary.simpleMessage("Owner"),
     "commonQuantity": MessageLookupByLibrary.simpleMessage("Quantity"),
@@ -234,10 +244,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please try again later",
     ),
     "commonUnits": MessageLookupByLibrary.simpleMessage("units"),
+    "commonUnnamed": MessageLookupByLibrary.simpleMessage("Unnamed"),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
       "Update quantity",
     ),
     "commonUser": MessageLookupByLibrary.simpleMessage("User"),
+    "createHouseholdDescription": MessageLookupByLibrary.simpleMessage(
+      "Give your household a name to help your family stay organized.",
+    ),
+    "createHouseholdTitle": MessageLookupByLibrary.simpleMessage(
+      "Create a new household",
+    ),
     "errorDatabase": MessageLookupByLibrary.simpleMessage(
       "A database error occurred.",
     ),
@@ -314,6 +331,85 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "Add family member",
     ),
+    "householdAdminTitle": MessageLookupByLibrary.simpleMessage(
+      "As the household owner, you can:",
+    ),
+    "householdCreateButton": MessageLookupByLibrary.simpleMessage(
+      "Create a new household",
+    ),
+    "householdCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Household created successfully",
+    ),
+    "householdCreating": MessageLookupByLibrary.simpleMessage("Creating..."),
+    "householdIdHint": MessageLookupByLibrary.simpleMessage(
+      "Enter household ID",
+    ),
+    "householdIdLabel": MessageLookupByLibrary.simpleMessage("Household ID"),
+    "householdJoinButton": MessageLookupByLibrary.simpleMessage(
+      "Join household",
+    ),
+    "householdJoinExistingButton": MessageLookupByLibrary.simpleMessage(
+      "I have a household ID, join it",
+    ),
+    "householdJoinSuccess": MessageLookupByLibrary.simpleMessage(
+      "Joined household successfully",
+    ),
+    "householdJoining": MessageLookupByLibrary.simpleMessage("Joining..."),
+    "householdMedicineCount": m9,
+    "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
+      "Member Details",
+    ),
+    "householdMemberRemovedDescription": MessageLookupByLibrary.simpleMessage(
+      "Member removed from the household",
+    ),
+    "householdMemberRemovedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Member removed from the household",
+    ),
+    "householdMemberRemovedTitle": MessageLookupByLibrary.simpleMessage(
+      "Removed",
+    ),
+    "householdNameHint": MessageLookupByLibrary.simpleMessage(
+      "e.g. Home Cabinet",
+    ),
+    "householdNameLabel": MessageLookupByLibrary.simpleMessage(
+      "Household name",
+    ),
+    "householdNoMembersFound": MessageLookupByLibrary.simpleMessage(
+      "No household members found",
+    ),
+    "householdOr": MessageLookupByLibrary.simpleMessage("OR"),
+    "householdPermissionAdd": MessageLookupByLibrary.simpleMessage(
+      "Add or remove members",
+    ),
+    "householdPermissionManage": MessageLookupByLibrary.simpleMessage(
+      "Manage the household",
+    ),
+    "householdPermissionView": MessageLookupByLibrary.simpleMessage(
+      "View all members\' medicines",
+    ),
+    "householdRemoveButton": MessageLookupByLibrary.simpleMessage("Remove"),
+    "householdRemoveMemberDesc": m10,
+    "householdRemoveMemberTitle": MessageLookupByLibrary.simpleMessage(
+      "Remove member?",
+    ),
+    "householdRemoveMemberTooltip": MessageLookupByLibrary.simpleMessage(
+      "Remove member",
+    ),
+    "householdSetupDescription": MessageLookupByLibrary.simpleMessage(
+      "Join an existing household using its ID, or create a new one.",
+    ),
+    "householdSetupTitle": MessageLookupByLibrary.simpleMessage(
+      "Set up your household",
+    ),
+    "householdTitle": MessageLookupByLibrary.simpleMessage("Household"),
+    "logoutFailedDescription": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong while logging out. Please try again.",
+    ),
+    "logoutFailedTitle": MessageLookupByLibrary.simpleMessage("Logout Failed"),
+    "logoutSuccessDescription": MessageLookupByLibrary.simpleMessage(
+      "You have been logged out successfully.",
+    ),
+    "logoutSuccessTitle": MessageLookupByLibrary.simpleMessage("Logged Out"),
     "medicineCabinet": MessageLookupByLibrary.simpleMessage("Medicine Cabinet"),
     "medicineCategoryAll": MessageLookupByLibrary.simpleMessage("All"),
     "medicineCategoryEnded": MessageLookupByLibrary.simpleMessage("Ended"),
@@ -322,10 +418,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Recently Added",
     ),
     "medicineCategoryValid": MessageLookupByLibrary.simpleMessage("Valid"),
+    "medicineCount": m11,
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
-    "medicineExpires": m9,
+    "medicineExpires": m12,
+    "medicineExpiry": m13,
     "medicineNoEnded": MessageLookupByLibrary.simpleMessage(
       "No ended medicines",
     ),
@@ -338,12 +436,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineNoRecentlyAdded": MessageLookupByLibrary.simpleMessage(
       "No recently added medicines",
     ),
-    "medicineQuantity": m10,
-    "medicineRemaining": m11,
+    "medicineQuantity": m14,
+    "medicineRemaining": m15,
     "medicineStatusEnded": MessageLookupByLibrary.simpleMessage("Ended"),
     "medicineStatusExpired": MessageLookupByLibrary.simpleMessage("Expired"),
     "medicineStatusValid": MessageLookupByLibrary.simpleMessage("Valid"),
-    "medicinesItemsCount": m12,
+    "medicines": MessageLookupByLibrary.simpleMessage("Medicines"),
+    "medicinesItemsCount": m16,
     "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("Medicines"),
     "medicinesNoMedicines": MessageLookupByLibrary.simpleMessage(
       "No medicines found",
@@ -352,7 +451,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Search medicines...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
-    "medicinesSortLabelCurrent": m13,
+    "medicinesSortLabelCurrent": m17,
     "medicinesSortOptionExpiry": MessageLookupByLibrary.simpleMessage(
       "Expiry date",
     ),
@@ -366,6 +465,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Recently added",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("Medicines"),
+    "memberEmail": MessageLookupByLibrary.simpleMessage("Email"),
+    "memberInformation": MessageLookupByLibrary.simpleMessage(
+      "Member Information",
+    ),
+    "memberMedicines": MessageLookupByLibrary.simpleMessage("Member Medicines"),
+    "name": MessageLookupByLibrary.simpleMessage("Name"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(
       "Scan a medicine at the store and instantly see if your household already has it.",
     ),

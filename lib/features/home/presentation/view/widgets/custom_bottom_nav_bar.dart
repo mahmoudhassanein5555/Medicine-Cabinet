@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/core/constants/app_colors.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
+import 'package:medicine_cabinet/core/utils/shared_prefs_local_data_source.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/home_screen.dart';
-import 'package:medicine_cabinet/features/home/presentation/view/widgets/profile_tab_view.dart';
 import 'package:medicine_cabinet/features/home/presentation/view_model/home_cubit.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/screens/medicines_screen.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
-import 'package:medicine_cabinet/features/profile/presentation/cubit/profile_cubit.dart';
-import 'package:medicine_cabinet/features/profile/presentation/screens/profile_screen.dart';
+import 'package:medicine_cabinet/features/profile/presentation/view/profile_screen.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
@@ -51,11 +50,14 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
       ),
       BlocProvider(
         create: (_) => getIt<MedicineCubit>(),
-        child: MedicinesScreen(householdId: "household123"),
+        child: MedicinesScreen(
+          householdId: getIt<CacheHelper>().getData(key: "cached_household_id"),
+        ),
       ),
-      Center(child: Text("Hello"),),
-      BlocProvider(create:(_) => getIt<ProfileCubit>(),child: ProfileScreen(), ),
-       Center(child: Text('Feed Screen')),
+      Center(child: Text("Hello")),
+      
+       ProfileScreen(),
+      Center(child: Text('Feed Screen')),
       // ProfileTabView(userId: effectiveUserId),
     ];
   }

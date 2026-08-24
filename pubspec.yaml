@@ -22,7 +22,7 @@ dependencies:
   injectable: ^2.7.1+4
 
   # Local Storage
-  shared_preferences: ^2.3.5
+  shared_preferences: ^2.5.5
   flutter_secure_storage: ^9.2.4
 
   # State Management
@@ -56,6 +56,7 @@ dependencies:
   skeletonizer: ^2.1.3
   cached_network_image: ^3.4.1
   shimmer: ^3.0.0
+  easy_refresh: ^3.5.1
 
   # Localization
   flutter_localizations:
@@ -97,6 +98,7 @@ flutter_native_splash:
 flutter:
   generate: true
   uses-material-design: true
+
   assets:
     - assets/icons/
     - assets/images/

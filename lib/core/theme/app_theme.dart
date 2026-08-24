@@ -9,6 +9,7 @@ class AppTheme {
   // ============================================================
   // Dynamic Font Helper
   // ============================================================
+
   static String _getFontFamily(String languageCode) {
     return languageCode == 'ar' ? 'Tajawal' : 'Roboto';
   }
@@ -16,6 +17,7 @@ class AppTheme {
   // ============================================================
   // Light Theme
   // ============================================================
+
   static ThemeData getLightTheme(String languageCode) {
     final fontFamily = _getFontFamily(languageCode);
 
@@ -80,17 +82,110 @@ class AppTheme {
       ),
 
       // ========================================================
-      // Typography (مطابق للـ UI والـ Design exact)
+      // Outlined Button
+      // ========================================================
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.primaryLight,
+          minimumSize: const Size(double.infinity, 48),
+          side: const BorderSide(color: AppColors.borderLight, width: 1.5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          textStyle: TextStyle(
+            fontFamily: fontFamily,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+
+      // ========================================================
+      // Text Form Field / Input Decoration
+      // ========================================================
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: AppColors.surfaceLight,
+
+        hintStyle: TextStyle(
+          fontFamily: fontFamily,
+          color: AppColors.textMutedLight,
+          fontSize: 14,
+        ),
+
+        prefixIconColor: AppColors.textSecondaryLight,
+
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: AppColors.borderLight),
+        ),
+
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: AppColors.borderLight),
+        ),
+
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: AppColors.primaryLight, width: 2),
+        ),
+
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(
+            color: AppColors.borderLight.withValues(alpha: 0.5),
+          ),
+        ),
+
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: AppColors.errorLight, width: 1.5),
+        ),
+
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: AppColors.errorLight, width: 2),
+        ),
+
+        errorStyle: TextStyle(
+          fontFamily: fontFamily,
+          color: AppColors.errorLight,
+          fontSize: 12,
+        ),
+      ),
+
+      // ========================================================
+      // Typography
       // ========================================================
       textTheme: TextTheme(
-        // عناوين اسم المستخدم والعناوين البارزة
+        headlineSmall: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+          color: AppColors.textPrimaryLight,
+          fontFamily: fontFamily,
+        ),
+
+        headlineMedium: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: AppColors.textPrimaryLight,
+          fontFamily: fontFamily,
+        ),
+
         titleLarge: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryLight,
           fontFamily: fontFamily,
         ),
-        // عناوين الأقسام الرئيسية (ACCOUNT, REMINDERS, APP)
+
+        titleMedium: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: AppColors.textPrimaryLight,
+          fontFamily: fontFamily,
+        ),
+
         titleSmall: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
@@ -98,23 +193,17 @@ class AppTheme {
           letterSpacing: 1.1,
           fontFamily: fontFamily,
         ),
-        // نصوص العناوين في القوائم (Personal information, Privacy...)
+
         bodyLarge: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimaryLight,
           fontFamily: fontFamily,
         ),
-        // النصوص الفرعية على اليمين (14 days before, الإيميل)
+
         bodyMedium: TextStyle(
           fontSize: 13,
           color: AppColors.textSecondaryLight,
-          fontFamily: fontFamily,
-        ),
-        headlineMedium: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: AppColors.textPrimaryLight,
           fontFamily: fontFamily,
         ),
       ),
@@ -124,6 +213,7 @@ class AppTheme {
   // ============================================================
   // Dark Theme
   // ============================================================
+
   static ThemeData getDarkTheme(String languageCode) {
     final fontFamily = _getFontFamily(languageCode);
 
@@ -187,15 +277,110 @@ class AppTheme {
       ),
 
       // ========================================================
+      // Outlined Button
+      // ========================================================
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.primaryDark,
+          minimumSize: const Size(double.infinity, 48),
+          side: const BorderSide(color: AppColors.borderDark, width: 1.5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          textStyle: TextStyle(
+            fontFamily: fontFamily,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+
+      // ========================================================
+      // Text Form Field / Input Decoration
+      // ========================================================
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: AppColors.surfaceAltDark,
+
+        hintStyle: TextStyle(
+          fontFamily: fontFamily,
+          color: AppColors.textMutedDark,
+          fontSize: 14,
+        ),
+
+        prefixIconColor: AppColors.textSecondaryDark,
+
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.borderDark),
+        ),
+
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.borderDark),
+        ),
+
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.primaryDark, width: 2),
+        ),
+
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: AppColors.borderDark.withValues(alpha: 0.5),
+          ),
+        ),
+
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.errorDark, width: 1.5),
+        ),
+
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.errorDark, width: 2),
+        ),
+
+        errorStyle: TextStyle(
+          fontFamily: fontFamily,
+          color: AppColors.errorDark,
+          fontSize: 12,
+        ),
+      ),
+
+      // ========================================================
       // Typography
       // ========================================================
       textTheme: TextTheme(
+        headlineSmall: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+          color: AppColors.textPrimaryDark,
+          fontFamily: fontFamily,
+        ),
+
+        headlineMedium: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: AppColors.textPrimaryDark,
+          fontFamily: fontFamily,
+        ),
+
         titleLarge: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryDark,
           fontFamily: fontFamily,
         ),
+
+        titleMedium: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: AppColors.textPrimaryDark,
+          fontFamily: fontFamily,
+        ),
+
         titleSmall: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
@@ -203,21 +388,17 @@ class AppTheme {
           letterSpacing: 1.1,
           fontFamily: fontFamily,
         ),
+
         bodyLarge: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimaryDark,
           fontFamily: fontFamily,
         ),
+
         bodyMedium: TextStyle(
           fontSize: 13,
           color: AppColors.textSecondaryDark,
-          fontFamily: fontFamily,
-        ),
-        headlineMedium: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: AppColors.textPrimaryDark,
           fontFamily: fontFamily,
         ),
       ),

@@ -2523,6 +2523,416 @@ class S {
       args: [],
     );
   }
+
+  /// `Set up your household`
+  String get householdSetupTitle {
+    return Intl.message(
+      'Set up your household',
+      name: 'householdSetupTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join an existing household using its ID, or create a new one.`
+  String get householdSetupDescription {
+    return Intl.message(
+      'Join an existing household using its ID, or create a new one.',
+      name: 'householdSetupDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Household ID`
+  String get householdIdLabel {
+    return Intl.message(
+      'Household ID',
+      name: 'householdIdLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter household ID`
+  String get householdIdHint {
+    return Intl.message(
+      'Enter household ID',
+      name: 'householdIdHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join household`
+  String get householdJoinButton {
+    return Intl.message(
+      'Join household',
+      name: 'householdJoinButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OR`
+  String get householdOr {
+    return Intl.message('OR', name: 'householdOr', desc: '', args: []);
+  }
+
+  /// `Create a new household`
+  String get householdCreateButton {
+    return Intl.message(
+      'Create a new household',
+      name: 'householdCreateButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create a new household`
+  String get createHouseholdTitle {
+    return Intl.message(
+      'Create a new household',
+      name: 'createHouseholdTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Give your household a name to help your family stay organized.`
+  String get createHouseholdDescription {
+    return Intl.message(
+      'Give your household a name to help your family stay organized.',
+      name: 'createHouseholdDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Household name`
+  String get householdNameLabel {
+    return Intl.message(
+      'Household name',
+      name: 'householdNameLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Home Cabinet`
+  String get householdNameHint {
+    return Intl.message(
+      'e.g. Home Cabinet',
+      name: 'householdNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `As the household owner, you can:`
+  String get householdAdminTitle {
+    return Intl.message(
+      'As the household owner, you can:',
+      name: 'householdAdminTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add or remove members`
+  String get householdPermissionAdd {
+    return Intl.message(
+      'Add or remove members',
+      name: 'householdPermissionAdd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage the household`
+  String get householdPermissionManage {
+    return Intl.message(
+      'Manage the household',
+      name: 'householdPermissionManage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View all members' medicines`
+  String get householdPermissionView {
+    return Intl.message(
+      'View all members\' medicines',
+      name: 'householdPermissionView',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I have a household ID, join it`
+  String get householdJoinExistingButton {
+    return Intl.message(
+      'I have a household ID, join it',
+      name: 'householdJoinExistingButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Household`
+  String get householdTitle {
+    return Intl.message(
+      'Household',
+      name: 'householdTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} medicines`
+  String householdMedicineCount(Object count) {
+    return Intl.message(
+      '$count medicines',
+      name: 'householdMedicineCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Member Details`
+  String get householdMemberDetails {
+    return Intl.message(
+      'Member Details',
+      name: 'householdMemberDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medicines`
+  String get medicines {
+    return Intl.message('Medicines', name: 'medicines', desc: '', args: []);
+  }
+
+  /// `Member Information`
+  String get memberInformation {
+    return Intl.message(
+      'Member Information',
+      name: 'memberInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message('Name', name: 'name', desc: '', args: []);
+  }
+
+  /// `Email`
+  String get memberEmail {
+    return Intl.message('Email', name: 'memberEmail', desc: '', args: []);
+  }
+
+  /// `Member Medicines`
+  String get memberMedicines {
+    return Intl.message(
+      'Member Medicines',
+      name: 'memberMedicines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove member?`
+  String get householdRemoveMemberTitle {
+    return Intl.message(
+      'Remove member?',
+      name: 'householdRemoveMemberTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This will remove {name} from your household. This can't be undone.`
+  String householdRemoveMemberDesc(Object name) {
+    return Intl.message(
+      'This will remove $name from your household. This can\'t be undone.',
+      name: 'householdRemoveMemberDesc',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Remove`
+  String get householdRemoveButton {
+    return Intl.message(
+      'Remove',
+      name: 'householdRemoveButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member removed from the household`
+  String get householdMemberRemovedSuccessfully {
+    return Intl.message(
+      'Member removed from the household',
+      name: 'householdMemberRemovedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No household members found`
+  String get householdNoMembersFound {
+    return Intl.message(
+      'No household members found',
+      name: 'householdNoMembersFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Removed`
+  String get householdMemberRemovedTitle {
+    return Intl.message(
+      'Removed',
+      name: 'householdMemberRemovedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member removed from the household`
+  String get householdMemberRemovedDescription {
+    return Intl.message(
+      'Member removed from the household',
+      name: 'householdMemberRemovedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove member`
+  String get householdRemoveMemberTooltip {
+    return Intl.message(
+      'Remove member',
+      name: 'householdRemoveMemberTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Joining...`
+  String get householdJoining {
+    return Intl.message(
+      'Joining...',
+      name: 'householdJoining',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Joined household successfully`
+  String get householdJoinSuccess {
+    return Intl.message(
+      'Joined household successfully',
+      name: 'householdJoinSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unnamed`
+  String get commonUnnamed {
+    return Intl.message('Unnamed', name: 'commonUnnamed', desc: '', args: []);
+  }
+
+  /// `No email`
+  String get commonNoEmail {
+    return Intl.message('No email', name: 'commonNoEmail', desc: '', args: []);
+  }
+
+  /// `Expiry: {date}`
+  String medicineExpiry(Object date) {
+    return Intl.message(
+      'Expiry: $date',
+      name: 'medicineExpiry',
+      desc: '',
+      args: [date],
+    );
+  }
+
+  /// `Creating...`
+  String get householdCreating {
+    return Intl.message(
+      'Creating...',
+      name: 'householdCreating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Household created successfully`
+  String get householdCreatedSuccessfully {
+    return Intl.message(
+      'Household created successfully',
+      name: 'householdCreatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} medicines`
+  String medicineCount(Object count) {
+    return Intl.message(
+      '$count medicines',
+      name: 'medicineCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Logged Out`
+  String get logoutSuccessTitle {
+    return Intl.message(
+      'Logged Out',
+      name: 'logoutSuccessTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have been logged out successfully.`
+  String get logoutSuccessDescription {
+    return Intl.message(
+      'You have been logged out successfully.',
+      name: 'logoutSuccessDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout Failed`
+  String get logoutFailedTitle {
+    return Intl.message(
+      'Logout Failed',
+      name: 'logoutFailedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong while logging out. Please try again.`
+  String get logoutFailedDescription {
+    return Intl.message(
+      'Something went wrong while logging out. Please try again.',
+      name: 'logoutFailedDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

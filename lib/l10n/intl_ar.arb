@@ -1,6 +1,5 @@
 {
   "@@locale": "ar",
-
   "commonContinue": "متابعة",
   "commonSkip": "تخطي",
   "commonGetStarted": "ابدأ الآن",
@@ -38,14 +37,12 @@
   "commonSomethingWentWrong": "حدث خطأ ما",
   "commonRetry": "إعادة المحاولة",
   "commonClose": "إغلاق",
-
   "homeNavLabel": "الرئيسية",
   "medicinesNavLabel": "الأدوية",
   "alertsNavLabel": "التنبيهات",
   "medicinesTitle": "الأدوية",
   "alertsTitle": "التنبيهات",
   "profileNavLabel": "الملف الشخصي",
-
   "authLoginTitle": "مرحباً بعودتك",
   "authLoginSubtitle": "سجّل الدخول لعرض صيدلية أسرتك.",
   "authEmailLabel": "البريد الإلكتروني",
@@ -55,7 +52,6 @@
   "authContinueWithGoogle": "المتابعة باستخدام Google",
   "authNoAccount": "ليس لديك حساب؟",
   "authSignUpLink": "إنشاء حساب",
-
   "authRegisterTitle": "إنشاء حسابك",
   "authRegisterSubtitle": "أنشئ صيدلية أسرتك في دقيقة واحدة.",
   "authFullNameLabel": "الاسم الكامل",
@@ -91,7 +87,6 @@
   "authOperationNotAllowed": "العملية غير مسموح بها. يرجى التواصل مع الدعم.",
   "authAccountExistsWithDifferentCredential": "يوجد حساب بالفعل بهذا البريد الإلكتروني بطريقة تسجيل دخول مختلفة.",
   "authGoogleSignInCancelled": "تم إلغاء تسجيل الدخول باستخدام Google.",
-
   "onboardingKnowTitle": "اعرف ما لديك",
   "onboardingKnowDesc": "احفظ كل دواء تمتلكه عائلتك منظماً في مكان واحد مشترك وواضح.",
   "onboardingExpiryTitle": "لا تفوّت تاريخ انتهاء الصلاحية",
@@ -107,7 +102,6 @@
   "onboardingGetStarted": "ابدأ الآن",
   "onboardingContinue": "متابعة",
   "onboardingSkip": "تخطي",
-
   "homeGreetingEvening": "مساء الخير، {name}",
   "homeSubtitle": "إليك صيدليتك",
   "homeScanCta": "مسح دواء",
@@ -129,7 +123,6 @@
   "homeEmptyTitle": "صيدليتك فارغة",
   "homeEmptyDesc": "امسح أول دواء تمتلكه وسوف يظهر هنا، منظماً وجاهزاً للمتابعة.",
   "homeEmptyButton": "امسح أول دواء لديك",
-
   "medicinesSearchHint": "ابحث عن الأدوية...",
   "medicinesSortBy": "ترتيب حسب",
   "medicinesSortLabelCurrent": "الترتيب: {sortOption}",
@@ -142,7 +135,6 @@
   "medicineRemaining": "متبقي {count}",
   "medicineExpires": "ينتهي في {date}",
   "medicineDetailsDeleteDesc": "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
-
   "scanHint": "قم بمحاذاة ملصق العبوة داخل الإطار",
   "scanCapture": "التقاط",
   "scanEnterManually": "إدخال التفاصيل يدوياً",
@@ -154,7 +146,6 @@
   "scanAddedTitle": "تمت الإضافة إلى صيدليتك",
   "scanScanAnother": "مسح دواء آخر",
   "scanBackToHome": "العودة للرئيسية",
-
   "beforeYouBuyTitle": "قبل أن تشتري",
   "beforeYouBuySearchHint": "امسح أو ابحث عن دواء...",
   "beforeYouBuyAlreadyTitle": "موجود بالفعل في صيدليتك",
@@ -163,13 +154,10 @@
   "beforeYouBuyNotice": "قد يكون لديك هذا الدواء في المنزل بالفعل.",
   "beforeYouBuyNotFoundTitle": "غير موجود في صيدليتك",
   "beforeYouBuyNoMatchTitle": "لم يتم العثور على دواء مطابق",
-
   "alertsFilterExpiry": "الصلاحية",
   "alertsToday": "اليوم",
   "alertsYesterday": "أمس",
-
   "householdAddMember": "إضافة فرد من العائلة",
-
   "profileAccountSection": "الحساب",
   "profilePersonalInformation": "المعلومات الشخصية",
   "profileNotificationSettings": "إعدادات الإشعارات",
@@ -183,7 +171,6 @@
   "profileNameRequired": "الاسم مطلوب",
   "profileImageUploadFailed": "فشل رفع صورة الملف الشخصي.",
   "profileSavingChanges": "جاري حفظ البيانات...",
-
   "profileAppSection": "التطبيق",
   "profilePrivacy": "الخصوصية",
   "profileDarkMode": "الوضع الداكن",
@@ -191,7 +178,6 @@
   "profileLanguage": "اللغة",
   "profileEnglish": "الإنجليزية",
   "profileArabic": "العربية",
-
   "profileUnits": "{count} وحدات",
   "@profileUnits": {
     "description": "عدد وحدات الدواء"
@@ -199,10 +185,8 @@
   "profileAppVersion": "إصدار التطبيق",
   "profileInformationSection": "معلومات",
   "profileAboutDescription": "يساعدك تطبيق Medicine Cabinet على إدارة أدويتك وتواريخ انتهاء صلاحيتها ومستويات مخزونها بسهولة.",
-
   "profileLogout": "تسجيل الخروج",
   "profileLogoutConfirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
-
   "profileUserNotAuthenticated": "لم يتم تسجيل الدخول. يرجى تسجيل الدخول مرة أخرى.",
   "profileLoadFailed": "تعذر تحميل الملف الشخصي. يرجى المحاولة مرة أخرى.",
   "profileUpdateFailed": "تعذر تحديث الملف الشخصي. يرجى المحاولة مرة أخرى.",
@@ -211,11 +195,9 @@
   "profileNetworkError": "يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
   "profileOperationFailed": "تعذر إكمال العملية. يرجى المحاولة مرة أخرى.",
   "profileServerError": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
-
   "splashWordmark": "خزانة الأدوية",
   "splashTagline": "أدوية منزلك، منظمة في مكان واحد.",
   "splashLoadingText": "جاري تجهيز خزانتك...",
-
   "somethingWrong": "حدث خطأ",
   "somethingWentWrong": "حدث خطأ ما، يرجى المحاولة لاحقاً.",
   "failedToLoadProfile": "فشل تحميل الملف الشخصي",
@@ -229,7 +211,6 @@
   "errorInvalidInput": "البيانات المدخلة غير صحيحة. يرجى التحقق من مدخلاتك.",
   "errorTechnicalIssue": "حدث خطأ فني أثناء معالجة البيانات.",
   "errorDatabase": "حدث خطأ في قاعدة البيانات.",
-
   "validationEmailRequired": "البريد الإلكتروني مطلوب",
   "validationInvalidEmail": "أدخل بريدًا إلكترونيًا صحيحًا",
   "validationPasswordRequired": "كلمة المرور مطلوبة",
@@ -240,12 +221,9 @@
   "validationInvalidPhone": "أدخل رقم هاتف صحيح",
   "validationCodeRequired": "الكود مطلوب",
   "validationCodeLength": "يجب أن يتكون الكود من 6 أرقام على الأقل",
-
   "searchStartTyping": "ابدأ بالكتابة للبحث عن الأدوية",
   "searchNoResults": "لم يتم العثور على أدوية",
-
   "welcomeBack": "مرحباً بعودتك",
-
   "scanMedicineTitle": "مسح دواء",
   "scanHintAlignBox": "قم بمحاذاة عبوة الدواء أو الشريط داخل الإطار",
   "scanAnalyzingTitle": "جاري تحليل الدواء",
@@ -280,7 +258,6 @@
   "scanFailedToLoadMembers": "فشل في تحميل أفراد العائلة",
   "scanUnitsDefault": "وحدات",
   "scanAddMedicineButton": "إضافة الدواء",
-
   "medicineCabinet": "خزانة الأدوية",
   "medicineCategoryAll": "الكل",
   "medicineCategoryRecentlyAdded": "المضافة حديثًا",
@@ -294,5 +271,49 @@
   "medicineCategoryValid": "صالحة",
   "medicineStatusValid": "صالحة",
   "medicineStatusExpired": "منتهية الصلاحية",
-  "medicineStatusEnded": "منتهية"
+  "medicineStatusEnded": "منتهية",
+  "householdSetupTitle": "إعداد المنزل",
+  "householdSetupDescription": "انضم إلى منزل موجود باستخدام المعرّف الخاص به، أو أنشئ منزلاً جديداً.",
+  "householdIdLabel": "معرّف المنزل",
+  "householdIdHint": "أدخل معرّف المنزل",
+  "householdJoinButton": "الانضمام إلى المنزل",
+  "householdOr": "أو",
+  "householdCreateButton": "إنشاء منزل جديد",
+  "createHouseholdTitle": "إنشاء بيت جديد",
+  "createHouseholdDescription": "أعطِ بيتك اسماً ليساعد عائلتك على البقاء منظمة.",
+  "householdNameLabel": "اسم البيت",
+  "householdNameHint": "مثال: صيدلية البيت",
+  "householdAdminTitle": "بصفتك مسؤول البيت، يمكنك:",
+  "householdPermissionAdd": "إضافة أو حذف الأعضاء",
+  "householdPermissionManage": "إدارة البيت",
+  "householdPermissionView": "عرض أدوية جميع الأعضاء",
+  "householdJoinExistingButton": "لديّ معرّف بيت وأريد الانضمام",
+  "householdTitle": "الأسرة",
+  "householdMedicineCount": "{count} أدوية",
+  "householdMemberDetails": "تفاصيل العضو",
+  "medicines": "الأدوية",
+  "memberInformation": "معلومات العضو",
+  "name": "الاسم",
+  "memberEmail": "البريد الإلكتروني",
+  "memberMedicines": "أدوية العضو",
+  "householdRemoveMemberTitle": "إزالة العضو؟",
+  "householdRemoveMemberDesc": "سيتم إزالة {name} من منزلك. لا يمكن التراجع عن هذا الإجراء.",
+  "householdRemoveButton": "إزالة",
+  "householdMemberRemovedSuccessfully": "تمت إزالة العضو من المنزل",
+  "householdNoMembersFound": "لا يوجد أعضاء في المنزل",
+  "householdMemberRemovedTitle": "تمت الإزالة",
+  "householdMemberRemovedDescription": "تمت إزالة العضو من المنزل",
+  "householdRemoveMemberTooltip": "إزالة العضو",
+  "householdJoining": "جارٍ الانضمام...",
+  "householdJoinSuccess": "تم الانضمام إلى المنزل بنجاح",
+  "commonUnnamed": "غير معروف",
+  "commonNoEmail": "لا يوجد بريد إلكتروني",
+  "medicineExpiry": "الانتهاء: {date}",
+  "householdCreating": "جارٍ الإنشاء...",
+  "householdCreatedSuccessfully": "تم إنشاء المنزل بنجاح",
+  "medicineCount": "{count} أدوية",
+  "logoutSuccessTitle": "تم تسجيل الخروج",
+  "logoutSuccessDescription": "تم تسجيل خروجك بنجاح.",
+  "logoutFailedTitle": "فشل تسجيل الخروج",
+  "logoutFailedDescription": "حدث خطأ أثناء تسجيل الخروج. حاول مرة أخرى."
 }

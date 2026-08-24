@@ -6,14 +6,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../core/dialogs/app_toasts.dart';
-import '../../../../core/localization/error_localization.dart';
 import '../../../../core/utils/cloudinary_service.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../generated/l10n.dart';
 import '../../domain/entities/profile_entity.dart';
-import '../cubit/profile_cubit.dart';
-import '../cubit/profile_state.dart';
+import '../view_model/profile_cubit.dart';
+import '../view_model/profile_state.dart';
 
 class PersonalInformationScreen extends StatefulWidget {
   final ProfileEntity profile;
@@ -188,10 +187,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
             AppToast.showToast(
               context: context,
               title: l10n.commonError,
-              description: ErrorLocalization.getMessage(
-                state.message,
-                l10n,
-              ),
+              description: state.failure.getMessage(context),
               type: ToastificationType.error,
             );
           }

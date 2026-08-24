@@ -55,6 +55,27 @@ import '../../features/home/domain/use_case/get_household_members_use_case.dart'
 import '../../features/home/domain/use_case/get_user_details_use_case.dart'
     as _i677;
 import '../../features/home/presentation/view_model/home_cubit.dart' as _i940;
+import '../../features/household/data/datasource/household_data_source_imp.dart'
+    as _i838;
+import '../../features/household/data/datasource/household_data_source_interface.dart'
+    as _i55;
+import '../../features/household/data/repo/household_repo_imp.dart' as _i214;
+import '../../features/household/domain/repo/household_repo_interface.dart'
+    as _i743;
+import '../../features/household/domain/use_case/create_household_use_case.dart'
+    as _i60;
+import '../../features/household/domain/use_case/get_household_member_use_case.dart'
+    as _i505;
+import '../../features/household/domain/use_case/get_member_medicines_use_case.dart'
+    as _i405;
+import '../../features/household/domain/use_case/get_user_household_use_case.dart'
+    as _i802;
+import '../../features/household/domain/use_case/join_household_use_case.dart'
+    as _i973;
+import '../../features/household/domain/use_case/remove_member_usecase.dart'
+    as _i1049;
+import '../../features/household/presentation/view/view_model/household_cubit.dart'
+    as _i697;
 import '../../features/medicine/data/data_source/medicine_data_source_imp.dart'
     as _i796;
 import '../../features/medicine/data/data_source/medicine_data_source_interface.dart'
@@ -96,7 +117,7 @@ import '../../features/profile/domain/repositories/profile_repository.dart'
     as _i894;
 import '../../features/profile/domain/usecases/get_profile.dart' as _i72;
 import '../../features/profile/domain/usecases/update_profile.dart' as _i78;
-import '../../features/profile/presentation/cubit/profile_cubit.dart' as _i36;
+import '../../features/profile/presentation/view_model/profile_cubit.dart' as _i36;
 import '../../features/search/data/data_source/search_data_source_imp.dart'
     as _i821;
 import '../../features/search/data/data_source/search_data_source_interface.dart'
@@ -111,6 +132,7 @@ import '../../features/search/peresentation/view_model/search_cubit.dart'
 import '../api/api_manager.dart' as _i1047;
 import '../network/connection_checker.dart' as _i1050;
 import '../settings/app_settings_cubit.dart' as _i798;
+import '../utils/household_local_data_source.dart' as _i1006;
 import '../utils/shared_prefs_local_data_source.dart' as _i336;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -133,6 +155,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i974.FirebaseFirestore>(() => appModule.firestore);
     gh.lazySingleton<_i361.Dio>(() => appModule.dio);
     gh.lazySingleton<_i1050.NetworkInfo>(() => _i1050.NetworkInfoImpl());
+    gh.factory<_i1006.HouseholdLocalDataSource>(
+      () => _i1006.HouseholdLocalDataSource(gh<_i460.SharedPreferences>()),
+    );
     gh.lazySingleton<_i559.ProfileRemoteDataSource>(
       () => _i9.ProfileRemoteDataSourceImpl(
         firebaseAuth: gh<_i59.FirebaseAuth>(),
@@ -152,6 +177,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i78.UpdateProfile>(
       () => _i78.UpdateProfile(gh<_i894.ProfileRepository>()),
+    );
+    gh.factory<_i55.HouseholdDataSourceInterface>(
+      () => _i838.HouseholdDataSourceImp(gh<_i974.FirebaseFirestore>()),
     );
     gh.lazySingleton<_i507.MedicineScanDataSource>(
       () => _i130.MedicineScanDataSourceImp(
@@ -188,6 +216,31 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i798.AppSettingsCubit>(
       () => _i798.AppSettingsCubit(cacheHelper: gh<_i336.CacheHelper>()),
+    );
+    gh.factory<_i743.HouseholdRepoInterface>(
+      () => _i214.HouseholdRepoImp(
+        gh<_i55.HouseholdDataSourceInterface>(),
+        gh<_i1006.HouseholdLocalDataSource>(),
+      ),
+    );
+    gh.factory<_i60.CreateHouseholdUseCase>(
+      () => _i60.CreateHouseholdUseCase(gh<_i743.HouseholdRepoInterface>()),
+    );
+    gh.factory<_i505.GetHouseholdMembersUseCase>(
+      () =>
+          _i505.GetHouseholdMembersUseCase(gh<_i743.HouseholdRepoInterface>()),
+    );
+    gh.factory<_i405.GetMemberMedicinesUseCase>(
+      () => _i405.GetMemberMedicinesUseCase(gh<_i743.HouseholdRepoInterface>()),
+    );
+    gh.factory<_i802.GetUserHouseholdUseCase>(
+      () => _i802.GetUserHouseholdUseCase(gh<_i743.HouseholdRepoInterface>()),
+    );
+    gh.factory<_i973.JoinHouseholdUseCase>(
+      () => _i973.JoinHouseholdUseCase(gh<_i743.HouseholdRepoInterface>()),
+    );
+    gh.factory<_i1049.RemoveMemberUseCase>(
+      () => _i1049.RemoveMemberUseCase(gh<_i743.HouseholdRepoInterface>()),
     );
     gh.lazySingleton<_i785.MedicineRepoInterface>(
       () => _i626.MedicineRepoImpl(gh<_i509.MedicineDataSourceInterface>()),
@@ -229,6 +282,16 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i677.GetUserDetailsUseCase>(
       () => _i677.GetUserDetailsUseCase(gh<_i541.HomeRepository>()),
+    );
+    gh.factory<_i697.HouseholdCubit>(
+      () => _i697.HouseholdCubit(
+        gh<_i60.CreateHouseholdUseCase>(),
+        gh<_i973.JoinHouseholdUseCase>(),
+        gh<_i802.GetUserHouseholdUseCase>(),
+        gh<_i505.GetHouseholdMembersUseCase>(),
+        gh<_i405.GetMemberMedicinesUseCase>(),
+        gh<_i1049.RemoveMemberUseCase>(),
+      ),
     );
     gh.factory<_i18.ForgotPasswordUseCase>(
       () => _i18.ForgotPasswordUseCase(gh<_i787.AuthRepository>()),

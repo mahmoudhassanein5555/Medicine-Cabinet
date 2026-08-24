@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:medicine_cabinet/core/errors/error_handler.dart';
 
 import '../../domain/usecases/get_profile.dart';
 import '../../domain/usecases/update_profile.dart';
@@ -23,7 +24,8 @@ class ProfileCubit extends Cubit<ProfileState> {
 
       emit(ProfileLoaded(profile));
     } catch (e) {
-      emit(ProfileError(e.toString()));
+      final failure = ErrorHandler.handle(e);
+      emit(ProfileError(failure));
     }
   }
 
@@ -45,7 +47,8 @@ class ProfileCubit extends Cubit<ProfileState> {
 
       emit(ProfileUpdateSuccess(profile));
     } catch (e) {
-      emit(ProfileError(e.toString()));
+      final failure = ErrorHandler.handle(e);
+      emit(ProfileError(failure));
     }
   }
 }

@@ -16,7 +16,6 @@ import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/features/onboarding/onboarding_screen.dart';
 import 'package:medicine_cabinet/features/splash_screen.dart';
-
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
@@ -24,9 +23,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // Dependency Injection
   await configureDependencies();

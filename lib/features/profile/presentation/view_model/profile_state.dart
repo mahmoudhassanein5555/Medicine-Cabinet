@@ -1,3 +1,4 @@
+import 'package:medicine_cabinet/core/failure/failure.dart';
 import '../../domain/entities/profile_entity.dart';
 
 abstract class ProfileState {}
@@ -25,7 +26,7 @@ class ProfileUpdateSuccess extends ProfileState {
 }
 
 class ProfileError extends ProfileState {
-  final String message;
+  final Failure failure;
 
-  ProfileError(this.message);
+  ProfileError(this.failure);
 }
