@@ -40,11 +40,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m9(date) => "ينتهي في ${date}";
 
-  static String m10(count) => "متبقي ${count}";
+  static String m10(quantity) => "الكمية: ${quantity}";
 
-  static String m11(count) => "${count} دواء";
+  static String m11(count) => "متبقي ${count}";
 
-  static String m12(sortOption) => "الترتيب: ${sortOption}";
+  static String m12(count) => "${count} دواء";
+
+  static String m13(sortOption) => "الترتيب: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -299,12 +301,42 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "إضافة فرد من العائلة",
     ),
+    "medicineCabinet": MessageLookupByLibrary.simpleMessage("خزانة الأدوية"),
+    "medicineCategoryAll": MessageLookupByLibrary.simpleMessage("الكل"),
+    "medicineCategoryEnded": MessageLookupByLibrary.simpleMessage(
+      "المنتهية الكمية",
+    ),
+    "medicineCategoryExpired": MessageLookupByLibrary.simpleMessage(
+      "منتهية الصلاحية",
+    ),
+    "medicineCategoryRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "المضافة حديثًا",
+    ),
+    "medicineCategoryValid": MessageLookupByLibrary.simpleMessage("صالحة"),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
     "medicineExpires": m9,
-    "medicineRemaining": m10,
-    "medicinesItemsCount": m11,
+    "medicineNoEnded": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أدوية منتهية الكمية",
+    ),
+    "medicineNoExpired": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أدوية منتهية الصلاحية",
+    ),
+    "medicineNoMedicines": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أدوية",
+    ),
+    "medicineNoRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أدوية مضافة حديثًا",
+    ),
+    "medicineQuantity": m10,
+    "medicineRemaining": m11,
+    "medicineStatusEnded": MessageLookupByLibrary.simpleMessage("منتهية"),
+    "medicineStatusExpired": MessageLookupByLibrary.simpleMessage(
+      "منتهية الصلاحية",
+    ),
+    "medicineStatusValid": MessageLookupByLibrary.simpleMessage("صالحة"),
+    "medicinesItemsCount": m12,
     "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "medicinesNoMedicines": MessageLookupByLibrary.simpleMessage(
       "لا توجد أدوية",
@@ -313,7 +345,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ابحث عن الأدوية...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
-    "medicinesSortLabelCurrent": m12,
+    "medicinesSortLabelCurrent": m13,
     "medicinesSortOptionExpiry": MessageLookupByLibrary.simpleMessage(
       "تاريخ الانتهاء",
     ),

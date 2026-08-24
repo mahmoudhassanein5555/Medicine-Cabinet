@@ -16,6 +16,18 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
+import '../../features/alerts/data/datasource/alert_data_source_imp.dart'
+    as _i305;
+import '../../features/alerts/data/datasource/alert_data_source_interface.dart'
+    as _i39;
+import '../../features/alerts/data/repo/alert_repo_imp.dart' as _i862;
+import '../../features/alerts/domain/repo/alert_repo_interface.dart' as _i682;
+import '../../features/alerts/domain/service/medicine_inventory_classifier.dart'
+    as _i155;
+import '../../features/alerts/domain/use_case/get_household_medicines_use_case.dart'
+    as _i720;
+import '../../features/alerts/presentation/view_model/alert_cubit.dart'
+    as _i840;
 import '../../features/auth/data/datasources/auth_remote_datasource.dart'
     as _i161;
 import '../../features/auth/data/datasources/auth_remote_datasource_imp.dart'
@@ -113,6 +125,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => appModule.sharedPrefs,
       preResolve: true,
     );
+    gh.factory<_i155.MedicineInventoryClassifier>(
+      () => _i155.MedicineInventoryClassifier(),
+    );
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
     gh.lazySingleton<_i59.FirebaseAuth>(() => appModule.firebaseAuth);
     gh.lazySingleton<_i974.FirebaseFirestore>(() => appModule.firestore);
@@ -159,6 +174,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i974.FirebaseFirestore>(),
       ),
     );
+    gh.factory<_i39.AlertDataSourceInterface>(
+      () => _i305.AlertDataSourceImp(gh<_i974.FirebaseFirestore>()),
+    );
     gh.lazySingleton<_i541.HomeRepository>(
       () => _i9.HomeRepositoryImpl(gh<_i68.HomeRemoteDataSource>()),
     );
@@ -178,6 +196,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1028.MedicineScanRepositoryImp(
         medicineScanDataSource: gh<_i507.MedicineScanDataSource>(),
       ),
+    );
+    gh.factory<_i682.AlertRepoInterface>(
+      () => _i862.AlertRepoImp(gh<_i39.AlertDataSourceInterface>()),
     );
     gh.factory<_i36.ProfileCubit>(
       () => _i36.ProfileCubit(
@@ -232,6 +253,12 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i306.GetHouseHoldsMembersUseCase(gh<_i510.MedicineScanRepository>()),
     );
+    gh.factory<_i720.GetHouseholdMedicinesUseCase>(
+      () => _i720.GetHouseholdMedicinesUseCase(
+        gh<_i682.AlertRepoInterface>(),
+        gh<_i155.MedicineInventoryClassifier>(),
+      ),
+    );
     gh.factory<_i776.MedicineCubit>(
       () => _i776.MedicineCubit(
         gh<_i286.GetMedicinesUseCase>(),
@@ -257,6 +284,9 @@ extension GetItInjectableX on _i174.GetIt {
         logoutUseCase: gh<_i711.LogoutUseCase>(),
         cacheHelper: gh<_i336.CacheHelper>(),
       ),
+    );
+    gh.factory<_i840.AlertCubit>(
+      () => _i840.AlertCubit(gh<_i720.GetHouseholdMedicinesUseCase>()),
     );
     gh.factory<_i940.HomeCubit>(
       () => _i940.HomeCubit(

@@ -40,11 +40,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m9(date) => "Expires ${date}";
 
-  static String m10(count) => "${count} remaining";
+  static String m10(quantity) => "Quantity: ${quantity}";
 
-  static String m11(count) => "${count} items";
+  static String m11(count) => "${count} remaining";
 
-  static String m12(sortOption) => "Sort: ${sortOption}";
+  static String m12(count) => "${count} items";
+
+  static String m13(sortOption) => "Sort: ${sortOption}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -312,12 +314,36 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
       "Add family member",
     ),
+    "medicineCabinet": MessageLookupByLibrary.simpleMessage("Medicine Cabinet"),
+    "medicineCategoryAll": MessageLookupByLibrary.simpleMessage("All"),
+    "medicineCategoryEnded": MessageLookupByLibrary.simpleMessage("Ended"),
+    "medicineCategoryExpired": MessageLookupByLibrary.simpleMessage("Expired"),
+    "medicineCategoryRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "Recently Added",
+    ),
+    "medicineCategoryValid": MessageLookupByLibrary.simpleMessage("Valid"),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
     "medicineExpires": m9,
-    "medicineRemaining": m10,
-    "medicinesItemsCount": m11,
+    "medicineNoEnded": MessageLookupByLibrary.simpleMessage(
+      "No ended medicines",
+    ),
+    "medicineNoExpired": MessageLookupByLibrary.simpleMessage(
+      "No expired medicines",
+    ),
+    "medicineNoMedicines": MessageLookupByLibrary.simpleMessage(
+      "No medicines found",
+    ),
+    "medicineNoRecentlyAdded": MessageLookupByLibrary.simpleMessage(
+      "No recently added medicines",
+    ),
+    "medicineQuantity": m10,
+    "medicineRemaining": m11,
+    "medicineStatusEnded": MessageLookupByLibrary.simpleMessage("Ended"),
+    "medicineStatusExpired": MessageLookupByLibrary.simpleMessage("Expired"),
+    "medicineStatusValid": MessageLookupByLibrary.simpleMessage("Valid"),
+    "medicinesItemsCount": m12,
     "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("Medicines"),
     "medicinesNoMedicines": MessageLookupByLibrary.simpleMessage(
       "No medicines found",
@@ -326,7 +352,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Search medicines...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
-    "medicinesSortLabelCurrent": m12,
+    "medicinesSortLabelCurrent": m13,
     "medicinesSortOptionExpiry": MessageLookupByLibrary.simpleMessage(
       "Expiry date",
     ),

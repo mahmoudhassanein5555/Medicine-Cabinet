@@ -2388,6 +2388,141 @@ class S {
       args: [],
     );
   }
+
+  /// `Medicine Cabinet`
+  String get medicineCabinet {
+    return Intl.message(
+      'Medicine Cabinet',
+      name: 'medicineCabinet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get medicineCategoryAll {
+    return Intl.message('All', name: 'medicineCategoryAll', desc: '', args: []);
+  }
+
+  /// `Recently Added`
+  String get medicineCategoryRecentlyAdded {
+    return Intl.message(
+      'Recently Added',
+      name: 'medicineCategoryRecentlyAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ended`
+  String get medicineCategoryEnded {
+    return Intl.message(
+      'Ended',
+      name: 'medicineCategoryEnded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expired`
+  String get medicineCategoryExpired {
+    return Intl.message(
+      'Expired',
+      name: 'medicineCategoryExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantity: {quantity}`
+  String medicineQuantity(Object quantity) {
+    return Intl.message(
+      'Quantity: $quantity',
+      name: 'medicineQuantity',
+      desc: '',
+      args: [quantity],
+    );
+  }
+
+  /// `No medicines found`
+  String get medicineNoMedicines {
+    return Intl.message(
+      'No medicines found',
+      name: 'medicineNoMedicines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No recently added medicines`
+  String get medicineNoRecentlyAdded {
+    return Intl.message(
+      'No recently added medicines',
+      name: 'medicineNoRecentlyAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No ended medicines`
+  String get medicineNoEnded {
+    return Intl.message(
+      'No ended medicines',
+      name: 'medicineNoEnded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No expired medicines`
+  String get medicineNoExpired {
+    return Intl.message(
+      'No expired medicines',
+      name: 'medicineNoExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid`
+  String get medicineCategoryValid {
+    return Intl.message(
+      'Valid',
+      name: 'medicineCategoryValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid`
+  String get medicineStatusValid {
+    return Intl.message(
+      'Valid',
+      name: 'medicineStatusValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expired`
+  String get medicineStatusExpired {
+    return Intl.message(
+      'Expired',
+      name: 'medicineStatusExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ended`
+  String get medicineStatusEnded {
+    return Intl.message(
+      'Ended',
+      name: 'medicineStatusEnded',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

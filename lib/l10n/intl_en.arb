@@ -287,5 +287,20 @@
   "scanFailedToLoadMembers": "Failed to load members",
 
   "scanUnitsDefault": "Units",
-  "scanAddMedicineButton": "Add Medicine"
+  "scanAddMedicineButton": "Add Medicine",
+
+  "medicineCabinet": "Medicine Cabinet",
+  "medicineCategoryAll": "All",
+  "medicineCategoryRecentlyAdded": "Recently Added",
+  "medicineCategoryEnded": "Ended",
+  "medicineCategoryExpired": "Expired",
+  "medicineQuantity": "Quantity: {quantity}",
+  "medicineNoMedicines": "No medicines found",
+  "medicineNoRecentlyAdded": "No recently added medicines",
+  "medicineNoEnded": "No ended medicines",
+  "medicineNoExpired": "No expired medicines",
+  "medicineCategoryValid": "Valid",
+  "medicineStatusValid": "Valid",
+  "medicineStatusExpired": "Expired",
+  "medicineStatusEnded": "Ended"
 }
