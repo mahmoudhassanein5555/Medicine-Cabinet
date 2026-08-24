@@ -31,6 +31,18 @@ import '../../features/auth/domain/usecases/login_use_case.dart' as _i37;
 import '../../features/auth/domain/usecases/logout_use_case.dart' as _i711;
 import '../../features/auth/domain/usecases/register_use_case.dart' as _i97;
 import '../../features/auth/presentation/cubit/auth_cubit.dart' as _i117;
+import '../../features/home/data/data_source/home_data_source.dart' as _i68;
+import '../../features/home/data/data_source/home_data_source_imp.dart'
+    as _i966;
+import '../../features/home/data/repository/home_repository_impl.dart' as _i9;
+import '../../features/home/domain/repository/home_repository.dart' as _i541;
+import '../../features/home/domain/use_case/get_household_medicines_use_case.dart'
+    as _i791;
+import '../../features/home/domain/use_case/get_household_members_use_case.dart'
+    as _i178;
+import '../../features/home/domain/use_case/get_user_details_use_case.dart'
+    as _i677;
+import '../../features/home/presentation/view_model/home_cubit.dart' as _i940;
 import '../../features/medicine/data/data_source/medicine_data_source_imp.dart'
     as _i796;
 import '../../features/medicine/data/data_source/medicine_data_source_interface.dart'
@@ -117,6 +129,9 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i559.ProfileRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i68.HomeRemoteDataSource>(
+      () => _i966.HomeRemoteDataSourceImpl(gh<_i974.FirebaseFirestore>()),
+    );
     gh.lazySingleton<_i72.GetProfile>(
       () => _i72.GetProfile(gh<_i894.ProfileRepository>()),
     );
@@ -143,6 +158,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i59.FirebaseAuth>(),
         gh<_i974.FirebaseFirestore>(),
       ),
+    );
+    gh.lazySingleton<_i541.HomeRepository>(
+      () => _i9.HomeRepositoryImpl(gh<_i68.HomeRemoteDataSource>()),
     );
     gh.lazySingleton<_i787.AuthRepository>(
       () => _i153.AuthRepositoryImpl(gh<_i161.AuthRemoteDataSource>()),
@@ -181,6 +199,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i128.SearchMedicinesUseCase>(
       () => _i128.SearchMedicinesUseCase(gh<_i44.SearchRepository>()),
+    );
+    gh.factory<_i791.GetHouseholdMedicinesUseCase>(
+      () => _i791.GetHouseholdMedicinesUseCase(gh<_i541.HomeRepository>()),
+    );
+    gh.factory<_i178.GetHouseholdMembersUseCase>(
+      () => _i178.GetHouseholdMembersUseCase(gh<_i541.HomeRepository>()),
+    );
+    gh.factory<_i677.GetUserDetailsUseCase>(
+      () => _i677.GetUserDetailsUseCase(gh<_i541.HomeRepository>()),
     );
     gh.factory<_i18.ForgotPasswordUseCase>(
       () => _i18.ForgotPasswordUseCase(gh<_i787.AuthRepository>()),
@@ -229,6 +256,13 @@ extension GetItInjectableX on _i174.GetIt {
         forgotPasswordUseCase: gh<_i18.ForgotPasswordUseCase>(),
         logoutUseCase: gh<_i711.LogoutUseCase>(),
         cacheHelper: gh<_i336.CacheHelper>(),
+      ),
+    );
+    gh.factory<_i940.HomeCubit>(
+      () => _i940.HomeCubit(
+        getUserDetailsUseCase: gh<_i677.GetUserDetailsUseCase>(),
+        getHouseholdMedicinesUseCase: gh<_i791.GetHouseholdMedicinesUseCase>(),
+        getHouseholdMembersUseCase: gh<_i178.GetHouseholdMembersUseCase>(),
       ),
     );
     gh.factory<_i187.MedicineScanCubit>(

@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/core/failure/failure.dart';
 import 'package:medicine_cabinet/features/home/domain/entity/cabinet_summary_entity.dart';
 import 'package:medicine_cabinet/features/home/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/features/home/domain/repository/home_repository.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
+@injectable
 class GetHouseholdMedicinesUseCase {
   final HomeRepository _homeRepository;
 

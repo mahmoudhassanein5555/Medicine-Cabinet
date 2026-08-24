@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/core/errors/error_handler.dart';
 import 'package:medicine_cabinet/core/failure/failure.dart';
 import 'package:medicine_cabinet/features/home/data/data_source/home_data_source.dart';
@@ -7,6 +8,7 @@ import 'package:medicine_cabinet/features/home/domain/entity/member_entity.dart'
 import 'package:medicine_cabinet/features/home/domain/entity/user_entity.dart';
 import 'package:medicine_cabinet/features/home/domain/repository/home_repository.dart';
 
+@LazySingleton(as: HomeRepository)
 class HomeRepositoryImpl implements HomeRepository {
   final HomeRemoteDataSource _remoteDataSource;
 

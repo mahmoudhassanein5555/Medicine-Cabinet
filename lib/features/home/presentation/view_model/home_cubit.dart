@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/core/errors/error_handler.dart';
 import 'package:medicine_cabinet/core/failure/failure.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
@@ -10,6 +11,7 @@ import 'package:medicine_cabinet/features/home/domain/use_case/get_household_mem
 import 'package:medicine_cabinet/features/home/domain/use_case/get_user_details_use_case.dart';
 import 'package:medicine_cabinet/features/home/presentation/view_model/home_state.dart';
 
+@injectable
 class HomeCubit extends Cubit<HomeState> {
   final GetUserDetailsUseCase getUserDetailsUseCase;
   final GetHouseholdMedicinesUseCase getHouseholdMedicinesUseCase;

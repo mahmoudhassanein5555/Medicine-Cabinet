@@ -1,16 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/core/errors/error.dart';
 import 'package:medicine_cabinet/features/home/data/data_source/home_data_source.dart';
 import 'package:medicine_cabinet/features/home/data/models/medicine_dto.dart';
 import 'package:medicine_cabinet/features/home/data/models/member_dto.dart';
 import 'package:medicine_cabinet/features/home/data/models/user_dto.dart';
 
+@LazySingleton(as: HomeRemoteDataSource)
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final FirebaseFirestore _firestore;
 
-  HomeRemoteDataSourceImpl({FirebaseFirestore? firestore})
-    : _firestore = firestore ?? FirebaseFirestore.instance;
+  HomeRemoteDataSourceImpl(this._firestore);
 
   @override
   Future<UserDto> getUserDetails(String userId) async {
