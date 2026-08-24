@@ -19,18 +19,15 @@
   "commonHousehold": "المنزل",
   "commonOwner": "المالك",
   "commonQuantity": "الكمية",
-
   "commonExpiryDate": "تاريخ الانتهاء",
   "commonDateAdded": "تاريخ الإضافة",
   "commonStorageLocation": "مكان التخزين",
-
   "commonHealthy": "سليم",
   "commonExpiringSoon": "ينتهي قريباً",
   "commonExpiringShort": "ينتهي قريباً",
   "commonLow": "منخفض",
   "commonLowStock": "المخزون المنتهي",
   "commonExpired": "منتهي الصلاحية",
-
   "commonTryAgain": "حدث خطأ ما، يرجى المحاولة مرة أخرى.",
   "commonUser": "المستخدم",
   "commonCapsules": "كبسولات",
@@ -53,7 +50,6 @@
   "authContinueWithGoogle": "المتابعة باستخدام Google",
   "authNoAccount": "ليس لديك حساب؟",
   "authSignUpLink": "إنشاء حساب",
-
   "authRegisterTitle": "إنشاء حسابك",
   "authRegisterSubtitle": "أنشئ صيدلية أسرتك في دقيقة واحدة.",
   "authFullNameLabel": "الاسم الكامل",
@@ -62,21 +58,17 @@
   "authRegisterButton": "إنشاء حساب",
   "authHaveAccount": "لديك حساب بالفعل؟",
   "authLoginLink": "تسجيل الدخول",
-
   "authLoggingIn": "جاري تسجيل الدخول...",
   "authCreatingAccount": "جاري إنشاء الحساب...",
   "authPasswordsDoNotMatch": "كلمتا المرور غير متطابقتين",
-
   "authResetPasswordTitle": "إعادة تعيين كلمة المرور",
   "authResetPasswordSubtitle": "أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.",
   "authSendingResetEmail": "جاري الإرسال...",
   "authSendResetEmail": "إرسال رابط إعادة التعيين",
   "authResetPasswordSuccess": "تم إرسال رابط إعادة تعيين كلمة المرور بنجاح.",
-
   "authLoginSuccess": "تم تسجيل الدخول بنجاح",
   "authRegisterSuccess": "تم إنشاء الحساب بنجاح",
   "authGoogleSuccess": "تم تسجيل الدخول باستخدام Google بنجاح",
-
   "authInvalidEmail": "يرجى إدخال بريد إلكتروني صحيح.",
   "authUserNotFound": "لا يوجد حساب مرتبط بهذا البريد الإلكتروني.",
   "authWrongPassword": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
@@ -96,20 +88,16 @@
 
   "onboardingKnowTitle": "اعرف ما لديك",
   "onboardingKnowDesc": "احفظ كل دواء تمتلكه عائلتك منظماً في مكان واحد مشترك وواضح.",
-
   "onboardingExpiryTitle": "لا تفوّت تاريخ انتهاء صلاحية",
   "onboardingExpiryDesc": "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء، أو قبل أن ينفد لديك.",
-
   "onboardingBuyTitle": "تحقق قبل الشراء",
   "onboardingBuyDesc": "امسح الدواء في المتجر واعرف فوراً ما إذا كان موجوداً لدى عائلتك بالفعل.",
-
   "onboardingTitle1": "اعرف ما تملكه",
   "onboardingDesc1": "حافظ على تنظيم كل دواء يمتلكه منزلك في مكان واحد واضح ومشترك.",
   "onboardingTitle2": "لا تفوتك صلاحية دواء",
   "onboardingDesc2": "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء أو قبل نفاده.",
   "onboardingTitle3": "تحقق قبل الشراء",
   "onboardingDesc3": "امسح رمز الدواء في المتجر وتأكد فوراً عما إذا كان منزلك يمتلكه بالفعل أم لا.",
-
   "onboardingGetStarted": "ابدأ الآن",
   "onboardingContinue": "متابعة",
   "onboardingSkip": "تخطي",
@@ -120,22 +108,18 @@
   "homeScanCtaSubtitle": "أضف عنصراً جديداً في ثوانٍ",
   "homeAttentionNeeded": "يحتاج انتباهك",
   "homeRecentlyAdded": "أُضيف حديثاً",
-
   "homeExpiresTomorrow": "ينتهي غداً",
   "homeExpiresInDays": "ينتهي خلال {count} أيام",
   "homeExpiresInMonth": "ينتهي خلال شهر واحد",
   "homeExpiresInMonths": "ينتهي خلال {count} أشهر",
-
   "homeAddedToday": "أُضيف اليوم",
   "homeAddedYesterday": "أُضيف أمس",
   "homeAddedDaysAgo": "أُضيف منذ {count} أيام",
-
   "homeTabletsRemaining": "{count} أقراص متبقية",
   "homeCapsulesRemaining": "{count} كبسولات متبقية",
   "homeBottlesRemaining": "{count} زجاجات متبقية",
   "homeUnitsRemaining": "{count} وحدات متبقية",
   "homeRemaining": "{count} متبقٍ",
-
   "homeEmptyTitle": "صيدليتك فارغة",
   "homeEmptyDesc": "امسح أول دواء تمتلكه وسوف يظهر هنا، منظماً وجاهزاً للمتابعة.",
   "homeEmptyButton": "امسح أول دواء لديك",
@@ -148,11 +132,9 @@
   "medicinesSortOptionQuantity": "الكمية",
   "medicinesSortOptionRecentlyAdded": "أُضيف حديثاً",
   "medicinesNoMedicines": "لا توجد أدوية",
-
   "medicinesItemsCount": "{count} دواء",
   "medicineRemaining": "متبقي {count}",
   "medicineExpires": "ينتهي في {date}",
-
   "medicineDetailsDeleteDesc": "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
 
   "scanHint": "قم بمحاذاة ملصق العبوة داخل الإطار",
@@ -200,15 +182,11 @@
 
   "commonError": "حدث خطأ",
   "commonSomethingWentWrong": "حدث خطأ ما",
-  "commonTryAgain": "حدث خطأ ما، يرجى المحاولة مرة أخرى.",
   "commonRetry": "إعادة المحاولة",
-
   "somethingWrong": "حدث خطأ",
   "somethingWentWrong": "حدث خطأ ما، يرجى المحاولة لاحقاً.",
-
   "failedToLoadProfile": "فشل تحميل الملف الشخصي",
   "failedToLoadMedicines": "فشل تحميل قائمة الأدوية",
-
   "errorPermissionDenied": "ليس لديك صلاحية للقيام بهذا الإجراء.",
   "errorNoInternet": "لا يوجد اتصال بالإنترنت أو الخادم غير متاح.",
   "errorNotFound": "العنصر المطلوب غير موجود.",
@@ -233,5 +211,40 @@
   "searchStartTyping": "ابدأ بالكتابة للبحث عن الأدوية",
   "searchNoResults": "لم يتم العثور على أدوية",
 
-  "welcomeBack": "مرحباً بعودتك"
+  "welcomeBack": "مرحباً بعودتك",
+
+  "scanMedicineTitle": "مسح دواء",
+  "scanHintAlignBox": "قم بمحاذاة عبوة الدواء أو الشريط داخل الإطار",
+  "scanAnalyzingTitle": "جاري تحليل الدواء",
+  "scanAnalyzingSubtitle": "يرجى الانتظار بينما نقرأ ونعالج\nتفاصيل العبوة...",
+  "scanMissingInfoTitle": "معلومات ناقصة",
+  "scanMissingInfoDesc": "يرجى مراجعة وتعبئة التفاصيل المطلوبة.",
+  "scanConfirmMedicineTitle": "تأكيد الدواء",
+  "scanReviewConfirmNotice": "يرجى مراجعة وتأكيد التفاصيل قبل الحفظ في صيدليتك.",
+  "scanMedicineAddedSuccess": "تمت إضافة الدواء بنجاح!",
+  "scanFailedToAddMedicine": "فشل في إضافة الدواء",
+  "scanPackagePhotoTitle": "صورة العبوة",
+  "scanRetakePhoto": "إعادة التقاط",
+  "scanNoPhotoPreview": "لا توجد معاينة لصورة الدواء",
+  "scanMedicineDetailsTitle": "تفاصيل الدواء",
+  "scanMedicineNameLabel": "اسم الدواء",
+  "scanMedicineNameHint": "مثال: بنادول إكسترا، أموكسيسيلين",
+  "scanMedicineNameValidation": "يرجى إدخال اسم الدواء",
+  "scanCategoryLabel": "الفئة / المادة الفعالة",
+  "scanCategoryHint": "مثال: مسكن للآلام، مضاد حيوي، باراسيتامول",
+  "scanCategoryValidation": "يرجى إدخال الفئة أو المادة الفعالة",
+  "scanFormTypeLabel": "الشكل / النوع",
+  "scanFormTypeHint": "مثال: أقراص، شراب",
+  "scanFieldRequired": "مطلوب",
+  "scanExpiryDateHint": "سنة-شهر-يوم",
+  "scanExpiryDateValidation": "يرجى اختيار تاريخ الانتهاء",
+  "scanStorageLocationHint": "مثال: درج غرفة النوم، الثلاجة، صندوق الأدوية",
+  "scanStorageLocationValidation": "يرجى إدخال مكان التخزين",
+  "scanNotesLabel": "ملاحظات وتعليمات الجرعة",
+  "scanNotesHint": "مثال: تناول قرص واحد بعد الوجبات مرتين يومياً",
+  "scanSelectProfile": "اختر الملف الشخصي",
+  "scanNoMembersFound": "لم يتم العثور على أفراد",
+  "scanFailedToLoadMembers": "فشل في تحميل أفراد العائلة",
+  "scanUnitsDefault": "وحدات",
+  "scanAddMedicineButton": "إضافة الدواء"
 }

@@ -2,23 +2,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:medicine_cabinet/core/bloc_observer/bloc_observer.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
 import 'package:medicine_cabinet/core/theme/app_theme.dart';
-
 import 'package:medicine_cabinet/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/login_screen.dart';
-
 import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
-
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
-
 import 'package:medicine_cabinet/features/onboarding/onboarding_screen.dart';
 import 'package:medicine_cabinet/features/splash_screen.dart';
-
 import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
@@ -28,6 +23,8 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await configureDependencies();
+
+  await dotenv.load(fileName: '.env');
 
   Bloc.observer = AppBlocObserver();
 
@@ -125,5 +122,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-// home: const SearchScreen(householdId: 'household123');

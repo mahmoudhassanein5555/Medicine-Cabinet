@@ -401,26 +401,114 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileRemindersSection": MessageLookupByLibrary.simpleMessage(
       "Reminders",
     ),
+    "scanAddMedicineButton": MessageLookupByLibrary.simpleMessage(
+      "Add Medicine",
+    ),
     "scanAddedTitle": MessageLookupByLibrary.simpleMessage(
       "Added to your cabinet",
     ),
+    "scanAnalyzingSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Please wait while we read and process\nthe package details...",
+    ),
+    "scanAnalyzingTitle": MessageLookupByLibrary.simpleMessage(
+      "Analyzing Medicine",
+    ),
     "scanBackToHome": MessageLookupByLibrary.simpleMessage("Back to Home"),
     "scanCapture": MessageLookupByLibrary.simpleMessage("Capture"),
+    "scanCategoryHint": MessageLookupByLibrary.simpleMessage(
+      "e.g. Pain Relief, Antibiotic, Paracetamol",
+    ),
+    "scanCategoryLabel": MessageLookupByLibrary.simpleMessage(
+      "Category / Active Ingredient",
+    ),
+    "scanCategoryValidation": MessageLookupByLibrary.simpleMessage(
+      "Please enter category or active ingredient",
+    ),
+    "scanConfirmMedicineTitle": MessageLookupByLibrary.simpleMessage(
+      "Confirm Medicine",
+    ),
     "scanEnterManually": MessageLookupByLibrary.simpleMessage(
       "Enter details manually",
     ),
+    "scanExpiryDateHint": MessageLookupByLibrary.simpleMessage("YYYY-MM-DD"),
+    "scanExpiryDateValidation": MessageLookupByLibrary.simpleMessage(
+      "Please select the expiry date",
+    ),
+    "scanFailedToAddMedicine": MessageLookupByLibrary.simpleMessage(
+      "Failed to add medicine",
+    ),
+    "scanFailedToLoadMembers": MessageLookupByLibrary.simpleMessage(
+      "Failed to load members",
+    ),
+    "scanFieldRequired": MessageLookupByLibrary.simpleMessage("Required"),
+    "scanFormTypeHint": MessageLookupByLibrary.simpleMessage(
+      "e.g. Tablets, Syrup",
+    ),
+    "scanFormTypeLabel": MessageLookupByLibrary.simpleMessage("Form / Type"),
     "scanHint": MessageLookupByLibrary.simpleMessage(
       "Align the package label within the frame",
+    ),
+    "scanHintAlignBox": MessageLookupByLibrary.simpleMessage(
+      "Align medicine box or strip in frame",
     ),
     "scanHowManyDoYouHave": MessageLookupByLibrary.simpleMessage(
       "How many do you have?",
     ),
+    "scanMedicineAddedSuccess": MessageLookupByLibrary.simpleMessage(
+      "Medicine added successfully!",
+    ),
+    "scanMedicineDetailsTitle": MessageLookupByLibrary.simpleMessage(
+      "Medicine Details",
+    ),
     "scanMedicineFoundTitle": MessageLookupByLibrary.simpleMessage(
       "Medicine found",
     ),
+    "scanMedicineNameHint": MessageLookupByLibrary.simpleMessage(
+      "e.g. Panadol Extra, Amoxicillin",
+    ),
+    "scanMedicineNameLabel": MessageLookupByLibrary.simpleMessage(
+      "Medicine Name",
+    ),
+    "scanMedicineNameValidation": MessageLookupByLibrary.simpleMessage(
+      "Please enter the medicine name",
+    ),
+    "scanMedicineTitle": MessageLookupByLibrary.simpleMessage("Scan Medicine"),
+    "scanMissingInfoDesc": MessageLookupByLibrary.simpleMessage(
+      "Please review and fill in the required details.",
+    ),
+    "scanMissingInfoTitle": MessageLookupByLibrary.simpleMessage(
+      "Missing Information",
+    ),
+    "scanNoMembersFound": MessageLookupByLibrary.simpleMessage(
+      "No household members found",
+    ),
+    "scanNoPhotoPreview": MessageLookupByLibrary.simpleMessage(
+      "No medicine photo preview",
+    ),
+    "scanNotesHint": MessageLookupByLibrary.simpleMessage(
+      "e.g. Take 1 tablet after meals twice daily",
+    ),
+    "scanNotesLabel": MessageLookupByLibrary.simpleMessage(
+      "Notes & Dosage Instructions",
+    ),
+    "scanPackagePhotoTitle": MessageLookupByLibrary.simpleMessage(
+      "Package Photo",
+    ),
+    "scanRetakePhoto": MessageLookupByLibrary.simpleMessage("Retake"),
+    "scanReviewConfirmNotice": MessageLookupByLibrary.simpleMessage(
+      "Please review and confirm details before saving to your cabinet.",
+    ),
     "scanScanAnother": MessageLookupByLibrary.simpleMessage("Scan another"),
+    "scanSelectProfile": MessageLookupByLibrary.simpleMessage("Select profile"),
     "scanSomeoneElse": MessageLookupByLibrary.simpleMessage("Someone else"),
+    "scanStorageLocationHint": MessageLookupByLibrary.simpleMessage(
+      "e.g. Bedroom Drawer, Fridge, Medicine Box",
+    ),
+    "scanStorageLocationValidation": MessageLookupByLibrary.simpleMessage(
+      "Please enter storage location",
+    ),
     "scanUnitTablets": MessageLookupByLibrary.simpleMessage("tablets"),
+    "scanUnitsDefault": MessageLookupByLibrary.simpleMessage("Units"),
     "scanWhoIsThisFor": MessageLookupByLibrary.simpleMessage(
       "Who is this for?",
     ),

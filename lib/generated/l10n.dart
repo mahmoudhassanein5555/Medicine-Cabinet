@@ -1569,6 +1569,21 @@ class S {
     );
   }
 
+  /// `Retry`
+  String get commonRetry {
+    return Intl.message('Retry', name: 'commonRetry', desc: '', args: []);
+  }
+
+  /// `Please try again later`
+  String get commonTryAgainLater {
+    return Intl.message(
+      'Please try again later',
+      name: 'commonTryAgainLater',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Something went wrong`
   String get somethingWrong {
     return Intl.message(
@@ -1584,21 +1599,6 @@ class S {
     return Intl.message(
       'Something went wrong, please try again later.',
       name: 'somethingWentWrong',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Retry`
-  String get commonRetry {
-    return Intl.message('Retry', name: 'commonRetry', desc: '', args: []);
-  }
-
-  /// `Please try again later`
-  String get commonTryAgainLater {
-    return Intl.message(
-      'Please try again later',
-      name: 'commonTryAgainLater',
       desc: '',
       args: [],
     );
@@ -1839,6 +1839,336 @@ class S {
     return Intl.message(
       'Welcome back',
       name: 'welcomeBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan Medicine`
+  String get scanMedicineTitle {
+    return Intl.message(
+      'Scan Medicine',
+      name: 'scanMedicineTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Align medicine box or strip in frame`
+  String get scanHintAlignBox {
+    return Intl.message(
+      'Align medicine box or strip in frame',
+      name: 'scanHintAlignBox',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Analyzing Medicine`
+  String get scanAnalyzingTitle {
+    return Intl.message(
+      'Analyzing Medicine',
+      name: 'scanAnalyzingTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please wait while we read and process\nthe package details...`
+  String get scanAnalyzingSubtitle {
+    return Intl.message(
+      'Please wait while we read and process\nthe package details...',
+      name: 'scanAnalyzingSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Missing Information`
+  String get scanMissingInfoTitle {
+    return Intl.message(
+      'Missing Information',
+      name: 'scanMissingInfoTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please review and fill in the required details.`
+  String get scanMissingInfoDesc {
+    return Intl.message(
+      'Please review and fill in the required details.',
+      name: 'scanMissingInfoDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Medicine`
+  String get scanConfirmMedicineTitle {
+    return Intl.message(
+      'Confirm Medicine',
+      name: 'scanConfirmMedicineTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please review and confirm details before saving to your cabinet.`
+  String get scanReviewConfirmNotice {
+    return Intl.message(
+      'Please review and confirm details before saving to your cabinet.',
+      name: 'scanReviewConfirmNotice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medicine added successfully!`
+  String get scanMedicineAddedSuccess {
+    return Intl.message(
+      'Medicine added successfully!',
+      name: 'scanMedicineAddedSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to add medicine`
+  String get scanFailedToAddMedicine {
+    return Intl.message(
+      'Failed to add medicine',
+      name: 'scanFailedToAddMedicine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Package Photo`
+  String get scanPackagePhotoTitle {
+    return Intl.message(
+      'Package Photo',
+      name: 'scanPackagePhotoTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retake`
+  String get scanRetakePhoto {
+    return Intl.message('Retake', name: 'scanRetakePhoto', desc: '', args: []);
+  }
+
+  /// `No medicine photo preview`
+  String get scanNoPhotoPreview {
+    return Intl.message(
+      'No medicine photo preview',
+      name: 'scanNoPhotoPreview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medicine Details`
+  String get scanMedicineDetailsTitle {
+    return Intl.message(
+      'Medicine Details',
+      name: 'scanMedicineDetailsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medicine Name`
+  String get scanMedicineNameLabel {
+    return Intl.message(
+      'Medicine Name',
+      name: 'scanMedicineNameLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Panadol Extra, Amoxicillin`
+  String get scanMedicineNameHint {
+    return Intl.message(
+      'e.g. Panadol Extra, Amoxicillin',
+      name: 'scanMedicineNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the medicine name`
+  String get scanMedicineNameValidation {
+    return Intl.message(
+      'Please enter the medicine name',
+      name: 'scanMedicineNameValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category / Active Ingredient`
+  String get scanCategoryLabel {
+    return Intl.message(
+      'Category / Active Ingredient',
+      name: 'scanCategoryLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Pain Relief, Antibiotic, Paracetamol`
+  String get scanCategoryHint {
+    return Intl.message(
+      'e.g. Pain Relief, Antibiotic, Paracetamol',
+      name: 'scanCategoryHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter category or active ingredient`
+  String get scanCategoryValidation {
+    return Intl.message(
+      'Please enter category or active ingredient',
+      name: 'scanCategoryValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Form / Type`
+  String get scanFormTypeLabel {
+    return Intl.message(
+      'Form / Type',
+      name: 'scanFormTypeLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Tablets, Syrup`
+  String get scanFormTypeHint {
+    return Intl.message(
+      'e.g. Tablets, Syrup',
+      name: 'scanFormTypeHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required`
+  String get scanFieldRequired {
+    return Intl.message(
+      'Required',
+      name: 'scanFieldRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YYYY-MM-DD`
+  String get scanExpiryDateHint {
+    return Intl.message(
+      'YYYY-MM-DD',
+      name: 'scanExpiryDateHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select the expiry date`
+  String get scanExpiryDateValidation {
+    return Intl.message(
+      'Please select the expiry date',
+      name: 'scanExpiryDateValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Bedroom Drawer, Fridge, Medicine Box`
+  String get scanStorageLocationHint {
+    return Intl.message(
+      'e.g. Bedroom Drawer, Fridge, Medicine Box',
+      name: 'scanStorageLocationHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter storage location`
+  String get scanStorageLocationValidation {
+    return Intl.message(
+      'Please enter storage location',
+      name: 'scanStorageLocationValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notes & Dosage Instructions`
+  String get scanNotesLabel {
+    return Intl.message(
+      'Notes & Dosage Instructions',
+      name: 'scanNotesLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Take 1 tablet after meals twice daily`
+  String get scanNotesHint {
+    return Intl.message(
+      'e.g. Take 1 tablet after meals twice daily',
+      name: 'scanNotesHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select profile`
+  String get scanSelectProfile {
+    return Intl.message(
+      'Select profile',
+      name: 'scanSelectProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No household members found`
+  String get scanNoMembersFound {
+    return Intl.message(
+      'No household members found',
+      name: 'scanNoMembersFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load members`
+  String get scanFailedToLoadMembers {
+    return Intl.message(
+      'Failed to load members',
+      name: 'scanFailedToLoadMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Units`
+  String get scanUnitsDefault {
+    return Intl.message('Units', name: 'scanUnitsDefault', desc: '', args: []);
+  }
+
+  /// `Add Medicine`
+  String get scanAddMedicineButton {
+    return Intl.message(
+      'Add Medicine',
+      name: 'scanAddMedicineButton',
       desc: '',
       args: [],
     );

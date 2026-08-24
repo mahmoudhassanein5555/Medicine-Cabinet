@@ -22,51 +22,80 @@ final getIt = GetIt.instance;
 Future<void> configureDependencies() async {
   await getIt.init();
 
+  // ---------------------------------------------------------------------------
   // Firebase Services
+  // ---------------------------------------------------------------------------
+
   if (!getIt.isRegistered<FirebaseFirestore>()) {
     getIt.registerLazySingleton<FirebaseFirestore>(
       () => FirebaseFirestore.instance,
     );
   }
 
+  // ---------------------------------------------------------------------------
   // Home Data Sources
+  // ---------------------------------------------------------------------------
+
   if (!getIt.isRegistered<HomeRemoteDataSource>()) {
     getIt.registerLazySingleton<HomeRemoteDataSource>(
-      () => HomeRemoteDataSourceImpl(firestore: getIt<FirebaseFirestore>()),
+      () => HomeRemoteDataSourceImpl(
+        firestore: getIt<FirebaseFirestore>(),
+      ),
     );
   }
 
+  // ---------------------------------------------------------------------------
   // Home Repositories
+  // ---------------------------------------------------------------------------
+
   if (!getIt.isRegistered<HomeRepository>()) {
     getIt.registerLazySingleton<HomeRepository>(
-      () => HomeRepositoryImpl(getIt<HomeRemoteDataSource>()),
+      () => HomeRepositoryImpl(
+        getIt<HomeRemoteDataSource>(),
+      ),
     );
   }
 
+  // ---------------------------------------------------------------------------
   // Home Use Cases
+  // ---------------------------------------------------------------------------
+
   if (!getIt.isRegistered<GetUserDetailsUseCase>()) {
     getIt.registerLazySingleton<GetUserDetailsUseCase>(
-      () => GetUserDetailsUseCase(getIt<HomeRepository>()),
-    );
-  }
-  if (!getIt.isRegistered<GetHouseholdMedicinesUseCase>()) {
-    getIt.registerLazySingleton<GetHouseholdMedicinesUseCase>(
-      () => GetHouseholdMedicinesUseCase(getIt<HomeRepository>()),
-    );
-  }
-  if (!getIt.isRegistered<GetHouseholdMembersUseCase>()) {
-    getIt.registerLazySingleton<GetHouseholdMembersUseCase>(
-      () => GetHouseholdMembersUseCase(getIt<HomeRepository>()),
+      () => GetUserDetailsUseCase(
+        getIt<HomeRepository>(),
+      ),
     );
   }
 
-  // Home Cubits
+  if (!getIt.isRegistered<GetHouseholdMedicinesUseCase>()) {
+    getIt.registerLazySingleton<GetHouseholdMedicinesUseCase>(
+      () => GetHouseholdMedicinesUseCase(
+        getIt<HomeRepository>(),
+      ),
+    );
+  }
+
+  if (!getIt.isRegistered<GetHouseholdMembersUseCase>()) {
+    getIt.registerLazySingleton<GetHouseholdMembersUseCase>(
+      () => GetHouseholdMembersUseCase(
+        getIt<HomeRepository>(),
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------------------------
+  // Home Cubit
+  // ---------------------------------------------------------------------------
+
   if (!getIt.isRegistered<HomeCubit>()) {
     getIt.registerFactory<HomeCubit>(
       () => HomeCubit(
         getUserDetailsUseCase: getIt<GetUserDetailsUseCase>(),
-        getHouseholdMedicinesUseCase: getIt<GetHouseholdMedicinesUseCase>(),
-        getHouseholdMembersUseCase: getIt<GetHouseholdMembersUseCase>(),
+        getHouseholdMedicinesUseCase:
+            getIt<GetHouseholdMedicinesUseCase>(),
+        getHouseholdMembersUseCase:
+            getIt<GetHouseholdMembersUseCase>(),
       ),
     );
   }

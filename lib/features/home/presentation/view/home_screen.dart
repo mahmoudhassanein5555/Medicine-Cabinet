@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicine_cabinet/core/constants/app_colors.dart';
@@ -7,7 +8,7 @@ import 'package:medicine_cabinet/features/home/presentation/view/widgets/home_co
 import 'package:medicine_cabinet/features/home/presentation/view/widgets/home_error_view.dart';
 import 'package:medicine_cabinet/features/home/presentation/view_model/home_cubit.dart';
 import 'package:medicine_cabinet/features/home/presentation/view_model/home_state.dart';
-import 'package:medicine_cabinet/generated/l10n.dart';
+import 'package:medicine_cabinet/features/medicine_scan/presentation/view/medicine_scan_screen.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -92,6 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onScanPressed: _handleScanMedicine,
               );
             }
+
             return const SizedBox.shrink();
           },
         ),
@@ -99,12 +101,38 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _handleScanMedicine() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(S.of(context).homeScanCta),
-        duration: const Duration(seconds: 1),
-      ),
-    );
+  Future<void> _handleScanMedicine() async {
+    try {
+      final cameras = await availableCameras();
+
+      if (!mounted) return;
+
+      if (cameras.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('No camera available'),
+          ),
+        );
+        return;
+      }
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => MedicineScanScreen(
+            cameras: cameras,
+          ),
+        ),
+      );
+    } on CameraException catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Failed to access camera: ${e.description ?? e.code}',
+          ),
+        ),
+      );
+    }
   }
 }

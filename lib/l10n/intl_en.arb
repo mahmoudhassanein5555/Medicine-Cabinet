@@ -1,6 +1,5 @@
 {
   "@@locale": "en",
-
   "commonContinue": "Continue",
   "commonSkip": "Skip",
   "commonGetStarted": "Get started",
@@ -19,34 +18,29 @@
   "commonHousehold": "Household",
   "commonOwner": "Owner",
   "commonQuantity": "Quantity",
-
   "medicinesItemsCount": "{count} items",
   "medicineRemaining": "{count} remaining",
   "medicineExpires": "Expires {date}",
   "commonExpiryDate": "Expiry date",
   "commonDateAdded": "Date added",
   "commonStorageLocation": "Storage location",
-
   "commonHealthy": "Healthy",
   "commonExpiringSoon": "Expiring soon",
   "commonExpiringShort": "Expiring",
   "commonLow": "Low",
   "commonLowStock": "Ended stock",
   "commonExpired": "Expired",
-
   "commonTryAgain": "Something went wrong, please try again.",
   "commonUser": "User",
   "commonCapsules": "capsules",
   "commonBottles": "bottles",
   "commonUnits": "units",
-
   "homeNavLabel": "Home",
   "medicinesNavLabel": "Medicines",
   "alertsNavLabel": "Alerts",
   "medicinesTitle": "Medicines",
   "alertsTitle": "Alerts",
   "profileNavLabel": "Profile",
-
   "authLoginTitle": "Welcome back",
   "authLoginSubtitle": "Log in to see your household's medicine cabinet.",
   "authEmailLabel": "Email",
@@ -56,7 +50,6 @@
   "authContinueWithGoogle": "Continue with Google",
   "authNoAccount": "Don't have an account?",
   "authSignUpLink": "Sign up",
-
   "authRegisterTitle": "Create your account",
   "authRegisterSubtitle": "Set up your household's medicine cabinet in a minute.",
   "authFullNameLabel": "Full name",
@@ -65,21 +58,17 @@
   "authRegisterButton": "Create account",
   "authHaveAccount": "Already have an account?",
   "authLoginLink": "Log in",
-
   "authLoggingIn": "Logging in...",
   "authCreatingAccount": "Creating account...",
   "authPasswordsDoNotMatch": "Passwords do not match",
-
   "authResetPasswordTitle": "Reset Your Password",
   "authResetPasswordSubtitle": "Enter your email address and we'll send you a link to reset your password.",
   "authSendingResetEmail": "Sending...",
   "authSendResetEmail": "Send Reset Link",
   "authResetPasswordSuccess": "Password reset email sent successfully.",
-
   "authLoginSuccess": "Logged in successfully",
   "authRegisterSuccess": "Account created successfully",
   "authGoogleSuccess": "Logged in with Google successfully",
-
   "authInvalidEmail": "Please enter a valid email address.",
   "authUserNotFound": "No account was found with this email.",
   "authWrongPassword": "Incorrect email or password.",
@@ -96,51 +85,42 @@
   "authOperationNotAllowed": "Operation not allowed. Please contact support.",
   "authAccountExistsWithDifferentCredential": "An account already exists with the same email address using a different login method.",
   "authGoogleSignInCancelled": "Google sign-in was cancelled.",
-
   "onboardingKnowTitle": "Know what you have",
   "onboardingKnowDesc": "Keep every medicine your household owns organized in one clear, shared place.",
   "onboardingExpiryTitle": "Never miss an expiry",
   "onboardingExpiryDesc": "Get a gentle nudge before a medicine expires, or before you run low on it.",
   "onboardingBuyTitle": "Check before you buy",
   "onboardingBuyDesc": "Scan a medicine at the store and instantly see if your household already has it.",
-
   "onboardingTitle1": "Know what you have",
   "onboardingDesc1": "Keep every medicine your household owns organized in one clear, shared place.",
   "onboardingTitle2": "Never miss an expiry",
   "onboardingDesc2": "Get a gentle nudge before a medicine expires, or before you run low on it.",
   "onboardingTitle3": "Check before you buy",
   "onboardingDesc3": "Scan a medicine at the store and instantly see if your household already has it.",
-
   "onboardingGetStarted": "Get started",
   "onboardingContinue": "Continue",
   "onboardingSkip": "Skip",
-
   "homeGreetingEvening": "Good evening, {name}",
   "homeSubtitle": "Here's your medicine cabinet",
   "homeScanCta": "Scan Medicine",
   "homeScanCtaSubtitle": "Add a new item in seconds",
   "homeAttentionNeeded": "Attention needed",
   "homeRecentlyAdded": "Recently added",
-
   "homeExpiresTomorrow": "Expires tomorrow",
   "homeExpiresInDays": "Expires in {count} days",
   "homeExpiresInMonth": "Expires in 1 month",
   "homeExpiresInMonths": "Expires in {count} months",
-
   "homeAddedToday": "Added today",
   "homeAddedYesterday": "Added yesterday",
   "homeAddedDaysAgo": "Added {count} days ago",
-
   "homeTabletsRemaining": "{count} tablets remaining",
   "homeCapsulesRemaining": "{count} capsules remaining",
   "homeBottlesRemaining": "{count} bottles remaining",
   "homeUnitsRemaining": "{count} units remaining",
   "homeRemaining": "{count} remaining",
-
   "homeEmptyTitle": "Your cabinet is empty",
   "homeEmptyDesc": "Scan the first medicine you own and it'll show up here, organized and ready to track.",
   "homeEmptyButton": "Scan your first medicine",
-
   "medicinesSearchHint": "Search medicines...",
   "medicinesSortBy": "Sort by",
   "medicinesSortLabelCurrent": "Sort: {sortOption}",
@@ -149,9 +129,7 @@
   "medicinesSortOptionQuantity": "Quantity",
   "medicinesSortOptionRecentlyAdded": "Recently added",
   "medicinesNoMedicines": "No medicines found",
-
   "medicineDetailsDeleteDesc": "This removes it from your cabinet inventory. This can't be undone.",
-
   "scanHint": "Align the package label within the frame",
   "scanCapture": "Capture",
   "scanEnterManually": "Enter details manually",
@@ -163,7 +141,6 @@
   "scanAddedTitle": "Added to your cabinet",
   "scanScanAnother": "Scan another",
   "scanBackToHome": "Back to Home",
-
   "beforeYouBuyTitle": "Before You Buy",
   "beforeYouBuySearchHint": "Scan or search a medicine...",
   "beforeYouBuyAlreadyTitle": "Already in your cabinet",
@@ -172,13 +149,10 @@
   "beforeYouBuyNotice": "You may already have this medicine at home.",
   "beforeYouBuyNotFoundTitle": "Not in your cabinet",
   "beforeYouBuyNoMatchTitle": "No matching medicine found",
-
   "alertsFilterExpiry": "Expiry",
   "alertsToday": "Today",
   "alertsYesterday": "Yesterday",
-
   "householdAddMember": "Add family member",
-
   "profileAccountSection": "Account",
   "profilePersonalInformation": "Personal information",
   "profileRemindersSection": "Reminders",
@@ -190,22 +164,17 @@
   "profileAppPreferences": "App preferences",
   "profileDarkMode": "Dark mode",
   "profileAbout": "About",
-
   "splashWordmark": "Medicine Cabinet",
   "splashTagline": "Your household medicines, organized in one place.",
   "splashLoadingText": "Setting up your cabinet...",
-
   "commonError": "Something went wrong",
   "commonSomethingWentWrong": "Something went wrong",
+  "commonRetry": "Retry",
+  "commonTryAgainLater": "Please try again later",
   "somethingWrong": "Something went wrong",
   "somethingWentWrong": "Something went wrong, please try again later.",
-  "commonRetry": "Retry",
-
-  "commonTryAgainLater": "Please try again later",
-
   "failedToLoadProfile": "Failed to load user profile",
   "failedToLoadMedicines": "Failed to load medicines",
-
   "errorPermissionDenied": "You don't have permission to perform this action.",
   "errorNoInternet": "No internet connection or server is unavailable.",
   "errorNotFound": "The requested resource was not found.",
@@ -215,7 +184,6 @@
   "errorInvalidInput": "Invalid information provided. Please check your inputs.",
   "errorTechnicalIssue": "We encountered a technical issue while processing data.",
   "errorDatabase": "A database error occurred.",
-
   "validationEmailRequired": "Email cannot be empty",
   "validationInvalidEmail": "Enter a valid email address",
   "validationPasswordRequired": "Password cannot be empty",
@@ -230,5 +198,52 @@
   "searchStartTyping": "Start typing to search for medicines",
   "searchNoResults": "No medicines found",
 
-  "welcomeBack": "Welcome back"
+  "welcomeBack": "Welcome back",
+
+  "scanMedicineTitle": "Scan Medicine",
+  "scanHintAlignBox": "Align medicine box or strip in frame",
+  "scanAnalyzingTitle": "Analyzing Medicine",
+  "scanAnalyzingSubtitle": "Please wait while we read and process\nthe package details...",
+
+  "scanMissingInfoTitle": "Missing Information",
+  "scanMissingInfoDesc": "Please review and fill in the required details.",
+
+  "scanConfirmMedicineTitle": "Confirm Medicine",
+  "scanReviewConfirmNotice": "Please review and confirm details before saving to your cabinet.",
+
+  "scanMedicineAddedSuccess": "Medicine added successfully!",
+  "scanFailedToAddMedicine": "Failed to add medicine",
+
+  "scanPackagePhotoTitle": "Package Photo",
+  "scanRetakePhoto": "Retake",
+  "scanNoPhotoPreview": "No medicine photo preview",
+
+  "scanMedicineDetailsTitle": "Medicine Details",
+  "scanMedicineNameLabel": "Medicine Name",
+  "scanMedicineNameHint": "e.g. Panadol Extra, Amoxicillin",
+  "scanMedicineNameValidation": "Please enter the medicine name",
+
+  "scanCategoryLabel": "Category / Active Ingredient",
+  "scanCategoryHint": "e.g. Pain Relief, Antibiotic, Paracetamol",
+  "scanCategoryValidation": "Please enter category or active ingredient",
+
+  "scanFormTypeLabel": "Form / Type",
+  "scanFormTypeHint": "e.g. Tablets, Syrup",
+  "scanFieldRequired": "Required",
+
+  "scanExpiryDateHint": "YYYY-MM-DD",
+  "scanExpiryDateValidation": "Please select the expiry date",
+
+  "scanStorageLocationHint": "e.g. Bedroom Drawer, Fridge, Medicine Box",
+  "scanStorageLocationValidation": "Please enter storage location",
+
+  "scanNotesLabel": "Notes & Dosage Instructions",
+  "scanNotesHint": "e.g. Take 1 tablet after meals twice daily",
+
+  "scanSelectProfile": "Select profile",
+  "scanNoMembersFound": "No household members found",
+  "scanFailedToLoadMembers": "Failed to load members",
+
+  "scanUnitsDefault": "Units",
+  "scanAddMedicineButton": "Add Medicine"
 }

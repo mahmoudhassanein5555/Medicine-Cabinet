@@ -16,9 +16,7 @@ class CloudinaryService {
 
       final request = http.MultipartRequest('POST', url)
         ..fields['upload_preset'] = _uploadPreset
-        ..files.add(
-          await http.MultipartFile.fromPath('file', imageFile.path),
-        );
+        ..files.add(await http.MultipartFile.fromPath('file', imageFile.path));
 
       final streamedResponse = await request.send();
       final response = await http.Response.fromStream(streamedResponse);

@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
+import 'package:dio/dio.dart' as _i361;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -45,6 +46,22 @@ import '../../features/medicine/domain/use_case/get_medicines_use_case.dart'
     as _i286;
 import '../../features/medicine/peresentation/view_model/medicine_cubit.dart'
     as _i776;
+import '../../features/medicine_scan/data/data_source/medicine_scan_data_source.dart'
+    as _i507;
+import '../../features/medicine_scan/data/data_source/medicine_scan_data_source_imp.dart'
+    as _i130;
+import '../../features/medicine_scan/data/repository/medicine_scan_repository_imp.dart'
+    as _i1028;
+import '../../features/medicine_scan/domain/repository/medicine_scan_repository.dart'
+    as _i510;
+import '../../features/medicine_scan/domain/use_case/add_medicine_use_case.dart'
+    as _i405;
+import '../../features/medicine_scan/domain/use_case/analyze_medicine_image_use_case.dart'
+    as _i902;
+import '../../features/medicine_scan/domain/use_case/get_house_holds_members_use_case.dart'
+    as _i306;
+import '../../features/medicine_scan/presentation/view_model/medicine_scan_cubit.dart'
+    as _i187;
 import '../../features/search/data/data_source/search_data_source_imp.dart'
     as _i821;
 import '../../features/search/data/data_source/search_data_source_interface.dart'
@@ -75,7 +92,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
     gh.lazySingleton<_i59.FirebaseAuth>(() => appModule.firebaseAuth);
     gh.lazySingleton<_i974.FirebaseFirestore>(() => appModule.firestore);
+    gh.lazySingleton<_i361.Dio>(() => appModule.dio);
     gh.lazySingleton<_i1050.NetworkInfo>(() => _i1050.NetworkInfoImpl());
+    gh.lazySingleton<_i507.MedicineScanDataSource>(
+      () => _i130.MedicineScanDataSourceImp(
+        firebaseFirestore: gh<_i974.FirebaseFirestore>(),
+        dio: gh<_i361.Dio>(),
+      ),
+    );
     gh.lazySingleton<_i509.MedicineDataSourceInterface>(
       () => _i796.MedicineDataSourceImpl(gh<_i974.FirebaseFirestore>()),
     );
@@ -99,6 +123,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i785.MedicineRepoInterface>(
       () => _i626.MedicineRepoImpl(gh<_i509.MedicineDataSourceInterface>()),
+    );
+    gh.lazySingleton<_i510.MedicineScanRepository>(
+      () => _i1028.MedicineScanRepositoryImp(
+        medicineScanDataSource: gh<_i507.MedicineScanDataSource>(),
+      ),
     );
     gh.factory<_i789.FilterMedicinesUseCase>(
       () => _i789.FilterMedicinesUseCase(gh<_i785.MedicineRepoInterface>()),
@@ -130,12 +159,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i97.RegisterUseCase>(
       () => _i97.RegisterUseCase(gh<_i787.AuthRepository>()),
     );
+    gh.lazySingleton<_i902.AnalyzeMedicineImageUseCase>(
+      () =>
+          _i902.AnalyzeMedicineImageUseCase(gh<_i510.MedicineScanRepository>()),
+    );
+    gh.lazySingleton<_i306.GetHouseHoldsMembersUseCase>(
+      () =>
+          _i306.GetHouseHoldsMembersUseCase(gh<_i510.MedicineScanRepository>()),
+    );
     gh.factory<_i776.MedicineCubit>(
       () => _i776.MedicineCubit(
         gh<_i286.GetMedicinesUseCase>(),
         gh<_i789.FilterMedicinesUseCase>(),
         gh<_i1036.GetMedicineStatusUseCase>(),
       ),
+    );
+    gh.lazySingleton<_i405.AddMedicineUseCase>(
+      () => _i405.AddMedicineUseCase(gh<_i510.MedicineScanRepository>()),
     );
     gh.factory<_i585.SearchCubit>(
       () => _i585.SearchCubit(
@@ -151,6 +191,13 @@ extension GetItInjectableX on _i174.GetIt {
         forgotPasswordUseCase: gh<_i18.ForgotPasswordUseCase>(),
         logoutUseCase: gh<_i711.LogoutUseCase>(),
         cacheHelper: gh<_i336.CacheHelper>(),
+      ),
+    );
+    gh.factory<_i187.MedicineScanCubit>(
+      () => _i187.MedicineScanCubit(
+        addMedicineUseCase: gh<_i405.AddMedicineUseCase>(),
+        analyzeMedicineImageUseCase: gh<_i902.AnalyzeMedicineImageUseCase>(),
+        getHouseHoldsMembersUseCase: gh<_i306.GetHouseHoldsMembersUseCase>(),
       ),
     );
     return this;

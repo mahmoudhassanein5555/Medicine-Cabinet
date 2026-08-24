@@ -1,0 +1,31 @@
+class MedicineEntity {
+  final String id;
+  final String addedBy;
+  final String category;
+  final DateTime createdAt;
+  final DateTime expiryDate;
+  final String imageUrl;
+  final String name;
+  final String ownerId;
+  final int quantity;
+  final String storageLocation;
+  final String type;
+  final DateTime updatedAt;
+  final String description;
+
+  MedicineEntity({
+    required this.id ,
+    required this.addedBy,
+    required this.category,
+    required this.createdAt,
+    required this.expiryDate,
+    required this.imageUrl,
+    required this.name,
+    required this.ownerId,
+    required this.quantity,
+    required this.storageLocation,
+    required this.type,
+    required this.updatedAt,
+    required this.description,
+  });
+}

@@ -42,6 +42,12 @@ dependencies:
   internet_connection_checker_plus: ^2.5.3
   universal_html: ^2.2.4
   dartz: ^0.10.1
+  flutter_dotenv: ^6.0.1
+  equatable: ^2.1.0
+
+  # Medicine Scan
+  camera: ^0.12.0+2
+  image_picker: ^1.2.3
 
   # UI
   lottie: ^3.5.1
@@ -99,6 +105,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/animations/
+    - .env
 
   fonts:
     - family: Tajawal
