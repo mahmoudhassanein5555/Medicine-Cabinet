@@ -8,4 +8,5 @@ abstract final class AppAssets {
   static const String noSearch = 'assets/animations/no search.json';
   static const String search = 'assets/animations/searching.json';
   static const String empty = 'assets/animations/empty.json';
+  static const String nodata = 'assets/animations/no data.json';
 }

@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+
 import 'package:medicine_cabinet/core/constants/app_assets.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
-class MedicineErrorView extends StatelessWidget {
+class MedicinesError extends StatelessWidget {
   final String? message;
-  final VoidCallback onRetry;
+  final VoidCallback? onRetry;
 
-  const MedicineErrorView({
-    super.key,
-    required this.message,
-    required this.onRetry,
-  });
+  const MedicinesError({super.key, this.message, this.onRetry});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = S.of(context);
 
-    return Center(
+    return SliverToBoxAdapter(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32.w),
+        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 20.h),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(AppAssets.errorAnimation, width: 180.r, height: 180.r),
+            Lottie.asset(
+              AppAssets.errorAnimation,
+              width: 200.r,
+              height: 200.r,
+              fit: BoxFit.contain,
+            ),
 
-            SizedBox(height: 20.h),
+            SizedBox(height: 16.h),
 
             Text(
               message ?? l10n.commonSomethingWentWrong,
@@ -48,13 +49,15 @@ class MedicineErrorView extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 20.h),
+            if (onRetry != null) ...[
+              SizedBox(height: 20.h),
 
-            ElevatedButton.icon(
-              onPressed: onRetry,
-              icon: Icon(Icons.refresh_rounded, size: 20.r),
-              label: Text(l10n.commonRetry, style: TextStyle(fontSize: 14.sp)),
-            ),
+              ElevatedButton.icon(
+                onPressed: onRetry,
+                icon: Icon(Icons.refresh_rounded, size: 20.r),
+                label: Text(l10n.commonRetry, style: TextStyle(fontSize: 14.sp)),
+              ),
+            ],
           ],
         ),
       ),
