@@ -40,7 +40,8 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
   @override
   void initState() {
     _cacheHelper = getIt<CacheHelper>();
-    userId = _cacheHelper.getData(key: AppKeys.userId) as String? ?? widget.userId;
+    userId =
+        _cacheHelper.getData(key: AppKeys.userId) as String? ?? widget.userId;
     super.initState();
   }
 
@@ -65,7 +66,9 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
             final household = state.household;
 
             if (household != null) {
-              await getIt<HouseholdLocalDataSource>().saveHouseholdId(household.id);
+              await getIt<HouseholdLocalDataSource>().saveHouseholdId(
+                household.id,
+              );
               if (context.mounted) {
                 Navigator.pushReplacement(
                   context,
@@ -81,7 +84,9 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
           }
 
           if (state is CreateHouseholdSuccess) {
-            await getIt<HouseholdLocalDataSource>().saveHouseholdId(state.household.id);
+            await getIt<HouseholdLocalDataSource>().saveHouseholdId(
+              state.household.id,
+            );
             if (context.mounted) {
               Navigator.pushReplacement(
                 context,
@@ -96,7 +101,9 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
           }
 
           if (state is JoinHouseholdSuccess) {
-            await getIt<HouseholdLocalDataSource>().saveHouseholdId(state.household.id);
+            await getIt<HouseholdLocalDataSource>().saveHouseholdId(
+              state.household.id,
+            );
             if (context.mounted) {
               AppToast.showToast(
                 context: context,
@@ -213,6 +220,24 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                           enabled: !isLoading,
                           hintText: l10n.householdIdHint,
                           prefixIcon: Icons.home_outlined,
+                          suffixIcon: IconButton(
+                            onPressed: isLoading
+                                ? null
+                                : () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => BlocProvider.value(
+                                          value: context.read<HouseholdCubit>(),
+                                          child: HouseholdQrScannerScreen(
+                                            userId: widget.userId,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                            icon: Icon(Icons.qr_code_scanner, size: 24.r),
+                          ),
                         ),
 
                         SizedBox(height: 20.h),
@@ -240,71 +265,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 12.w,
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 14.w,
-                                vertical: 6.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: colorScheme.surfaceContainerHighest,
-                                borderRadius: BorderRadius.circular(20.r),
-                              ),
-                              child: Text(
-                                l10n.householdOr,
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: colorScheme.onSurfaceVariant,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 13.sp,
-                                  letterSpacing: 0.5,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                color: colorScheme.outline,
-                                thickness: 1.2.w,
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        SizedBox(height: 16.h),
-                        ElevatedButton.icon(
-                          onPressed: isLoading
-                              ? null
-                              : () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => BlocProvider.value(
-                                  value: context.read<HouseholdCubit>(),
-                                  child: HouseholdQrScannerScreen(
-                                    userId: widget.userId,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                          icon: const Icon(Icons.qr_code_scanner),
-                          label: Text(l10n.householdScanQrButton),
-                        ),
-                        SizedBox(height: 16.h),
-
-
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Divider(
-                                color: colorScheme.outline,
-                                thickness: 1.2.w,
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 12.w,
-                              ),
+                              margin: EdgeInsets.symmetric(horizontal: 12.w),
                               padding: EdgeInsets.symmetric(
                                 horizontal: 14.w,
                                 vertical: 6.h,

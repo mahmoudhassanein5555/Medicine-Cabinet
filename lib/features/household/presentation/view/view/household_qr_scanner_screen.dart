@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
+import 'package:medicine_cabinet/features/household/presentation/view/view/widget/scanner_overlay.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:toastification/toastification.dart';
@@ -132,18 +133,13 @@ class _HouseholdQrScannerScreenState
         body: Stack(
           fit: StackFit.expand,
           children: [
-            // Camera
             MobileScanner(
               controller: _controller,
               onDetect: _onDetect,
             ),
 
-            // Dark overlay
-            CustomPaint(
-              painter: _ScannerOverlayPainter(),
-            ),
+            const ScannerOverlay(),
 
-            // Top bar
             SafeArea(
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -152,7 +148,6 @@ class _HouseholdQrScannerScreenState
                 ),
                 child: Row(
                   children: [
-                    // Close
                     GestureDetector(
                       onTap: _isJoining
                           ? null
@@ -174,7 +169,6 @@ class _HouseholdQrScannerScreenState
 
                     const Spacer(),
 
-                    // Title
                     Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: 20.w,
@@ -207,11 +201,8 @@ class _HouseholdQrScannerScreenState
 
                     const Spacer(),
 
-                    // Flash
                     GestureDetector(
-                      onTap: () {
-                        _controller.toggleTorch();
-                      },
+                      onTap: _controller.toggleTorch,
                       child: Container(
                         width: 50.r,
                         height: 50.r,
@@ -219,7 +210,8 @@ class _HouseholdQrScannerScreenState
                           color: Colors.black54,
                           shape: BoxShape.circle,
                         ),
-                        child: ValueListenableBuilder<MobileScannerState>(
+                        child:
+                        ValueListenableBuilder<MobileScannerState>(
                           valueListenable: _controller,
                           builder: (context, state, child) {
                             return Icon(
@@ -238,7 +230,6 @@ class _HouseholdQrScannerScreenState
               ),
             ),
 
-            // Instruction
             Positioned(
               top: 125.h,
               left: 35.w,
@@ -279,7 +270,6 @@ class _HouseholdQrScannerScreenState
               ),
             ),
 
-            // Loading
             if (_isJoining)
               Container(
                 color: Colors.black.withValues(alpha: 0.55),
@@ -287,7 +277,7 @@ class _HouseholdQrScannerScreenState
                   child: Container(
                     padding: EdgeInsets.all(24.r),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface,
+                      color: colorScheme.surface,
                       borderRadius: BorderRadius.circular(20.r),
                     ),
                     child: Column(
@@ -311,112 +301,5 @@ class _HouseholdQrScannerScreenState
         ),
       ),
     );
-  }
-}
-
-
-class _ScannerOverlayPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.black.withValues(alpha: 0.55)
-      ..style = PaintingStyle.fill;
-
-    final frameSize = size.width * 0.78;
-
-    final left = (size.width - frameSize) / 2;
-    final top = (size.height - frameSize) / 2;
-
-    final frameRect = Rect.fromLTWH(
-      left,
-      top,
-      frameSize,
-      frameSize,
-    );
-
-    final overlayPath = Path()
-      ..addRect(
-        Rect.fromLTWH(
-          0,
-          0,
-          size.width,
-          size.height,
-        ),
-      )
-      ..addRRect(
-        RRect.fromRectAndRadius(
-          frameRect,
-          const Radius.circular(25),
-        ),
-      );
-
-    canvas.drawPath(
-      overlayPath,
-      paint,
-    );
-
-    final borderPaint = Paint()
-      ..color = const Color(0xFF4DD0B0)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 4;
-
-    const cornerLength = 35.0;
-
-    // Top left
-    canvas.drawLine(
-      Offset(left, top + cornerLength),
-      Offset(left, top),
-      borderPaint,
-    );
-
-    canvas.drawLine(
-      Offset(left, top),
-      Offset(left + cornerLength, top),
-      borderPaint,
-    );
-
-    // Top right
-    canvas.drawLine(
-      Offset(left + frameSize - cornerLength, top),
-      Offset(left + frameSize, top),
-      borderPaint,
-    );
-
-    canvas.drawLine(
-      Offset(left + frameSize, top),
-      Offset(left + frameSize, top + cornerLength),
-      borderPaint,
-    );
-
-    // Bottom left
-    canvas.drawLine(
-      Offset(left, top + frameSize - cornerLength),
-      Offset(left, top + frameSize),
-      borderPaint,
-    );
-
-    canvas.drawLine(
-      Offset(left, top + frameSize),
-      Offset(left + cornerLength, top + frameSize),
-      borderPaint,
-    );
-
-    // Bottom right
-    canvas.drawLine(
-      Offset(left + frameSize - cornerLength, top + frameSize),
-      Offset(left + frameSize, top + frameSize),
-      borderPaint,
-    );
-
-    canvas.drawLine(
-      Offset(left + frameSize, top + frameSize - cornerLength),
-      Offset(left + frameSize, top + frameSize),
-      borderPaint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
   }
 }

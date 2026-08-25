@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
     this.enabled = true,
     this.prefixIcon,
     this.keyboardType,
+    this.suffixIcon,
     this.textInputAction,
     this.onChanged,
     this.onSubmitted,
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
   final bool enabled;
   final IconData? prefixIcon;
   final TextInputType? keyboardType;
+  final Widget? suffixIcon;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
@@ -40,7 +42,7 @@ class CustomTextField extends StatelessWidget {
           ),
       decoration: InputDecoration(
         hintText: hintText,
-        prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 22.r) : null,
+        prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 22.r) : null, suffixIcon: suffixIcon,
       ),
     );
   }
