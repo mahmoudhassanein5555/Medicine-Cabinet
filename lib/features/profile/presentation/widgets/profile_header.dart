@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../domain/entities/profile_entity.dart';
 
@@ -21,24 +22,24 @@ class ProfileHeader extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(
-          radius: 36,
+          radius: 36.r,
           backgroundColor: colorScheme.primary,
           backgroundImage: profile.photoUrl != null &&
-              profile.photoUrl!.isNotEmpty
+                  profile.photoUrl!.isNotEmpty
               ? NetworkImage(profile.photoUrl!)
               : null,
           child: profile.photoUrl == null || profile.photoUrl!.isEmpty
               ? Text(
-            firstLetter,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-          )
+                  firstLetter,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
               : null,
         ),
-        const SizedBox(width: 16),
+        SizedBox(width: 16.w),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,18 +48,18 @@ class ProfileHeader extends StatelessWidget {
                 profile.name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 20,
+                style: TextStyle(
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4.h),
               Text(
                 profile.email,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 13.sp,
                   color: colorScheme.onSurfaceVariant,
                 ),
               ),

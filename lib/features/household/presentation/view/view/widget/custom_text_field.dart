@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -33,10 +34,13 @@ class CustomTextField extends StatelessWidget {
       onSubmitted: onSubmitted,
       style: Theme.of(
         context,
-      ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+      ).textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.w600,
+            fontSize: 16.sp,
+          ),
       decoration: InputDecoration(
         hintText: hintText,
-        prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
+        prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 22.r) : null,
       ),
     );
   }

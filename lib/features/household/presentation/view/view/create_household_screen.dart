@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
+import 'package:medicine_cabinet/core/utils/household_local_data_source.dart';
+import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/view/widget/custom_button.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/view/widget/custom_text_field.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/view_model/household_state.dart';
@@ -10,7 +13,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/dialogs/app_toasts.dart';
 import '../../../../../generated/l10n.dart';
 import '../view_model/household_cubit.dart';
-import 'household_members_screen.dart';
 
 class CreateHouseholdScreen extends StatefulWidget {
   const CreateHouseholdScreen({super.key, required this.userId});
@@ -39,30 +41,37 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
     return BlocProvider(
       create: (_) => getIt<HouseholdCubit>(),
       child: BlocConsumer<HouseholdCubit, HouseholdState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is CreateHouseholdSuccess) {
-            AppToast.showToast(
-              context: context,
-              title: l10n.commonSuccess,
-              description: l10n.householdCreatedSuccessfully,
-              type: ToastificationType.success,
-            );
+            await getIt<HouseholdLocalDataSource>().saveHouseholdId(state.household.id);
+            if (context.mounted) {
+              AppToast.showToast(
+                context: context,
+                title: l10n.commonSuccess,
+                description: l10n.householdCreatedSuccessfully,
+                type: ToastificationType.success,
+              );
 
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) =>
-                    HouseholdMembersScreen(householdId: state.household.id, userId: widget.userId,),
-              ),
-            );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => CustomBottomNavBar(
+                    userId: widget.userId,
+                    householdId: state.household.id,
+                  ),
+                ),
+              );
+            }
           }
           if (state is CreateHouseholdError) {
-            AppToast.showToast(
-              context: context,
-              title: l10n.commonError,
-              description: state.failure.getMessage(context),
-              type: ToastificationType.error,
-            );
+            if (context.mounted) {
+              AppToast.showToast(
+                context: context,
+                title: l10n.commonError,
+                description: state.failure.getMessage(context),
+                type: ToastificationType.error,
+              );
+            }
           }
         },
         builder: (context, state) {
@@ -70,13 +79,13 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
           return Scaffold(
             body: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(14),
+                padding: EdgeInsets.all(14.r),
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    padding: EdgeInsets.symmetric(horizontal: 14.w),
                     child: Column(
                       children: [
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.h),
 
                         Align(
                           alignment: AlignmentDirectional.centerStart,
@@ -84,53 +93,59 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
                             onPressed: isLoading
                                 ? null
                                 : () => Navigator.of(context).pop(),
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.arrow_back_ios_new,
-                              size: 20,
+                              size: 20.r,
                             ),
                           ),
                         ),
 
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8.h),
                         Text(
                           l10n.createHouseholdTitle,
                           textAlign: TextAlign.center,
-                          style: theme.textTheme.headlineMedium,
+                          style: theme.textTheme.headlineMedium?.copyWith(
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
 
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10.h),
 
                         Text(
                           l10n.createHouseholdDescription,
                           textAlign: TextAlign.center,
                           style: theme.textTheme.bodyMedium?.copyWith(
-                            fontSize: 17,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
 
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16.h),
 
                         SizedBox(
                           width: double.infinity,
-                          height: 250,
+                          height: 250.h,
                           child: Lottie.asset(
                             'assets/animations/create_household_screen.json',
                             fit: BoxFit.contain,
                           ),
                         ),
 
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10.h),
 
                         Align(
                           alignment: AlignmentDirectional.centerStart,
                           child: Text(
                             l10n.householdNameLabel,
-                            style: theme.textTheme.titleMedium,
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
 
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10.h),
 
                         CustomTextField(
                           controller: _nameController,
@@ -139,7 +154,7 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
                           prefixIcon: Icons.home_outlined,
                         ),
 
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16.h),
 
                         CustomButton(
                           text: isLoading
@@ -156,33 +171,34 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
                                       );
                                 },
                         ),
-                        const SizedBox(height: 18),
+                        SizedBox(height: 18.h),
 
                         Row(
                           children: [
                             Expanded(
                               child: Divider(
                                 color: colorScheme.outline,
-                                thickness: 1.2,
+                                thickness: 1.2.w,
                               ),
                             ),
                             Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 12,
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 12.w,
                               ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 14,
-                                vertical: 6,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 14.w,
+                                vertical: 6.h,
                               ),
                               decoration: BoxDecoration(
                                 color: colorScheme.surfaceContainerHighest,
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                               ),
                               child: Text(
                                 l10n.householdOr,
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: colorScheme.onSurfaceVariant,
                                   fontWeight: FontWeight.w700,
+                                  fontSize: 13.sp,
                                   letterSpacing: 0.5,
                                 ),
                               ),
@@ -190,13 +206,13 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
                             Expanded(
                               child: Divider(
                                 color: colorScheme.outline,
-                                thickness: 1.2,
+                                thickness: 1.2.w,
                               ),
                             ),
                           ],
                         ),
 
-                        const SizedBox(height: 18),
+                        SizedBox(height: 18.h),
 
                         CustomButton(
                           text: l10n.householdJoinExistingButton,
@@ -208,7 +224,7 @@ class _CreateHouseholdScreenState extends State<CreateHouseholdScreen> {
                           isOutlined: true,
                         ),
 
-                        const SizedBox(height: 24),
+                        SizedBox(height: 24.h),
                       ],
                     ),
                   ),

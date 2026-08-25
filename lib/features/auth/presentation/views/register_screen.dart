@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:medicine_cabinet/features/auth/presentation/cubit/auth_state.dart';
-import 'package:medicine_cabinet/features/auth/presentation/views/widgets/auth_header.dart';
-import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../core/dialogs/app_toasts.dart';
@@ -13,6 +10,9 @@ import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../generated/l10n.dart';
 import '../cubit/auth_cubit.dart';
+import '../cubit/auth_state.dart';
+import 'widgets/auth_header.dart';
+import '../../../household/presentation/view/view/household_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -31,7 +31,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   void initState() {
     super.initState();
-
     nameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
@@ -44,7 +43,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
-
     super.dispose();
   }
 
@@ -65,9 +63,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => CustomBottomNavBar(
+              builder: (context) => HouseholdScreen(
                 userId: state.user.id,
-                householdId: state.user.id,
               ),
             ),
             (route) => false,
@@ -84,21 +81,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
         }
       },
       builder: (context, state) {
-        final isLoading = state is AuthLoading;
+        final isLoading = state is AuthLoading && state.action == AuthAction.register;
 
         return Scaffold(
+          backgroundColor: colorScheme.surface,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: colorScheme.onSurface,
+                size: 24.r,
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
           body: SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24.0,
-                vertical: 16.0,
+              padding: EdgeInsets.symmetric(
+                horizontal: 24.w,
+                vertical: 8.h,
               ),
               child: Form(
                 key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
 
                     // Header
                     AuthHeader(
@@ -106,19 +116,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       subtitle: l10n.authRegisterSubtitle,
                     ),
 
-                    const SizedBox(height: 28),
+                    SizedBox(height: 28.h),
 
                     // Full Name Label
                     Text(
                       l10n.authFullNameLabel,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.onSurface,
                       ),
                     ),
 
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
 
                     // Full Name
                     CustomTextFormField(
@@ -126,34 +136,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hintText: 'Ahmed Farouk',
                       validator: (value) {
                         final error = Validator.validateName(value);
-
-                        if (error == null) {
-                          return null;
-                        }
-
+                        if (error == null) return null;
                         return ErrorLocalization.getMessage(error, l10n);
                       },
                       hintTextColor: colorScheme.onSurfaceVariant,
                       prefixIcon: Icon(
                         Icons.person_outline,
                         color: colorScheme.onSurfaceVariant,
+                        size: 20.r,
                       ),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
 
                     // Email Label
                     Text(
                       l10n.authEmailLabel,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.onSurface,
                       ),
                     ),
 
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
 
                     // Email
                     CustomTextFormField(
@@ -163,33 +170,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         final error = Validator.validateEmail(value);
-
-                        if (error == null) {
-                          return null;
-                        }
-
+                        if (error == null) return null;
                         return ErrorLocalization.getMessage(error, l10n);
                       },
                       prefixIcon: Icon(
                         Icons.email_outlined,
                         color: colorScheme.onSurfaceVariant,
+                        size: 20.r,
                       ),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
 
                     // Password Label
                     Text(
                       l10n.authPasswordLabel,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.onSurface,
                       ),
                     ),
 
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
 
                     // Password
                     CustomTextFormField(
@@ -199,33 +203,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       isPassword: true,
                       validator: (value) {
                         final error = Validator.validatePassword(value);
-
-                        if (error == null) {
-                          return null;
-                        }
-
+                        if (error == null) return null;
                         return ErrorLocalization.getMessage(error, l10n);
                       },
                       prefixIcon: Icon(
                         Icons.lock_outline,
                         color: colorScheme.onSurfaceVariant,
+                        size: 20.r,
                       ),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
 
                     // Confirm Password Label
                     Text(
                       l10n.authConfirmPasswordLabel,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.onSurface,
                       ),
                     ),
 
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
 
                     // Confirm Password
                     CustomTextFormField(
@@ -239,19 +240,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           value,
                           passwordController.text,
                         );
-                        if (error == null) {
-                          return null;
-                        }
+                        if (error == null) return null;
                         return ErrorLocalization.getMessage(error, l10n);
                       },
                       prefixIcon: Icon(
                         Icons.lock_outline,
                         color: colorScheme.onSurfaceVariant,
+                        size: 20.r,
                       ),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
 
-                    const SizedBox(height: 28),
+                    SizedBox(height: 28.h),
 
                     // Submit Button
                     CustomButton(
@@ -260,7 +260,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           : l10n.authRegisterButton,
                       onPressed: () {
                         if (isLoading) return;
-
                         if (formKey.currentState!.validate()) {
                           context.read<AuthCubit>().register(
                             name: nameController.text.trim(),
@@ -271,24 +270,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
 
                     // Terms Notice
                     Center(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
                         child: Text(
                           l10n.authTermsNotice,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 12.sp,
                             color: colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ),
                     ),
 
-                    const SizedBox(height: 28),
+                    SizedBox(height: 28.h),
 
                     // Footer
                     Row(
@@ -296,17 +295,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         Text(
                           l10n.authHaveAccount,
-                          style: TextStyle(color: colorScheme.onSurfaceVariant),
+                          style: TextStyle(
+                            color: colorScheme.onSurfaceVariant,
+                            fontSize: 14.sp,
+                          ),
                         ),
                         TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                          onPressed: () => Navigator.pop(context),
                           child: Text(
                             l10n.authLoginLink,
                             style: TextStyle(
                               color: colorScheme.primary,
                               fontWeight: FontWeight.bold,
+                              fontSize: 14.sp,
                             ),
                           ),
                         ),

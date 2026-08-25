@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InfoCard extends StatelessWidget {
   const InfoCard({
@@ -19,10 +20,10 @@ class InfoCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
         border: Border.all(color: colorScheme.outline),
         boxShadow: [
           BoxShadow(
@@ -35,16 +36,16 @@ class InfoCard extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            width: 44,
-            height: 44,
+            width: 44.r,
+            height: 44.r,
             decoration: BoxDecoration(
               color: colorScheme.primary.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.r),
             ),
             alignment: Alignment.center,
-            child: Icon(icon, color: colorScheme.primary, size: 24),
+            child: Icon(icon, color: colorScheme.primary, size: 24.r),
           ),
-          const SizedBox(width: 14),
+          SizedBox(width: 14.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,17 +53,17 @@ class InfoCard extends StatelessWidget {
                 Text(
                   title,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurface,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
+                    color: colorScheme.onSurfaceVariant,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4.h),
                 Text(
                   value,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
-                    fontSize: 14,
+                    fontSize: 15.sp,
                     color: colorScheme.onSurface,
                   ),
                 ),

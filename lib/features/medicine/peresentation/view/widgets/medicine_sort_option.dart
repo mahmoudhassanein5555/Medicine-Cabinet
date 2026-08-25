@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_sort.dart';
 
 class MedicineSortOption extends StatelessWidget {
@@ -23,7 +24,7 @@ class MedicineSortOption extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: 47,
+        height: 47.h,
         decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: theme.dividerColor)),
         ),
@@ -34,13 +35,14 @@ class MedicineSortOption extends StatelessWidget {
                 title,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w700,
+                  fontSize: 14.sp,
                 ),
               ),
             ),
             if (isSelected)
               Icon(
                 Icons.check_rounded,
-                size: 20,
+                size: 20.r,
                 color: theme.colorScheme.primary,
               ),
           ],

@@ -104,6 +104,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       await logoutUseCase();
       await cacheHelper.removeData(key: AppKeys.userId);
+      await cacheHelper.removeData(key: AppKeys.householdId);
       emit(AuthInitial());
     } catch (e) {
       final failure = ErrorHandler.handle(e);

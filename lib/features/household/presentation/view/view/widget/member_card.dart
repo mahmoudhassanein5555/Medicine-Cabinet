@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../generated/l10n.dart';
 import '../../../../domain/entity/household_member_entity.dart';
@@ -20,13 +21,13 @@ class MemberCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(18.r),
         child: Container(
-          height: 98,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          height: 98.h,
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
           decoration: BoxDecoration(
             color: colorScheme.surface,
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(18.r),
             border: Border.all(color: colorScheme.outline),
             boxShadow: [
               BoxShadow(
@@ -38,42 +39,39 @@ class MemberCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              MemberAvatar(name: member.name, photoUrl: member.photoUrl, radius: 30),
-
-              const SizedBox(width: 16),
-
+              MemberAvatar(name: member.name, photoUrl: member.photoUrl, radius: 30.r),
+              SizedBox(width: 16.w),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      member.name.isNotEmpty ? member.name :l10n.commonUnnamed,
+                      member.name.isNotEmpty ? member.name : l10n.commonUnnamed,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w700,
-                        fontSize: 18,
+                        fontSize: 16.sp,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4.h),
                     Text(
-                      member.email.isNotEmpty ? member.email :  l10n.commonNoEmail,
+                      member.email.isNotEmpty ? member.email : l10n.commonNoEmail,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSurface,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 13.sp,
                       ),
                     ),
                   ],
                 ),
               ),
-
               Icon(
                 Icons.arrow_forward_ios,
-                size: 18,
+                size: 18.r,
                 color: colorScheme.onSurfaceVariant,
               ),
             ],

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/constants/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medicine_cabinet/features/alerts/presentation/view/widget/alert_medicine_image.dart';
+import 'package:medicine_cabinet/features/alerts/presentation/view/widget/alert_status_badge.dart';
+
 import '../../../../../generated/l10n.dart';
 import '../../../domain/entity/medicine_entity.dart';
 
@@ -14,9 +17,9 @@ class MedicineCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
         color: theme.colorScheme.surface,
         boxShadow: [
           BoxShadow(
@@ -28,9 +31,9 @@ class MedicineCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          _buildImage(context),
+          AlertMedicineImage(imageUrl: medicine.imageUrl),
 
-          const SizedBox(width: 12),
+          SizedBox(width: 12.w),
 
           Expanded(
             child: Column(
@@ -39,102 +42,36 @@ class MedicineCard extends StatelessWidget {
                 Text(
                   medicine.name,
                   style: theme.textTheme.bodyLarge?.copyWith(
-                    fontSize: 20,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
 
-                const SizedBox(height: 4),
+                SizedBox(height: 4.h),
 
                 Text(
                   medicine.type,
-                  style: theme.textTheme.bodyMedium?.copyWith(fontSize: 20),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
 
                 Text(
                   l10n.medicineQuantity(medicine.quantity),
-                  style: theme.textTheme.bodyMedium?.copyWith(fontSize: 20),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
 
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
 
-                _buildStatusBadge(context),
+                AlertStatusBadge(medicine: medicine),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildImage(BuildContext context) {
-    if (medicine.imageUrl == null || medicine.imageUrl!.isEmpty) {
-      return _buildPlaceholder(context);
-    }
-
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Image.network(
-        medicine.imageUrl!,
-        width: 70,
-        height: 70,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) {
-          return _buildPlaceholder(context);
-        },
-      ),
-    );
-  }
-
-  Widget _buildPlaceholder(BuildContext context) {
-    return Container(
-      width: 70,
-      height: 70,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: AppColors.surfaceAltDark,
-      ),
-      child: Icon(
-        Icons.medication_outlined,
-        color: Theme.of(context).colorScheme.onSurfaceVariant,
-      ),
-    );
-  }
-
-  Widget _buildStatusBadge(BuildContext context) {
-    final l10n = S.of(context);
-    final theme = Theme.of(context);
-
-    late final String text;
-    late final Color color;
-
-    if (medicine.isExpired) {
-      text = l10n.medicineStatusExpired;
-      color = Colors.red;
-    } else if (medicine.isEnded) {
-      text = l10n.medicineStatusEnded;
-      color = AppColors.warningLight;
-    } else {
-      text = l10n.medicineStatusValid;
-      color = Colors.green;
-    }
-
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 5,
-      ),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        text,
-        style: theme.textTheme.bodyMedium?.copyWith(
-          fontSize: 14,
-          fontWeight: FontWeight.w700,
-          color: color,
-        ),
       ),
     );
   }

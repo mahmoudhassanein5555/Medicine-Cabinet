@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:medicine_cabinet/features/splash_loading_capsules.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -58,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen>
       builder: (context, _) => Opacity(
         opacity: anim.value,
         child: Transform.translate(
-          offset: Offset(0, 10 * (1 - anim.value)),
+          offset: Offset(0, 10.h * (1 - anim.value)),
           child: child,
         ),
       ),
@@ -84,15 +86,15 @@ class _SplashScreenState extends State<SplashScreen>
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              width: 250,
-              height: 250,
+              width: 250.r,
+              height: 250.r,
               child: Lottie.asset(
                 lottieAsset,
                 controller: _controller,
                 fit: BoxFit.contain,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             _riseIn(
               startS: 2.1,
               endS: 2.7,
@@ -100,12 +102,12 @@ class _SplashScreenState extends State<SplashScreen>
                 s.splashWordmark,
                 style: textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w800,
-                  fontSize: 28,
+                  fontSize: 28.sp,
                   color: colorScheme.onSurface,
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
             _riseIn(
               startS: 2.3,
               endS: 2.9,
@@ -114,24 +116,24 @@ class _SplashScreenState extends State<SplashScreen>
                 textAlign: TextAlign.center,
                 style: textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurface.withValues(alpha: 0.6),
-                  fontSize: 16,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
             ),
-            const SizedBox(height: 34),
+            SizedBox(height: 34.h),
             _riseIn(
               startS: 2.6,
               endS: 3.1,
               child: Column(
                 children: [
-                  _LoadingCapsules(color: colorScheme.primary),
-                  const SizedBox(height: 12),
+                  SplashLoadingCapsules(color: colorScheme.primary),
+                  SizedBox(height: 12.h),
                   Text(
                     s.splashLoadingText,
                     style: textTheme.labelSmall?.copyWith(
                       color: colorScheme.onSurface.withValues(alpha: 0.45),
-                      fontSize: 14,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -141,74 +143,6 @@ class _SplashScreenState extends State<SplashScreen>
           ],
         ),
       ),
-    );
-  }
-}
-
-class _LoadingCapsules extends StatefulWidget {
-  const _LoadingCapsules({required this.color});
-
-  final Color color;
-
-  @override
-  State<_LoadingCapsules> createState() => _LoadingCapsulesState();
-}
-
-class _LoadingCapsulesState extends State<_LoadingCapsules>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1200),
-    )..repeat();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(3, (index) {
-        final delay = index * 0.15 / 1.2;
-        final interval = Interval(
-          delay.clamp(0.0, 1.0),
-          (delay + 0.7).clamp(0.0, 1.0),
-          curve: Curves.easeInOut,
-        );
-        final anim = CurvedAnimation(parent: _controller, curve: interval);
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 3.5),
-          child: AnimatedBuilder(
-            animation: anim,
-            builder: (context, _) {
-              final t = (1 - (anim.value - 0.5).abs() * 2).clamp(0.0, 1.0);
-              return Opacity(
-                opacity: 0.3 + 0.7 * t,
-                child: Transform.scale(
-                  scaleY: 1 + 0.35 * t,
-                  child: Container(
-                    width: 9,
-                    height: 16,
-                    decoration: BoxDecoration(
-                      color: widget.color,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-        );
-      }),
     );
   }
 }

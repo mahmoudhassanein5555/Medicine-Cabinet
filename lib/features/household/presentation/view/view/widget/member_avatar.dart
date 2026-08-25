@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medicine_cabinet/features/household/presentation/view/view/widget/household_person_icon_avatar.dart';
+
 class MemberAvatar extends StatelessWidget {
   const MemberAvatar({
     super.key,
@@ -17,23 +20,23 @@ class MemberAvatar extends StatelessWidget {
     final hasPhoto = photoUrl != null && photoUrl!.isNotEmpty;
 
     if (!hasPhoto) {
-      return _PersonIconAvatar(radius: radius, colorScheme: colorScheme);
+      return HouseholdPersonIconAvatar(radius: radius, colorScheme: colorScheme);
     }
 
     return ClipOval(
       child: Image.network(
         photoUrl!,
-        width: radius * 2,
-        height: radius * 2,
+        width: (radius * 2).r,
+        height: (radius * 2).r,
         fit: BoxFit.cover,
         loadingBuilder: (context, child, progress) {
           if (progress == null) return child;
           return CircleAvatar(
-            radius: radius,
+            radius: radius.r,
             backgroundColor: colorScheme.primary.withValues(alpha: 0.15),
             child: SizedBox(
-              width: radius * 0.7,
-              height: radius * 0.7,
+              width: (radius * 0.7).r,
+              height: (radius * 0.7).r,
               child: CircularProgressIndicator(
                 strokeWidth: 2,
                 color: colorScheme.primary,
@@ -42,27 +45,7 @@ class MemberAvatar extends StatelessWidget {
           );
         },
         errorBuilder: (context, error, stackTrace) =>
-            _PersonIconAvatar(radius: radius, colorScheme: colorScheme),
-      ),
-    );
-  }
-}
-
-class _PersonIconAvatar extends StatelessWidget {
-  const _PersonIconAvatar({required this.radius, required this.colorScheme});
-
-  final double radius;
-  final ColorScheme colorScheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: radius,
-      backgroundColor: colorScheme.primary,
-      child: Icon(
-        Icons.person,
-        color: Colors.white,
-        size: radius * 1.1,
+            HouseholdPersonIconAvatar(radius: radius, colorScheme: colorScheme),
       ),
     );
   }

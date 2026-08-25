@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medicine_cabinet/features/household/domain/entity/medicine_entity.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -10,6 +11,7 @@ import 'medicine_card.dart';
 
 class MemberMedicinesList extends StatelessWidget {
   const MemberMedicinesList({super.key});
+
   static final List<MedicineEntity> _placeholderMedicines = List.generate(
     3,
     (index) => MedicineEntity(
@@ -36,9 +38,13 @@ class MemberMedicinesList extends StatelessWidget {
 
         if (state is GetMemberMedicinesError) {
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24),
+            padding: EdgeInsets.symmetric(vertical: 24.h),
             child: Center(
-              child: Text(state.failure.getMessage(context), textAlign: TextAlign.center),
+              child: Text(
+                state.failure.getMessage(context),
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14.sp),
+              ),
             ),
           );
         }
@@ -48,11 +54,11 @@ class MemberMedicinesList extends StatelessWidget {
 
           if (medicines.isEmpty) {
             return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24),
+              padding: EdgeInsets.symmetric(vertical: 24.h),
               child: Center(
                 child: SizedBox(
                   width: double.infinity,
-                  height: 250,
+                  height: 250.h,
                   child: Lottie.asset(
                     'assets/animations/member_details_screen.json',
                     fit: BoxFit.contain,
@@ -72,7 +78,7 @@ class MemberMedicinesList extends StatelessWidget {
     return Column(
       children: [
         for (var i = 0; i < medicines.length; i++) ...[
-          if (i > 0) const SizedBox(height: 12),
+          if (i > 0) SizedBox(height: 12.h),
           MedicineCard(medicine: medicines[i]),
         ],
       ],

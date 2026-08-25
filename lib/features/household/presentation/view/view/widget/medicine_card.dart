@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medicine_cabinet/features/household/presentation/view/view/widget/household_expiry_badge.dart';
+import 'package:medicine_cabinet/features/household/presentation/view/view/widget/household_medicine_image.dart';
 
 import '../../../../domain/entity/medicine_entity.dart';
 
@@ -14,17 +17,17 @@ class MedicineCard extends StatelessWidget {
 
     final expiry = medicine.expiryDate;
     final expiryText =
-    expiry != null ? '${_monthName(expiry.month)} ${expiry.year}' : '-';
+        expiry != null ? '${_monthName(expiry.month)} ${expiry.year}' : '-';
 
     final isExpired = medicine.isExpired;
     final hasExpiryInfo = expiry != null;
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
         border: Border.all(
           color: isExpired
               ? Colors.red.withValues(alpha: 0.4)
@@ -41,49 +44,57 @@ class MedicineCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _MedicineImage(imageUrl: medicine.imageUrl, colorScheme: colorScheme),
-          const SizedBox(width: 14),
+          HouseholdMedicineImage(
+            imageUrl: medicine.imageUrl,
+            colorScheme: colorScheme,
+          ),
+          SizedBox(width: 14.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 8,
-                  runSpacing: 6,
+                  spacing: 8.w,
+                  runSpacing: 6.h,
                   children: [
                     Text(
                       medicine.name,
                       style: theme.textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 16.sp,
                       ),
                     ),
-                    if (hasExpiryInfo) _ExpiryBadge(isExpired: isExpired),
+                    if (hasExpiryInfo)
+                      HouseholdExpiryBadge(isExpired: isExpired),
                   ],
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: 6.h),
                 Text(
                   'Qty: ${medicine.quantity}',
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: colorScheme.onSurface,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
+                    color: colorScheme.onSurfaceVariant,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4.h),
                 Text(
                   'Expiry: $expiryText',
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: isExpired ? Colors.red : colorScheme.onSurface,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
+                    color: isExpired ? Colors.red : colorScheme.onSurfaceVariant,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
           ),
-          Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
+          Icon(
+            Icons.chevron_right,
+            color: colorScheme.onSurfaceVariant,
+            size: 24.r,
+          ),
         ],
       ),
     );
@@ -95,70 +106,5 @@ class MedicineCard extends StatelessWidget {
       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
     ];
     return names[month - 1];
-  }
-}
-
-class _MedicineImage extends StatelessWidget {
-  const _MedicineImage({required this.imageUrl, required this.colorScheme});
-
-  final String? imageUrl;
-  final ColorScheme colorScheme;
-
-  @override
-  Widget build(BuildContext context) {
-    final url = imageUrl;
-
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        width: 56,
-        height: 56,
-        color: colorScheme.primary.withValues(alpha: 0.1),
-        child: url != null && url.isNotEmpty
-            ? Image.network(
-          url,
-          fit: BoxFit.cover,
-          loadingBuilder: (context, child, progress) {
-            if (progress == null) return child;
-            return Center(
-              child: SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: colorScheme.primary,
-                ),
-              ),
-            );
-          },
-          errorBuilder: (context, error, stackTrace) =>
-              Icon(Icons.medication_outlined, color: colorScheme.primary),
-        )
-            : Icon(Icons.medication_outlined, color: colorScheme.primary),
-      ),
-    );
-  }
-}
-
-class _ExpiryBadge extends StatelessWidget {
-  const _ExpiryBadge({required this.isExpired});
-
-  final bool isExpired;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = isExpired ? Colors.red : Colors.green;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        isExpired ? 'Expired' : 'Valid',
-        style: TextStyle(color: color, fontSize: 15, fontWeight: FontWeight.w700),
-      ),
-    );
   }
 }

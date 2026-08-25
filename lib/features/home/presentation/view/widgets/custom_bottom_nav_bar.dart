@@ -3,9 +3,13 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/core/constants/app_colors.dart';
+import 'package:medicine_cabinet/core/constants/app_keys.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
+import 'package:medicine_cabinet/core/utils/household_local_data_source.dart';
 import 'package:medicine_cabinet/core/utils/shared_prefs_local_data_source.dart';
+import 'package:medicine_cabinet/features/alerts/presentation/view/medicine_inventory_screen.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/home_screen.dart';
 import 'package:medicine_cabinet/features/home/presentation/view_model/home_cubit.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/screens/medicines_screen.dart';
@@ -33,32 +37,34 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
   @override
   void initState() {
     super.initState();
-    effectiveUserId =
-        widget.userId ??
+    effectiveUserId = widget.userId ??
+        getIt<CacheHelper>().getData(key: AppKeys.userId) as String? ??
         FirebaseAuth.instance.currentUser?.uid ??
-        "FlwarNVYFWM17QKlEnUm";
-    effectiveHouseholdId = widget.householdId ?? effectiveUserId;
+        '';
+
+    effectiveHouseholdId = widget.householdId ??
+        getIt<HouseholdLocalDataSource>().getHouseholdId() ??
+        '';
 
     _screens = [
       BlocProvider(
-        lazy: false,
         create: (_) => getIt<HomeCubit>(),
         child: HomeScreen(
           userId: effectiveUserId,
           householdId: effectiveHouseholdId,
+          
         ),
       ),
-      BlocProvider(
+      BlocProvider( 
         create: (_) => getIt<MedicineCubit>(),
         child: MedicinesScreen(
-          householdId: getIt<CacheHelper>().getData(key: "cached_household_id"),
+          householdId: effectiveHouseholdId,
         ),
       ),
-      Center(child: Text("Hello")),
-      
-       ProfileScreen(),
-      Center(child: Text('Feed Screen')),
-      // ProfileTabView(userId: effectiveUserId),
+      MedicineInventoryScreen(
+        householdId: effectiveHouseholdId,
+      ),
+      const ProfileScreen(),
     ];
   }
 
@@ -68,25 +74,25 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
     final isDark = theme.brightness == Brightness.dark;
     return Scaffold(
       bottomNavigationBar: SizedBox(
-        height: 75,
+        height: 75.h,
         child: CurvedNavigationBar(
           key: _bottomNavigationKey,
           index: 0,
           items: [
             CurvedNavigationBarItem(
-              child: const Icon(Icons.home),
+              child: Icon(Icons.home, size: 24.r),
               label: S.of(context).homeNavLabel,
             ),
             CurvedNavigationBarItem(
-              child: const Icon(Icons.medical_information),
+              child: Icon(Icons.medical_information, size: 24.r),
               label: S.of(context).medicinesNavLabel,
             ),
             CurvedNavigationBarItem(
-              child: const Icon(Icons.newspaper),
+              child: Icon(Icons.newspaper, size: 24.r),
               label: S.of(context).alertsNavLabel,
             ),
             CurvedNavigationBarItem(
-              child: const Icon(Icons.perm_identity),
+              child: Icon(Icons.perm_identity, size: 24.r),
               label: S.of(context).profileNavLabel,
             ),
           ],

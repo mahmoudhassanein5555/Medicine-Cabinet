@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -17,8 +18,8 @@ class CustomButton extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final isEnabled = onPressed != null;
 
-    const textStyle = TextStyle(
-      fontSize: 17,
+    final textStyle = TextStyle(
+      fontSize: 17.sp,
       fontWeight: FontWeight.w700,
       letterSpacing: 0.2,
     );
@@ -26,16 +27,16 @@ class CustomButton extends StatelessWidget {
     if (isOutlined) {
       return SizedBox(
         width: double.infinity,
-        height: 52,
+        height: 52.h,
         child: OutlinedButton(
           onPressed: onPressed,
           style: OutlinedButton.styleFrom(
             side: BorderSide(
               color: isEnabled ? colorScheme.primary : colorScheme.outline,
-              width: 1.8,
+              width: 1.8.w,
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(14.r),
             ),
           ),
           child: Text(
@@ -50,12 +51,12 @@ class CustomButton extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      height: 52,
+      height: 52.h,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(14.r),
           ),
         ),
         child: Text(

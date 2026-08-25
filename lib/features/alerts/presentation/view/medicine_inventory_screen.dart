@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
 
 import 'package:medicine_cabinet/features/alerts/presentation/view/widget/inventory_categories.dart';
@@ -51,20 +52,20 @@ class MedicineInventoryScreen extends StatelessWidget {
               }
 
               return Padding(
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(16.r),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 30),
+                    SizedBox(height: 30.h),
 
                     Text(
                       l10n.medicineCabinet,
                       style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        fontSize: 28,
+                        fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
 
                     InventoryCategories(
                       selectedCategory: selectedCategory,
@@ -73,7 +74,7 @@ class MedicineInventoryScreen extends StatelessWidget {
                       },
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
 
                     Expanded(
                       child: switch (state) {

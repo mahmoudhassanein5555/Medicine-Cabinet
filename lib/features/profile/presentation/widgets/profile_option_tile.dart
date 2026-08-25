@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileOptionTile extends StatelessWidget {
   const ProfileOptionTile({
@@ -23,38 +24,39 @@ class ProfileOptionTile extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 4,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: 4.h,
           ),
           title: Text(
             title,
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w600,
               color: color,
             ),
           ),
           trailing: trailingText != null
               ? Text(
-            trailingText!,
-            style: TextStyle(
-              color: colorScheme.onSurfaceVariant,
-              fontSize: 13,
-            ),
-          )
+                  trailingText!,
+                  style: TextStyle(
+                    color: colorScheme.onSurfaceVariant,
+                    fontSize: 13.sp,
+                  ),
+                )
               : Icon(
-            Icons.chevron_right,
-            color: colorScheme.onSurfaceVariant,
-          ),
+                  Icons.chevron_right,
+                  color: colorScheme.onSurfaceVariant,
+                  size: 24.r,
+                ),
           onTap: onTap,
         ),
         if (showDivider)
           Divider(
             height: 1,
             thickness: 0.8,
-            indent: 16,
-            endIndent: 16,
+            indent: 16.w,
+            endIndent: 16.w,
             color: colorScheme.outline,
           ),
       ],

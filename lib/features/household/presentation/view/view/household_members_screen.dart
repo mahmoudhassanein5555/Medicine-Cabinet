@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/features/household/domain/entity/household_member_entity.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/view/widget/member_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -74,29 +75,32 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
       child: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 18),
+                SizedBox(height: 18.h),
 
                 Row(
                   children: [
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      icon: const Icon(Icons.arrow_back_ios_new, size: 20),
+                      icon: Icon(Icons.arrow_back_ios_new, size: 20.r),
                     ),
 
-                    const SizedBox(width: 4),
+                    SizedBox(width: 4.w),
 
                     Text(
                       l10n.householdTitle,
-                      style: Theme.of(context).textTheme.headlineSmall,
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 Expanded(
                   child: BlocBuilder<HouseholdCubit, HouseholdState>(
@@ -107,7 +111,7 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                           child: ListView.separated(
                             itemCount: _placeholderMembers.length,
                             separatorBuilder: (_, __) =>
-                                const SizedBox(height: 14),
+                                SizedBox(height: 14.h),
                             itemBuilder: (context, index) => MemberCard(
                               member: _placeholderMembers[index],
                               onTap: () {},
@@ -120,6 +124,7 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                           child: Text(
                             state.failure.getMessage(context),
                             textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 14.sp),
                           ),
                         );
                       }
@@ -128,7 +133,10 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
 
                         if (members.isEmpty) {
                           return Center(
-                            child: Text(l10n.householdNoMembersFound),
+                            child: Text(
+                              l10n.householdNoMembersFound,
+                              style: TextStyle(fontSize: 14.sp),
+                            ),
                           );
                         }
 
@@ -137,7 +145,7 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                         return ListView.separated(
                           itemCount: members.length,
                           separatorBuilder: (_, __) =>
-                              const SizedBox(height: 14),
+                              SizedBox(height: 14.h),
                           itemBuilder: (context, index) {
                             final member = members[index];
 
@@ -160,7 +168,6 @@ class _HouseholdMembersScreenState extends State<HouseholdMembersScreen> {
                           },
                         );
                       }
-
                       return const SizedBox.shrink();
                     },
                   ),

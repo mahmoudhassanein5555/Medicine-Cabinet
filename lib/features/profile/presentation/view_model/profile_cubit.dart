@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/core/errors/error_handler.dart';
+import 'package:medicine_cabinet/core/utils/cloudinary_service.dart';
 
 import '../../domain/usecases/get_profile.dart';
 import '../../domain/usecases/update_profile.dart';
@@ -32,6 +35,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> updateUserProfile({
     required String name,
     String? photoUrl,
+    File? imageFile,
   }) async {
     final currentState = state;
 
@@ -40,9 +44,14 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
 
     try {
+      String? resolvedPhotoUrl = photoUrl;
+      if (imageFile != null) {
+        resolvedPhotoUrl = await CloudinaryService.uploadImage(imageFile);
+      }
+
       final profile = await updateProfile(
         name: name,
-        photoUrl: photoUrl,
+        photoUrl: resolvedPhotoUrl,
       );
 
       emit(ProfileUpdateSuccess(profile));

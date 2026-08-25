@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../../core/di/service_locator.dart';
@@ -24,10 +25,9 @@ class MemberDetailsScreen extends StatelessWidget {
 
   final HouseholdMemberEntity member;
   final String householdId;
-
   final String currentUserId;
-
   final bool canRemoveMember;
+
   Future<void> _confirmAndRemove(BuildContext context) async {
     final l10n = S.of(context);
     final memberName = member.name.isNotEmpty ? member.name : '';
@@ -82,11 +82,11 @@ class MemberDetailsScreen extends StatelessWidget {
         child: Scaffold(
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 18),
+                  SizedBox(height: 18.h),
 
                   Row(
                     children: [
@@ -95,6 +95,7 @@ class MemberDetailsScreen extends StatelessWidget {
                         icon: Icon(
                           Icons.arrow_back,
                           color: colorScheme.onSurface,
+                          size: 24.r,
                         ),
                       ),
                       Expanded(
@@ -103,6 +104,7 @@ class MemberDetailsScreen extends StatelessWidget {
                             l10n.householdMemberDetails,
                             style: theme.textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
+                              fontSize: 18.sp,
                             ),
                           ),
                         ),
@@ -116,24 +118,24 @@ class MemberDetailsScreen extends StatelessWidget {
                                   ? null
                                   : () => _confirmAndRemove(context),
                               icon: isRemoving
-                                  ? const SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: CircularProgressIndicator(
+                                  ? SizedBox(
+                                      width: 20.r,
+                                      height: 20.r,
+                                      child: const CircularProgressIndicator(
                                         strokeWidth: 2,
                                       ),
                                     )
-                                  : const Icon(
+                                  : Icon(
                                       Icons.person_remove_outlined,
                                       color: Colors.red,
-                                      size: 35,
+                                      size: 30.r,
                                     ),
                               tooltip: l10n.householdRemoveMemberTooltip,
                             );
                           },
                         )
                       else
-                        const SizedBox(width: 48),
+                        SizedBox(width: 48.w),
                     ],
                   ),
 
@@ -141,26 +143,26 @@ class MemberDetailsScreen extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10.h),
 
                           MemberAvatar(
                             name: member.name,
                             photoUrl: member.photoUrl,
-                            radius: 48,
+                            radius: 48.r,
                           ),
 
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Text(
                             member.name.isNotEmpty
                                 ? member.name
                                 : l10n.commonUnnamed,
                             style: theme.textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.w800,
-                              fontSize: 24,
+                              fontSize: 22.sp,
                             ),
                           ),
 
-                          const SizedBox(height: 4),
+                          SizedBox(height: 4.h),
 
                           Text(
                             member.email.isNotEmpty
@@ -168,46 +170,46 @@ class MemberDetailsScreen extends StatelessWidget {
                                 : l10n.commonNoEmail,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: colorScheme.onSurface,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
 
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10.h),
 
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 14,
-                              vertical: 6,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 14.w,
+                              vertical: 6.h,
                             ),
                             decoration: BoxDecoration(
                               color: colorScheme.primary.withValues(
                                 alpha: 0.12,
                               ),
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20.r),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Icon(
                                   Icons.medication_outlined,
-                                  size: 16,
+                                  size: 16.r,
                                   color: colorScheme.primary,
                                 ),
-                                const SizedBox(width: 6),
+                                SizedBox(width: 6.w),
                                 Text(
                                   l10n.medicineCount(member.medicineCount),
                                   style: theme.textTheme.bodyMedium?.copyWith(
                                     color: colorScheme.primary,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 14,
+                                    fontSize: 13.sp,
                                   ),
                                 ),
                               ],
                             ),
                           ),
 
-                          const SizedBox(height: 30),
+                          SizedBox(height: 30.h),
 
                           Align(
                             alignment: AlignmentDirectional.centerStart,
@@ -215,11 +217,12 @@ class MemberDetailsScreen extends StatelessWidget {
                               l10n.memberInformation,
                               style: theme.textTheme.titleLarge?.copyWith(
                                 fontWeight: FontWeight.bold,
+                                fontSize: 16.sp,
                               ),
                             ),
                           ),
 
-                          const SizedBox(height: 14),
+                          SizedBox(height: 14.h),
 
                           InfoCard(
                             icon: Icons.person_outline,
@@ -227,7 +230,7 @@ class MemberDetailsScreen extends StatelessWidget {
                             value: member.name,
                           ),
 
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12.h),
 
                           InfoCard(
                             icon: Icons.email_outlined,
@@ -235,7 +238,7 @@ class MemberDetailsScreen extends StatelessWidget {
                             value: member.email,
                           ),
 
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12.h),
 
                           InfoCard(
                             icon: Icons.medication_outlined,
@@ -243,7 +246,7 @@ class MemberDetailsScreen extends StatelessWidget {
                             value: '${member.medicineCount}',
                           ),
 
-                          const SizedBox(height: 30),
+                          SizedBox(height: 30.h),
 
                           Align(
                             alignment: AlignmentDirectional.centerStart,
@@ -251,15 +254,16 @@ class MemberDetailsScreen extends StatelessWidget {
                               l10n.memberMedicines,
                               style: theme.textTheme.titleLarge?.copyWith(
                                 fontWeight: FontWeight.bold,
+                                fontSize: 16.sp,
                               ),
                             ),
                           ),
 
-                          const SizedBox(height: 14),
+                          SizedBox(height: 14.h),
 
                           const MemberMedicinesList(),
 
-                          const SizedBox(height: 24),
+                          SizedBox(height: 24.h),
                         ],
                       ),
                     ),

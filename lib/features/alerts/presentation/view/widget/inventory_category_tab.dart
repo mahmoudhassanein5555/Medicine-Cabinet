@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/core/constants/app_colors.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -42,9 +43,9 @@ class InventoryCategoryTab extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 10.h),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
           color: isSelected
               ? AppColors.primaryDarkLight
               : AppColors.textPrimaryDark,
@@ -59,8 +60,8 @@ class InventoryCategoryTab extends StatelessWidget {
         child: Text(
           title(context),
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w700,
             color: isSelected
                 ? AppColors.textPrimaryDark
                 : AppColors.primaryDarkLight,

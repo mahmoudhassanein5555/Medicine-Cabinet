@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medicine_cabinet/core/constants/app_keys.dart';
+import 'package:medicine_cabinet/core/utils/household_local_data_source.dart';
 import 'package:medicine_cabinet/core/utils/shared_prefs_local_data_source.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
 import 'package:medicine_cabinet/features/household/presentation/view/view/widget/custom_button.dart';
@@ -13,7 +15,7 @@ import '../../../../../core/dialogs/app_toasts.dart';
 import '../../../../../generated/l10n.dart';
 import '../view_model/household_cubit.dart';
 import '../view_model/household_state.dart';
-import 'household_members_screen.dart';
+import 'create_household_screen.dart';
 
 class HouseholdScreen extends StatefulWidget {
   const HouseholdScreen({
@@ -33,10 +35,11 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
   final TextEditingController _householdIdController = TextEditingController();
   late CacheHelper _cacheHelper;
   late String userId;
+
   @override
-  void initState()  {
+  void initState() {
     _cacheHelper = getIt<CacheHelper>();
-    userId = _cacheHelper.getData(key: AppKeys.userId);
+    userId = _cacheHelper.getData(key: AppKeys.userId) as String? ?? widget.userId;
     super.initState();
   }
 
@@ -56,69 +59,82 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
       create: (_) =>
           getIt<HouseholdCubit>()..getUserHousehold(userId: widget.userId),
       child: BlocConsumer<HouseholdCubit, HouseholdState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is GetHouseholdSuccess) {
             final household = state.household;
 
             if (household != null) {
+              await getIt<HouseholdLocalDataSource>().saveHouseholdId(household.id);
+              if (context.mounted) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => CustomBottomNavBar(
+                      userId: userId,
+                      householdId: household.id,
+                    ),
+                  ),
+                );
+              }
+            }
+          }
+
+          if (state is CreateHouseholdSuccess) {
+            await getIt<HouseholdLocalDataSource>().saveHouseholdId(state.household.id);
+            if (context.mounted) {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (_) => CustomBottomNavBar(
-                    userId: userId,
-                    householdId: state.household?.id,
+                    userId: widget.userId,
+                    householdId: state.household.id,
                   ),
                 ),
               );
             }
           }
 
-          if (state is CreateHouseholdSuccess) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => HouseholdMembersScreen(
-                  householdId: state.household.id,
-                  userId: widget.userId,
-                ),
-              ),
-            );
-          }
-
           if (state is JoinHouseholdSuccess) {
-            AppToast.showToast(
-              context: context,
-              title: l10n.commonSuccess,
-              description: l10n.householdJoinSuccess,
-              type: ToastificationType.success,
-            );
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => HouseholdMembersScreen(
-                  householdId: state.household.id,
-                  userId: widget.userId,
+            await getIt<HouseholdLocalDataSource>().saveHouseholdId(state.household.id);
+            if (context.mounted) {
+              AppToast.showToast(
+                context: context,
+                title: l10n.commonSuccess,
+                description: l10n.householdJoinSuccess,
+                type: ToastificationType.success,
+              );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => CustomBottomNavBar(
+                    userId: widget.userId,
+                    householdId: state.household.id,
+                  ),
                 ),
-              ),
-            );
+              );
+            }
           }
 
           if (state is GetHouseholdError) {
-            AppToast.showToast(
-              context: context,
-              title: l10n.commonError,
-              description: state.failure.getMessage(context),
-              type: ToastificationType.error,
-            );
+            if (context.mounted) {
+              AppToast.showToast(
+                context: context,
+                title: l10n.commonError,
+                description: state.failure.getMessage(context),
+                type: ToastificationType.error,
+              );
+            }
           }
 
           if (state is JoinHouseholdError) {
-            AppToast.showToast(
-              context: context,
-              title: l10n.commonError,
-              description: state.failure.getMessage(context),
-              type: ToastificationType.error,
-            );
+            if (context.mounted) {
+              AppToast.showToast(
+                context: context,
+                title: l10n.commonError,
+                description: state.failure.getMessage(context),
+                type: ToastificationType.error,
+              );
+            }
           }
         },
         builder: (context, state) {
@@ -137,46 +153,46 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
           return Scaffold(
             body: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(14.0),
+                padding: EdgeInsets.all(14.r),
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: EdgeInsets.symmetric(horizontal: 14.w),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.h),
 
                         Text(
                           l10n.householdSetupTitle,
                           textAlign: TextAlign.center,
-                          style: theme.textTheme.headlineSmall?.copyWith(
+                          style: theme.textTheme.headlineMedium?.copyWith(
+                            fontSize: 24.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
 
-                        const SizedBox(height: 12),
+                        SizedBox(height: 10.h),
 
                         Text(
                           l10n.householdSetupDescription,
                           textAlign: TextAlign.center,
                           style: theme.textTheme.bodyMedium?.copyWith(
-                            color: colorScheme.onSurfaceVariant,
-                            fontSize: 17,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
 
-                        const SizedBox(height: 24),
+                        SizedBox(height: 16.h),
 
                         SizedBox(
                           width: double.infinity,
-                          height: 250,
+                          height: 250.h,
                           child: Lottie.asset(
                             'assets/animations/household_screen.json',
-                            repeat: true,
+                            fit: BoxFit.contain,
                           ),
                         ),
 
-                        const SizedBox(height: 30),
+                        SizedBox(height: 10.h),
 
                         Align(
                           alignment: AlignmentDirectional.centerStart,
@@ -184,11 +200,12 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                             l10n.householdIdLabel,
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.w600,
+                              fontSize: 14.sp,
                             ),
                           ),
                         ),
 
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12.h),
 
                         CustomTextField(
                           controller: _householdIdController,
@@ -197,7 +214,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                           prefixIcon: Icons.home_outlined,
                         ),
 
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.h),
                         CustomButton(
                           text: state is JoinHouseholdLoading
                               ? l10n.householdJoining
@@ -212,33 +229,34 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                                 },
                         ),
 
-                        const SizedBox(height: 32),
+                        SizedBox(height: 32.h),
 
                         Row(
                           children: [
                             Expanded(
                               child: Divider(
                                 color: colorScheme.outline,
-                                thickness: 1.2,
+                                thickness: 1.2.w,
                               ),
                             ),
                             Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 12,
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 12.w,
                               ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 14,
-                                vertical: 6,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 14.w,
+                                vertical: 6.h,
                               ),
                               decoration: BoxDecoration(
                                 color: colorScheme.surfaceContainerHighest,
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                               ),
                               child: Text(
                                 l10n.householdOr,
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   color: colorScheme.onSurfaceVariant,
                                   fontWeight: FontWeight.w700,
+                                  fontSize: 13.sp,
                                   letterSpacing: 0.5,
                                 ),
                               ),
@@ -246,21 +264,36 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                             Expanded(
                               child: Divider(
                                 color: colorScheme.outline,
-                                thickness: 1.2,
+                                thickness: 1.2.w,
                               ),
                             ),
                           ],
                         ),
 
-                        const SizedBox(height: 32),
+                        SizedBox(height: 32.h),
 
                         CustomButton(
                           text: l10n.householdCreateButton,
-                          onPressed: isLoading ? null : widget.onCreatePressed,
+                          onPressed: isLoading
+                              ? null
+                              : () {
+                                  if (widget.onCreatePressed != null) {
+                                    widget.onCreatePressed!();
+                                  } else {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => CreateHouseholdScreen(
+                                          userId: widget.userId,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
                           isOutlined: true,
                         ),
 
-                        const SizedBox(height: 24),
+                        SizedBox(height: 24.h),
                       ],
                     ),
                   ),

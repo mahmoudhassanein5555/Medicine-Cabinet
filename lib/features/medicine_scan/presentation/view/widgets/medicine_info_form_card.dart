@@ -240,7 +240,7 @@ class MedicineInfoFormCard extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            fontSize: 13.sp,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w600,
             color: isDark
                 ? AppColors.textSecondaryDark
@@ -253,7 +253,7 @@ class MedicineInfoFormCard extends StatelessWidget {
             '*',
             style: TextStyle(
               color: isDark ? AppColors.errorDark : AppColors.errorLight,
-              fontSize: 13.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.bold,
             ),
           ),

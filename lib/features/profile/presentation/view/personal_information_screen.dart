@@ -2,17 +2,17 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:medicine_cabinet/core/dialogs/app_toasts.dart';
+import 'package:medicine_cabinet/core/widgets/custom_button.dart';
+import 'package:medicine_cabinet/core/widgets/custom_text_form_field.dart';
+import 'package:medicine_cabinet/features/profile/domain/entities/profile_entity.dart';
+import 'package:medicine_cabinet/features/profile/presentation/view_model/profile_cubit.dart';
+import 'package:medicine_cabinet/features/profile/presentation/view_model/profile_state.dart';
+import 'package:medicine_cabinet/features/profile/presentation/widgets/profile_avatar_picker.dart';
+import 'package:medicine_cabinet/generated/l10n.dart';
 import 'package:toastification/toastification.dart';
-
-import '../../../../core/dialogs/app_toasts.dart';
-import '../../../../core/utils/cloudinary_service.dart';
-import '../../../../core/widgets/custom_button.dart';
-import '../../../../core/widgets/custom_text_form_field.dart';
-import '../../../../generated/l10n.dart';
-import '../../domain/entities/profile_entity.dart';
-import '../view_model/profile_cubit.dart';
-import '../view_model/profile_state.dart';
 
 class PersonalInformationScreen extends StatefulWidget {
   final ProfileEntity profile;
@@ -29,14 +29,11 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   late final TextEditingController _emailController;
 
   File? _selectedImage;
-  bool _isUploadingImage = false;
 
   @override
   void initState() {
     super.initState();
-
     _nameController = TextEditingController(text: widget.profile.name);
-
     _emailController = TextEditingController(text: widget.profile.email);
   }
 
@@ -44,35 +41,25 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
-
     super.dispose();
   }
-
-  // =====================================================
-  // Pick Image
-  // =====================================================
 
   Future<void> _pickImage() async {
     try {
       final picker = ImagePicker();
-
       final image = await picker.pickImage(
         source: ImageSource.gallery,
         imageQuality: 80,
       );
 
-      if (image == null) {
-        return;
-      }
+      if (image == null) return;
 
       setState(() {
         _selectedImage = File(image.path);
       });
     } catch (e) {
       if (!mounted) return;
-
       final l10n = S.of(context);
-
       AppToast.showToast(
         context: context,
         title: l10n.commonError,
@@ -82,17 +69,9 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
     }
   }
 
-  // =====================================================
-  // Save Changes
-  // =====================================================
-
   Future<void> _saveChanges() async {
     final l10n = S.of(context);
     final newName = _nameController.text.trim();
-
-    // =========================
-    // Validate Name
-    // =========================
 
     if (newName.isEmpty) {
       AppToast.showToast(
@@ -101,52 +80,12 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
         description: l10n.profileNameRequired,
         type: ToastificationType.warning,
       );
-
       return;
     }
 
-    String? photoUrl;
-
-    // =========================
-    // Upload Image
-    // =========================
-
-    if (_selectedImage != null) {
-      setState(() {
-        _isUploadingImage = true;
-      });
-
-      try {
-        photoUrl = await CloudinaryService.uploadImage(_selectedImage!);
-      } catch (_) {
-        photoUrl = null;
-      }
-
-      if (!mounted) return;
-
-      setState(() {
-        _isUploadingImage = false;
-      });
-
-      if (photoUrl == null) {
-        AppToast.showToast(
-          context: context,
-          title: l10n.commonError,
-          description: l10n.profileImageUploadFailed,
-          type: ToastificationType.error,
-        );
-
-        return;
-      }
-    }
-
-    // =========================
-    // Update Profile
-    // =========================
-
     await context.read<ProfileCubit>().updateUserProfile(
       name: newName,
-      photoUrl: photoUrl,
+      imageFile: _selectedImage,
     );
   }
 
@@ -155,17 +94,15 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
     final l10n = S.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.profilePersonalInformationTitle)),
+      appBar: AppBar(
+        title: Text(
+          l10n.profilePersonalInformationTitle,
+          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+        ),
+      ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
-        // =====================================================
-        // Listener
-        // =====================================================
         listener: (context, state) {
           final l10n = S.of(context);
-
-          // =========================
-          // Update Success
-          // =========================
 
           if (state is ProfileUpdateSuccess) {
             AppToast.showToast(
@@ -174,14 +111,9 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
               description: l10n.profileUpdateSuccess,
               type: ToastificationType.success,
             );
-
             Navigator.pop(context);
             return;
           }
-
-          // =========================
-          // Update Error
-          // =========================
 
           if (state is ProfileError) {
             AppToast.showToast(
@@ -192,107 +124,32 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
             );
           }
         },
-
-        // =====================================================
-        // Builder
-        // =====================================================
         builder: (context, state) {
-          final isSaving = state is ProfileUpdating || _isUploadingImage;
+          final isSaving = state is ProfileUpdating;
 
           return SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // =====================================================
-                // Profile Picture
-                // =====================================================
-                Center(
-                  child: GestureDetector(
-                    onTap: isSaving ? null : _pickImage,
-                    child: Stack(
-                      children: [
-                        CircleAvatar(
-                          radius: 55,
-                          backgroundColor: Theme.of(
-                            context,
-                          ).colorScheme.primary,
-                          backgroundImage: _selectedImage != null
-                              ? FileImage(_selectedImage!)
-                              : widget.profile.photoUrl != null
-                              ? NetworkImage(widget.profile.photoUrl!)
-                              : null,
-                          child:
-                              _selectedImage == null &&
-                                  widget.profile.photoUrl == null
-                              ? Text(
-                                  widget.profile.name.isNotEmpty
-                                      ? widget.profile.name[0].toUpperCase()
-                                      : 'U',
-                                  style: TextStyle(
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onPrimary,
-                                  ),
-                                )
-                              : null,
-                        ),
-
-                        // Camera button
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            width: 36,
-                            height: 36,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.primary,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.camera_alt,
-                              size: 19,
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
-                          ),
-                        ),
-
-                        // Upload loading
-                        if (_isUploadingImage)
-                          Positioned.fill(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.black45,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Center(
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
+                ProfileAvatarPicker(
+                  profile: widget.profile,
+                  selectedImage: _selectedImage,
+                  isSaving: isSaving,
+                  onPickImage: _pickImage,
                 ),
 
-                const SizedBox(height: 35),
+                SizedBox(height: 35.h),
 
-                // =====================================================
-                // Full Name
-                // =====================================================
                 Text(
                   l10n.profileFullName,
-                  style: const TextStyle(
-                    fontSize: 14,
+                  style: TextStyle(
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
 
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
 
                 CustomTextFormField(
                   controller: _nameController,
@@ -301,20 +158,17 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   enabled: !isSaving,
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
-                // =====================================================
-                // Email
-                // =====================================================
                 Text(
                   l10n.profileEmailAddress,
-                  style: const TextStyle(
-                    fontSize: 14,
+                  style: TextStyle(
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
 
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
 
                 CustomTextFormField(
                   controller: _emailController,
@@ -323,15 +177,13 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                   enabled: false,
                 ),
 
-                const SizedBox(height: 35),
+                SizedBox(height: 35.h),
 
-                // =====================================================
-                // Save Button
-                // =====================================================
                 CustomButton(
                   text: isSaving
                       ? l10n.profileSavingChanges
                       : l10n.profileSaveChanges,
+                  isLoading: isSaving,
                   onPressed: _saveChanges,
                 ),
               ],

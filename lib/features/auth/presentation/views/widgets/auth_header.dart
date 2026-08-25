@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthHeader extends StatelessWidget {
   final String title;
@@ -19,34 +20,30 @@ class AuthHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: const EdgeInsets.all(12),
+          padding: EdgeInsets.all(12.r),
           decoration: BoxDecoration(
             color: colorScheme.primaryContainer,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
           ),
           child: Icon(
             Icons.all_inbox_rounded,
             color: colorScheme.primary,
-            size: 30,
+            size: 30.r,
           ),
         ),
-
-        const SizedBox(height: 24),
-
+        SizedBox(height: 24.h),
         Text(
           title,
           style: theme.textTheme.headlineMedium?.copyWith(
-            fontSize: 26,
+            fontSize: 24.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
-
-        const SizedBox(height: 8),
-
+        SizedBox(height: 8.h),
         Text(
           subtitle,
           style: theme.textTheme.bodyMedium?.copyWith(
-            fontSize: 14,
+            fontSize: 14.sp,
           ),
         ),
       ],

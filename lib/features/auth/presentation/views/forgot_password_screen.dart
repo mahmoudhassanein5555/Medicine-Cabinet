@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../../../core/dialogs/app_toasts.dart';
@@ -68,57 +69,60 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         return Scaffold(
           backgroundColor: colorScheme.surface,
           appBar: AppBar(
-            title: Text(l10n.authForgotPassword),
+            title: Text(
+              l10n.authForgotPassword,
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+            ),
           ),
           body: SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+              padding: EdgeInsets.all(24.r),
               child: Form(
                 key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 24),
+                    SizedBox(height: 24.h),
 
                     Icon(
                       Icons.lock_reset_rounded,
-                      size: 64,
+                      size: 64.r,
                       color: colorScheme.primary,
                     ),
 
-                    const SizedBox(height: 24),
+                    SizedBox(height: 24.h),
 
                     Text(
                       l10n.authResetPasswordTitle,
                       style: TextStyle(
-                        fontSize: 26,
+                        fontSize: 26.sp,
                         fontWeight: FontWeight.bold,
                         color: colorScheme.onSurface,
                       ),
                     ),
 
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
 
                     Text(
                       l10n.authResetPasswordSubtitle,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         color: colorScheme.onSurfaceVariant,
                       ),
                     ),
 
-                    const SizedBox(height: 32),
+                    SizedBox(height: 32.h),
 
                     Text(
                       l10n.authEmailLabel,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.onSurface,
                       ),
                     ),
 
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
 
                     CustomTextFormField(
                       controller: emailController,
@@ -133,11 +137,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       prefixIcon: Icon(
                         Icons.email_outlined,
                         color: colorScheme.onSurfaceVariant,
+                        size: 20.r,
                       ),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
 
-                    const SizedBox(height: 28),
+                    SizedBox(height: 28.h),
 
                     CustomButton(
                       text: isLoading

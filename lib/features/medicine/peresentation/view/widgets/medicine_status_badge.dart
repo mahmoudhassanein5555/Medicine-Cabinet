@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/core/constants/app_colors.dart';
 
 class MedicineStatusBadge extends StatelessWidget {
@@ -16,28 +16,28 @@ class MedicineStatusBadge extends StatelessWidget {
 
     final Color backgroundColor = isHealthy
         ? (isDark
-              ? AppColors.successDark.withValues(alpha: 0.15)
-              : AppColors.successContainerLight)
+            ? AppColors.successDark.withValues(alpha: 0.15)
+            : AppColors.successContainerLight)
         : (isDark
-              ? AppColors.warningDark.withValues(alpha: 0.15)
-              : AppColors.warningContainerLight);
+            ? AppColors.warningDark.withValues(alpha: 0.15)
+            : AppColors.warningContainerLight);
 
     final Color textColor = isHealthy
         ? (isDark ? AppColors.successDark : AppColors.successLight)
         : (isDark ? AppColors.warningDark : AppColors.warningLight);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(15.r),
       ),
       child: Text(
         status,
         style: theme.textTheme.bodyMedium?.copyWith(
           color: textColor,
-          fontSize: 10.5,
-          fontWeight: FontWeight.w800,
+          fontSize: 11.sp,
+          fontWeight: FontWeight.w700,
         ),
       ),
     );

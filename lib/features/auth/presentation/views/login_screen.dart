@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:medicine_cabinet/features/auth/presentation/views/register_screen.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/widgets/auth_header.dart';
@@ -90,16 +91,16 @@ class _LoginScreenState extends State<LoginScreen> {
           backgroundColor: colorScheme.surface,
           body: SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24.0,
-                vertical: 16.0,
+              padding: EdgeInsets.symmetric(
+                horizontal: 24.w,
+                vertical: 16.h,
               ),
               child: Form(
                 key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
 
                     // Header
                     AuthHeader(
@@ -107,19 +108,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       subtitle: l10n.authLoginSubtitle,
                     ),
 
-                    const SizedBox(height: 32),
+                    SizedBox(height: 32.h),
 
                     // Email Label
                     Text(
                       l10n.authEmailLabel,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.onSurface,
                       ),
                     ),
 
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
 
                     // Email Field
                     CustomTextFormField(
@@ -135,23 +136,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       prefixIcon: Icon(
                         Icons.email_outlined,
                         color: colorScheme.onSurfaceVariant,
+                        size: 20.r,
                       ),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
 
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
 
                     // Password Label
                     Text(
                       l10n.authPasswordLabel,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.onSurface,
                       ),
                     ),
 
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
 
                     // Password Field
                     CustomTextFormField(
@@ -168,8 +170,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       prefixIcon: Icon(
                         Icons.lock_outline,
                         color: colorScheme.onSurfaceVariant,
+                        size: 20.r,
                       ),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
 
                     // Forgot Password
@@ -192,12 +195,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(
                             color: colorScheme.primary,
                             fontWeight: FontWeight.w600,
+                            fontSize: 13.sp,
                           ),
                         ),
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
 
                     // Login Button
                     CustomButton(
@@ -216,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
 
-                    const SizedBox(height: 24),
+                    SizedBox(height: 24.h),
 
                     // OR
                     Row(
@@ -224,11 +228,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         Expanded(child: Divider(color: colorScheme.outline)),
 
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
                           child: Text(
                             l10n.commonOr,
                             style: TextStyle(
                               color: colorScheme.onSurfaceVariant,
+                              fontSize: 14.sp,
                             ),
                           ),
                         ),
@@ -237,7 +242,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
 
-                    const SizedBox(height: 24),
+                    SizedBox(height: 24.h),
 
                     // Google Sign In
                     GoogleButton(
@@ -247,7 +252,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
 
-                    const SizedBox(height: 32),
+                    SizedBox(height: 32.h),
 
                     // Footer
                     Row(
@@ -255,7 +260,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Text(
                           l10n.authNoAccount,
-                          style: TextStyle(color: colorScheme.onSurfaceVariant),
+                          style: TextStyle(
+                            color: colorScheme.onSurfaceVariant,
+                            fontSize: 14.sp,
+                          ),
                         ),
 
                         TextButton(
@@ -275,6 +283,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                               color: colorScheme.primary,
                               fontWeight: FontWeight.bold,
+                              fontSize: 14.sp,
                             ),
                           ),
                         ),

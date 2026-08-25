@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class MedicineListSkeleton extends StatelessWidget {
@@ -7,47 +8,45 @@ class MedicineListSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
+      padding: EdgeInsets.symmetric(
+        horizontal: 16.w,
+        vertical: 8.h,
       ),
       itemCount: 6,
-      separatorBuilder: (_, __) => const SizedBox(height: 12),
+      separatorBuilder: (_, __) => SizedBox(height: 12.h),
       itemBuilder: (context, index) {
         return Skeletonizer(
           child: Container(
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.all(12.r),
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
             ),
             child: Row(
               children: [
-                const Bone.square(
-                  size: 64,
+                Bone.square(
+                  size: 64.r,
                 ),
 
-                const SizedBox(width: 12),
+                SizedBox(width: 12.w),
 
                 Expanded(
                   child: Column(
-                    crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
-                      Bone.text(
+                      const Bone.text(
                         words: 2,
                       ),
 
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
 
-                      Bone.text(
+                      const Bone.text(
                         words: 1,
                       ),
 
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
 
-                      Bone.text(
+                      const Bone.text(
                         words: 2,
                       ),
                     ],

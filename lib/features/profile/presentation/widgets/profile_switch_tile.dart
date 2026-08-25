@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileSwitchTile extends StatelessWidget {
   const ProfileSwitchTile({
@@ -21,17 +22,17 @@ class ProfileSwitchTile extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: 8.h,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                  fontSize: 15,
+                style: TextStyle(
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -47,8 +48,8 @@ class ProfileSwitchTile extends StatelessWidget {
           Divider(
             height: 1,
             thickness: 0.8,
-            indent: 16,
-            endIndent: 16,
+            indent: 16.w,
+            endIndent: 16.w,
             color: colorScheme.outline,
           ),
       ],

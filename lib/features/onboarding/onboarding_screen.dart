@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/core/constants/app_colors.dart';
+import 'package:medicine_cabinet/features/onboarding/onboarding_dot_indicator.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
 import 'onboarding_page_data.dart';
@@ -56,15 +58,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     OnboardingPageView(data: pages[index]),
               ),
             ),
-            _DotIndicator(count: pages.length, activeIndex: _page),
-            const SizedBox(height: 24),
+            OnboardingDotIndicator(count: pages.length, activeIndex: _page),
+            SizedBox(height: 24.h),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Container(
                 width: double.infinity,
-                height: 52,
+                height: 52.h,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: BorderRadius.circular(28.r),
                   boxShadow: [
                     BoxShadow(
                       color: colorScheme.primary.withValues(alpha: 0.25),
@@ -80,17 +82,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     foregroundColor: colorScheme.onPrimary,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28),
+                      borderRadius: BorderRadius.circular(28.r),
                     ),
                   ),
                   child: Text(
                     isLastPage ? s.onboardingGetStarted : s.onboardingContinue,
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             TextButton(
               onPressed: () => widget.onFinished?.call(context),
               child: Text(
@@ -99,45 +101,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   color: isLastPage
                       ? Colors.transparent
                       : AppColors.scannerFrameAccent,
-                  fontSize: 16,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
           ],
         ),
       ),
-    );
-  }
-}
-
-class _DotIndicator extends StatelessWidget {
-  const _DotIndicator({required this.count, required this.activeIndex});
-
-  final int count;
-  final int activeIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(count, (index) {
-        final isActive = index == activeIndex;
-        return AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          width: isActive ? 22 : 8,
-          height: 8,
-          decoration: BoxDecoration(
-            color: isActive
-                ? colorScheme.primary
-                : colorScheme.primary.withValues(alpha: 0.2),
-            borderRadius: BorderRadius.circular(4),
-          ),
-        );
-      }),
     );
   }
 }

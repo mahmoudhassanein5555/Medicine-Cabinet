@@ -6,14 +6,17 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/core/bloc_observer/bloc_observer.dart';
+import 'package:medicine_cabinet/core/constants/app_keys.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
 import 'package:medicine_cabinet/core/settings/app_settings_cubit.dart';
 import 'package:medicine_cabinet/core/settings/app_settings_state.dart';
 import 'package:medicine_cabinet/core/theme/app_theme.dart';
+import 'package:medicine_cabinet/core/utils/household_local_data_source.dart';
+import 'package:medicine_cabinet/core/utils/shared_prefs_local_data_source.dart';
 import 'package:medicine_cabinet/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:medicine_cabinet/features/auth/presentation/views/login_screen.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_bottom_nav_bar.dart';
-import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
+import 'package:medicine_cabinet/features/household/presentation/view/view/household_screen.dart';
 import 'package:medicine_cabinet/features/onboarding/onboarding_screen.dart';
 import 'package:medicine_cabinet/features/splash_screen.dart';
 import 'firebase_options.dart';
@@ -84,20 +87,48 @@ class MyApp extends StatelessWidget {
                   final currentUser = FirebaseAuth.instance.currentUser;
 
                   if (currentUser != null) {
-                    return 'home';
+                    final cacheHelper = getIt<CacheHelper>();
+                    final localDataSource = getIt<HouseholdLocalDataSource>();
+
+                    final cachedUserId = cacheHelper.getData(key: AppKeys.userId);
+                    if (cachedUserId == null) {
+                      await cacheHelper.saveData(
+                        key: AppKeys.userId,
+                        value: currentUser.uid,
+                      );
+                    }
+
+                    final householdId = localDataSource.getHouseholdId();
+                    if (householdId != null && householdId.isNotEmpty) {
+                      return 'home';
+                    }
+                    return 'household';
                   }
 
                   return 'onboarding';
                 },
 
                 onNavigate: (splashContext, route) {
-                  if (route == 'home') {
+                  final currentUser = FirebaseAuth.instance.currentUser;
+                  final householdId =
+                      getIt<HouseholdLocalDataSource>().getHouseholdId();
+
+                  if (route == 'home' && currentUser != null) {
                     Navigator.pushReplacement(
                       splashContext,
                       MaterialPageRoute(
-                        builder: (_) => BlocProvider<MedicineCubit>(
-                          create: (_) => getIt<MedicineCubit>(),
-                          child: const CustomBottomNavBar(),
+                        builder: (_) => CustomBottomNavBar(
+                          userId: currentUser.uid,
+                          householdId: householdId,
+                        ),
+                      ),
+                    );
+                  } else if (route == 'household' && currentUser != null) {
+                    Navigator.pushReplacement(
+                      splashContext,
+                      MaterialPageRoute(
+                        builder: (_) => HouseholdScreen(
+                          userId: currentUser.uid,
                         ),
                       ),
                     );

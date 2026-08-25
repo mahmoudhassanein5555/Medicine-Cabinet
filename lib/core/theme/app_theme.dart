@@ -158,15 +158,15 @@ class AppTheme {
       // Typography
       // ========================================================
       textTheme: TextTheme(
-        headlineSmall: TextStyle(
-          fontSize: 22,
+        headlineMedium: TextStyle(
+          fontSize: 24,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryLight,
           fontFamily: fontFamily,
         ),
 
-        headlineMedium: TextStyle(
-          fontSize: 20,
+        headlineSmall: TextStyle(
+          fontSize: 22,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryLight,
           fontFamily: fontFamily,
@@ -187,10 +187,9 @@ class AppTheme {
         ),
 
         titleSmall: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
           color: AppColors.textSecondaryLight,
-          letterSpacing: 1.1,
           fontFamily: fontFamily,
         ),
 
@@ -203,6 +202,12 @@ class AppTheme {
 
         bodyMedium: TextStyle(
           fontSize: 13,
+          color: AppColors.textSecondaryLight,
+          fontFamily: fontFamily,
+        ),
+
+        bodySmall: TextStyle(
+          fontSize: 12,
           color: AppColors.textSecondaryLight,
           fontFamily: fontFamily,
         ),
@@ -353,15 +358,15 @@ class AppTheme {
       // Typography
       // ========================================================
       textTheme: TextTheme(
-        headlineSmall: TextStyle(
-          fontSize: 22,
+        headlineMedium: TextStyle(
+          fontSize: 24,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryDark,
           fontFamily: fontFamily,
         ),
 
-        headlineMedium: TextStyle(
-          fontSize: 20,
+        headlineSmall: TextStyle(
+          fontSize: 22,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryDark,
           fontFamily: fontFamily,
@@ -382,10 +387,9 @@ class AppTheme {
         ),
 
         titleSmall: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
           color: AppColors.textSecondaryDark,
-          letterSpacing: 1.1,
           fontFamily: fontFamily,
         ),
 
@@ -398,6 +402,12 @@ class AppTheme {
 
         bodyMedium: TextStyle(
           fontSize: 13,
+          color: AppColors.textSecondaryDark,
+          fontFamily: fontFamily,
+        ),
+
+        bodySmall: TextStyle(
+          fontSize: 12,
           color: AppColors.textSecondaryDark,
           fontFamily: fontFamily,
         ),

@@ -1,9 +1,12 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
+import 'package:medicine_cabinet/core/di/service_locator.dart';
 import 'package:medicine_cabinet/core/failure/failure.dart';
+import 'package:medicine_cabinet/core/utils/household_local_data_source.dart';
 import 'package:medicine_cabinet/features/medicine_scan/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/features/medicine_scan/domain/entity/medicine_scan_entity.dart';
 import 'package:medicine_cabinet/features/medicine_scan/domain/entity/member_entity.dart';
@@ -41,7 +44,7 @@ class MedicineScanCubit extends Cubit<MedicineScanStates> {
   int quantity = 1;
   String selectedMember = '';
   String? scannedImageUrl;
-  String currentHouseId = 'household123';
+  String currentHouseId = '';
   List<MemberEntity> householdMembers = [];
   bool isLoadingMembers = false;
   Failure? membersFailure;
@@ -50,9 +53,11 @@ class MedicineScanCubit extends Cubit<MedicineScanStates> {
 
   void initConfirmationData(
     MedicineScanEntity? entity, {
-    String houseId = 'household123',
+    String? houseId,
   }) {
-    currentHouseId = houseId;
+    currentHouseId = (houseId != null && houseId.isNotEmpty)
+        ? houseId
+        : (getIt<HouseholdLocalDataSource>().getHouseholdId() ?? '');
     scannedImageUrl = entity?.imageUrl;
     selectedExpiryDate =
         entity?.expiryDate ?? DateTime.now().add(const Duration(days: 365));
@@ -170,6 +175,14 @@ class MedicineScanCubit extends Cubit<MedicineScanStates> {
 
     emit(AddMedicineLoadingState());
 
+    final effectiveHouseId = currentHouseId.isNotEmpty
+        ? currentHouseId
+        : (getIt<HouseholdLocalDataSource>().getHouseholdId() ?? '');
+
+    final currentUserName = FirebaseAuth.instance.currentUser?.displayName ??
+        FirebaseAuth.instance.currentUser?.email ??
+        'User';
+
     final medicineEntity = MedicineEntity(
       id: '',
       name: nameController.text.trim(),
@@ -180,7 +193,7 @@ class MedicineScanCubit extends Cubit<MedicineScanStates> {
       imageUrl: scannedImageUrl ?? '',
       expiryDate:
           selectedExpiryDate ?? DateTime.now().add(const Duration(days: 365)),
-      addedBy: 'User Name',
+      addedBy: currentUserName,
       ownerId: selectedMember,
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
@@ -189,7 +202,7 @@ class MedicineScanCubit extends Cubit<MedicineScanStates> {
 
     final result = await addMedicineUseCase.invoke(
       medicineEntity,
-      currentHouseId,
+      effectiveHouseId,
     );
 
     result.fold(

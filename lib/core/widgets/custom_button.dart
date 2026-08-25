@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final bool isLoading;
 
   const CustomButton({
@@ -18,7 +19,7 @@ class CustomButton extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      height: 52,
+      height: 52.h,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
@@ -27,13 +28,13 @@ class CustomButton extends StatelessWidget {
           elevation: 2,
           shadowColor: colorScheme.primary.withValues(alpha: 0.25),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(26),
+            borderRadius: BorderRadius.circular(26.r),
           ),
         ),
         child: isLoading
             ? SizedBox(
-                width: 22,
-                height: 22,
+                width: 22.r,
+                height: 22.r,
                 child: CircularProgressIndicator(
                   strokeWidth: 2.5,
                   color: colorScheme.onPrimary,
@@ -41,8 +42,8 @@ class CustomButton extends StatelessWidget {
               )
             : Text(
                 text,
-                style: const TextStyle(
-                  fontSize: 16,
+                style: TextStyle(
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),

@@ -117,7 +117,8 @@ import '../../features/profile/domain/repositories/profile_repository.dart'
     as _i894;
 import '../../features/profile/domain/usecases/get_profile.dart' as _i72;
 import '../../features/profile/domain/usecases/update_profile.dart' as _i78;
-import '../../features/profile/presentation/view_model/profile_cubit.dart' as _i36;
+import '../../features/profile/presentation/view_model/profile_cubit.dart'
+    as _i542;
 import '../../features/search/data/data_source/search_data_source_imp.dart'
     as _i821;
 import '../../features/search/data/data_source/search_data_source_interface.dart'
@@ -253,8 +254,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i682.AlertRepoInterface>(
       () => _i862.AlertRepoImp(gh<_i39.AlertDataSourceInterface>()),
     );
-    gh.factory<_i36.ProfileCubit>(
-      () => _i36.ProfileCubit(
+    gh.factory<_i542.ProfileCubit>(
+      () => _i542.ProfileCubit(
         getProfile: gh<_i72.GetProfile>(),
         updateProfile: gh<_i78.UpdateProfile>(),
       ),

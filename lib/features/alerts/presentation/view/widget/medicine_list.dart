@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../domain/entity/medicine_entity.dart';
 import 'empty_medicine_state.dart';
@@ -16,11 +17,9 @@ class MedicineList extends StatelessWidget {
     }
 
     return ListView.separated(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       itemCount: medicines.length,
-      separatorBuilder: (_, __) {
-        return const SizedBox(height: 12);
-      },
+      separatorBuilder: (_, __) => SizedBox(height: 12.h),
       itemBuilder: (context, index) {
         return MedicineCard(medicine: medicines[index]);
       },

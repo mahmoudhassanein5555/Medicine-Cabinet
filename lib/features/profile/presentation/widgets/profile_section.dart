@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileSection extends StatelessWidget {
   const ProfileSection({
@@ -18,15 +19,15 @@ class ProfileSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            left: 4,
-            right: 4,
-            bottom: 8,
+          padding: EdgeInsets.only(
+            left: 4.w,
+            right: 4.w,
+            bottom: 8.h,
           ),
           child: Text(
             title,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 12.sp,
               fontWeight: FontWeight.bold,
               color: colorScheme.onSurfaceVariant,
               letterSpacing: 1.1,
@@ -36,7 +37,7 @@ class ProfileSection extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             color: colorScheme.surface,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
             border: Border.all(
               color: colorScheme.outline,
             ),
