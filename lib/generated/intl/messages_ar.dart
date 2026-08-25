@@ -380,6 +380,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdPermissionView": MessageLookupByLibrary.simpleMessage(
       "عرض أدوية جميع الأعضاء",
     ),
+    "householdQrClose": MessageLookupByLibrary.simpleMessage("إغلاق"),
+    "householdQrDescription": MessageLookupByLibrary.simpleMessage(
+      "امسح رمز QR للانضمام إلى المنزل",
+    ),
+    "householdQrNotMember": MessageLookupByLibrary.simpleMessage(
+      "أنت لست عضوًا في منزل بعد",
+    ),
+    "householdQrScannerInstruction": MessageLookupByLibrary.simpleMessage(
+      "ضع رمز QR داخل الإطار",
+    ),
+    "householdQrScannerTitle": MessageLookupByLibrary.simpleMessage(
+      "مسح رمز QR للمنزل",
+    ),
+    "householdQrTitle": MessageLookupByLibrary.simpleMessage(
+      "رمز QR الخاص بالمنزل",
+    ),
     "householdRemoveButton": MessageLookupByLibrary.simpleMessage("إزالة"),
     "householdRemoveMemberDesc": m10,
     "householdRemoveMemberTitle": MessageLookupByLibrary.simpleMessage(
@@ -388,6 +404,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdRemoveMemberTooltip": MessageLookupByLibrary.simpleMessage(
       "إزالة العضو",
     ),
+    "householdScanQrButton": MessageLookupByLibrary.simpleMessage("مسح رمز QR"),
     "householdSetupDescription": MessageLookupByLibrary.simpleMessage(
       "انضم إلى منزل موجود باستخدام المعرّف الخاص به، أو أنشئ منزلاً جديداً.",
     ),

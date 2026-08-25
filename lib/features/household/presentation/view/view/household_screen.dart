@@ -16,6 +16,7 @@ import '../../../../../generated/l10n.dart';
 import '../view_model/household_cubit.dart';
 import '../view_model/household_state.dart';
 import 'create_household_screen.dart';
+import 'household_qr_scanner_screen.dart';
 
 class HouseholdScreen extends StatefulWidget {
   const HouseholdScreen({
@@ -230,6 +231,67 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                         ),
 
                         SizedBox(height: 32.h),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: colorScheme.outline,
+                                thickness: 1.2.w,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 12.w,
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 14.w,
+                                vertical: 6.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: colorScheme.surfaceContainerHighest,
+                                borderRadius: BorderRadius.circular(20.r),
+                              ),
+                              child: Text(
+                                l10n.householdOr,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: colorScheme.onSurfaceVariant,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 13.sp,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: colorScheme.outline,
+                                thickness: 1.2.w,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SizedBox(height: 16.h),
+                        ElevatedButton.icon(
+                          onPressed: isLoading
+                              ? null
+                              : () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => BlocProvider.value(
+                                  value: context.read<HouseholdCubit>(),
+                                  child: HouseholdQrScannerScreen(
+                                    userId: widget.userId,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.qr_code_scanner),
+                          label: Text(l10n.householdScanQrButton),
+                        ),
+                        SizedBox(height: 16.h),
+
 
                         Row(
                           children: [
@@ -270,8 +332,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                           ],
                         ),
 
-                        SizedBox(height: 32.h),
-
+                        SizedBox(height: 16.h),
                         CustomButton(
                           text: l10n.householdCreateButton,
                           onPressed: isLoading

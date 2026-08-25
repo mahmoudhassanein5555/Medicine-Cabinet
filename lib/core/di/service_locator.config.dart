@@ -133,6 +133,8 @@ import '../../features/profile/data/repositories/profile_repository_impl.dart'
     as _i334;
 import '../../features/profile/domain/repositories/profile_repository.dart'
     as _i894;
+import '../../features/profile/domain/usecases/get_cached_household_Id_use_case.dart'
+    as _i291;
 import '../../features/profile/domain/usecases/get_profile.dart' as _i72;
 import '../../features/profile/domain/usecases/update_profile.dart' as _i78;
 import '../../features/profile/presentation/view_model/profile_cubit.dart'
@@ -186,6 +188,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i894.ProfileRepository>(
       () => _i334.ProfileRepositoryImpl(
         remoteDataSource: gh<_i559.ProfileRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i291.GetCachedHouseholdIdUseCase>(
+      () => _i291.GetCachedHouseholdIdUseCase(
+        gh<_i1006.HouseholdLocalDataSource>(),
       ),
     );
     gh.lazySingleton<_i68.HomeRemoteDataSource>(

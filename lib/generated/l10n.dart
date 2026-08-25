@@ -3153,6 +3153,71 @@ class S {
       args: [],
     );
   }
+
+  /// `My Household QR`
+  String get householdQrTitle {
+    return Intl.message(
+      'My Household QR',
+      name: 'householdQrTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan this QR code to join my household`
+  String get householdQrDescription {
+    return Intl.message(
+      'Scan this QR code to join my household',
+      name: 'householdQrDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get householdQrClose {
+    return Intl.message('Close', name: 'householdQrClose', desc: '', args: []);
+  }
+
+  /// `You are not a member of a household yet`
+  String get householdQrNotMember {
+    return Intl.message(
+      'You are not a member of a household yet',
+      name: 'householdQrNotMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan Household QR`
+  String get householdQrScannerTitle {
+    return Intl.message(
+      'Scan Household QR',
+      name: 'householdQrScannerTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place the QR code inside the frame`
+  String get householdQrScannerInstruction {
+    return Intl.message(
+      'Place the QR code inside the frame',
+      name: 'householdQrScannerInstruction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan QR Code`
+  String get householdScanQrButton {
+    return Intl.message(
+      'Scan QR Code',
+      name: 'householdScanQrButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
