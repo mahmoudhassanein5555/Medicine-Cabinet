@@ -15,6 +15,7 @@ class MedicineDetailsDto {
   final DateTime updatedAt;
   final String? category;
   final String? storageLocation;
+  final String? description;
 
   const MedicineDetailsDto({
     required this.id,
@@ -30,6 +31,7 @@ class MedicineDetailsDto {
     required this.updatedAt,
     this.category,
     this.storageLocation,
+    this.description,
   });
 
   factory MedicineDetailsDto.fromFirestore(
@@ -41,7 +43,7 @@ class MedicineDetailsDto {
       id: doc.id,
       name: data['name'] as String? ?? '',
       type: data['type'] as String? ?? '',
-      quantity: data['quantity'] as int? ?? 0,
+      quantity: (data['quantity'] as num?)?.toInt() ?? 0,
       expiryDate:
           (data['expiryDate'] as Timestamp?)?.toDate() ?? DateTime.now(),
       imageUrl: data['imageUrl'] as String? ?? '',
@@ -54,6 +56,7 @@ class MedicineDetailsDto {
           (data['updatedAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
       category: data['category'] as String?,
       storageLocation: data['storageLocation'] as String?,
+      description: data['description'] as String?,
     );
   }
 
@@ -72,6 +75,7 @@ class MedicineDetailsDto {
       updatedAt: updatedAt,
       category: category,
       storageLocation: storageLocation,
+      description: description,
     );
   }
 }

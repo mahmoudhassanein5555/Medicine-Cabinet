@@ -10,6 +10,7 @@ class MedicineDetailsEntity {
   final String addedBy;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final String? description;
 
   final String? category;
   final String? storageLocation;
@@ -28,6 +29,7 @@ class MedicineDetailsEntity {
     required this.updatedAt,
     this.category,
     this.storageLocation,
+    this.description,
   });
 
   MedicineDetailsEntity copyWith({
@@ -44,6 +46,7 @@ class MedicineDetailsEntity {
     DateTime? updatedAt,
     String? category,
     String? storageLocation,
+    String? description,
   }) {
     return MedicineDetailsEntity(
       id: id ?? this.id,
@@ -59,6 +62,7 @@ class MedicineDetailsEntity {
       updatedAt: updatedAt ?? this.updatedAt,
       category: category ?? this.category,
       storageLocation: storageLocation ?? this.storageLocation,
+      description: description ?? this.description,
     );
   }
 }

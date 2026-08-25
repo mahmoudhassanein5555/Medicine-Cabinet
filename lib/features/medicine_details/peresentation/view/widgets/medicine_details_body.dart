@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:medicine_cabinet/core/utils/medicine_localization.dart';
+import 'package:medicine_cabinet/core/utils/medicine_details_localization.dart';
 import 'package:medicine_cabinet/features/medicine_details/domain/entity/medicine_entity.dart';
+import 'package:medicine_cabinet/features/medicine_details/peresentation/view/widgets/medicine_description_section.dart';
 import 'package:medicine_cabinet/features/medicine_details/peresentation/view/widgets/medicine_details_header.dart';
 import 'package:medicine_cabinet/features/medicine_details/peresentation/view/widgets/medicine_expiry_banner.dart';
 import 'package:medicine_cabinet/features/medicine_details/peresentation/view/widgets/medicine_hero_section.dart';
@@ -53,6 +54,15 @@ class MedicineDetailsBody extends StatelessWidget {
                     MedicineExpiryBanner(medicine: medicine),
 
                     SizedBox(height: 16.h),
+
+                    // Description (if present)
+                    if (medicine.description != null &&
+                        medicine.description!.trim().isNotEmpty) ...[
+                      MedicineDescriptionSection(
+                        description: medicine.description,
+                      ),
+                      SizedBox(height: 12.h),
+                    ],
 
                     // Quantity + expiry date
                     Row(

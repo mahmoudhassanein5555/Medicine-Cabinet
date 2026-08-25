@@ -441,6 +441,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "سيؤدي هذا إلى إزالته من مخزون خزانتك. لا يمكن التراجع عن هذا الإجراء.",
     ),
+    "medicineDetailsDescription": MessageLookupByLibrary.simpleMessage("الوصف"),
     "medicineDetailsName": MessageLookupByLibrary.simpleMessage("الاسم"),
     "medicineDetailsNotFound": MessageLookupByLibrary.simpleMessage(
       "الدواء غير موجود",
@@ -470,10 +471,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineTypeCapsules": MessageLookupByLibrary.simpleMessage("كبسولات"),
     "medicineTypeCream": MessageLookupByLibrary.simpleMessage("كريم"),
     "medicineTypeDrops": MessageLookupByLibrary.simpleMessage("قطرات"),
+    "medicineTypeEntericCoatedTablets": MessageLookupByLibrary.simpleMessage(
+      "أقراص مغلفة معويًا",
+    ),
     "medicineTypeInhaler": MessageLookupByLibrary.simpleMessage("بخاخ"),
+    "medicineTypeLiquid": MessageLookupByLibrary.simpleMessage("سائل"),
     "medicineTypeOintment": MessageLookupByLibrary.simpleMessage("مرهم"),
     "medicineTypePills": MessageLookupByLibrary.simpleMessage("أقراص"),
+    "medicineTypeSolutionForImOralUse": MessageLookupByLibrary.simpleMessage(
+      "محلول للحقن العضلي أو الاستخدام الفموي",
+    ),
     "medicineTypeSyrup": MessageLookupByLibrary.simpleMessage("شراب"),
+    "medicineTypeTablets": MessageLookupByLibrary.simpleMessage("أقراص"),
     "medicines": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "medicinesItemsCount": m16,
     "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("الأدوية"),

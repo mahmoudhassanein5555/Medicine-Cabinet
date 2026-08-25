@@ -5,26 +5,23 @@ String getLocalizedMedicineType(BuildContext context, String type) {
   final l10n = S.of(context);
 
   switch (type.trim().toLowerCase()) {
-    case 'pills':
-      return l10n.medicineTypePills;
+    case 'tablets':
+      return l10n.medicineTypeTablets;
 
-    case 'capsules':
-      return l10n.medicineTypeCapsules;
+    case 'enteric coated tablets':
+      return l10n.medicineTypeEntericCoatedTablets;
+
+    case 'liquid':
+      return l10n.medicineTypeLiquid;
 
     case 'syrup':
       return l10n.medicineTypeSyrup;
 
-    case 'drops':
-      return l10n.medicineTypeDrops;
+    case 'solution for im injection / oral use':
+      return l10n.medicineTypeSolutionForImOralUse;
 
-    case 'cream':
-      return l10n.medicineTypeCream;
-
-    case 'ointment':
-      return l10n.medicineTypeOintment;
-
-    case 'inhaler':
-      return l10n.medicineTypeInhaler;
+    case 'capsules':
+      return l10n.medicineTypeCapsules;
 
     default:
       return type;

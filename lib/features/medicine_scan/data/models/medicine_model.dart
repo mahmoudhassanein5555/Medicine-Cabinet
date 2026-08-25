@@ -70,19 +70,19 @@ class MedicineModel {
 
   factory MedicineModel.fromJson(Map<String, dynamic> json) {
     return MedicineModel(
-      id: json['id'] as String,
-      addedBy: json['addedBy'] as String,
-      category: json['category'] as String,
-      createdAt: (json['createdAt'] as Timestamp).toDate(),
-      expiryDate: (json['expiryDate'] as Timestamp).toDate(),
-      imageUrl: json['imageUrl'] as String,
-      name: json['name'] as String,
-      ownerId: json['ownerId'] as String,
-      quantity: json['quantity'] as int,
-      storageLocation: json['storageLocation'] as String,
-      type: json['type'] as String,
-      updatedAt: (json['updatedAt'] as Timestamp).toDate(),
-      description: json["description"],
+      id: json['id'] as String? ?? '',
+      addedBy: json['addedBy'] as String? ?? '',
+      category: json['category'] as String? ?? '',
+      createdAt: (json['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      expiryDate: (json['expiryDate'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      imageUrl: json['imageUrl'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      ownerId: json['ownerId'] as String? ?? '',
+      quantity: (json['quantity'] as num?)?.toInt() ?? 0,
+      storageLocation: json['storageLocation'] as String? ?? '',
+      type: json['type'] as String? ?? '',
+      updatedAt: (json['updatedAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      description: json['description'] as String? ?? '',
     );
   }
 
@@ -100,7 +100,7 @@ class MedicineModel {
       'storageLocation': storageLocation,
       'type': type,
       'updatedAt': Timestamp.fromDate(updatedAt),
-      "description": description,
+      'description': description,
     };
   }
 }

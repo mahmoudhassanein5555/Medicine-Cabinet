@@ -20,6 +20,7 @@ abstract class MedicineDetailsDataSourceInterface {
     required String category,
     required DateTime expiryDate,
     required String storageLocation,
+    required String? description,
   });
 
   Future<void> deleteMedicine({

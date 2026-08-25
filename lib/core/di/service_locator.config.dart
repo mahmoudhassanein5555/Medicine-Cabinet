@@ -416,10 +416,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i323.MedicineDetailsCubit>(
       () => _i323.MedicineDetailsCubit(
-        gh<_i889.GetMedicineDetailsUseCase>(),
-        gh<_i59.UpdateMedicineQuantityUseCase>(),
-        gh<_i259.EditMedicineDetailsUseCase>(),
-        gh<_i24.DeleteMedicineUseCase>(),
+        getMedicineDetailsUseCase: gh<_i889.GetMedicineDetailsUseCase>(),
+        updateMedicineQuantityUseCase: gh<_i59.UpdateMedicineQuantityUseCase>(),
+        editMedicineDetailsUseCase: gh<_i259.EditMedicineDetailsUseCase>(),
+        deleteMedicineUseCase: gh<_i24.DeleteMedicineUseCase>(),
       ),
     );
     return this;

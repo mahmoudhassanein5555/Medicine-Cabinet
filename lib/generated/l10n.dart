@@ -3103,6 +3103,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Description`
+  String get medicineDetailsDescription {
+    return Intl.message(
+      'Description',
+      name: 'medicineDetailsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enteric Coated Tablets`
+  String get medicineTypeEntericCoatedTablets {
+    return Intl.message(
+      'Enteric Coated Tablets',
+      name: 'medicineTypeEntericCoatedTablets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Liquid`
+  String get medicineTypeLiquid {
+    return Intl.message(
+      'Liquid',
+      name: 'medicineTypeLiquid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Solution for IM injection / oral use`
+  String get medicineTypeSolutionForImOralUse {
+    return Intl.message(
+      'Solution for IM injection / oral use',
+      name: 'medicineTypeSolutionForImOralUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tablets`
+  String get medicineTypeTablets {
+    return Intl.message(
+      'Tablets',
+      name: 'medicineTypeTablets',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -2,10 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medicine_cabinet/core/bloc_observer/bloc_observer.dart';
 import 'package:medicine_cabinet/core/constants/app_keys.dart';
 import 'package:medicine_cabinet/core/di/service_locator.dart';
 import 'package:medicine_cabinet/core/settings/app_settings_cubit.dart';
@@ -19,23 +17,17 @@ import 'package:medicine_cabinet/features/home/presentation/view/widgets/custom_
 import 'package:medicine_cabinet/features/household/presentation/view/view/household_screen.dart';
 import 'package:medicine_cabinet/features/onboarding/onboarding_screen.dart';
 import 'package:medicine_cabinet/features/splash_screen.dart';
-import 'firebase_options.dart';
-import 'generated/l10n.dart';
+import 'package:medicine_cabinet/firebase_options.dart';
+import 'package:medicine_cabinet/generated/l10n.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Firebase
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  // Dependency Injection
   await configureDependencies();
-
-  // Environment variables
-  await dotenv.load(fileName: '.env');
-
-  // Bloc Observer
-  Bloc.observer = AppBlocObserver();
 
   runApp(
     BlocProvider<AppSettingsCubit>(

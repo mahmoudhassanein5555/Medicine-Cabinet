@@ -426,5 +426,13 @@
   "medicineCategoryVitamins": "الفيتامينات",
   "medicineCategoryAntibiotics": "المضادات الحيوية",
   "medicineCategorySkinCare": "العناية بالبشرة",
-  "medicineDetailsNotFound": "الدواء غير موجود"
+  "commonSomethingWentWrong": "حدث خطأ ما",
+  "commonTryAgain": "حاول مرة أخرى",
+  "commonUnableToLoadMedicineDetails": "تعذر تحميل تفاصيل الدواء.",
+  "medicineDetailsNotFound": "الدواء غير موجود",
+  "medicineDetailsDescription": "الوصف",
+  "medicineTypeSolutionForImOralUse": "محلول للحقن العضلي أو الاستخدام الفموي",
+  "medicineTypeLiquid": "سائل",
+  "medicineTypeEntericCoatedTablets": "أقراص مغلفة معويًا",
+  "medicineTypeTablets": "أقراص"
 }

@@ -14,12 +14,12 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
   final EditMedicineDetailsUseCase editMedicineDetailsUseCase;
   final DeleteMedicineUseCase deleteMedicineUseCase;
 
-  MedicineDetailsCubit(
-    this.getMedicineDetailsUseCase,
-    this.updateMedicineQuantityUseCase,
-    this.editMedicineDetailsUseCase,
-    this.deleteMedicineUseCase,
-  ) : super(const MedicineDetailsState());
+  MedicineDetailsCubit({
+    required this.getMedicineDetailsUseCase,
+    required this.updateMedicineQuantityUseCase,
+    required this.editMedicineDetailsUseCase,
+    required this.deleteMedicineUseCase,
+  }) : super(const MedicineDetailsState());
 
   Future<void> getMedicineDetails({
     required String householdId,
@@ -67,6 +67,15 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
       );
     }
   }
+
+  Future<void> loadDetails({
+    required String householdId,
+    required String medicineId,
+  }) =>
+      getMedicineDetails(
+        householdId: householdId,
+        medicineId: medicineId,
+      );
 
   Future<void> updateQuantity({required int quantity}) async {
     final medicine = state.medicine;
@@ -126,6 +135,7 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
     required String category,
     required DateTime expiryDate,
     required String storageLocation,
+    String? description,
   }) async {
     final medicine = state.medicine;
     final householdId = state.householdId;
@@ -148,6 +158,7 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
         category: category,
         expiryDate: expiryDate,
         storageLocation: storageLocation,
+        description: description,
       );
 
       result.fold(
@@ -169,6 +180,7 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
                 category: category,
                 expiryDate: expiryDate,
                 storageLocation: storageLocation,
+                description: description,
                 updatedAt: DateTime.now(),
               ),
               failure: null,
@@ -194,7 +206,7 @@ class MedicineDetailsCubit extends Cubit<MedicineDetailsState> {
 
     emit(
       state.copyWith(
-        status: MedicineDetailsStatus.deleting,
+        status: MedicineDetailsStatus.updating,
         failure: null,
       ),
     );

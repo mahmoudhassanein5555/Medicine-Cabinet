@@ -38,6 +38,7 @@ class _EditMedicineDetailsDialogState extends State<EditMedicineDetailsDialog> {
   late final TextEditingController _typeController;
   late final TextEditingController _categoryController;
   late final TextEditingController _locationController;
+  late final TextEditingController _descriptionController;
   late DateTime _expiryDate;
 
   @override
@@ -49,6 +50,8 @@ class _EditMedicineDetailsDialogState extends State<EditMedicineDetailsDialog> {
         TextEditingController(text: widget.medicine.category ?? '');
     _locationController =
         TextEditingController(text: widget.medicine.storageLocation ?? '');
+    _descriptionController =
+        TextEditingController(text: widget.medicine.description ?? '');
     _expiryDate = widget.medicine.expiryDate;
   }
 
@@ -58,6 +61,7 @@ class _EditMedicineDetailsDialogState extends State<EditMedicineDetailsDialog> {
     _typeController.dispose();
     _categoryController.dispose();
     _locationController.dispose();
+    _descriptionController.dispose();
     super.dispose();
   }
 
@@ -112,6 +116,17 @@ class _EditMedicineDetailsDialogState extends State<EditMedicineDetailsDialog> {
                 labelStyle: TextStyle(fontSize: 13.sp),
               ),
             ),
+            SizedBox(height: 12.h),
+            TextField(
+              controller: _descriptionController,
+              maxLines: 3,
+              style: TextStyle(fontSize: 14.sp),
+              decoration: InputDecoration(
+                labelText: l10n.medicineDetailsDescription,
+                labelStyle: TextStyle(fontSize: 13.sp),
+                alignLabelWithHint: true,
+              ),
+            ),
             SizedBox(height: 16.h),
             ListTile(
               contentPadding: EdgeInsets.zero,
@@ -160,6 +175,9 @@ class _EditMedicineDetailsDialogState extends State<EditMedicineDetailsDialog> {
               category: _categoryController.text.trim(),
               expiryDate: _expiryDate,
               storageLocation: _locationController.text.trim(),
+              description: _descriptionController.text.trim().isEmpty
+                  ? null
+                  : _descriptionController.text.trim(),
             );
             Navigator.pop(context);
           },
