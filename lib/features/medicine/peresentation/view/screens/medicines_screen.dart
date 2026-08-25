@@ -66,8 +66,8 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                       message: state.failure.getMessage(context),
                       onRetry: () {
                         context.read<MedicineCubit>().getMedicines(
-                              widget.householdId,
-                            );
+                          widget.householdId,
+                        );
                       },
                     ),
                   ],
@@ -153,20 +153,6 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                 ),
 
                 SizedBox(height: 18.h),
-
-                // /// Items count
-                // Text(
-                //   l10n.medicinesItemsCount(medicines.length),
-                //   style: theme.textTheme.bodyMedium?.copyWith(
-                //     fontSize: 13.5.sp,
-                //     fontWeight: FontWeight.w600,
-                //     color: theme.brightness == Brightness.dark
-                //         ? AppColors.textSecondaryDark
-                //         : AppColors.textSecondaryLight,
-                //   ),
-                // ),
-
-                // SizedBox(height: 16.h),
               ],
             ),
           ),
@@ -178,10 +164,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
         else if (medicines.isEmpty)
           const EmptyMedicines()
         else
-          MedicinesList(
-            medicines: medicines,
-            householdId: householdId,
-          ),
+          MedicinesList(medicines: medicines, householdId: householdId),
 
         SliverToBoxAdapter(child: SizedBox(height: 30.h)),
       ],
