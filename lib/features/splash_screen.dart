@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:medicine_cabinet/core/constants/app_assets.dart';
 import 'package:medicine_cabinet/features/splash_loading_capsules.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
@@ -72,11 +73,6 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    final brightness = Theme.of(context).brightness;
-    final lottieAsset = brightness == Brightness.dark
-        ? 'assets/images/splash_cabinet_dark.json'
-        : 'assets/images/splash_cabinet_light.json';
-
     final s = S.of(context);
 
     return Scaffold(
@@ -89,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen>
               width: 250.r,
               height: 250.r,
               child: Lottie.asset(
-                lottieAsset,
+                AppAssets.splashAnimation,
                 controller: _controller,
                 fit: BoxFit.contain,
               ),

@@ -1,6 +1,8 @@
 abstract final class AppAssets {
   AppAssets._();
 
+  static const String splashAnimation =
+      'assets/animations/E-Health App User.json';
   static const String errorAnimation =
       'assets/animations/Looped 404 error animation.json';
   static const String noSearch = 'assets/animations/no search.json';
