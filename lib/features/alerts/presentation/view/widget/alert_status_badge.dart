@@ -12,36 +12,46 @@ class AlertStatusBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
-    final theme = Theme.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     late final String text;
     late final Color color;
+    late final Color bgColor;
 
     if (medicine.isExpired) {
       text = l10n.medicineStatusExpired;
-      color = Colors.red;
+      color = isDark ? AppColors.errorDark : AppColors.errorLight;
+      bgColor = isDark
+          ? AppColors.errorDark.withValues(alpha: 0.15)
+          : AppColors.errorContainerLight;
     } else if (medicine.isEnded) {
       text = l10n.medicineStatusEnded;
-      color = AppColors.warningLight;
+      color = isDark ? AppColors.warningDark : AppColors.warningLight;
+      bgColor = isDark
+          ? AppColors.warningDark.withValues(alpha: 0.15)
+          : AppColors.warningContainerLight;
     } else {
       text = l10n.medicineStatusValid;
-      color = Colors.green;
+      color = isDark ? AppColors.successDark : AppColors.successLight;
+      bgColor = isDark
+          ? AppColors.successDark.withValues(alpha: 0.15)
+          : AppColors.successContainerLight;
     }
 
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 8.w,
-        vertical: 4.h,
+        vertical: 3.5.h,
       ),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(20.r),
+        color: bgColor,
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: Text(
         text,
-        style: theme.textTheme.bodyMedium?.copyWith(
-          fontSize: 11.sp,
-          fontWeight: FontWeight.w700,
+        style: TextStyle(
+          fontSize: 11.5.sp,
+          fontWeight: FontWeight.w600,
           color: color,
         ),
       ),

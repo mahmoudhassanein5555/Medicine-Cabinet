@@ -52,20 +52,21 @@ class MedicineInventoryScreen extends StatelessWidget {
               }
 
               return Padding(
-                padding: EdgeInsets.all(16.r),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 30.h),
+                    SizedBox(height: 20.h),
 
                     Text(
-                      l10n.medicineCabinet,
+                      l10n.alertsTitle,
                       style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -0.5,
                       ),
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 16.h),
 
                     InventoryCategories(
                       selectedCategory: selectedCategory,

@@ -122,7 +122,6 @@ class SearchResultsList extends StatelessWidget {
       separatorBuilder: (_, __) => SizedBox(height: 12.h),
       itemBuilder: (context, index) {
         final medicine = medicines[index];
-        final isExpired = medicine.expiryDate.isBefore(DateTime.now());
 
         return MedicineCard(
           imageUrl: medicine.imageUrl,
@@ -131,9 +130,6 @@ class SearchResultsList extends StatelessWidget {
           remaining: medicine.quantity,
           expiry: formatExpiryDate(context, medicine.expiryDate),
           addedBy: medicine.addedBy,
-          status: isExpired
-              ? S.of(context).commonExpired
-              : S.of(context).commonHealthy,
           onTap: () {
             Navigator.push(
               context,

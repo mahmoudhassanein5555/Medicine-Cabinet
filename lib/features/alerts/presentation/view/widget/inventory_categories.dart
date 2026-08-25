@@ -16,25 +16,20 @@ class InventoryCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          for (int i = 0; i < MedicineInventoryCategory.values.length; i++) ...[
-            if (i > 0) SizedBox(width: 8.w),
-
-            InventoryCategoryTab(
-              category: MedicineInventoryCategory.values[i],
-              isSelected:
-                  selectedCategory == MedicineInventoryCategory.values[i],
-              onTap: () {
-                onCategorySelected(
-                  MedicineInventoryCategory.values[i],
-                );
-              },
-            ),
-          ],
-        ],
+    return SizedBox(
+      height: 36.h,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: MedicineInventoryCategory.values.length,
+        separatorBuilder: (_, __) => SizedBox(width: 8.w),
+        itemBuilder: (context, index) {
+          final category = MedicineInventoryCategory.values[index];
+          return InventoryCategoryTab(
+            category: category,
+            isSelected: selectedCategory == category,
+            onTap: () => onCategorySelected(category),
+          );
+        },
       ),
     );
   }

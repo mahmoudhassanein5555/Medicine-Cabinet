@@ -40,31 +40,35 @@ class InventoryCategoryTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 10.h),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 7.h),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.r),
+          borderRadius: BorderRadius.circular(16.r),
           color: isSelected
-              ? AppColors.primaryDarkLight
-              : AppColors.textPrimaryDark,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.08),
-              blurRadius: 8,
-              offset: const Offset(0, 3),
-            ),
-          ],
+              ? (isDark ? AppColors.primaryDark : AppColors.primaryLight)
+              : (isDark ? AppColors.surfaceDark : AppColors.surfaceAltLight),
+          border: Border.all(
+            color: isSelected
+                ? (isDark ? AppColors.primaryDark : AppColors.primaryLight)
+                : (isDark ? AppColors.borderDark : const Color(0xFFE2EBE7)),
+            width: 1,
+          ),
         ),
         child: Text(
           title(context),
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            fontSize: 13.sp,
-            fontWeight: FontWeight.w700,
+          style: TextStyle(
+            fontSize: 12.5.sp,
+            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
             color: isSelected
-                ? AppColors.textPrimaryDark
-                : AppColors.primaryDarkLight,
+                ? (isDark ? AppColors.backgroundDark : Colors.white)
+                : (isDark
+                    ? AppColors.textSecondaryDark
+                    : AppColors.textSecondaryLight),
           ),
         ),
       ),
