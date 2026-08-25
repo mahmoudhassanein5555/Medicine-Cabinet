@@ -356,6 +356,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Joined household successfully",
     ),
     "householdJoining": MessageLookupByLibrary.simpleMessage("Joining..."),
+    "householdLoading": MessageLookupByLibrary.simpleMessage(
+      "Loading household...",
+    ),
     "householdMedicineCount": m9,
     "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
       "Member Details",

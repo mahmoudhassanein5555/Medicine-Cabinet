@@ -442,7 +442,8 @@
   "householdQrScannerTitle": "مسح رمز QR للمنزل",
   "householdQrScannerInstruction": "ضع رمز QR داخل الإطار",
   "householdScanQrButton": "مسح رمز QR",
-  "householdOr": "أو"
+  "householdOr": "أو",
+  "householdLoading": "جاري تحميل المنزل..."
 
 
 }

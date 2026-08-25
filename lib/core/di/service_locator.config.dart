@@ -76,6 +76,8 @@ import '../../features/household/domain/use_case/remove_member_usecase.dart'
     as _i1049;
 import '../../features/household/presentation/view/view_model/household_cubit.dart'
     as _i697;
+import '../../features/household/presentation/view/view_model/household_qr_scanner_cubit.dart'
+    as _i641;
 import '../../features/medicine/data/data_source/medicine_data_source_imp.dart'
     as _i796;
 import '../../features/medicine/data/data_source/medicine_data_source_interface.dart'
@@ -133,8 +135,6 @@ import '../../features/profile/data/repositories/profile_repository_impl.dart'
     as _i334;
 import '../../features/profile/domain/repositories/profile_repository.dart'
     as _i894;
-import '../../features/profile/domain/usecases/get_cached_household_Id_use_case.dart'
-    as _i291;
 import '../../features/profile/domain/usecases/get_profile.dart' as _i72;
 import '../../features/profile/domain/usecases/update_profile.dart' as _i78;
 import '../../features/profile/presentation/view_model/profile_cubit.dart'
@@ -188,11 +188,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i894.ProfileRepository>(
       () => _i334.ProfileRepositoryImpl(
         remoteDataSource: gh<_i559.ProfileRemoteDataSource>(),
-      ),
-    );
-    gh.factory<_i291.GetCachedHouseholdIdUseCase>(
-      () => _i291.GetCachedHouseholdIdUseCase(
-        gh<_i1006.HouseholdLocalDataSource>(),
       ),
     );
     gh.lazySingleton<_i68.HomeRemoteDataSource>(
@@ -294,6 +289,9 @@ extension GetItInjectableX on _i174.GetIt {
         getProfile: gh<_i72.GetProfile>(),
         updateProfile: gh<_i78.UpdateProfile>(),
       ),
+    );
+    gh.factory<_i641.HouseholdQrScannerCubit>(
+      () => _i641.HouseholdQrScannerCubit(gh<_i973.JoinHouseholdUseCase>()),
     );
     gh.factory<_i789.FilterMedicinesUseCase>(
       () => _i789.FilterMedicinesUseCase(gh<_i785.MedicineRepoInterface>()),

@@ -3218,6 +3218,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Loading household...`
+  String get householdLoading {
+    return Intl.message(
+      'Loading household...',
+      name: 'householdLoading',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

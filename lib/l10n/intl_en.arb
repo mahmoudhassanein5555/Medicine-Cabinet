@@ -347,6 +347,7 @@
   "householdQrScannerTitle": "Scan Household QR",
   "householdQrScannerInstruction": "Place the QR code inside the frame",
   "householdScanQrButton": "Scan QR Code",
-  "householdOr": "OR"
+  "householdOr": "OR",
+  "householdLoading": "Loading household..."
 
 }

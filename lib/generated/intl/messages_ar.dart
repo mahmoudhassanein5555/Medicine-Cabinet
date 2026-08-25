@@ -350,6 +350,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdJoining": MessageLookupByLibrary.simpleMessage(
       "جارٍ الانضمام...",
     ),
+    "householdLoading": MessageLookupByLibrary.simpleMessage(
+      "جاري تحميل المنزل...",
+    ),
     "householdMedicineCount": m9,
     "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
       "تفاصيل العضو",
