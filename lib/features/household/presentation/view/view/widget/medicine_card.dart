@@ -6,9 +6,14 @@ import 'package:medicine_cabinet/features/household/presentation/view/view/widge
 import '../../../../domain/entity/medicine_entity.dart';
 
 class MedicineCard extends StatelessWidget {
-  const MedicineCard({super.key, required this.medicine});
+  const MedicineCard({
+    super.key,
+    required this.medicine,
+    this.onTap,
+  });
 
   final MedicineEntity medicine;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,80 +27,88 @@ class MedicineCard extends StatelessWidget {
     final isExpired = medicine.isExpired;
     final hasExpiryInfo = expiry != null;
 
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(16.r),
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(
-          color: isExpired
-              ? Colors.red.withValues(alpha: 0.4)
-              : colorScheme.outline,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(16.r),
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: BorderRadius.circular(16.r),
+            border: Border.all(
+              color: isExpired
+                  ? Colors.red.withValues(alpha: 0.4)
+                  : colorScheme.outline,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.04),
+                blurRadius: 8,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          HouseholdMedicineImage(
-            imageUrl: medicine.imageUrl,
-            colorScheme: colorScheme,
-          ),
-          SizedBox(width: 14.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 8.w,
-                  runSpacing: 6.h,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HouseholdMedicineImage(
+                imageUrl: medicine.imageUrl,
+                colorScheme: colorScheme,
+              ),
+              SizedBox(width: 14.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 8.w,
+                      runSpacing: 6.h,
+                      children: [
+                        Text(
+                          medicine.name,
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                        if (hasExpiryInfo)
+                          HouseholdExpiryBadge(isExpired: isExpired),
+                      ],
+                    ),
+                    SizedBox(height: 6.h),
                     Text(
-                      medicine.name,
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.sp,
+                      'Qty: ${medicine.quantity}',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    if (hasExpiryInfo)
-                      HouseholdExpiryBadge(isExpired: isExpired),
+                    SizedBox(height: 4.h),
+                    Text(
+                      'Expiry: $expiryText',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color:
+                            isExpired ? Colors.red : colorScheme.onSurfaceVariant,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(height: 6.h),
-                Text(
-                  'Qty: ${medicine.quantity}',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: 4.h),
-                Text(
-                  'Expiry: $expiryText',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: isExpired ? Colors.red : colorScheme.onSurfaceVariant,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
+              ),
+              Icon(
+                Icons.chevron_right,
+                color: colorScheme.onSurfaceVariant,
+                size: 24.r,
+              ),
+            ],
           ),
-          Icon(
-            Icons.chevron_right,
-            color: colorScheme.onSurfaceVariant,
-            size: 24.r,
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -15,6 +15,7 @@ class MedicineCard extends StatelessWidget {
     required this.addedBy,
     required this.status,
     this.imageUrl,
+    this.onTap,
   });
 
   final String name;
@@ -24,6 +25,7 @@ class MedicineCard extends StatelessWidget {
   final String addedBy;
   final String status;
   final String? imageUrl;
+  final VoidCallback? onTap;
 
   bool get isHealthy => status == S.current.commonHealthy;
 
@@ -40,97 +42,104 @@ class MedicineCard extends StatelessWidget {
         ? const Color(0xFF159374)
         : const Color(0xFFF19A24);
 
-    return Container(
-      constraints: BoxConstraints(minHeight: 116.h),
-      padding: EdgeInsets.all(14.r),
-      decoration: BoxDecoration(
-        color: theme.cardColor,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(18.r),
-        border: Border.all(color: theme.dividerColor),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.025),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
+        child: Container(
+          constraints: BoxConstraints(minHeight: 116.h),
+          padding: EdgeInsets.all(14.r),
+          decoration: BoxDecoration(
+            color: theme.cardColor,
+            borderRadius: BorderRadius.circular(18.r),
+            border: Border.all(color: theme.dividerColor),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.025),
+                blurRadius: 8,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          /// Medicine icon
-          Container(
-            width: 47.r,
-            height: 47.r,
-            decoration: BoxDecoration(
-              color: iconBackground,
-              borderRadius: BorderRadius.circular(13.r),
-            ),
-            child: Center(
-              child: imageUrl != null && imageUrl!.isNotEmpty
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(13.r),
-                      child: Image.network(
-                        imageUrl!,
-                        width: 47.r,
-                        height: 47.r,
-                        fit: BoxFit.contain,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              /// Medicine icon
+              Container(
+                width: 47.r,
+                height: 47.r,
+                decoration: BoxDecoration(
+                  color: iconBackground,
+                  borderRadius: BorderRadius.circular(13.r),
+                ),
+                child: Center(
+                  child: imageUrl != null && imageUrl!.isNotEmpty
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(13.r),
+                          child: Image.network(
+                            imageUrl!,
+                            width: 47.r,
+                            height: 47.r,
+                            fit: BoxFit.contain,
+                          ),
+                        )
+                      : Center(child: MedicineIcon(color: iconColor)),
+                ),
+              ),
+
+              SizedBox(width: 14.w),
+
+              /// Information
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w800,
                       ),
-                    )
-                  : Center(child: MedicineIcon(color: iconColor)),
-            ),
+                    ),
+
+                    SizedBox(height: 4.h),
+
+                    Text(
+                      '$type · ${l10n.medicineRemaining(remaining)}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+
+                    SizedBox(height: 3.h),
+
+                    Text(
+                      '${l10n.medicineExpires(expiry)} · $addedBy',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(width: 8.w),
+
+              /// Status
+              MedicineStatusBadge(status: status),
+            ],
           ),
-
-          SizedBox(width: 14.w),
-
-          /// Information
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleSmall?.copyWith(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-
-                SizedBox(height: 4.h),
-
-                Text(
-                  '$type · ${l10n.medicineRemaining(remaining)}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-
-                SizedBox(height: 3.h),
-
-                Text(
-                  '${l10n.medicineExpires(expiry)} · $addedBy',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          SizedBox(width: 8.w),
-
-          /// Status
-          MedicineStatusBadge(status: status),
-        ],
+        ),
       ),
     );
   }

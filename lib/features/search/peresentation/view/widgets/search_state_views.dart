@@ -5,6 +5,7 @@ import 'package:medicine_cabinet/core/constants/app_assets.dart';
 import 'package:medicine_cabinet/features/medicine/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/date_formatter.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_card.dart';
+import 'package:medicine_cabinet/features/medicine_details/peresentation/view/screens/medicine_details_screen.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
 class SearchInitialView extends StatelessWidget {
@@ -106,8 +107,13 @@ class SearchEmptyView extends StatelessWidget {
 
 class SearchResultsList extends StatelessWidget {
   final List<MedicineEntity> medicines;
+  final String householdId;
 
-  const SearchResultsList({super.key, required this.medicines});
+  const SearchResultsList({
+    super.key,
+    required this.medicines,
+    required this.householdId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +134,17 @@ class SearchResultsList extends StatelessWidget {
           status: isExpired
               ? S.of(context).commonExpired
               : S.of(context).commonHealthy,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => MedicineDetailsScreen(
+                  householdId: householdId,
+                  medicineId: medicine.id,
+                ),
+              ),
+            );
+          },
         );
       },
     );

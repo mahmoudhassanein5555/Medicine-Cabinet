@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medicine_cabinet/features/household/domain/entity/medicine_entity.dart';
+import 'package:medicine_cabinet/features/medicine_details/peresentation/view/screens/medicine_details_screen.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../view_model/household_cubit.dart';
@@ -10,7 +11,12 @@ import '../../view_model/household_state.dart';
 import 'medicine_card.dart';
 
 class MemberMedicinesList extends StatelessWidget {
-  const MemberMedicinesList({super.key});
+  final String householdId;
+
+  const MemberMedicinesList({
+    super.key,
+    required this.householdId,
+  });
 
   static final List<MedicineEntity> _placeholderMedicines = List.generate(
     3,
@@ -32,7 +38,7 @@ class MemberMedicinesList extends StatelessWidget {
         if (state is GetMemberMedicinesLoading) {
           return Skeletonizer(
             enabled: true,
-            child: _buildMedicinesColumn(_placeholderMedicines),
+            child: _buildMedicinesColumn(context, _placeholderMedicines),
           );
         }
 
@@ -67,19 +73,35 @@ class MemberMedicinesList extends StatelessWidget {
               ),
             );
           }
-          return _buildMedicinesColumn(medicines);
+          return _buildMedicinesColumn(context, medicines);
         }
         return const SizedBox.shrink();
       },
     );
   }
 
-  Widget _buildMedicinesColumn(List<MedicineEntity> medicines) {
+  Widget _buildMedicinesColumn(
+    BuildContext context,
+    List<MedicineEntity> medicines,
+  ) {
     return Column(
       children: [
         for (var i = 0; i < medicines.length; i++) ...[
           if (i > 0) SizedBox(height: 12.h),
-          MedicineCard(medicine: medicines[i]),
+          MedicineCard(
+            medicine: medicines[i],
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => MedicineDetailsScreen(
+                    householdId: householdId,
+                    medicineId: medicines[i].id,
+                  ),
+                ),
+              );
+            },
+          ),
         ],
       ],
     );

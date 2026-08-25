@@ -14,11 +14,13 @@ import 'package:skeletonizer/skeletonizer.dart';
 class HomeScreen extends StatefulWidget {
   final String userId;
   final String householdId;
+  final void Function(int index)? onNavigateToTab;
 
   const HomeScreen({
     super.key,
     required this.userId,
     required this.householdId,
+    this.onNavigateToTab,
   });
 
   @override
@@ -75,6 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   members: const [],
                   onScanPressed: _handleScanMedicine,
                   onRefresh: () async {},
+                  onNavigateToTab: widget.onNavigateToTab,
                 ),
               );
             } else if (state is HomeError) {
@@ -91,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   await context.read<HomeCubit>().refresh();
                 },
                 onScanPressed: _handleScanMedicine,
+                onNavigateToTab: widget.onNavigateToTab,
               );
             }
 

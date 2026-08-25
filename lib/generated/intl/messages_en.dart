@@ -237,11 +237,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Storage location",
     ),
     "commonSuccess": MessageLookupByLibrary.simpleMessage("Success"),
-    "commonTryAgain": MessageLookupByLibrary.simpleMessage(
-      "Something went wrong, please try again.",
-    ),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage("Try again"),
     "commonTryAgainLater": MessageLookupByLibrary.simpleMessage(
       "Please try again later",
+    ),
+    "commonUnableToLoadMedicineDetails": MessageLookupByLibrary.simpleMessage(
+      "Unable to load medicine details.",
     ),
     "commonUnits": MessageLookupByLibrary.simpleMessage("units"),
     "commonUnnamed": MessageLookupByLibrary.simpleMessage("Unnamed"),
@@ -412,16 +413,41 @@ class MessageLookup extends MessageLookupByLibrary {
     "logoutSuccessTitle": MessageLookupByLibrary.simpleMessage("Logged Out"),
     "medicineCabinet": MessageLookupByLibrary.simpleMessage("Medicine Cabinet"),
     "medicineCategoryAll": MessageLookupByLibrary.simpleMessage("All"),
+    "medicineCategoryAllergy": MessageLookupByLibrary.simpleMessage("Allergy"),
+    "medicineCategoryAntibiotics": MessageLookupByLibrary.simpleMessage(
+      "Antibiotics",
+    ),
+    "medicineCategoryColdFlu": MessageLookupByLibrary.simpleMessage(
+      "Cold & flu",
+    ),
+    "medicineCategoryDigestive": MessageLookupByLibrary.simpleMessage(
+      "Digestive",
+    ),
     "medicineCategoryEnded": MessageLookupByLibrary.simpleMessage("Ended"),
     "medicineCategoryExpired": MessageLookupByLibrary.simpleMessage("Expired"),
+    "medicineCategoryPainRelief": MessageLookupByLibrary.simpleMessage(
+      "Pain relief",
+    ),
     "medicineCategoryRecentlyAdded": MessageLookupByLibrary.simpleMessage(
       "Recently Added",
     ),
+    "medicineCategorySkinCare": MessageLookupByLibrary.simpleMessage(
+      "Skin care",
+    ),
     "medicineCategoryValid": MessageLookupByLibrary.simpleMessage("Valid"),
+    "medicineCategoryVitamins": MessageLookupByLibrary.simpleMessage(
+      "Vitamins",
+    ),
     "medicineCount": m11,
+    "medicineDetailsCategory": MessageLookupByLibrary.simpleMessage("Category"),
     "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
       "This removes it from your cabinet inventory. This can\'t be undone.",
     ),
+    "medicineDetailsName": MessageLookupByLibrary.simpleMessage("Name"),
+    "medicineDetailsNotFound": MessageLookupByLibrary.simpleMessage(
+      "Medicine not found",
+    ),
+    "medicineDetailsType": MessageLookupByLibrary.simpleMessage("Type"),
     "medicineExpires": m12,
     "medicineExpiry": m13,
     "medicineNoEnded": MessageLookupByLibrary.simpleMessage(
@@ -441,6 +467,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicineStatusEnded": MessageLookupByLibrary.simpleMessage("Ended"),
     "medicineStatusExpired": MessageLookupByLibrary.simpleMessage("Expired"),
     "medicineStatusValid": MessageLookupByLibrary.simpleMessage("Valid"),
+    "medicineTypeCapsules": MessageLookupByLibrary.simpleMessage("Capsules"),
+    "medicineTypeCream": MessageLookupByLibrary.simpleMessage("Cream"),
+    "medicineTypeDrops": MessageLookupByLibrary.simpleMessage("Drops"),
+    "medicineTypeInhaler": MessageLookupByLibrary.simpleMessage("Inhaler"),
+    "medicineTypeOintment": MessageLookupByLibrary.simpleMessage("Ointment"),
+    "medicineTypePills": MessageLookupByLibrary.simpleMessage("Pills"),
+    "medicineTypeSyrup": MessageLookupByLibrary.simpleMessage("Syrup"),
     "medicines": MessageLookupByLibrary.simpleMessage("Medicines"),
     "medicinesItemsCount": m16,
     "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("Medicines"),

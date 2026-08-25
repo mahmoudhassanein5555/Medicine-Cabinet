@@ -52,10 +52,10 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
         child: HomeScreen(
           userId: effectiveUserId,
           householdId: effectiveHouseholdId,
-          
+          onNavigateToTab: _navigateToTab,
         ),
       ),
-      BlocProvider( 
+      BlocProvider(
         create: (_) => getIt<MedicineCubit>(),
         child: MedicinesScreen(
           householdId: effectiveHouseholdId,
@@ -68,16 +68,24 @@ class _BottomNavBarState extends State<CustomBottomNavBar> {
     ];
   }
 
+  void _navigateToTab(int index) {
+    _bottomNavigationKey.currentState?.setPage(index);
+    setState(() {
+      _page = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+
     return Scaffold(
       bottomNavigationBar: SizedBox(
         height: 75.h,
         child: CurvedNavigationBar(
           key: _bottomNavigationKey,
-          index: 0,
+          index: _page,
           items: [
             CurvedNavigationBarItem(
               child: Icon(Icons.home, size: 24.r),

@@ -22,9 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(count) => "أُضيف منذ ${count} أيام";
 
-  static String m1(count) => "${count} زجاجات متبقية";
+  static String m1(count) => "متبقي ${count} زجاجات";
 
-  static String m2(count) => "${count} كبسولات متبقية";
+  static String m2(count) => "متبقي ${count} كبسولات";
 
   static String m3(count) => "ينتهي خلال ${count} أيام";
 
@@ -32,11 +32,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m5(name) => "مساء الخير، ${name}";
 
-  static String m6(count) => "${count} متبقٍ";
+  static String m6(count) => "متبقي ${count}";
 
-  static String m7(count) => "${count} أقراص متبقية";
+  static String m7(count) => "متبقي ${count} أقراص";
 
-  static String m8(count) => "${count} وحدات متبقية";
+  static String m8(count) => "متبقي ${count} وحدات";
 
   static String m9(count) => "${count} أدوية";
 
@@ -45,15 +45,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m11(count) => "${count} أدوية";
 
-  static String m12(date) => "ينتهي في ${date}";
+  static String m12(date) => "ينتهي ${date}";
 
   static String m13(date) => "الانتهاء: ${date}";
 
   static String m14(quantity) => "الكمية: ${quantity}";
 
-  static String m15(count) => "متبقي ${count}";
+  static String m15(count) => "${count} متبقي";
 
-  static String m16(count) => "${count} دواء";
+  static String m16(count) => "${count} عناصر";
 
   static String m17(sortOption) => "الترتيب: ${sortOption}";
 
@@ -66,7 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "alertsYesterday": MessageLookupByLibrary.simpleMessage("أمس"),
     "authAccountExistsWithDifferentCredential":
         MessageLookupByLibrary.simpleMessage(
-          "يوجد حساب بالفعل بهذا البريد الإلكتروني بطريقة تسجيل دخول مختلفة.",
+          "يوجد حساب بالفعل بنفس البريد الإلكتروني باستخدام طريقة تسجيل دخول مختلفة.",
         ),
     "authConfirmPasswordLabel": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
@@ -78,7 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "جاري إنشاء الحساب...",
     ),
     "authEmailAlreadyInUse": MessageLookupByLibrary.simpleMessage(
-      "هذا البريد الإلكتروني مستخدم بالفعل.",
+      "هذا البريد الإلكتروني قيد الاستخدام بالفعل.",
     ),
     "authEmailLabel": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "authForgotPassword": MessageLookupByLibrary.simpleMessage(
@@ -86,10 +86,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "authFullNameLabel": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "authGoogleSignInCancelled": MessageLookupByLibrary.simpleMessage(
-      "تم إلغاء تسجيل الدخول باستخدام Google.",
+      "تم إلغاء تسجيل الدخول بواسطة Google.",
     ),
     "authGoogleSuccess": MessageLookupByLibrary.simpleMessage(
-      "تم تسجيل الدخول باستخدام Google بنجاح",
+      "تم تسجيل الدخول بواسطة Google بنجاح",
     ),
     "authHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟",
@@ -98,7 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
     ),
     "authInvalidEmail": MessageLookupByLibrary.simpleMessage(
-      "يرجى إدخال بريد إلكتروني صحيح.",
+      "يرجى إدخال بريد إلكتروني صالح.",
     ),
     "authLoggingIn": MessageLookupByLibrary.simpleMessage(
       "جاري تسجيل الدخول...",
@@ -106,7 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "authLoginButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "authLoginLink": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "authLoginSubtitle": MessageLookupByLibrary.simpleMessage(
-      "سجّل الدخول لعرض صيدلية أسرتك.",
+      "سجل الدخول لعرض خزانة أدوية منزلك.",
     ),
     "authLoginSuccess": MessageLookupByLibrary.simpleMessage(
       "تم تسجيل الدخول بنجاح",
@@ -124,27 +124,27 @@ class MessageLookup extends MessageLookupByLibrary {
       "كلمتا المرور غير متطابقتين",
     ),
     "authPermissionDenied": MessageLookupByLibrary.simpleMessage(
-      "ليس لديك صلاحية لتنفيذ هذا الإجراء.",
+      "ليس لديك إذن لتنفيذ هذا الإجراء.",
     ),
-    "authRegisterButton": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    "authRegisterButton": MessageLookupByLibrary.simpleMessage("إنشاء الحساب"),
     "authRegisterSubtitle": MessageLookupByLibrary.simpleMessage(
-      "أنشئ صيدلية أسرتك في دقيقة واحدة.",
+      "قم بإعداد خزانة أدوية منزلك في دقيقة.",
     ),
     "authRegisterSuccess": MessageLookupByLibrary.simpleMessage(
       "تم إنشاء الحساب بنجاح",
     ),
     "authRegisterTitle": MessageLookupByLibrary.simpleMessage("إنشاء حسابك"),
     "authResetPasswordSubtitle": MessageLookupByLibrary.simpleMessage(
-      "أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.",
+      "أدخل بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.",
     ),
     "authResetPasswordSuccess": MessageLookupByLibrary.simpleMessage(
-      "تم إرسال رابط إعادة تعيين كلمة المرور بنجاح.",
+      "تم إرسال بريد إعادة تعيين كلمة المرور بنجاح.",
     ),
     "authResetPasswordTitle": MessageLookupByLibrary.simpleMessage(
       "إعادة تعيين كلمة المرور",
     ),
     "authResourceNotFound": MessageLookupByLibrary.simpleMessage(
-      "لم يتم العثور على المورد المطلوب.",
+      "لم يتم العثور على العنصر المطلوب.",
     ),
     "authSendResetEmail": MessageLookupByLibrary.simpleMessage(
       "إرسال رابط إعادة التعيين",
@@ -153,42 +153,42 @@ class MessageLookup extends MessageLookupByLibrary {
       "جاري الإرسال...",
     ),
     "authServerError": MessageLookupByLibrary.simpleMessage(
-      "حدثت مشكلة في الخادم. يرجى المحاولة لاحقًا.",
+      "الخادم يواجه مشكلة. يرجى المحاولة لاحقاً.",
     ),
     "authSessionExpired": MessageLookupByLibrary.simpleMessage(
-      "انتهت صلاحية الجلسة. يرجى تسجيل الدخول مرة أخرى.",
+      "انتهت جلستك. يرجى تسجيل الدخول مرة أخرى.",
     ),
     "authSignUpLink": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "authTermsNotice": MessageLookupByLibrary.simpleMessage(
       "بالمتابعة، فإنك توافق على الشروط وسياسة الخصوصية.",
     ),
     "authTooManyRequests": MessageLookupByLibrary.simpleMessage(
-      "محاولات كثيرة جدًا. يرجى المحاولة لاحقًا.",
+      "محاولات كثيرة جداً. يرجى المحاولة لاحقاً.",
     ),
     "authUserDisabled": MessageLookupByLibrary.simpleMessage(
       "تم تعطيل هذا الحساب.",
     ),
     "authUserNotFound": MessageLookupByLibrary.simpleMessage(
-      "لا يوجد حساب مرتبط بهذا البريد الإلكتروني.",
+      "لم يتم العثور على حساب بهذا البريد.",
     ),
     "authWeakPassword": MessageLookupByLibrary.simpleMessage(
-      "كلمة المرور ضعيفة جدًا.",
+      "كلمة المرور ضعيفة جداً.",
     ),
     "authWrongPassword": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
     ),
     "beforeYouBuyAlreadyTitle": MessageLookupByLibrary.simpleMessage(
-      "موجود بالفعل في صيدليتك",
+      "موجود بالفعل في خزانتك",
     ),
     "beforeYouBuyExpires": MessageLookupByLibrary.simpleMessage("ينتهي في"),
     "beforeYouBuyNoMatchTitle": MessageLookupByLibrary.simpleMessage(
       "لم يتم العثور على دواء مطابق",
     ),
     "beforeYouBuyNotFoundTitle": MessageLookupByLibrary.simpleMessage(
-      "غير موجود في صيدليتك",
+      "غير موجود في خزانتك",
     ),
     "beforeYouBuyNotice": MessageLookupByLibrary.simpleMessage(
-      "قد يكون لديك هذا الدواء في المنزل بالفعل.",
+      "قد يكون لديك هذا الدواء بالفعل في المنزل.",
     ),
     "beforeYouBuyOwnedBy": MessageLookupByLibrary.simpleMessage("مملوك لـ"),
     "beforeYouBuySearchHint": MessageLookupByLibrary.simpleMessage(
@@ -196,7 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "beforeYouBuyTitle": MessageLookupByLibrary.simpleMessage("قبل أن تشتري"),
     "commonAddToCabinet": MessageLookupByLibrary.simpleMessage(
-      "إضافة إلى الصيدلية",
+      "إضافة إلى الخزانة",
     ),
     "commonAll": MessageLookupByLibrary.simpleMessage("الكل"),
     "commonApply": MessageLookupByLibrary.simpleMessage("تطبيق"),
@@ -208,16 +208,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonDateAdded": MessageLookupByLibrary.simpleMessage("تاريخ الإضافة"),
     "commonDelete": MessageLookupByLibrary.simpleMessage("حذف"),
     "commonEditDetails": MessageLookupByLibrary.simpleMessage("تعديل التفاصيل"),
-    "commonError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
-    "commonExpired": MessageLookupByLibrary.simpleMessage("منتهي الصلاحية"),
+    "commonError": MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
+    "commonExpired": MessageLookupByLibrary.simpleMessage("منتهي"),
     "commonExpiringShort": MessageLookupByLibrary.simpleMessage("ينتهي قريباً"),
     "commonExpiringSoon": MessageLookupByLibrary.simpleMessage("ينتهي قريباً"),
     "commonExpiryDate": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء"),
     "commonGetStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "commonHealthy": MessageLookupByLibrary.simpleMessage("سليم"),
-    "commonHousehold": MessageLookupByLibrary.simpleMessage("المنزل"),
+    "commonHousehold": MessageLookupByLibrary.simpleMessage("الأسرة"),
     "commonLow": MessageLookupByLibrary.simpleMessage("منخفض"),
-    "commonLowStock": MessageLookupByLibrary.simpleMessage("المخزون المنتهي"),
+    "commonLowStock": MessageLookupByLibrary.simpleMessage("نفدت الكمية"),
     "commonManage": MessageLookupByLibrary.simpleMessage("إدارة"),
     "commonMarkAsUsed": MessageLookupByLibrary.simpleMessage("تحديد كمستخدم"),
     "commonNoEmail": MessageLookupByLibrary.simpleMessage(
@@ -236,16 +236,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonStorageLocation": MessageLookupByLibrary.simpleMessage(
       "مكان التخزين",
     ),
-    "commonSuccess": MessageLookupByLibrary.simpleMessage("تم بنجاح"),
-    "commonTryAgain": MessageLookupByLibrary.simpleMessage(
-      "حدث خطأ ما، يرجى المحاولة مرة أخرى.",
+    "commonSuccess": MessageLookupByLibrary.simpleMessage("نجاح"),
+    "commonTryAgain": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
+    "commonTryAgainLater": MessageLookupByLibrary.simpleMessage(
+      "يرجى المحاولة مرة أخرى لاحقاً",
+    ),
+    "commonUnableToLoadMedicineDetails": MessageLookupByLibrary.simpleMessage(
+      "تعذر تحميل تفاصيل الدواء.",
     ),
     "commonUnits": MessageLookupByLibrary.simpleMessage("وحدات"),
     "commonUnnamed": MessageLookupByLibrary.simpleMessage("غير معروف"),
     "commonUpdateQuantity": MessageLookupByLibrary.simpleMessage(
-      "تحديث الكمية",
+      "تعديل الكمية",
     ),
-    "commonUser": MessageLookupByLibrary.simpleMessage("المستخدم"),
+    "commonUser": MessageLookupByLibrary.simpleMessage("مستخدم"),
     "createHouseholdDescription": MessageLookupByLibrary.simpleMessage(
       "أعطِ بيتك اسماً ليساعد عائلتك على البقاء منظمة.",
     ),
@@ -289,20 +293,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "homeAddedToday": MessageLookupByLibrary.simpleMessage("أُضيف اليوم"),
     "homeAddedYesterday": MessageLookupByLibrary.simpleMessage("أُضيف أمس"),
     "homeAttentionNeeded": MessageLookupByLibrary.simpleMessage(
-      "يحتاج انتباهك",
+      "بحاجة للانتباه",
     ),
     "homeBottlesRemaining": m1,
     "homeCapsulesRemaining": m2,
-    "homeEmptyButton": MessageLookupByLibrary.simpleMessage(
-      "امسح أول دواء لديك",
-    ),
+    "homeEmptyButton": MessageLookupByLibrary.simpleMessage("امسح أول دواء لك"),
     "homeEmptyDesc": MessageLookupByLibrary.simpleMessage(
-      "امسح أول دواء تمتلكه وسوف يظهر هنا، منظماً وجاهزاً للمتابعة.",
+      "امسح أول دواء تملكه وسيظهر هنا، منظماً وجاهزاً للمتابعة.",
     ),
-    "homeEmptyTitle": MessageLookupByLibrary.simpleMessage("صيدليتك فارغة"),
+    "homeEmptyTitle": MessageLookupByLibrary.simpleMessage("خزانتك فارغة"),
     "homeExpiresInDays": m3,
     "homeExpiresInMonth": MessageLookupByLibrary.simpleMessage(
-      "ينتهي خلال شهر واحد",
+      "ينتهي خلال شهر",
     ),
     "homeExpiresInMonths": m4,
     "homeExpiresTomorrow": MessageLookupByLibrary.simpleMessage("ينتهي غداً"),
@@ -310,11 +312,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "homeNavLabel": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "homeRecentlyAdded": MessageLookupByLibrary.simpleMessage("أُضيف حديثاً"),
     "homeRemaining": m6,
-    "homeScanCta": MessageLookupByLibrary.simpleMessage("مسح دواء"),
+    "homeScanCta": MessageLookupByLibrary.simpleMessage("مسح الدواء"),
     "homeScanCtaSubtitle": MessageLookupByLibrary.simpleMessage(
       "أضف عنصراً جديداً في ثوانٍ",
     ),
-    "homeSubtitle": MessageLookupByLibrary.simpleMessage("إليك صيدليتك"),
+    "homeSubtitle": MessageLookupByLibrary.simpleMessage("إليك خزانة أدويتك"),
     "homeTabletsRemaining": m7,
     "homeUnitsRemaining": m8,
     "householdAddMember": MessageLookupByLibrary.simpleMessage(
@@ -405,20 +407,45 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "medicineCabinet": MessageLookupByLibrary.simpleMessage("خزانة الأدوية"),
     "medicineCategoryAll": MessageLookupByLibrary.simpleMessage("الكل"),
+    "medicineCategoryAllergy": MessageLookupByLibrary.simpleMessage("الحساسية"),
+    "medicineCategoryAntibiotics": MessageLookupByLibrary.simpleMessage(
+      "المضادات الحيوية",
+    ),
+    "medicineCategoryColdFlu": MessageLookupByLibrary.simpleMessage(
+      "البرد والإنفلونزا",
+    ),
+    "medicineCategoryDigestive": MessageLookupByLibrary.simpleMessage(
+      "الجهاز الهضمي",
+    ),
     "medicineCategoryEnded": MessageLookupByLibrary.simpleMessage(
       "المنتهية الكمية",
     ),
     "medicineCategoryExpired": MessageLookupByLibrary.simpleMessage(
       "منتهية الصلاحية",
     ),
+    "medicineCategoryPainRelief": MessageLookupByLibrary.simpleMessage(
+      "مسكنات الألم",
+    ),
     "medicineCategoryRecentlyAdded": MessageLookupByLibrary.simpleMessage(
       "المضافة حديثًا",
     ),
-    "medicineCategoryValid": MessageLookupByLibrary.simpleMessage("صالحة"),
-    "medicineCount": m11,
-    "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
-      "سيتم إزالة هذا الدواء من مخزون صيدليتك. لا يمكن التراجع عن هذا الإجراء.",
+    "medicineCategorySkinCare": MessageLookupByLibrary.simpleMessage(
+      "العناية بالبشرة",
     ),
+    "medicineCategoryValid": MessageLookupByLibrary.simpleMessage("صالحة"),
+    "medicineCategoryVitamins": MessageLookupByLibrary.simpleMessage(
+      "الفيتامينات",
+    ),
+    "medicineCount": m11,
+    "medicineDetailsCategory": MessageLookupByLibrary.simpleMessage("الفئة"),
+    "medicineDetailsDeleteDesc": MessageLookupByLibrary.simpleMessage(
+      "سيؤدي هذا إلى إزالته من مخزون خزانتك. لا يمكن التراجع عن هذا الإجراء.",
+    ),
+    "medicineDetailsName": MessageLookupByLibrary.simpleMessage("الاسم"),
+    "medicineDetailsNotFound": MessageLookupByLibrary.simpleMessage(
+      "الدواء غير موجود",
+    ),
+    "medicineDetailsType": MessageLookupByLibrary.simpleMessage("النوع"),
     "medicineExpires": m12,
     "medicineExpiry": m13,
     "medicineNoEnded": MessageLookupByLibrary.simpleMessage(
@@ -440,14 +467,21 @@ class MessageLookup extends MessageLookupByLibrary {
       "منتهية الصلاحية",
     ),
     "medicineStatusValid": MessageLookupByLibrary.simpleMessage("صالحة"),
+    "medicineTypeCapsules": MessageLookupByLibrary.simpleMessage("كبسولات"),
+    "medicineTypeCream": MessageLookupByLibrary.simpleMessage("كريم"),
+    "medicineTypeDrops": MessageLookupByLibrary.simpleMessage("قطرات"),
+    "medicineTypeInhaler": MessageLookupByLibrary.simpleMessage("بخاخ"),
+    "medicineTypeOintment": MessageLookupByLibrary.simpleMessage("مرهم"),
+    "medicineTypePills": MessageLookupByLibrary.simpleMessage("أقراص"),
+    "medicineTypeSyrup": MessageLookupByLibrary.simpleMessage("شراب"),
     "medicines": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "medicinesItemsCount": m16,
     "medicinesNavLabel": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "medicinesNoMedicines": MessageLookupByLibrary.simpleMessage(
-      "لا توجد أدوية",
+      "لم يتم العثور على أدوية",
     ),
     "medicinesSearchHint": MessageLookupByLibrary.simpleMessage(
-      "ابحث عن الأدوية...",
+      "البحث في الأدوية...",
     ),
     "medicinesSortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب"),
     "medicinesSortLabelCurrent": m17,
@@ -461,7 +495,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "الكمية",
     ),
     "medicinesSortOptionRecentlyAdded": MessageLookupByLibrary.simpleMessage(
-      "أُضيف حديثاً",
+      "المضاف حديثاً",
     ),
     "medicinesTitle": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "memberEmail": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
@@ -469,36 +503,36 @@ class MessageLookup extends MessageLookupByLibrary {
     "memberMedicines": MessageLookupByLibrary.simpleMessage("أدوية العضو"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(
-      "امسح الدواء في المتجر واعرف فوراً ما إذا كان موجوداً لدى عائلتك بالفعل.",
+      "امسح الدواء في المتجر واعرف فوراً إن كان موجوداً بالفعل في منزلك.",
     ),
     "onboardingBuyTitle": MessageLookupByLibrary.simpleMessage(
       "تحقق قبل الشراء",
     ),
     "onboardingContinue": MessageLookupByLibrary.simpleMessage("متابعة"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
-      "حافظ على تنظيم كل دواء يمتلكه منزلك في مكان واحد واضح ومشترك.",
+      "احتفظ بجميع أدوية منزلك منظمة في مكان واحد واضح ومشترك.",
     ),
     "onboardingDesc2": MessageLookupByLibrary.simpleMessage(
-      "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء أو قبل نفاده.",
+      "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء أو قبل نفاد الكمية.",
     ),
     "onboardingDesc3": MessageLookupByLibrary.simpleMessage(
-      "امسح رمز الدواء في المتجر وتأكد فوراً عما إذا كان منزلك يمتلكه بالفعل أم لا.",
+      "امسح الدواء في المتجر واعرف فوراً إن كان موجوداً بالفعل في منزلك.",
     ),
     "onboardingExpiryDesc": MessageLookupByLibrary.simpleMessage(
-      "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء، أو قبل أن ينفد لديك.",
+      "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء أو قبل نفاد الكمية.",
     ),
     "onboardingExpiryTitle": MessageLookupByLibrary.simpleMessage(
-      "لا تفوّت تاريخ انتهاء الصلاحية",
+      "لا تفوت انتهاء الصلاحية",
     ),
     "onboardingGetStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "onboardingKnowDesc": MessageLookupByLibrary.simpleMessage(
-      "احفظ كل دواء تمتلكه عائلتك منظماً في مكان واحد مشترك وواضح.",
+      "احتفظ بجميع أدوية منزلك منظمة في مكان واحد واضح ومشترك.",
     ),
     "onboardingKnowTitle": MessageLookupByLibrary.simpleMessage("اعرف ما لديك"),
     "onboardingSkip": MessageLookupByLibrary.simpleMessage("تخطي"),
-    "onboardingTitle1": MessageLookupByLibrary.simpleMessage("اعرف ما تملكه"),
+    "onboardingTitle1": MessageLookupByLibrary.simpleMessage("اعرف ما لديك"),
     "onboardingTitle2": MessageLookupByLibrary.simpleMessage(
-      "لا تفوتك صلاحية دواء",
+      "لا تفوت انتهاء الصلاحية",
     ),
     "onboardingTitle3": MessageLookupByLibrary.simpleMessage("تحقق قبل الشراء"),
     "profileAbout": MessageLookupByLibrary.simpleMessage("عن التطبيق"),
@@ -577,7 +611,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "إضافة الدواء",
     ),
     "scanAddedTitle": MessageLookupByLibrary.simpleMessage(
-      "تمت الإضافة إلى صيدليتك",
+      "تمت الإضافة إلى خزانتك",
     ),
     "scanAnalyzingSubtitle": MessageLookupByLibrary.simpleMessage(
       "يرجى الانتظار بينما نقرأ ونعالج\nتفاصيل العبوة...",
@@ -624,7 +658,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "قم بمحاذاة عبوة الدواء أو الشريط داخل الإطار",
     ),
     "scanHowManyDoYouHave": MessageLookupByLibrary.simpleMessage(
-      "كم عدد القطع لديك؟",
+      "كم لديك منه؟",
     ),
     "scanMedicineAddedSuccess": MessageLookupByLibrary.simpleMessage(
       "تمت إضافة الدواء بنجاح!",

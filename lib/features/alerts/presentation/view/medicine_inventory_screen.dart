@@ -82,6 +82,7 @@ class MedicineInventoryScreen extends StatelessWidget {
 
                         AlertSuccess() => MedicineList(
                           medicines: state.medicines,
+                          householdId: householdId,
                         ),
 
                         _ => const SizedBox.shrink(),

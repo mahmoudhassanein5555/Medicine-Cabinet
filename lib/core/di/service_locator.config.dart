@@ -91,6 +91,24 @@ import '../../features/medicine/domain/use_case/get_medicines_use_case.dart'
     as _i286;
 import '../../features/medicine/peresentation/view_model/medicine_cubit.dart'
     as _i776;
+import '../../features/medicine_details/data/data_source/medicine_details_data_source_imp.dart'
+    as _i490;
+import '../../features/medicine_details/data/data_source/medicine_details_data_source_interface.dart'
+    as _i752;
+import '../../features/medicine_details/data/repo/medicine_details_repo_imp.dart'
+    as _i76;
+import '../../features/medicine_details/domain/repo/medicine_details_repo_interface.dart'
+    as _i691;
+import '../../features/medicine_details/domain/use_case/delete_medicine_use_case.dart'
+    as _i24;
+import '../../features/medicine_details/domain/use_case/edit_medicine_details_use_case.dart'
+    as _i259;
+import '../../features/medicine_details/domain/use_case/get_medicine_details_use_case.dart'
+    as _i889;
+import '../../features/medicine_details/domain/use_case/update_medicine_quantity_use_case.dart'
+    as _i59;
+import '../../features/medicine_details/peresentation/view_model/medicine_details_cubit.dart'
+    as _i323;
 import '../../features/medicine_scan/data/data_source/medicine_scan_data_source.dart'
     as _i507;
 import '../../features/medicine_scan/data/data_source/medicine_scan_data_source_imp.dart'
@@ -206,6 +224,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i39.AlertDataSourceInterface>(
       () => _i305.AlertDataSourceImp(gh<_i974.FirebaseFirestore>()),
     );
+    gh.lazySingleton<_i752.MedicineDetailsDataSourceInterface>(
+      () => _i490.MedicineDetailsDataSourceImp(
+        firestore: gh<_i974.FirebaseFirestore>(),
+      ),
+    );
     gh.lazySingleton<_i541.HomeRepository>(
       () => _i9.HomeRepositoryImpl(gh<_i68.HomeRemoteDataSource>()),
     );
@@ -249,6 +272,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i510.MedicineScanRepository>(
       () => _i1028.MedicineScanRepositoryImp(
         medicineScanDataSource: gh<_i507.MedicineScanDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i691.MedicineDetailsRepoInterface>(
+      () => _i76.MedicineDetailsRepoImp(
+        dataSource: gh<_i752.MedicineDetailsDataSourceInterface>(),
       ),
     );
     gh.factory<_i682.AlertRepoInterface>(
@@ -339,6 +367,26 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i819.GetSearchMedicineStatusUseCase>(),
       ),
     );
+    gh.factory<_i24.DeleteMedicineUseCase>(
+      () => _i24.DeleteMedicineUseCase(
+        repo: gh<_i691.MedicineDetailsRepoInterface>(),
+      ),
+    );
+    gh.factory<_i259.EditMedicineDetailsUseCase>(
+      () => _i259.EditMedicineDetailsUseCase(
+        repo: gh<_i691.MedicineDetailsRepoInterface>(),
+      ),
+    );
+    gh.factory<_i889.GetMedicineDetailsUseCase>(
+      () => _i889.GetMedicineDetailsUseCase(
+        repo: gh<_i691.MedicineDetailsRepoInterface>(),
+      ),
+    );
+    gh.factory<_i59.UpdateMedicineQuantityUseCase>(
+      () => _i59.UpdateMedicineQuantityUseCase(
+        repo: gh<_i691.MedicineDetailsRepoInterface>(),
+      ),
+    );
     gh.factory<_i117.AuthCubit>(
       () => _i117.AuthCubit(
         loginUseCase: gh<_i37.LoginUseCase>(),
@@ -364,6 +412,14 @@ extension GetItInjectableX on _i174.GetIt {
         addMedicineUseCase: gh<_i405.AddMedicineUseCase>(),
         analyzeMedicineImageUseCase: gh<_i902.AnalyzeMedicineImageUseCase>(),
         getHouseHoldsMembersUseCase: gh<_i306.GetHouseHoldsMembersUseCase>(),
+      ),
+    );
+    gh.factory<_i323.MedicineDetailsCubit>(
+      () => _i323.MedicineDetailsCubit(
+        gh<_i889.GetMedicineDetailsUseCase>(),
+        gh<_i59.UpdateMedicineQuantityUseCase>(),
+        gh<_i259.EditMedicineDetailsUseCase>(),
+        gh<_i24.DeleteMedicineUseCase>(),
       ),
     );
     return this;

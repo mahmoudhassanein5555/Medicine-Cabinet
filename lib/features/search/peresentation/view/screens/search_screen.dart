@@ -93,6 +93,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           }
                           return SearchResultsList(
                             medicines: state.medicines,
+                            householdId: widget.householdId,
                           );
                         }
 

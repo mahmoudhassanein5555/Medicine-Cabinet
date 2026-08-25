@@ -261,7 +261,7 @@ class MemberDetailsScreen extends StatelessWidget {
 
                           SizedBox(height: 14.h),
 
-                          const MemberMedicinesList(),
+                          MemberMedicinesList(householdId: householdId),
 
                           SizedBox(height: 24.h),
                         ],

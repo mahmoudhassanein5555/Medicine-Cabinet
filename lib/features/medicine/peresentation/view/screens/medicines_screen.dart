@@ -14,6 +14,7 @@ import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/me
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicines_sort_bottom_sheet.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_states.dart';
+import 'package:medicine_cabinet/features/medicine_details/peresentation/view/screens/medicine_details_screen.dart';
 import 'package:medicine_cabinet/features/search/peresentation/view/screens/search_screen.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -308,6 +309,17 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                 expiry: formatExpiryDate(context, medicine.expiryDate),
                 addedBy: medicine.addedBy,
                 status: getMedicineStatusTitle(context, status),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => MedicineDetailsScreen(
+                        householdId: widget.householdId,
+                        medicineId: medicine.id,
+                      ),
+                    ),
+                  );
+                },
               );
             },
           ),

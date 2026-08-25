@@ -279,10 +279,10 @@ class S {
     return Intl.message('Expired', name: 'commonExpired', desc: '', args: []);
   }
 
-  /// `Something went wrong, please try again.`
+  /// `Try again`
   String get commonTryAgain {
     return Intl.message(
-      'Something went wrong, please try again.',
+      'Try again',
       name: 'commonTryAgain',
       desc: '',
       args: [],
@@ -352,6 +352,16 @@ class S {
   /// `Close`
   String get commonClose {
     return Intl.message('Close', name: 'commonClose', desc: '', args: []);
+  }
+
+  /// `Unable to load medicine details.`
+  String get commonUnableToLoadMedicineDetails {
+    return Intl.message(
+      'Unable to load medicine details.',
+      name: 'commonUnableToLoadMedicineDetails',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Home`
@@ -2929,6 +2939,166 @@ class S {
     return Intl.message(
       'Something went wrong while logging out. Please try again.',
       name: 'logoutFailedDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get medicineDetailsName {
+    return Intl.message(
+      'Name',
+      name: 'medicineDetailsName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get medicineDetailsType {
+    return Intl.message(
+      'Type',
+      name: 'medicineDetailsType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get medicineDetailsCategory {
+    return Intl.message(
+      'Category',
+      name: 'medicineDetailsCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pills`
+  String get medicineTypePills {
+    return Intl.message('Pills', name: 'medicineTypePills', desc: '', args: []);
+  }
+
+  /// `Capsules`
+  String get medicineTypeCapsules {
+    return Intl.message(
+      'Capsules',
+      name: 'medicineTypeCapsules',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Syrup`
+  String get medicineTypeSyrup {
+    return Intl.message('Syrup', name: 'medicineTypeSyrup', desc: '', args: []);
+  }
+
+  /// `Drops`
+  String get medicineTypeDrops {
+    return Intl.message('Drops', name: 'medicineTypeDrops', desc: '', args: []);
+  }
+
+  /// `Cream`
+  String get medicineTypeCream {
+    return Intl.message('Cream', name: 'medicineTypeCream', desc: '', args: []);
+  }
+
+  /// `Ointment`
+  String get medicineTypeOintment {
+    return Intl.message(
+      'Ointment',
+      name: 'medicineTypeOintment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inhaler`
+  String get medicineTypeInhaler {
+    return Intl.message(
+      'Inhaler',
+      name: 'medicineTypeInhaler',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pain relief`
+  String get medicineCategoryPainRelief {
+    return Intl.message(
+      'Pain relief',
+      name: 'medicineCategoryPainRelief',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cold & flu`
+  String get medicineCategoryColdFlu {
+    return Intl.message(
+      'Cold & flu',
+      name: 'medicineCategoryColdFlu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allergy`
+  String get medicineCategoryAllergy {
+    return Intl.message(
+      'Allergy',
+      name: 'medicineCategoryAllergy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digestive`
+  String get medicineCategoryDigestive {
+    return Intl.message(
+      'Digestive',
+      name: 'medicineCategoryDigestive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vitamins`
+  String get medicineCategoryVitamins {
+    return Intl.message(
+      'Vitamins',
+      name: 'medicineCategoryVitamins',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Antibiotics`
+  String get medicineCategoryAntibiotics {
+    return Intl.message(
+      'Antibiotics',
+      name: 'medicineCategoryAntibiotics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skin care`
+  String get medicineCategorySkinCare {
+    return Intl.message(
+      'Skin care',
+      name: 'medicineCategorySkinCare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medicine not found`
+  String get medicineDetailsNotFound {
+    return Intl.message(
+      'Medicine not found',
+      name: 'medicineDetailsNotFound',
       desc: '',
       args: [],
     );
