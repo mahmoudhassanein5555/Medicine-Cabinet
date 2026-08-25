@@ -34,15 +34,14 @@ class CustomTextField extends StatelessWidget {
       textInputAction: textInputAction,
       onChanged: onChanged,
       onSubmitted: onSubmitted,
-      style: Theme.of(
-        context,
-      ).textTheme.bodyLarge?.copyWith(
-            fontWeight: FontWeight.w600,
-            fontSize: 16.sp,
-          ),
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+        fontWeight: FontWeight.w600,
+        fontSize: 16.sp,
+      ),
       decoration: InputDecoration(
         hintText: hintText,
-        prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 22.r) : null, suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 22.r) : null,
+        suffixIcon: suffixIcon,
       ),
     );
   }
