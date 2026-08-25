@@ -2,17 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/core/constants/app_colors.dart';
-import 'package:medicine_cabinet/core/utils/medicine_localizations.dart';
 import 'package:medicine_cabinet/core/widgets/custom_text_form_field.dart';
-import 'package:medicine_cabinet/features/medicine/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_filter.dart';
-import 'package:medicine_cabinet/features/medicine/domain/enums/medicine_sort.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_error.dart';
-import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_filter_chip.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicines_empty.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicines_list.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicines_loading.dart';
-import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicines_sort_bottom_sheet.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_states.dart';
 import 'package:medicine_cabinet/features/search/peresentation/view/screens/search_screen.dart';
@@ -30,15 +25,6 @@ class MedicinesScreen extends StatefulWidget {
 class _MedicinesScreenState extends State<MedicinesScreen> {
   final TextEditingController searchController = TextEditingController();
 
-  MedicineSort selectedSort = MedicineSort.expiryDate;
-
-  final List<MedicineFilter> filters = [
-    MedicineFilter.all,
-    MedicineFilter.expiringSoon,
-    MedicineFilter.lowStock,
-    MedicineFilter.expired,
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -49,28 +35,6 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
   void dispose() {
     searchController.dispose();
     super.dispose();
-  }
-
-  void _sortMedicines(List<MedicineEntity> medicines) {
-    switch (selectedSort) {
-      case MedicineSort.expiryDate:
-        medicines.sort((a, b) => a.expiryDate.compareTo(b.expiryDate));
-        break;
-
-      case MedicineSort.name:
-        medicines.sort(
-          (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
-        );
-        break;
-
-      case MedicineSort.quantity:
-        medicines.sort((a, b) => a.quantity.compareTo(b.quantity));
-        break;
-
-      case MedicineSort.recentlyAdded:
-        medicines.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-        break;
-    }
   }
 
   @override
@@ -102,8 +66,8 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                       message: state.failure.getMessage(context),
                       onRetry: () {
                         context.read<MedicineCubit>().getMedicines(
-                              widget.householdId,
-                            );
+                          widget.householdId,
+                        );
                       },
                     ),
                   ],
@@ -135,13 +99,11 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
   }) {
     final theme = Theme.of(context);
     final l10n = S.of(context);
-
-    final medicines = [...state.medicines];
-    _sortMedicines(medicines);
+    final medicines = state.medicines;
 
     return CustomScrollView(
       slivers: [
-        /// Header + Search + Filters + Sort
+        /// Header + Search + Items Count
         SliverPadding(
           padding: EdgeInsets.fromLTRB(33.w, 28.h, 33.w, 0),
           sliver: SliverToBoxAdapter(
@@ -190,82 +152,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                   ),
                 ),
 
-                SizedBox(height: 14.h),
-
-                /// Filters
-                SizedBox(
-                  height: 38.h,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: filters.length,
-                    separatorBuilder: (_, __) => SizedBox(width: 9.w),
-                    itemBuilder: (context, index) {
-                      final filter = filters[index];
-
-                      return MedicineFilterChip(
-                        title: getMedicineFilterTitle(context, filter),
-                        isSelected: state.selectedFilter == filter,
-                        onTap: () {
-                          context.read<MedicineCubit>().filterMedicines(filter);
-                        },
-                      );
-                    },
-                  ),
-                ),
-
-                SizedBox(height: 20.h),
-
-                /// Items count + Sort
-                Row(
-                  children: [
-                    Text(
-                      l10n.medicinesItemsCount(medicines.length),
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-
-                    const Spacer(),
-
-                    InkWell(
-                      onTap: () {
-                        MedicinesSortBottomSheet.show(
-                          context: context,
-                          currentSort: selectedSort,
-                          onSortSelected: (sort) {
-                            setState(() {
-                              selectedSort = sort;
-                            });
-                          },
-                        );
-                      },
-                      borderRadius: BorderRadius.circular(8.r),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            l10n.medicinesSortLabelCurrent(
-                              getMedicineSortTitle(context, selectedSort),
-                            ),
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          SizedBox(width: 2.w),
-                          Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            size: 18.r,
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-
-                SizedBox(height: 20.h),
+                SizedBox(height: 18.h),
               ],
             ),
           ),
@@ -277,10 +164,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
         else if (medicines.isEmpty)
           const EmptyMedicines()
         else
-          MedicinesList(
-            medicines: medicines,
-            householdId: householdId,
-          ),
+          MedicinesList(medicines: medicines, householdId: householdId),
 
         SliverToBoxAdapter(child: SizedBox(height: 30.h)),
       ],

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:medicine_cabinet/core/utils/medicine_localizations.dart';
 import 'package:medicine_cabinet/features/medicine/domain/entity/medicine_entity.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/date_formatter.dart';
 import 'package:medicine_cabinet/features/medicine/peresentation/view/widgets/medicine_card.dart';
-import 'package:medicine_cabinet/features/medicine/peresentation/view_model/medicine_cubit.dart';
 import 'package:medicine_cabinet/features/medicine_details/peresentation/view/screens/medicine_details_screen.dart';
 
 class MedicinesList extends StatelessWidget {
@@ -20,16 +17,13 @@ class MedicinesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<MedicineCubit>();
-
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 33.w),
       sliver: SliverList.separated(
         itemCount: medicines.length,
-        separatorBuilder: (_, __) => SizedBox(height: 11.h),
+        separatorBuilder: (_, __) => SizedBox(height: 12.h),
         itemBuilder: (context, index) {
           final medicine = medicines[index];
-          final status = cubit.getMedicineStatus(medicine);
 
           return MedicineCard(
             imageUrl: medicine.imageUrl,
@@ -38,7 +32,6 @@ class MedicinesList extends StatelessWidget {
             remaining: medicine.quantity,
             expiry: formatExpiryDate(context, medicine.expiryDate),
             addedBy: medicine.addedBy,
-            status: getMedicineStatusTitle(context, status),
             onTap: () {
               Navigator.push(
                 context,

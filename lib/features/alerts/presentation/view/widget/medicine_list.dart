@@ -23,7 +23,7 @@ class MedicineList extends StatelessWidget {
     }
 
     return ListView.separated(
-      padding: EdgeInsets.all(16.r),
+      padding: EdgeInsets.only(top: 4.h, bottom: 24.h),
       itemCount: medicines.length,
       separatorBuilder: (_, __) => SizedBox(height: 12.h),
       itemBuilder: (context, index) {

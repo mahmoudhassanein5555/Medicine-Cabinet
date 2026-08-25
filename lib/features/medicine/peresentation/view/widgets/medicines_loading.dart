@@ -23,7 +23,6 @@ class MedicinesLoading extends StatelessWidget {
               remaining: 12,
               expiry: AppStrings.dummyMedicineExpiry,
               addedBy: AppStrings.dummyMedicineAddedBy,
-              status: AppStrings.dummyMedicineStatus,
             ),
           );
         },

@@ -8,24 +8,22 @@ class MedicineListSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.w,
-        vertical: 8.h,
-      ),
+      padding: EdgeInsets.only(top: 4.h, bottom: 24.h),
       itemCount: 6,
       separatorBuilder: (_, __) => SizedBox(height: 12.h),
       itemBuilder: (context, index) {
         return Skeletonizer(
           child: Container(
-            padding: EdgeInsets.all(12.r),
+            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.circular(18.r),
             ),
             child: Row(
               children: [
                 Bone.square(
-                  size: 64.r,
+                  size: 50.r,
+                  borderRadius: BorderRadius.circular(14.r),
                 ),
 
                 SizedBox(width: 12.w),
@@ -38,16 +36,10 @@ class MedicineListSkeleton extends StatelessWidget {
                         words: 2,
                       ),
 
-                      SizedBox(height: 8.h),
+                      SizedBox(height: 6.h),
 
                       const Bone.text(
                         words: 1,
-                      ),
-
-                      SizedBox(height: 8.h),
-
-                      const Bone.text(
-                        words: 2,
                       ),
                     ],
                   ),
