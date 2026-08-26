@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/core/constants/app_keys.dart';
+import 'package:medicine_cabinet/core/errors/error.dart';
 import 'package:medicine_cabinet/core/utils/cloudinary_service.dart';
 import 'package:medicine_cabinet/features/medicine_scan/data/data_source/medicine_scan_data_source.dart';
 import 'package:medicine_cabinet/features/medicine_scan/data/models/medicine_model.dart';
@@ -24,15 +25,21 @@ class MedicineScanDataSourceImp implements MedicineScanDataSource {
   @override
   Future<MedicineScanModel> analyzeMidicine(File image) async {
     try {
-      final imageUrl = await CloudinaryService.uploadImage(image);
-      debugPrint("here before gemini");
-      final response = await _sendImageToGemini(image);
-      debugPrint("here after gemini");
+      debugPrint("Starting medicine analysis and upload...");
+      final results = await Future.wait([
+        CloudinaryService.uploadImage(image),
+        _sendImageToGemini(image),
+      ]);
+
+      final imageUrl = results[0];
+      final response = results[1] as String;
+      debugPrint("Gemini analysis completed successfully.");
+
       String cleanResponse = response.replaceAll('```json\n', '');
       cleanResponse = cleanResponse.replaceAll('```json', '');
       cleanResponse = cleanResponse.replaceAll('```', '');
       cleanResponse = cleanResponse.trim();
-      final json = jsonDecode(cleanResponse);
+      final json = jsonDecode(cleanResponse) as Map<String, dynamic>;
 
       final model = MedicineScanModel.fromJson(json);
 
@@ -45,11 +52,11 @@ class MedicineScanDataSourceImp implements MedicineScanDataSource {
         imageUrl: imageUrl,
       );
       debugPrint(
-        "name: ${data.name} category: ${data.category} type: ${data.type} desc: ${data.description} date: ${data.expiryDate}  image Url: ${data.imageUrl}",
+        "name: ${data.name} category: ${data.category} type: ${data.type} desc: ${data.description} date: ${data.expiryDate} image Url: ${data.imageUrl}",
       );
       return data;
     } on DioException catch (e) {
-      debugPrint("Failed because analyzeMidicine DataSource");
+      debugPrint("Failed in analyzeMidicine DataSource");
       debugPrint("====== DIO ERROR DETAILS ======");
       debugPrint("FINAL URI: ${e.requestOptions.uri}");
       debugPrint("STATUS CODE: ${e.response?.statusCode}");
@@ -84,11 +91,17 @@ class MedicineScanDataSourceImp implements MedicineScanDataSource {
   }
 
   Future<String> _sendImageToGemini(File image) async {
+    final apiKey = AppKeys.geminiApiKey.trim();
+    if (apiKey.isEmpty) {
+      throw RemoteException(
+        'Gemini API key is missing. Please set GEMINI_API_KEY in your .env file.',
+      );
+    }
+
     final imageBytes = await image.readAsBytes();
     final base64Image = base64Encode(imageBytes);
 
-    final apiKey = AppKeys.geminiApiKey;
-    const model = "gemini-3.5-flash-lite";
+    const model = "gemini-3.6-flash";
 
     final url =
         'https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent';
@@ -97,6 +110,7 @@ class MedicineScanDataSourceImp implements MedicineScanDataSource {
       final response = await dio.post(
         url,
         queryParameters: {'key': apiKey},
+        options: Options(headers: {'Content-Type': 'application/json'}),
         data: {
           'contents': [
             {
@@ -132,12 +146,13 @@ Rules:
               ],
             },
           ],
+          'generationConfig': {'response_mime_type': 'application/json'},
         },
       );
       final data = response.data;
-      debugPrint("😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍");
-      debugPrint(data['candidates'][0]['content']['parts'][0]['text']);
-      debugPrint("😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍");
+      debugPrint(
+        "Gemini raw response: ${data['candidates'][0]['content']['parts'][0]['text']}",
+      );
       return data['candidates'][0]['content']['parts'][0]['text'];
     } on DioException catch (e) {
       debugPrint("====== DIO ERROR DETAILS ======");

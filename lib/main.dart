@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medicine_cabinet/core/constants/app_keys.dart';
@@ -23,9 +24,9 @@ import 'package:medicine_cabinet/generated/l10n.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await dotenv.load(fileName: ".env");
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await configureDependencies();
 
@@ -82,7 +83,9 @@ class MyApp extends StatelessWidget {
                     final cacheHelper = getIt<CacheHelper>();
                     final localDataSource = getIt<HouseholdLocalDataSource>();
 
-                    final cachedUserId = cacheHelper.getData(key: AppKeys.userId);
+                    final cachedUserId = cacheHelper.getData(
+                      key: AppKeys.userId,
+                    );
                     if (cachedUserId == null) {
                       await cacheHelper.saveData(
                         key: AppKeys.userId,
@@ -102,8 +105,8 @@ class MyApp extends StatelessWidget {
 
                 onNavigate: (splashContext, route) {
                   final currentUser = FirebaseAuth.instance.currentUser;
-                  final householdId =
-                      getIt<HouseholdLocalDataSource>().getHouseholdId();
+                  final householdId = getIt<HouseholdLocalDataSource>()
+                      .getHouseholdId();
 
                   if (route == 'home' && currentUser != null) {
                     Navigator.pushReplacement(
@@ -119,9 +122,8 @@ class MyApp extends StatelessWidget {
                     Navigator.pushReplacement(
                       splashContext,
                       MaterialPageRoute(
-                        builder: (_) => HouseholdScreen(
-                          userId: currentUser.uid,
-                        ),
+                        builder: (_) =>
+                            HouseholdScreen(userId: currentUser.uid),
                       ),
                     );
                   } else {

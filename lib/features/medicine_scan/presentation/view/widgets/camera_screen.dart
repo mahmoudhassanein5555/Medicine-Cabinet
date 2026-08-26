@@ -43,7 +43,7 @@ class _CameraScreenState extends State<CameraScreen> {
 
     _controller = CameraController(
       widget.cameras[cameraIndex],
-      ResolutionPreset.max,
+      ResolutionPreset.high,
       enableAudio: false,
     );
 
@@ -171,9 +171,9 @@ class _CameraScreenState extends State<CameraScreen> {
             } else if (state is MedicineScanErrorState) {
               AppToast.showToast(
                 context: context,
-                title: S.of(context).scanMissingInfoTitle,
-                description: S.of(context).scanMissingInfoDesc,
-                type: ToastificationType.info,
+                title: S.of(context).commonError,
+                description: state.failure.getMessage(context),
+                type: ToastificationType.error,
               );
             }
           }

@@ -17,15 +17,23 @@ class ErrorHandler {
     }
 
     if (exception is DioException) {
-      debugPrint(
-        '***************************************************************************',
-      );
-      debugPrint(exception.message);
-      debugPrint(
-        '***************************************************************************',
-      );
+      String? serverMsg;
+      if (exception.response?.data is Map) {
+        final data = exception.response!.data as Map;
+        if (data['error'] is Map && data['error']['message'] != null) {
+          serverMsg = data['error']['message'].toString();
+        } else if (data['message'] != null) {
+          serverMsg = data['message'].toString();
+        }
+      }
+      debugPrint('====== DIO EXCEPTION DETAILS ======');
+      debugPrint('URI: ${exception.requestOptions.uri}');
+      debugPrint('Status Code: ${exception.response?.statusCode}');
+      debugPrint('Server Message: $serverMsg');
+      debugPrint('Dio Message: ${exception.message}');
+      debugPrint('====================================');
 
-      return _handleRemoteError(exception.message ?? 'Something went wrong');
+      return _handleRemoteError(serverMsg ?? exception.message ?? 'Something went wrong');
     }
 
     if (exception is RemoteException) {
@@ -119,6 +127,14 @@ class ErrorHandler {
 
   static Failure _handleRemoteError(String message) {
     final normalizedMessage = message.toLowerCase();
+
+    // API Key issues
+    if (normalizedMessage.contains('api key not valid') ||
+        normalizedMessage.contains('api_key_invalid') ||
+        normalizedMessage.contains('api key is missing') ||
+        normalizedMessage.contains('invalid api key')) {
+      return Failure.ofString('Invalid or missing Gemini API Key. Please check your .env file.');
+    }
 
     // 401 - Unauthorized
     if (normalizedMessage.contains('401') ||

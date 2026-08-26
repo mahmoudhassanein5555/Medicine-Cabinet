@@ -38,7 +38,9 @@ class HomeHeaderWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                " $userName 🤗",
+                "$userName 🤗",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 22.sp,
                   fontWeight: FontWeight.w800,

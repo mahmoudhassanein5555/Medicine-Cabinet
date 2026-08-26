@@ -27,27 +27,32 @@ class StatCardWidget extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(18.r),
         child: Container(
-          height: 105.h,
-          padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+          constraints: BoxConstraints(minHeight: 90.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '$count',
-                style: TextStyle(
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.w800,
-                  color: isDark ? Colors.white : const Color(0xFF16211E),
-                  height: 1.1,
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(
+                  '$count',
+                  style: TextStyle(
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w800,
+                    color: isDark ? Colors.white : const Color(0xFF16211E),
+                    height: 1.1,
+                  ),
                 ),
               ),
+              SizedBox(height: 6.h),
               Text(
                 title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 12.sp,
+                  fontSize: 11.5.sp,
                   fontWeight: FontWeight.w500,
                   color: isDark
                       ? AppColors.textSecondaryDark

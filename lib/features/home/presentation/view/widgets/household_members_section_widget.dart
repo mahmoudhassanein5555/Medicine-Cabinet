@@ -59,7 +59,7 @@ class HouseholdMembersSectionWidget extends StatelessWidget {
         ),
         SizedBox(height: 12.h),
         SizedBox(
-          height: 90.h,
+          height: 96.h,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: members.length,
@@ -69,52 +69,58 @@ class HouseholdMembersSectionWidget extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () => onMemberTap?.call(member),
-                child: Column(
-                  children: [
-                    Container(
-                      width: 44.r,
-                      height: 44.r,
-                      decoration: const BoxDecoration(
-                        color: AppColors.primaryLight,
-                        shape: BoxShape.circle,
-                      ),
-                      alignment: Alignment.center,
-                      child: member.photoUrl.isNotEmpty
-                          ? ClipOval(
-                              child: CachedNetworkImage(
-                                imageUrl: member.photoUrl,
-                                width: 44.r,
-                                height: 44.r,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) => Center(
-                                  child: SizedBox(
-                                    width: 16.r,
-                                    height: 16.r,
-                                    child: const CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      color: Colors.white,
+                child: SizedBox(
+                  width: 58.w,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 44.r,
+                        height: 44.r,
+                        decoration: const BoxDecoration(
+                          color: AppColors.primaryLight,
+                          shape: BoxShape.circle,
+                        ),
+                        alignment: Alignment.center,
+                        child: member.photoUrl.isNotEmpty
+                            ? ClipOval(
+                                child: CachedNetworkImage(
+                                  imageUrl: member.photoUrl,
+                                  width: 44.r,
+                                  height: 44.r,
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) => Center(
+                                    child: SizedBox(
+                                      width: 16.r,
+                                      height: 16.r,
+                                      child: const CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
+                                  errorWidget: (context, url, error) =>
+                                      _buildInitialText(member),
                                 ),
-                                errorWidget: (context, url, error) =>
-                                    _buildInitialText(member),
-                              ),
-                            )
-                          : _buildInitialText(member),
-                    ),
-                    SizedBox(height: 6.h),
-                    Text(
-                      member.firstName,
-                      maxLines: 2,
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w500,
-                        color: isDark
-                            ? AppColors.textSecondaryDark
-                            : const Color(0xFF6C7A76),
+                              )
+                            : _buildInitialText(member),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 6.h),
+                      Text(
+                        member.firstName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                          color: isDark
+                              ? AppColors.textSecondaryDark
+                              : const Color(0xFF6C7A76),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

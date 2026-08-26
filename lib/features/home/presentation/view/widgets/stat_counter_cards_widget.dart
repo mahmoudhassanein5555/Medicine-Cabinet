@@ -23,41 +23,44 @@ class StatCounterCardsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Row(
-      children: [
-        Expanded(
-          child: StatCardWidget(
-            count: summary.totalCount,
-            title: S.of(context).medicinesTitle,
-            backgroundColor: isDark
-                ? AppColors.primaryLight.withValues(alpha: 0.18)
-                : const Color(0xFFE3F1EC),
-            onTap: onMedicinesTap,
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: StatCardWidget(
+              count: summary.totalCount,
+              title: S.of(context).medicinesTitle,
+              backgroundColor: isDark
+                  ? AppColors.primaryLight.withValues(alpha: 0.18)
+                  : const Color(0xFFE3F1EC),
+              onTap: onMedicinesTap,
+            ),
           ),
-        ),
-        SizedBox(width: 10.w),
-        Expanded(
-          child: StatCardWidget(
-            count: summary.expiringSoonCount,
-            title: S.of(context).commonExpiringSoon,
-            backgroundColor: isDark
-                ? AppColors.warningLight.withValues(alpha: 0.18)
-                : const Color(0xFFFBEEDC),
-            onTap: onExpiringTap,
+          SizedBox(width: 8.w),
+          Expanded(
+            child: StatCardWidget(
+              count: summary.expiringSoonCount,
+              title: S.of(context).commonExpiringSoon,
+              backgroundColor: isDark
+                  ? AppColors.warningLight.withValues(alpha: 0.18)
+                  : const Color(0xFFFBEEDC),
+              onTap: onExpiringTap,
+            ),
           ),
-        ),
-        SizedBox(width: 10.w),
-        Expanded(
-          child: StatCardWidget(
-            count: summary.lowStockCount,
-            title: S.of(context).commonLowStock,
-            backgroundColor: isDark
-                ? AppColors.errorLight.withValues(alpha: 0.18)
-                : const Color(0xFFFAE4E1),
-            onTap: onLowStockTap,
+          SizedBox(width: 8.w),
+          Expanded(
+            child: StatCardWidget(
+              count: summary.lowStockCount,
+              title: S.of(context).commonLowStock,
+              backgroundColor: isDark
+                  ? AppColors.errorLight.withValues(alpha: 0.18)
+                  : const Color(0xFFFAE4E1),
+              onTap: onLowStockTap,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
