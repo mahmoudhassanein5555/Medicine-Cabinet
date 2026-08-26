@@ -14,7 +14,7 @@ class GetHouseholdMedicinesUseCase {
 
   Future<Either<Failure, CabinetSummaryEntity>> call(
     String householdId, {
-    int lowStockThreshold = 3,
+    int lowStockThreshold = 0,
     int expiringSoonDaysThreshold = 30,
   }) async {
     final result = await _homeRepository.getHouseholdMedicines(householdId);
@@ -33,7 +33,7 @@ class GetHouseholdMedicinesUseCase {
 
           activeMedicines.add(medicine);
 
-          if (medicine.quantity <= lowStockThreshold) {
+          if (medicine.quantity <= 0) {
             rawLowStockMedicines.add(medicine);
           }
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/core/errors/error_handler.dart';
@@ -19,6 +21,8 @@ class HomeCubit extends Cubit<HomeState> {
 
   String? _lastUserId;
   String? _lastHouseholdId;
+  StreamSubscription? _medicinesSubscription;
+  StreamSubscription? _membersSubscription;
 
   HomeCubit({
     required this.getUserDetailsUseCase,
@@ -84,15 +88,74 @@ class HomeCubit extends Cubit<HomeState> {
       membersResult.fold((failure) => members = [], (data) => members = data);
 
       emit(HomeSuccess(user: user!, summary: summary!, members: members));
+
+      _startRealtimeSubscriptions(userId: userId, householdId: householdId, user: user!);
     } catch (e) {
       final failure = ErrorHandler.handle(e);
       emit(HomeError(failure));
     }
   }
 
+  void _startRealtimeSubscriptions({
+    required String userId,
+    required String householdId,
+    required UserEntity user,
+  }) {
+    _medicinesSubscription?.cancel();
+    _medicinesSubscription = FirebaseFirestore.instance
+        .collection('households')
+        .doc(householdId)
+        .collection('medicines')
+        .snapshots()
+        .skip(1)
+        .listen((_) async {
+      final medicinesResult = await getHouseholdMedicinesUseCase(householdId);
+      medicinesResult.fold(
+        (_) {},
+        (newSummary) {
+          final currentState = state;
+          if (currentState is HomeSuccess) {
+            emit(currentState.copyWith(summary: newSummary));
+          }
+        },
+      );
+    });
+
+    _membersSubscription?.cancel();
+    _membersSubscription = FirebaseFirestore.instance
+        .collection('households')
+        .doc(householdId)
+        .collection('members')
+        .snapshots()
+        .skip(1)
+        .listen((_) async {
+      final membersResult = await getHouseholdMembersUseCase(
+        householdId,
+        fallbackUser: user,
+        userId: userId,
+      );
+      membersResult.fold(
+        (_) {},
+        (newMembers) {
+          final currentState = state;
+          if (currentState is HomeSuccess) {
+            emit(currentState.copyWith(members: newMembers));
+          }
+        },
+      );
+    });
+  }
+
   Future<void> refresh() async {
     if (_lastUserId != null && _lastHouseholdId != null) {
       await loadHomeData(userId: _lastUserId!, householdId: _lastHouseholdId!);
     }
+  }
+
+  @override
+  Future<void> close() {
+    _medicinesSubscription?.cancel();
+    _membersSubscription?.cancel();
+    return super.close();
   }
 }

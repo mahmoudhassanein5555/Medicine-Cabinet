@@ -28,6 +28,7 @@ class MedicineEntity {
   });
 
   bool get isExpired => expiryDate.isBefore(DateTime.now());
-  bool get isLowStock => quantity <= 3; 
-  bool get isRecentlyAdded => DateTime.now().difference(createdAt).inDays <= 3; 
+  bool get isEnded => quantity <= 0;
+  bool get isLowStock => quantity <= 0;
+  bool get isRecentlyAdded => DateTime.now().difference(createdAt).inDays <= 3;
 }

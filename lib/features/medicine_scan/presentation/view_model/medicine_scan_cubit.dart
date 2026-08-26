@@ -161,7 +161,7 @@ class MedicineScanCubit extends Cubit<MedicineScanStates> {
         isLoadingMembers = false;
         householdMembers = membersList;
         if (membersList.isNotEmpty && selectedMember.isEmpty) {
-          selectedMember = membersList.first.name;
+          selectedMember = membersList.first.id;
         }
         emit(MedicineScanGetMembersSuccessState(membersList));
       },

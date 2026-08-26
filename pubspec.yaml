@@ -94,15 +94,15 @@ flutter_launcher_icons:
 
 flutter_native_splash:
   color: "#FAFCFB"
-  image: assets/images/splash_logo_light.png
+  image: assets/images/splash_logo.png
 
   color_dark: "#0D1513"
-  image_dark: assets/images/splash_logo_dark.png
+  image_dark: assets/images/splash_logo.png
 
   android_12:
-    image: assets/images/splash_logo_light.png
+    image: assets/images/splash_logo.png
     icon_background_color: "#FAFCFB"
-    image_dark: assets/images/splash_logo_dark.png
+    image_dark: assets/images/splash_logo.png
     icon_background_color_dark: "#0D1513"
 
 flutter:

@@ -136,7 +136,7 @@ class MemberSelectorSection extends StatelessWidget {
             name: member.name,
             role: member.role,
             isSelected: isSelected,
-            onTap: () => onMemberSelected(member.name),
+            onTap: () => onMemberSelected(member.id),
             profileImage: member.photoUrl,
             id: member.id,
           );

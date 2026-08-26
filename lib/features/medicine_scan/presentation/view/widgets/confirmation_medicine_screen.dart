@@ -90,7 +90,10 @@ class ConfirmMedicineScreen extends StatelessWidget {
               ),
             ),
           );
-          Navigator.pop(context);
+          Navigator.of(context).pop();
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop();
+          }
         } else if (state is AddMedicineErrorState) {
           AppToast.showToast(
             context: context,

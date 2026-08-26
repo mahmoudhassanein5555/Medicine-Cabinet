@@ -160,9 +160,16 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
     for (final memberDoc in membersSnapshot.docs) {
       final userId = memberDoc.id;
       final memberData = memberDoc.data();
+      final memberName = memberData['name'] as String?;
 
       final medicineCount = medicinesSnapshot.docs
-          .where((medicine) => medicine.data()['ownerId'] == userId)
+          .where((medicine) {
+            final ownerId = medicine.data()['ownerId'];
+            return ownerId == userId ||
+                (memberName != null &&
+                    memberName.isNotEmpty &&
+                    ownerId == memberName);
+          })
           .length;
 
       members.add(
@@ -189,10 +196,24 @@ class HouseholdDataSourceImp implements HouseholdDataSourceInterface {
         .collection('households')
         .doc(householdId)
         .collection('medicines')
-        .where('ownerId', isEqualTo: userId)
         .get();
 
+    final memberDoc = await _firestore
+        .collection('households')
+        .doc(householdId)
+        .collection('members')
+        .doc(userId)
+        .get();
+    final memberName = memberDoc.data()?['name'] as String?;
+
     var resalt = medicinesSnapshot.docs
+        .where((doc) {
+          final ownerId = doc.data()['ownerId'];
+          return ownerId == userId ||
+              (memberName != null &&
+                  memberName.isNotEmpty &&
+                  ownerId == memberName);
+        })
         .map((doc) => MedicineDto.fromFirestore(doc.data(), doc.id))
         .toList();
 

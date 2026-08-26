@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/core/failure/failure.dart';
@@ -17,6 +19,9 @@ class HouseholdCubit extends Cubit<HouseholdState> {
   final GetHouseholdMembersUseCase _getHouseholdMembersUseCase;
   final GetMemberMedicinesUseCase _getMemberMedicinesUseCase;
   final RemoveMemberUseCase _removeMemberUseCase;
+
+  StreamSubscription? _membersSubscription;
+  StreamSubscription? _memberMedicinesSubscription;
 
   HouseholdCubit(
     this._createHouseholdUseCase,
@@ -103,6 +108,28 @@ class HouseholdCubit extends Cubit<HouseholdState> {
         emit(GetMembersSuccess(members, isCurrentUserAdmin));
       },
     );
+
+    _membersSubscription?.cancel();
+    _membersSubscription = FirebaseFirestore.instance
+        .collection('households')
+        .doc(householdId)
+        .collection('medicines')
+        .snapshots()
+        .skip(1)
+        .listen((_) async {
+      final res = await _getHouseholdMembersUseCase.invoke(
+        householdId: householdId,
+      );
+      res.fold(
+        (_) {},
+        (members) {
+          final isCurrentUserAdmin = members.any(
+            (member) => member.id == currentUserId && member.role == 'admin',
+          );
+          emit(GetMembersSuccess(members, isCurrentUserAdmin));
+        },
+      );
+    });
   }
 
   Future<void> getMemberMedicines({
@@ -120,6 +147,24 @@ class HouseholdCubit extends Cubit<HouseholdState> {
       (failure) => emit(GetMemberMedicinesError(failure)),
       (medicines) => emit(GetMemberMedicinesSuccess(medicines)),
     );
+
+    _memberMedicinesSubscription?.cancel();
+    _memberMedicinesSubscription = FirebaseFirestore.instance
+        .collection('households')
+        .doc(householdId)
+        .collection('medicines')
+        .snapshots()
+        .skip(1)
+        .listen((_) async {
+      final res = await _getMemberMedicinesUseCase.invoke(
+        householdId: householdId,
+        userId: userId,
+      );
+      res.fold(
+        (_) {},
+        (medicines) => emit(GetMemberMedicinesSuccess(medicines)),
+      );
+    });
   }
 
   Future<void> removeMember({
@@ -147,5 +192,12 @@ class HouseholdCubit extends Cubit<HouseholdState> {
     required bool isCurrentUserAdmin,
   }) {
     return isCurrentUserAdmin && currentUserId != memberId;
+  }
+
+  @override
+  Future<void> close() {
+    _membersSubscription?.cancel();
+    _memberMedicinesSubscription?.cancel();
+    return super.close();
   }
 }

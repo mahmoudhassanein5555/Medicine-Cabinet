@@ -32,6 +32,18 @@ class HomeSuccess extends HomeState {
     required this.members,
   });
 
+  HomeSuccess copyWith({
+    UserEntity? user,
+    CabinetSummaryEntity? summary,
+    List<MemberEntity>? members,
+  }) {
+    return HomeSuccess(
+      user: user ?? this.user,
+      summary: summary ?? this.summary,
+      members: members ?? this.members,
+    );
+  }
+
   @override
   String toString() =>
       'HomeSuccess(user: ${user.name}, activeMedicines: ${summary.activeMedicines.length}, members: ${members.length})';

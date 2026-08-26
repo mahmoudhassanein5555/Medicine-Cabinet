@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:medicine_cabinet/features/medicine/domain/entity/medicine_entity.dart';
@@ -21,6 +23,8 @@ class MedicineCubit extends Cubit<MedicineState> {
   ) : super(MedicineInitialState());
 
   List<MedicineEntity> allMedicines = [];
+  MedicineFilter currentFilter = MedicineFilter.all;
+  StreamSubscription? _medicinesSubscription;
 
   Future<void> getMedicines(String householdId) async {
     emit(MedicineLoadingState());
@@ -33,6 +37,7 @@ class MedicineCubit extends Cubit<MedicineState> {
       },
       (medicines) {
         allMedicines = medicines;
+        currentFilter = MedicineFilter.all;
 
         emit(
           MedicineSuccessState(
@@ -42,9 +47,37 @@ class MedicineCubit extends Cubit<MedicineState> {
         );
       },
     );
+
+    _medicinesSubscription?.cancel();
+    _medicinesSubscription = FirebaseFirestore.instance
+        .collection('households')
+        .doc(householdId)
+        .collection('medicines')
+        .snapshots()
+        .skip(1)
+        .listen((_) async {
+      final res = await getMedicinesUseCase.invoke(householdId);
+      res.fold(
+        (_) {},
+        (medicines) {
+          allMedicines = medicines;
+          final filteredMedicines = filterMedicinesUseCase.invoke(
+            medicines: allMedicines,
+            filter: currentFilter,
+          );
+          emit(
+            MedicineSuccessState(
+              medicines: filteredMedicines,
+              selectedFilter: currentFilter,
+            ),
+          );
+        },
+      );
+    });
   }
 
   void filterMedicines(MedicineFilter filter) {
+    currentFilter = filter;
     final filteredMedicines = filterMedicinesUseCase.invoke(
       medicines: allMedicines,
       filter: filter,
@@ -60,5 +93,11 @@ class MedicineCubit extends Cubit<MedicineState> {
 
   MedicineStatus getMedicineStatus(MedicineEntity medicine) {
     return getMedicineStatusUseCase.invoke(medicine);
+  }
+
+  @override
+  Future<void> close() {
+    _medicinesSubscription?.cancel();
+    return super.close();
   }
 }
