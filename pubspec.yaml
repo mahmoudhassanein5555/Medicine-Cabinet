@@ -83,7 +83,6 @@ dev_dependencies:
   # Native Splash Generator
   flutter_native_splash: ^2.4.8
 
-# إعدادات أيقونة التطبيق
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: false
@@ -93,7 +92,6 @@ flutter_launcher_icons:
     generate: true
     image_path: "assets/icons/app_icon.jpeg"
 
-# إعدادات شاشة الـ Splash
 flutter_native_splash:
   color: "#FAFCFB"
   image: assets/images/splash_logo_light.png
