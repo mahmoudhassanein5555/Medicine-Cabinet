@@ -10,6 +10,7 @@ import 'package:medicine_cabinet/features/home/domain/entity/cabinet_summary_ent
 import 'package:medicine_cabinet/features/home/domain/entity/member_entity.dart';
 import 'package:medicine_cabinet/features/home/domain/entity/user_entity.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/widgets/attention_needed_section_widget.dart';
+import 'package:medicine_cabinet/features/home/presentation/view/widgets/home_empty_medicines_widget.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/widgets/home_header_widget.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/widgets/household_members_section_widget.dart';
 import 'package:medicine_cabinet/features/home/presentation/view/widgets/recently_added_section_widget.dart';
@@ -122,6 +123,11 @@ class _HomeContentViewState extends State<HomeContentView> {
               onMemberTap: (member) {},
             ),
 
+            SizedBox(height: 20.h),
+          ],
+
+          if (widget.summary.totalCount == 0) ...[
+            const HomeEmptyMedicinesWidget(),
             SizedBox(height: 20.h),
           ],
         ],

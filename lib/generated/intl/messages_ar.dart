@@ -299,9 +299,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "homeCapsulesRemaining": m2,
     "homeEmptyButton": MessageLookupByLibrary.simpleMessage("امسح أول دواء لك"),
     "homeEmptyDesc": MessageLookupByLibrary.simpleMessage(
-      "امسح أول دواء تملكه وسيظهر هنا، منظماً وجاهزاً للمتابعة.",
+      "ابدأ بمسح أو إضافة أول دواء لك لتنظيمه ومتابعة صلاحيته بسهولة.",
     ),
-    "homeEmptyTitle": MessageLookupByLibrary.simpleMessage("خزانتك فارغة"),
+    "homeEmptyTitle": MessageLookupByLibrary.simpleMessage(
+      "خزانتك فارغة حالياً",
+    ),
     "homeExpiresInDays": m3,
     "homeExpiresInMonth": MessageLookupByLibrary.simpleMessage(
       "ينتهي خلال شهر",

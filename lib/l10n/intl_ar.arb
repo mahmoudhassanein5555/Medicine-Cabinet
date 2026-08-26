@@ -209,8 +209,8 @@
       }
     }
   },
-  "homeEmptyTitle": "خزانتك فارغة",
-  "homeEmptyDesc": "امسح أول دواء تملكه وسيظهر هنا، منظماً وجاهزاً للمتابعة.",
+  "homeEmptyTitle": "خزانتك فارغة حالياً",
+  "homeEmptyDesc": "ابدأ بمسح أو إضافة أول دواء لك لتنظيمه ومتابعة صلاحيته بسهولة.",
   "homeEmptyButton": "امسح أول دواء لك",
   "medicinesSearchHint": "البحث في الأدوية...",
   "medicinesSortBy": "ترتيب حسب",

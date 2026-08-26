@@ -14,4 +14,6 @@ abstract final class AppAssets {
   static const String search = 'assets/animations/searching.json';
   static const String empty = 'assets/animations/empty.json';
   static const String nodata = 'assets/animations/no data.json';
+  static const String memberDetailsAnimation =
+      'assets/animations/member_details_screen.json';
 }
