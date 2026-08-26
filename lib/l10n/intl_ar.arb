@@ -434,5 +434,16 @@
   "medicineTypeSolutionForImOralUse": "محلول للحقن العضلي أو الاستخدام الفموي",
   "medicineTypeLiquid": "سائل",
   "medicineTypeEntericCoatedTablets": "أقراص مغلفة معويًا",
-  "medicineTypeTablets": "أقراص"
+  "medicineTypeTablets": "أقراص",
+  "householdQrTitle": "رمز QR الخاص بالمنزل",
+  "householdQrDescription": "امسح رمز QR للانضمام إلى المنزل",
+  "householdQrClose": "إغلاق",
+  "householdQrNotMember": "أنت لست عضوًا في منزل بعد",
+  "householdQrScannerTitle": "مسح رمز QR للمنزل",
+  "householdQrScannerInstruction": "ضع رمز QR داخل الإطار",
+  "householdScanQrButton": "مسح رمز QR",
+  "householdOr": "أو",
+  "householdLoading": "جاري تحميل المنزل..."
+
+
 }

@@ -76,6 +76,8 @@ import '../../features/household/domain/use_case/remove_member_usecase.dart'
     as _i1049;
 import '../../features/household/presentation/view/view_model/household_cubit.dart'
     as _i697;
+import '../../features/household/presentation/view/view_model/household_qr_scanner_cubit.dart'
+    as _i641;
 import '../../features/medicine/data/data_source/medicine_data_source_imp.dart'
     as _i796;
 import '../../features/medicine/data/data_source/medicine_data_source_interface.dart'
@@ -287,6 +289,9 @@ extension GetItInjectableX on _i174.GetIt {
         getProfile: gh<_i72.GetProfile>(),
         updateProfile: gh<_i78.UpdateProfile>(),
       ),
+    );
+    gh.factory<_i641.HouseholdQrScannerCubit>(
+      () => _i641.HouseholdQrScannerCubit(gh<_i973.JoinHouseholdUseCase>()),
     );
     gh.factory<_i789.FilterMedicinesUseCase>(
       () => _i789.FilterMedicinesUseCase(gh<_i785.MedicineRepoInterface>()),

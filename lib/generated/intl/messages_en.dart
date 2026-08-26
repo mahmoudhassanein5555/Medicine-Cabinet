@@ -356,6 +356,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Joined household successfully",
     ),
     "householdJoining": MessageLookupByLibrary.simpleMessage("Joining..."),
+    "householdLoading": MessageLookupByLibrary.simpleMessage(
+      "Loading household...",
+    ),
     "householdMedicineCount": m9,
     "householdMemberDetails": MessageLookupByLibrary.simpleMessage(
       "Member Details",
@@ -388,6 +391,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "householdPermissionView": MessageLookupByLibrary.simpleMessage(
       "View all members\' medicines",
     ),
+    "householdQrClose": MessageLookupByLibrary.simpleMessage("Close"),
+    "householdQrDescription": MessageLookupByLibrary.simpleMessage(
+      "Scan this QR code to join my household",
+    ),
+    "householdQrNotMember": MessageLookupByLibrary.simpleMessage(
+      "You are not a member of a household yet",
+    ),
+    "householdQrScannerInstruction": MessageLookupByLibrary.simpleMessage(
+      "Place the QR code inside the frame",
+    ),
+    "householdQrScannerTitle": MessageLookupByLibrary.simpleMessage(
+      "Scan Household QR",
+    ),
+    "householdQrTitle": MessageLookupByLibrary.simpleMessage("My Household QR"),
     "householdRemoveButton": MessageLookupByLibrary.simpleMessage("Remove"),
     "householdRemoveMemberDesc": m10,
     "householdRemoveMemberTitle": MessageLookupByLibrary.simpleMessage(
@@ -395,6 +412,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "householdRemoveMemberTooltip": MessageLookupByLibrary.simpleMessage(
       "Remove member",
+    ),
+    "householdScanQrButton": MessageLookupByLibrary.simpleMessage(
+      "Scan QR Code",
     ),
     "householdSetupDescription": MessageLookupByLibrary.simpleMessage(
       "Join an existing household using its ID, or create a new one.",

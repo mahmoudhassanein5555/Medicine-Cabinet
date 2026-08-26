@@ -16,6 +16,7 @@ import '../../../../../generated/l10n.dart';
 import '../view_model/household_cubit.dart';
 import '../view_model/household_state.dart';
 import 'create_household_screen.dart';
+import 'household_qr_scanner_screen.dart';
 
 class HouseholdScreen extends StatefulWidget {
   const HouseholdScreen({
@@ -39,7 +40,8 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
   @override
   void initState() {
     _cacheHelper = getIt<CacheHelper>();
-    userId = _cacheHelper.getData(key: AppKeys.userId) as String? ?? widget.userId;
+    userId =
+        _cacheHelper.getData(key: AppKeys.userId) as String? ?? widget.userId;
     super.initState();
   }
 
@@ -64,7 +66,9 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
             final household = state.household;
 
             if (household != null) {
-              await getIt<HouseholdLocalDataSource>().saveHouseholdId(household.id);
+              await getIt<HouseholdLocalDataSource>().saveHouseholdId(
+                household.id,
+              );
               if (context.mounted) {
                 Navigator.pushReplacement(
                   context,
@@ -80,7 +84,9 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
           }
 
           if (state is CreateHouseholdSuccess) {
-            await getIt<HouseholdLocalDataSource>().saveHouseholdId(state.household.id);
+            await getIt<HouseholdLocalDataSource>().saveHouseholdId(
+              state.household.id,
+            );
             if (context.mounted) {
               Navigator.pushReplacement(
                 context,
@@ -95,7 +101,9 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
           }
 
           if (state is JoinHouseholdSuccess) {
-            await getIt<HouseholdLocalDataSource>().saveHouseholdId(state.household.id);
+            await getIt<HouseholdLocalDataSource>().saveHouseholdId(
+              state.household.id,
+            );
             if (context.mounted) {
               AppToast.showToast(
                 context: context,
@@ -212,6 +220,24 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                           enabled: !isLoading,
                           hintText: l10n.householdIdHint,
                           prefixIcon: Icons.home_outlined,
+                          suffixIcon: IconButton(
+                            onPressed: isLoading
+                                ? null
+                                : () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => BlocProvider.value(
+                                          value: context.read<HouseholdCubit>(),
+                                          child: HouseholdQrScannerScreen(
+                                            userId: widget.userId,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                            icon: Icon(Icons.qr_code_scanner, size: 24.r),
+                          ),
                         ),
 
                         SizedBox(height: 20.h),
@@ -230,7 +256,6 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                         ),
 
                         SizedBox(height: 32.h),
-
                         Row(
                           children: [
                             Expanded(
@@ -240,9 +265,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 12.w,
-                              ),
+                              margin: EdgeInsets.symmetric(horizontal: 12.w),
                               padding: EdgeInsets.symmetric(
                                 horizontal: 14.w,
                                 vertical: 6.h,
@@ -270,8 +293,7 @@ class _HouseholdScreenState extends State<HouseholdScreen> {
                           ],
                         ),
 
-                        SizedBox(height: 32.h),
-
+                        SizedBox(height: 16.h),
                         CustomButton(
                           text: l10n.householdCreateButton,
                           onPressed: isLoading

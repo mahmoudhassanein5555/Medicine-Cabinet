@@ -1,15 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../../../../core/di/service_locator.dart';
+import '../../../../core/utils/household_local_data_source.dart';
+import '../../../../generated/l10n.dart';
+import 'household_qr_code.dart';
 import '../../domain/entities/profile_entity.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({
-    super.key,
-    required this.profile,
-  });
+  const ProfileHeader({super.key, required this.profile});
 
   final ProfileEntity profile;
+  void _showHouseholdQrDialog(BuildContext context) {
+    final l10n = S.of(context);
+    final householdId = getIt<HouseholdLocalDataSource>().getHouseholdId();
+
+    if (householdId == null || householdId.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.householdQrNotMember)));
+      return;
+    }
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: Text(l10n.householdQrTitle, textAlign: TextAlign.center),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              HouseholdQrCode(householdId: householdId),
+
+              SizedBox(height: 16.h),
+
+              Text(
+                l10n.householdQrDescription,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14.sp),
+              ),
+
+              SizedBox(height: 10.h),
+
+              Text(
+                householdId,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: Text(l10n.householdQrClose),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +72,8 @@ class ProfileHeader extends StatelessWidget {
         CircleAvatar(
           radius: 36.r,
           backgroundColor: colorScheme.primary,
-          backgroundImage: profile.photoUrl != null &&
-                  profile.photoUrl!.isNotEmpty
+          backgroundImage:
+              profile.photoUrl != null && profile.photoUrl!.isNotEmpty
               ? NetworkImage(profile.photoUrl!)
               : null,
           child: profile.photoUrl == null || profile.photoUrl!.isEmpty
@@ -48,10 +96,7 @@ class ProfileHeader extends StatelessWidget {
                 profile.name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 4.h),
               Text(
@@ -65,6 +110,10 @@ class ProfileHeader extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        IconButton(
+          onPressed: () => _showHouseholdQrDialog(context),
+          icon: Icon(Icons.qr_code_2, size: 30.r, color: colorScheme.primary),
         ),
       ],
     );

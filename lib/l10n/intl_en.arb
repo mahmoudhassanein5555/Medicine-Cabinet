@@ -339,5 +339,15 @@
   "medicineTypeEntericCoatedTablets": "Enteric Coated Tablets",
   "medicineTypeLiquid": "Liquid",
   "medicineTypeSolutionForImOralUse": "Solution for IM injection / oral use",
-  "medicineTypeTablets": "Tablets"
+  "medicineTypeTablets": "Tablets",
+  "householdQrTitle": "My Household QR",
+  "householdQrDescription": "Scan this QR code to join my household",
+  "householdQrClose": "Close",
+  "householdQrNotMember": "You are not a member of a household yet",
+  "householdQrScannerTitle": "Scan Household QR",
+  "householdQrScannerInstruction": "Place the QR code inside the frame",
+  "householdScanQrButton": "Scan QR Code",
+  "householdOr": "OR",
+  "householdLoading": "Loading household..."
+
 }
