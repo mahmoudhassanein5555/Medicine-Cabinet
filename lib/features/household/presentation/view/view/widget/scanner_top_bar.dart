@@ -33,39 +33,47 @@ class ScannerTopBar extends StatelessWidget {
               onTap: isJoining ? null : onClose,
             ),
 
-            const Spacer(),
+            SizedBox(width: 12.w),
 
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 12.h,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.black.withValues(alpha: 0.65),
-                borderRadius: BorderRadius.circular(30.r),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.qr_code_scanner,
-                    color: Colors.white,
-                    size: 20.r,
+            Expanded(
+              child: Center(
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 250.w),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 12.h,
                   ),
-                  SizedBox(width: 8.w),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.65),
+                    borderRadius: BorderRadius.circular(30.r),
                   ),
-                ],
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.qr_code_scanner,
+                        color: Colors.white,
+                        size: 20.r,
+                      ),
+                      SizedBox(width: 8.w),
+                      Flexible(
+                        child: Text(
+                          title,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
 
-            const Spacer(),
+            SizedBox(width: 12.w),
 
             _CircleButton(
               icon: torchState == TorchState.on
