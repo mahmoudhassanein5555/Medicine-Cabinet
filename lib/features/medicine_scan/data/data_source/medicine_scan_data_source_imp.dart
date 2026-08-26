@@ -68,7 +68,6 @@ class MedicineScanDataSourceImp implements MedicineScanDataSource {
 
   @override
   Future<void> addMedicine(MedicineModel medicine, String houseId) async {
-    debugPrint("dnn add Medicine **************************");
     await firebaseFirestore
         .collection("households")
         .doc(houseId)

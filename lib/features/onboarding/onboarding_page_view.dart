@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:medicine_cabinet/core/constants/app_colors.dart';
 import 'onboarding_page_data.dart';
 
 class OnboardingPageView extends StatelessWidget {
@@ -11,33 +10,61 @@ class OnboardingPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 32.w),
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(data.iconAsset, width: 220.r, height: 220.r),
-          SizedBox(height: 40.h),
+          Container(
+            width: 270.r,
+            height: 270.r,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(28.r),
+              boxShadow: [
+                BoxShadow(
+                  color: (isDark ? Colors.black : const Color(0xFF28856F))
+                      .withValues(alpha: 0.12),
+                  blurRadius: 28,
+                  offset: const Offset(0, 10),
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(28.r),
+              child: Image.asset(
+                data.imageAsset,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          SizedBox(height: 36.h),
           Text(
             data.title,
             textAlign: TextAlign.center,
-            style: textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-              fontSize: 26.sp,
-              color: colorScheme.onSurface,
+            style: TextStyle(
+              fontWeight: FontWeight.w800,
+              fontSize: 24.sp,
+              color: isDark ? Colors.white : const Color(0xFF1B4D3E),
+              letterSpacing: -0.4,
+              height: 1.2,
             ),
           ),
           SizedBox(height: 14.h),
-          Text(
-            data.description,
-            textAlign: TextAlign.center,
-            style: textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.6),
-              fontSize: 15.sp,
-              height: 1.5,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
+            child: Text(
+              data.description,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: isDark
+                    ? AppColors.textSecondaryDark
+                    : const Color(0xFF6C8A82),
+                fontSize: 14.5.sp,
+                fontWeight: FontWeight.w500,
+                height: 1.45,
+              ),
             ),
           ),
         ],

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:medicine_cabinet/core/constants/app_assets.dart';
 import 'package:medicine_cabinet/generated/l10n.dart';
 
 class OnboardingPageData {
   const OnboardingPageData({
-    required this.iconAsset,
+    required this.imageAsset,
     required this.title,
     required this.description,
   });
 
-  final String iconAsset;
+  final String imageAsset;
   final String title;
   final String description;
 }
@@ -17,17 +18,17 @@ List<OnboardingPageData> getOnboardingPages(BuildContext context) {
   final s = S.of(context);
   return [
     OnboardingPageData(
-      iconAsset: 'assets/icons/onboarding_organize.svg',
+      imageAsset: AppAssets.onboarding1,
       title: s.onboardingTitle1,
       description: s.onboardingDesc1,
     ),
     OnboardingPageData(
-      iconAsset: 'assets/icons/onboarding_reminder.svg',
+      imageAsset: AppAssets.onboarding2,
       title: s.onboardingTitle2,
       description: s.onboardingDesc2,
     ),
     OnboardingPageData(
-      iconAsset: 'assets/icons/onboarding_check.svg',
+      imageAsset: AppAssets.onboarding3,
       title: s.onboardingTitle3,
       description: s.onboardingDesc3,
     ),

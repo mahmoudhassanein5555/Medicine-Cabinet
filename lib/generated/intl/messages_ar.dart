@@ -532,38 +532,44 @@ class MessageLookup extends MessageLookupByLibrary {
     "memberMedicines": MessageLookupByLibrary.simpleMessage("أدوية العضو"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(
-      "امسح الدواء في المتجر واعرف فوراً إن كان موجوداً بالفعل في منزلك.",
+      "تعرف على أدويتك، مواعيد الانتهاء، والكميات المتبقية بسهولة.",
     ),
     "onboardingBuyTitle": MessageLookupByLibrary.simpleMessage(
-      "تحقق قبل الشراء",
+      "تابع أدويتك وصحتك",
     ),
     "onboardingContinue": MessageLookupByLibrary.simpleMessage("متابعة"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
-      "احتفظ بجميع أدوية منزلك منظمة في مكان واحد واضح ومشترك.",
+      "احفظ جميع أدويتك ونظمها بسهولة في خزانة واحدة آمنة.",
     ),
     "onboardingDesc2": MessageLookupByLibrary.simpleMessage(
-      "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء أو قبل نفاد الكمية.",
+      "التقط صورة لعلبة الدواء ودع الذكاء الاصطناعي يستخرج تفاصيله وصلاحيته فوراً.",
     ),
     "onboardingDesc3": MessageLookupByLibrary.simpleMessage(
-      "امسح الدواء في المتجر واعرف فوراً إن كان موجوداً بالفعل في منزلك.",
+      "تعرف على أدويتك، مواعيد الانتهاء، والكميات المتبقية بسهولة.",
     ),
     "onboardingExpiryDesc": MessageLookupByLibrary.simpleMessage(
-      "احصل على تنبيه لطيف قبل انتهاء صلاحية الدواء أو قبل نفاد الكمية.",
+      "التقط صورة لعلبة الدواء ودع الذكاء الاصطناعي يستخرج تفاصيله وصلاحيته فوراً.",
     ),
     "onboardingExpiryTitle": MessageLookupByLibrary.simpleMessage(
-      "لا تفوت انتهاء الصلاحية",
+      "فحص ذكي وسريع للأدوية",
     ),
     "onboardingGetStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "onboardingKnowDesc": MessageLookupByLibrary.simpleMessage(
-      "احتفظ بجميع أدوية منزلك منظمة في مكان واحد واضح ومشترك.",
+      "احفظ جميع أدويتك ونظمها بسهولة في خزانة واحدة آمنة.",
     ),
-    "onboardingKnowTitle": MessageLookupByLibrary.simpleMessage("اعرف ما لديك"),
+    "onboardingKnowTitle": MessageLookupByLibrary.simpleMessage(
+      "كل أدويتك في مكان واحد",
+    ),
     "onboardingSkip": MessageLookupByLibrary.simpleMessage("تخطي"),
-    "onboardingTitle1": MessageLookupByLibrary.simpleMessage("اعرف ما لديك"),
-    "onboardingTitle2": MessageLookupByLibrary.simpleMessage(
-      "لا تفوت انتهاء الصلاحية",
+    "onboardingTitle1": MessageLookupByLibrary.simpleMessage(
+      "كل أدويتك في مكان واحد",
     ),
-    "onboardingTitle3": MessageLookupByLibrary.simpleMessage("تحقق قبل الشراء"),
+    "onboardingTitle2": MessageLookupByLibrary.simpleMessage(
+      "فحص ذكي وسريع للأدوية",
+    ),
+    "onboardingTitle3": MessageLookupByLibrary.simpleMessage(
+      "تابع أدويتك وصحتك",
+    ),
     "profileAbout": MessageLookupByLibrary.simpleMessage("عن التطبيق"),
     "profileAboutDescription": MessageLookupByLibrary.simpleMessage(
       "يساعدك تطبيق Medicine Cabinet على إدارة أدويتك وتواريخ انتهاء صلاحيتها ومستويات مخزونها بسهولة.",
@@ -759,9 +765,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "جاري تجهيز خزانتك...",
     ),
     "splashTagline": MessageLookupByLibrary.simpleMessage(
-      "أدوية منزلك، منظمة في مكان واحد.",
+      "صحتك، دائماً في أمان ونظام",
     ),
-    "splashWordmark": MessageLookupByLibrary.simpleMessage("خزانة الأدوية"),
+    "splashWordmark": MessageLookupByLibrary.simpleMessage("Medicine Cabinet"),
     "validationCodeLength": MessageLookupByLibrary.simpleMessage(
       "يجب أن يتكون الكود من 6 أرقام على الأقل",
     ),

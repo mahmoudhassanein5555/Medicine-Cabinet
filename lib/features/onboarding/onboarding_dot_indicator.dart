@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medicine_cabinet/core/constants/app_colors.dart';
 
 class OnboardingDotIndicator extends StatelessWidget {
   const OnboardingDotIndicator({
@@ -13,7 +14,8 @@ class OnboardingDotIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(count, (index) {
@@ -21,12 +23,12 @@ class OnboardingDotIndicator extends StatelessWidget {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 250),
           margin: EdgeInsets.symmetric(horizontal: 4.w),
-          width: isActive ? 22.w : 8.w,
-          height: 8.h,
+          width: isActive ? 24.w : 8.r,
+          height: 8.r,
           decoration: BoxDecoration(
             color: isActive
-                ? colorScheme.primary
-                : colorScheme.primary.withValues(alpha: 0.2),
+                ? (isDark ? AppColors.primaryDark : const Color(0xFF1B4D3E))
+                : (isDark ? Colors.white24 : const Color(0xFFD6E4DF)),
             borderRadius: BorderRadius.circular(4.r),
           ),
         );

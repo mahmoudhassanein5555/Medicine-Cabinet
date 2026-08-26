@@ -28,10 +28,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final pages = getOnboardingPages(context);
     final bool isLastPage = _page == pages.length - 1;
     final s = S.of(context);
+    final primaryColor = isDark ? AppColors.primaryDark : const Color(0xFF1B4D3E);
 
     void next() {
       if (isLastPage) {
@@ -39,16 +40,46 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         return;
       }
       _controller.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeOutCubic,
       );
     }
 
     return Scaffold(
-      backgroundColor: colorScheme.surface,
+      backgroundColor: isDark ? AppColors.backgroundDark : const Color(0xFFFAFCFB),
       body: SafeArea(
         child: Column(
           children: [
+            // Top Bar with Skip Button
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(width: 48),
+                  if (!isLastPage)
+                    TextButton(
+                      onPressed: () => widget.onFinished?.call(context),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: Text(
+                        s.onboardingSkip,
+                        style: TextStyle(
+                          color: isDark ? AppColors.primaryDark : const Color(0xFF28856F),
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    )
+                  else
+                    const SizedBox(width: 48),
+                ],
+              ),
+            ),
+
+            // PageView
             Expanded(
               child: PageView.builder(
                 controller: _controller,
@@ -58,28 +89,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     OnboardingPageView(data: pages[index]),
               ),
             ),
+
+            // Dots Indicator
+            SizedBox(height: 16.h),
             OnboardingDotIndicator(count: pages.length, activeIndex: _page),
             SizedBox(height: 24.h),
+
+            // Action Button (Continue / Get Started)
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Container(
                 width: double.infinity,
-                height: 52.h,
+                height: 54.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(28.r),
                   boxShadow: [
                     BoxShadow(
-                      color: colorScheme.primary.withValues(alpha: 0.25),
-                      blurRadius: 20,
-                      offset: const Offset(0, 4),
+                      color: primaryColor.withValues(alpha: 0.28),
+                      blurRadius: 18,
+                      offset: const Offset(0, 6),
                     ),
                   ],
                 ),
                 child: ElevatedButton(
                   onPressed: next,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: colorScheme.primary,
-                    foregroundColor: colorScheme.onPrimary,
+                    backgroundColor: primaryColor,
+                    foregroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(28.r),
@@ -87,26 +123,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                   child: Text(
                     isLastPage ? s.onboardingGetStarted : s.onboardingContinue,
-                    style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 12.h),
-            TextButton(
-              onPressed: () => widget.onFinished?.call(context),
-              child: Text(
-                s.onboardingSkip,
-                style: TextStyle(
-                  color: isLastPage
-                      ? Colors.transparent
-                      : AppColors.scannerFrameAccent,
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            SizedBox(height: 16.h),
+            SizedBox(height: 24.h),
           ],
         ),
       ),

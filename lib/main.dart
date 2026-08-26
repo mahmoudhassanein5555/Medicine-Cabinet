@@ -78,9 +78,9 @@ class MyApp extends StatelessWidget {
               home: SplashScreen(
                 resolveInitialRoute: () async {
                   final currentUser = FirebaseAuth.instance.currentUser;
+                  final cacheHelper = getIt<CacheHelper>();
 
                   if (currentUser != null) {
-                    final cacheHelper = getIt<CacheHelper>();
                     final localDataSource = getIt<HouseholdLocalDataSource>();
 
                     final cachedUserId = cacheHelper.getData(
@@ -98,6 +98,14 @@ class MyApp extends StatelessWidget {
                       return 'home';
                     }
                     return 'household';
+                  }
+
+                  final hasSeenOnboarding = cacheHelper.getData(
+                    key: AppKeys.hasSeenOnboarding,
+                  );
+
+                  if (hasSeenOnboarding == true) {
+                    return 'login';
                   }
 
                   return 'onboarding';
@@ -126,21 +134,37 @@ class MyApp extends StatelessWidget {
                             HouseholdScreen(userId: currentUser.uid),
                       ),
                     );
+                  } else if (route == 'login') {
+                    Navigator.pushReplacement(
+                      splashContext,
+                      MaterialPageRoute(
+                        builder: (_) => BlocProvider<AuthCubit>(
+                          create: (_) => getIt<AuthCubit>(),
+                          child: const LoginScreen(),
+                        ),
+                      ),
+                    );
                   } else {
                     Navigator.pushReplacement(
                       splashContext,
                       MaterialPageRoute(
                         builder: (_) => OnboardingScreen(
-                          onFinished: (onboardingContext) {
-                            Navigator.pushReplacement(
-                              onboardingContext,
-                              MaterialPageRoute(
-                                builder: (_) => BlocProvider<AuthCubit>(
-                                  create: (_) => getIt<AuthCubit>(),
-                                  child: const LoginScreen(),
-                                ),
-                              ),
+                          onFinished: (onboardingContext) async {
+                            await getIt<CacheHelper>().saveData(
+                              key: AppKeys.hasSeenOnboarding,
+                              value: true,
                             );
+                            if (onboardingContext.mounted) {
+                              Navigator.pushReplacement(
+                                onboardingContext,
+                                MaterialPageRoute(
+                                  builder: (_) => BlocProvider<AuthCubit>(
+                                    create: (_) => getIt<AuthCubit>(),
+                                    child: const LoginScreen(),
+                                  ),
+                                ),
+                              );
+                            }
                           },
                         ),
                       ),

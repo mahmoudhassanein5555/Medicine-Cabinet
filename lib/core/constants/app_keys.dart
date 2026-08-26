@@ -7,6 +7,7 @@ abstract class AppKeys {
   static const String userId = 'user_id';
   static const String householdId = 'cached_household_id';
   static const String usernameRegex = r'^[a-zA-Z0-9,.-]+$';
+  static const String hasSeenOnboarding = 'has_seen_onboarding';
 
   static String get geminiApiKey => dotenv.env['GEMINI_API_KEY'] ?? '';
 }

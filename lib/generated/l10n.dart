@@ -824,120 +824,120 @@ class S {
     );
   }
 
-  /// `Know what you have`
+  /// `All Your Medicines in One Place`
   String get onboardingKnowTitle {
     return Intl.message(
-      'Know what you have',
+      'All Your Medicines in One Place',
       name: 'onboardingKnowTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Keep every medicine your household owns organized in one clear, shared place.`
+  /// `Store and organize all your medicines easily in one safe cabinet.`
   String get onboardingKnowDesc {
     return Intl.message(
-      'Keep every medicine your household owns organized in one clear, shared place.',
+      'Store and organize all your medicines easily in one safe cabinet.',
       name: 'onboardingKnowDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `Never miss an expiry`
+  /// `Smart & Fast Medicine Scan`
   String get onboardingExpiryTitle {
     return Intl.message(
-      'Never miss an expiry',
+      'Smart & Fast Medicine Scan',
       name: 'onboardingExpiryTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Get a gentle nudge before a medicine expires, or before you run low on it.`
+  /// `Snap a photo of your medicine and let AI extract its details and expiry date instantly.`
   String get onboardingExpiryDesc {
     return Intl.message(
-      'Get a gentle nudge before a medicine expires, or before you run low on it.',
+      'Snap a photo of your medicine and let AI extract its details and expiry date instantly.',
       name: 'onboardingExpiryDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `Check before you buy`
+  /// `Track Your Medicines & Health`
   String get onboardingBuyTitle {
     return Intl.message(
-      'Check before you buy',
+      'Track Your Medicines & Health',
       name: 'onboardingBuyTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Scan a medicine at the store and instantly see if your household already has it.`
+  /// `Easily monitor your medicines, expiry dates, and remaining quantities.`
   String get onboardingBuyDesc {
     return Intl.message(
-      'Scan a medicine at the store and instantly see if your household already has it.',
+      'Easily monitor your medicines, expiry dates, and remaining quantities.',
       name: 'onboardingBuyDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `Know what you have`
+  /// `All Your Medicines in One Place`
   String get onboardingTitle1 {
     return Intl.message(
-      'Know what you have',
+      'All Your Medicines in One Place',
       name: 'onboardingTitle1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Keep every medicine your household owns organized in one clear, shared place.`
+  /// `Store and organize all your medicines easily in one safe cabinet.`
   String get onboardingDesc1 {
     return Intl.message(
-      'Keep every medicine your household owns organized in one clear, shared place.',
+      'Store and organize all your medicines easily in one safe cabinet.',
       name: 'onboardingDesc1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Never miss an expiry`
+  /// `Smart & Fast Medicine Scan`
   String get onboardingTitle2 {
     return Intl.message(
-      'Never miss an expiry',
+      'Smart & Fast Medicine Scan',
       name: 'onboardingTitle2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Get a gentle nudge before a medicine expires, or before you run low on it.`
+  /// `Snap a photo of your medicine and let AI extract its details and expiry date instantly.`
   String get onboardingDesc2 {
     return Intl.message(
-      'Get a gentle nudge before a medicine expires, or before you run low on it.',
+      'Snap a photo of your medicine and let AI extract its details and expiry date instantly.',
       name: 'onboardingDesc2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Check before you buy`
+  /// `Track Your Medicines & Health`
   String get onboardingTitle3 {
     return Intl.message(
-      'Check before you buy',
+      'Track Your Medicines & Health',
       name: 'onboardingTitle3',
       desc: '',
       args: [],
     );
   }
 
-  /// `Scan a medicine at the store and instantly see if your household already has it.`
+  /// `Easily monitor your medicines, expiry dates, and remaining quantities.`
   String get onboardingDesc3 {
     return Intl.message(
-      'Scan a medicine at the store and instantly see if your household already has it.',
+      'Easily monitor your medicines, expiry dates, and remaining quantities.',
       name: 'onboardingDesc3',
       desc: '',
       args: [],
@@ -1789,10 +1789,10 @@ class S {
     );
   }
 
-  /// `Your household medicines, organized in one place.`
+  /// `Your health, always in order`
   String get splashTagline {
     return Intl.message(
-      'Your household medicines, organized in one place.',
+      'Your health, always in order',
       name: 'splashTagline',
       desc: '',
       args: [],

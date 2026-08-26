@@ -536,43 +536,43 @@ class MessageLookup extends MessageLookupByLibrary {
     "memberMedicines": MessageLookupByLibrary.simpleMessage("Member Medicines"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "onboardingBuyDesc": MessageLookupByLibrary.simpleMessage(
-      "Scan a medicine at the store and instantly see if your household already has it.",
+      "Easily monitor your medicines, expiry dates, and remaining quantities.",
     ),
     "onboardingBuyTitle": MessageLookupByLibrary.simpleMessage(
-      "Check before you buy",
+      "Track Your Medicines & Health",
     ),
     "onboardingContinue": MessageLookupByLibrary.simpleMessage("Continue"),
     "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
-      "Keep every medicine your household owns organized in one clear, shared place.",
+      "Store and organize all your medicines easily in one safe cabinet.",
     ),
     "onboardingDesc2": MessageLookupByLibrary.simpleMessage(
-      "Get a gentle nudge before a medicine expires, or before you run low on it.",
+      "Snap a photo of your medicine and let AI extract its details and expiry date instantly.",
     ),
     "onboardingDesc3": MessageLookupByLibrary.simpleMessage(
-      "Scan a medicine at the store and instantly see if your household already has it.",
+      "Easily monitor your medicines, expiry dates, and remaining quantities.",
     ),
     "onboardingExpiryDesc": MessageLookupByLibrary.simpleMessage(
-      "Get a gentle nudge before a medicine expires, or before you run low on it.",
+      "Snap a photo of your medicine and let AI extract its details and expiry date instantly.",
     ),
     "onboardingExpiryTitle": MessageLookupByLibrary.simpleMessage(
-      "Never miss an expiry",
+      "Smart & Fast Medicine Scan",
     ),
     "onboardingGetStarted": MessageLookupByLibrary.simpleMessage("Get started"),
     "onboardingKnowDesc": MessageLookupByLibrary.simpleMessage(
-      "Keep every medicine your household owns organized in one clear, shared place.",
+      "Store and organize all your medicines easily in one safe cabinet.",
     ),
     "onboardingKnowTitle": MessageLookupByLibrary.simpleMessage(
-      "Know what you have",
+      "All Your Medicines in One Place",
     ),
     "onboardingSkip": MessageLookupByLibrary.simpleMessage("Skip"),
     "onboardingTitle1": MessageLookupByLibrary.simpleMessage(
-      "Know what you have",
+      "All Your Medicines in One Place",
     ),
     "onboardingTitle2": MessageLookupByLibrary.simpleMessage(
-      "Never miss an expiry",
+      "Smart & Fast Medicine Scan",
     ),
     "onboardingTitle3": MessageLookupByLibrary.simpleMessage(
-      "Check before you buy",
+      "Track Your Medicines & Health",
     ),
     "profileAbout": MessageLookupByLibrary.simpleMessage("About"),
     "profileAboutDescription": MessageLookupByLibrary.simpleMessage(
@@ -775,7 +775,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Setting up your cabinet...",
     ),
     "splashTagline": MessageLookupByLibrary.simpleMessage(
-      "Your household medicines, organized in one place.",
+      "Your health, always in order",
     ),
     "splashWordmark": MessageLookupByLibrary.simpleMessage("Medicine Cabinet"),
     "validationCodeLength": MessageLookupByLibrary.simpleMessage(
