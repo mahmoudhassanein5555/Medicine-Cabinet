@@ -114,7 +114,7 @@ class AppTheme {
         hintStyle: TextStyle(
           fontFamily: fontFamily,
           color: AppColors.textMutedLight,
-          fontSize: 14,
+          fontSize: 13,
         ),
 
         prefixIconColor: AppColors.textSecondaryLight,
@@ -154,7 +154,7 @@ class AppTheme {
         errorStyle: TextStyle(
           fontFamily: fontFamily,
           color: AppColors.errorLight,
-          fontSize: 12,
+          fontSize: 11,
         ),
       ),
 
@@ -163,42 +163,42 @@ class AppTheme {
       // ========================================================
       textTheme: TextTheme(
         headlineMedium: TextStyle(
-          fontSize: 24,
+          fontSize: 23,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryLight,
           fontFamily: fontFamily,
         ),
 
         headlineSmall: TextStyle(
-          fontSize: 22,
+          fontSize: 21,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryLight,
           fontFamily: fontFamily,
         ),
 
         titleLarge: TextStyle(
-          fontSize: 18,
+          fontSize: 17.5,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryLight,
           fontFamily: fontFamily,
         ),
 
         titleMedium: TextStyle(
-          fontSize: 16,
+          fontSize: 15.5,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimaryLight,
           fontFamily: fontFamily,
         ),
 
         titleSmall: TextStyle(
-          fontSize: 14,
+          fontSize: 13.5,
           fontWeight: FontWeight.w600,
           color: AppColors.textSecondaryLight,
           fontFamily: fontFamily,
         ),
 
         bodyLarge: TextStyle(
-          fontSize: 15,
+          fontSize: 14.5,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimaryLight,
           fontFamily: fontFamily,
@@ -211,7 +211,7 @@ class AppTheme {
         ),
 
         bodySmall: TextStyle(
-          fontSize: 12,
+          fontSize: 11.5,
           color: AppColors.textSecondaryLight,
           fontFamily: fontFamily,
         ),
@@ -318,47 +318,47 @@ class AppTheme {
         hintStyle: TextStyle(
           fontFamily: fontFamily,
           color: AppColors.textMutedDark,
-          fontSize: 14,
+          fontSize: 13,
         ),
 
         prefixIconColor: AppColors.textSecondaryDark,
 
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.borderDark),
         ),
 
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.borderDark),
         ),
 
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.primaryDark, width: 2),
         ),
 
         disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(
             color: AppColors.borderDark.withValues(alpha: 0.5),
           ),
         ),
 
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.errorDark, width: 1.5),
         ),
 
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.errorDark, width: 2),
         ),
 
         errorStyle: TextStyle(
           fontFamily: fontFamily,
           color: AppColors.errorDark,
-          fontSize: 12,
+          fontSize: 11,
         ),
       ),
 
@@ -367,42 +367,42 @@ class AppTheme {
       // ========================================================
       textTheme: TextTheme(
         headlineMedium: TextStyle(
-          fontSize: 24,
+          fontSize: 23,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryDark,
           fontFamily: fontFamily,
         ),
 
         headlineSmall: TextStyle(
-          fontSize: 22,
+          fontSize: 21,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryDark,
           fontFamily: fontFamily,
         ),
 
         titleLarge: TextStyle(
-          fontSize: 18,
+          fontSize: 17.5,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimaryDark,
           fontFamily: fontFamily,
         ),
 
         titleMedium: TextStyle(
-          fontSize: 16,
+          fontSize: 15.5,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimaryDark,
           fontFamily: fontFamily,
         ),
 
         titleSmall: TextStyle(
-          fontSize: 14,
+          fontSize: 13.5,
           fontWeight: FontWeight.w600,
           color: AppColors.textSecondaryDark,
           fontFamily: fontFamily,
         ),
 
         bodyLarge: TextStyle(
-          fontSize: 15,
+          fontSize: 14.5,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimaryDark,
           fontFamily: fontFamily,
@@ -415,7 +415,7 @@ class AppTheme {
         ),
 
         bodySmall: TextStyle(
-          fontSize: 12,
+          fontSize: 11.5,
           color: AppColors.textSecondaryDark,
           fontFamily: fontFamily,
         ),

@@ -74,6 +74,16 @@ class MyApp extends StatelessWidget {
 
               supportedLocales: S.delegate.supportedLocales,
 
+              builder: (context, child) {
+                final mediaQuery = MediaQuery.of(context);
+                return MediaQuery(
+                  data: mediaQuery.copyWith(
+                    textScaler: const TextScaler.linear(1.0),
+                  ),
+                  child: child ?? const SizedBox.shrink(),
+                );
+              },
+
               // Initial Screen
               home: SplashScreen(
                 resolveInitialRoute: () async {
