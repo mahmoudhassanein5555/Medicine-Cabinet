@@ -55,7 +55,7 @@ class ScannerOverlayPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 4;
 
-    const cornerLength = 35.0;
+    final cornerLength = 35.r;
 
     canvas.drawLine(
       Offset(left, top + cornerLength),

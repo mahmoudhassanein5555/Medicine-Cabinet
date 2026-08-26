@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ScannerInstruction extends StatelessWidget {
-  const ScannerInstruction({
-    super.key,
-    required this.text,
-  });
+  const ScannerInstruction({super.key, required this.text});
 
   final String text;
 
@@ -15,14 +12,12 @@ class ScannerInstruction extends StatelessWidget {
 
     return Positioned(
       top: 125.h,
-      left: 35.w,
-      right: 35.w,
+      left: 20.w,
+      right: 20.w,
       child: Center(
         child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 18.w,
-            vertical: 12.h,
-          ),
+          constraints: BoxConstraints(maxWidth: 350.w),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
           decoration: BoxDecoration(
             color: Colors.black.withValues(alpha: 0.7),
             borderRadius: BorderRadius.circular(25.r),
